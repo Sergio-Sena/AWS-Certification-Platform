@@ -1,0 +1,29 @@
+{
+  "name": "aws-certification-platform",
+  "version": "2.1.0",
+  "description": "Plataforma completa para certificações AWS",
+  "main": "index.html",
+  "scripts": {
+    "dev": "python -m http.server 8000",
+    "validate": "echo 'Validating 80% pass score...' && grep -r '80%' --include='*.js' .",
+    "deploy": "echo 'Deploy via GitHub Actions only'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Sergio-Sena/AWS-Certification-Platform.git"
+  },
+  "keywords": [
+    "aws",
+    "certification",
+    "dva-c02",
+    "clf-c02", 
+    "saa-c03",
+    "simulator"
+  ],
+  "author": "AWS Certification Team",
+  "license": "MIT",
+  "devDependencies": {},
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
