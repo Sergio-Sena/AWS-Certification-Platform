@@ -1,0 +1,73 @@
+/* CLF-C02 Cloud Practitioner Theme - Verde AWS */
+:root {
+    --primary-color: #00A651;
+    --secondary-color: #146EB4;
+    --accent-color: #FF9900;
+}
+
+/* Header específico CLF */
+header {
+    background: linear-gradient(135deg, #00A651 0%, #146EB4 100%);
+    padding: 1.5rem 0;
+    text-align: center;
+    color: white;
+    border-bottom: 4px solid #00A651;
+}
+
+/* Cards de estudo com tema verde */
+.study-card:hover {
+    background: linear-gradient(135deg, #00A651 0%, #146EB4 100%);
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 166, 81, 0.3);
+}
+
+/* Botões com tema CLF */
+.btn-primary {
+    background-color: #00A651;
+    box-shadow: 0 4px 12px rgba(0, 166, 81, 0.2);
+}
+
+.btn-primary:hover {
+    background-color: #008a44;
+    box-shadow: 0 6px 15px rgba(0, 166, 81, 0.3);
+}
+
+.btn-secondary {
+    color: #00A651;
+    border-color: #00A651;
+}
+
+.btn-secondary:hover {
+    background: #00A651;
+    color: white;
+}
+
+/* Navegação ativa */
+.nav-btn.active {
+    background-color: #00A651;
+    box-shadow: 0 2px 8px rgba(0, 166, 81, 0.3);
+}
+
+/* Opções selecionadas */
+.option.selected {
+    border-color: #00A651;
+    background-color: #f0f8f5;
+}
+
+/* Timer e progress */
+.timer {
+    color: #00A651;
+}
+
+/* Resultados */
+.result-card {
+    background: linear-gradient(135deg, #00A651 0%, #146EB4 100%);
+}
+
+/* Responsividade mantida */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.6rem;
+    }
+}

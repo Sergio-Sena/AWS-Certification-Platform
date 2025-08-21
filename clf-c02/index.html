@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLF-C02 - Cloud Practitioner</title>
+    <link rel="stylesheet" href="../shared/css/base.css">
+    <link rel="stylesheet" href="css/clf-theme.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <header role="banner">
+        <div class="container">
+            <h1><a href="../index.html" style="color: white; text-decoration: none;"><i class="fas fa-cloud" style="color: #00A651; margin-right: 0.5rem;"></i>AWS Cloud Practitioner</a></h1>
+            <p>CLF-C02 - Fundamentos da AWS Cloud</p>
+        </div>
+    </header>
+
+    <nav class="main-nav" role="navigation">
+        <div class="container">
+            <button class="nav-btn active" onclick="showSection('study')">☁️ Material de Estudo</button>
+            <button class="nav-btn" onclick="showSection('simulator')">🎯 Simulado</button>
+            <button class="nav-btn" onclick="showSection('results')">📊 Resultados</button>
+        </div>
+    </nav>
+
+    <main class="container" id="main-content" role="main">
+        <div class="content-wrapper">
+            <!-- SEÇÃO DE ESTUDOS -->
+            <section id="study" class="content-section active">
+                <div class="study-material">
+                    <h2>Material de Estudo CLF-C02</h2>
+                    <div class="study-grid">
+                        <div class="study-card" onclick="showTopic('cloud-concepts')">
+                            <h3>☁️ Cloud Concepts</h3>
+                            <p>Fundamentos de cloud computing, benefícios e modelos</p>
+                        </div>
+                        <div class="study-card" onclick="showTopic('security')">
+                            <h3>🔒 Security & Compliance</h3>
+                            <p>Modelo de responsabilidade compartilhada, IAM básico</p>
+                        </div>
+                        <div class="study-card" onclick="showTopic('technology')">
+                            <h3>⚙️ Technology & Services</h3>
+                            <p>Principais serviços AWS e casos de uso</p>
+                        </div>
+                        <div class="study-card" onclick="showTopic('billing')">
+                            <h3>💰 Billing & Pricing</h3>
+                            <p>Modelos de preços, calculadora, suporte</p>
+                        </div>
+                    </div>
+                    <div id="topic-content" class="topic-content"></div>
+                </div>
+            </section>
+
+            <!-- SEÇÃO DO SIMULADO -->
+            <section id="simulator" class="content-section">
+                <div class="simulator-header">
+                    <h2>Simulado CLF-C02</h2>
+                    <div class="simulator-controls">
+                        <button id="start-exam" class="btn-primary" onclick="startExam()">Iniciar Simulado (65 questões)</button>
+                        <button id="practice-mode" class="btn-secondary" onclick="practiceMode()">Modo Prática</button>
+                    </div>
+                </div>
+
+                <div id="exam-interface" class="exam-interface" style="display: none;">
+                    <div class="exam-header">
+                        <div class="timer">⏱️ Tempo: <span id="timer">90:00</span></div>
+                        <div class="progress">Questão <span id="current-q">1</span> de <span id="total-q">65</span></div>
+                    </div>
+
+                    <div class="question-container">
+                        <div id="question-text" class="question-text"></div>
+                        <div id="options-container" class="options-container"></div>
+                    </div>
+
+                    <div class="exam-controls">
+                        <button id="prev-btn" onclick="previousQuestion()" disabled>← Anterior</button>
+                        <button id="next-btn" onclick="nextQuestion()">Próxima →</button>
+                        <button id="finish-btn" onclick="finishExam()" style="display: none;">Finalizar Simulado</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SEÇÃO DE RESULTADOS -->
+            <section id="results" class="content-section">
+                <h2>Seus Resultados</h2>
+                <div id="results-content">
+                    <p>Complete um simulado para ver seus resultados aqui.</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="../shared/js/core.js"></script>
+    <script src="../shared/components/breadcrumb.js"></script>
+    <script src="../shared/js/exam-engine.js"></script>
+    <script src="data/clf-study-material.js"></script>
+    <script src="data/clf-questions-200.js"></script>
+    <script src="js/clf-script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            applyTheme('clf');
+            insertBreadcrumb('clf-c02');
+        });
+    </script>
+</body>
+</html>
