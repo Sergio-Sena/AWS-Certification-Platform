@@ -329,7 +329,8 @@ function startAssessment() {
 
 function skipAssessment() {
     document.getElementById('assessment-intro').style.display = 'none';
-    document.getElementById('study-material').style.display = 'block';
+    // Material já está visível, apenas scroll para ele
+    document.getElementById('study-material').scrollIntoView({ behavior: 'smooth' });
 }
 
 function showAssessmentQuestion() {
@@ -408,6 +409,7 @@ function showAssessmentResults(results) {
 
 function proceedToStudy() {
     document.getElementById('assessment-results').style.display = 'none';
-    document.getElementById('study-material').style.display = 'block';
+    // Material já está visível, apenas scroll para ele
+    document.getElementById('study-material').scrollIntoView({ behavior: 'smooth' });
     assessmentState.completed = true;
 }

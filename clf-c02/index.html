@@ -62,7 +62,7 @@
                 
                 <div id="assessment-results" class="assessment-results" style="display: none;"></div>
                 
-                <div id="study-material" class="study-material" style="margin-top: 3rem;">
+                <div id="study-material" class="study-material" style="margin-top: 3rem; display: block;">
                     <h2>Material de Estudo</h2>
                 <div class="study-grid" role="grid" aria-label="Tópicos de estudo disponíveis">
                     <div class="study-card" onclick="showTopic('cloud-concepts')" role="button" tabindex="0" onkeypress="if(event.key==='Enter') showTopic('cloud-concepts')" aria-describedby="cloud-concepts-desc">
@@ -80,6 +80,38 @@
                     <div class="study-card" onclick="showTopic('billing')">
                         <h3>💰 Billing & Pricing</h3>
                         <p>Modelos de preços, calculadora, suporte</p>
+                    </div>
+                    <div class="study-card" onclick="showTopic('ec2')">
+                        <h3>☁️ Amazon EC2</h3>
+                        <p>Instances, AMIs, security groups</p>
+                    </div>
+                    <div class="study-card" onclick="showTopic('s3')">
+                        <h3><i class="fa-solid fa-bucket"></i> Amazon S3</h3>
+                        <p>Object storage, lifecycle, security</p>
+                    </div>
+                    <div class="study-card" onclick="showTopic('lambda')">
+                        <h3>⚡ AWS Lambda</h3>
+                        <p>Serverless computing, event-driven</p>
+                    </div>
+                    <div class="study-card" onclick="showTopic('rds')">
+                        <h3>🗄️ Amazon RDS</h3>
+                        <p>Managed relational databases</p>
+                    </div>
+                    <div class="study-card" onclick="showTopic('vpc')">
+                        <h3>🌐 Amazon VPC</h3>
+                        <p>Virtual private cloud, networking</p>
+                    </div>
+                    <div class="study-card" onclick="showTopic('cloudfront')">
+                        <h3>🚀 CloudFront</h3>
+                        <p>Content delivery network, CDN</p>
+                    </div>
+                    <div class="study-card" onclick="showTopic('route53')">
+                        <h3>📡 Route 53</h3>
+                        <p>DNS service, domain registration</p>
+                    </div>
+                    <div class="study-card" onclick="showTopic('support')">
+                        <h3>🎯 AWS Support</h3>
+                        <p>Support plans, Trusted Advisor</p>
                     </div>
                 </div>
 
