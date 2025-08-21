@@ -2,8 +2,13 @@
 
 ## 📊 **Critérios de Aprovação**
 
-### **Meta Unificada: 80% para Aprovação**
-> 💡 **"Nossa meta de 80% garante que você esteja REALMENTE preparado. É mais desafiador que o exame oficial, mas isso te dará confiança total no dia da prova!"**
+### **Percentuais Oficiais AWS**
+- **CLF-C02**: 70% (700/1000 pontos)
+- **DVA-C02**: 72% (720/1000 pontos) 
+- **SAA-C03**: 72% (720/1000 pontos)
+
+### **Nossa Recomendação: 80%+**
+> 💡 **"Recomendamos atingir 80% ou mais nos nossos simulados antes de agendar o exame oficial. Isso garante que você esteja REALMENTE preparado e tenha máxima confiança no dia da prova!"**
 
 ---
 

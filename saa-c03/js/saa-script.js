@@ -5,7 +5,7 @@ const SAA_CONFIG = {
     examDuration: 130, // 130 minutos
     totalQuestions: 65,
     passingScore: 72, // Score oficial AWS
-    recommendedScore: 80, // Nossa meta
+    recommendedScore: 80, // Nossa recomendação
     certification: 'SAA-C03',
     domains: {
         'resilient': { name: 'Resilient Architectures', weight: 30, examQuestions: 19, bankQuestions: 60 },
@@ -292,7 +292,7 @@ function calculateResults() {
     });
     
     const percentage = Math.round((correct / currentExam.questions.length) * 100);
-    const passed = percentage >= SAA_CONFIG.recommendedScore;
+    const passed = percentage >= SAA_CONFIG.passingScore;
     
     return {
         certification: SAA_CONFIG.certification,
@@ -320,9 +320,11 @@ function displayResults(results) {
     
     const statusClass = results.passed ? 'success' : 'warning';
     const statusText = results.passed ? 'APROVADO! 🎉' : 'Continue estudando 📚';
-    const motivationalMessage = results.passed ? 
-        'Parabéns! Você está pronto para o exame oficial!' :
-        'Nossa meta de 80% garante que você esteja REALMENTE preparado. Continue praticando!';
+    const motivationalMessage = results.score >= SAA_CONFIG.recommendedScore ? 
+        'Parabéns! Com ' + results.score + '% você está pronto para o exame oficial!' :
+        results.passed ? 
+            'Você passou com ' + results.score + '%! Recomendamos 80%+ para máxima confiança.' :
+            'Você obteve ' + results.score + '%. Nota oficial: 72%. Recomendamos 80%+ antes do exame real.';
     
     resultsContent.innerHTML = `
         <div class="result-card">

@@ -16,9 +16,9 @@ const CERTIFICATION_CONFIG = {
         if (score >= 80) {
             return `🎉 Excelente! Com ${score}% você está MUITO bem preparado! Considere agendar sua prova oficial AWS - você tem grandes chances de aprovação!`;
         } else if (score >= officialScore) {
-            return `✅ Parabéns! Você atingiu ${score}%, acima da nota oficial (${officialScore}%). Continue praticando para aumentar sua confiança!`;
+            return `✅ Parabéns! Você atingiu ${score}%, acima da nota oficial (${officialScore}%). Recomendamos atingir 80% ou mais para máxima confiança no exame real!`;
         } else {
-            return `📚 Você obteve ${score}%. A nota oficial é ${officialScore}%. Continue estudando - você está no caminho certo!`;
+            return `📚 Você obteve ${score}%. A nota oficial é ${officialScore}%, mas recomendamos 80% ou mais. Continue estudando - você está no caminho certo!`;
         }
     },
     
