@@ -31,25 +31,56 @@
             <section id="study" class="content-section active">
                 <div class="study-material">
                     <h2>Material de Estudo SAA-C03</h2>
-                    <div class="study-grid">
-                        <div class="study-card" onclick="showTopic('resilient')">
-                            <h3>🏗️ Resilient Architectures</h3>
-                            <p>Design de arquiteturas resilientes e tolerantes a falhas</p>
-                        </div>
-                        <div class="study-card" onclick="showTopic('performance')">
-                            <h3>⚡ High-Performing Architectures</h3>
-                            <p>Otimização de performance e escalabilidade</p>
-                        </div>
-                        <div class="study-card" onclick="showTopic('secure')">
-                            <h3>🔒 Secure Applications</h3>
-                            <p>Implementação de segurança em aplicações</p>
-                        </div>
-                        <div class="study-card" onclick="showTopic('cost')">
-                            <h3>💰 Cost-Optimized Architectures</h3>
-                            <p>Otimização de custos e eficiência financeira</p>
+                    
+                    <!-- Avaliação Inicial -->
+                    <div class="assessment-section" id="assessment-section">
+                        <div class="assessment-intro">
+                            <h3>🎯 Avaliação Inicial</h3>
+                            <p>Responda 5 questões rápidas para personalizar seu plano de estudos</p>
+                            <div class="assessment-buttons">
+                                <button class="btn-primary" onclick="startAssessment()">🚀 Iniciar Avaliação</button>
+                                <button class="btn-secondary" onclick="skipToMaterial()">📚 Pular e Ir Direto ao Material</button>
+                            </div>
                         </div>
                     </div>
-                    <div id="topic-content" class="topic-content"></div>
+                    
+                    <!-- Interface da Avaliação -->
+                    <div id="assessment-interface" class="assessment-interface" style="display: none;">
+                        <div class="assessment-progress">
+                            <span>Questão <span id="assess-current">1</span> de <span id="assess-total">5</span></span>
+                        </div>
+                        <div id="assessment-question" class="assessment-question"></div>
+                        <div id="assessment-options" class="assessment-options"></div>
+                        <div class="assessment-controls">
+                            <button id="assess-next" onclick="nextAssessmentQuestion()" disabled>Próxima →</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Resultado da Avaliação -->
+                    <div id="assessment-result" class="assessment-result" style="display: none;"></div>
+                    
+                    <!-- Material de Estudo -->
+                    <div id="study-content" class="study-content" style="display: none;">
+                        <div class="study-grid">
+                            <div class="study-card" onclick="showTopic('resilient')">
+                                <h3>🏗️ Resilient Architectures</h3>
+                                <p>Design de arquiteturas resilientes e tolerantes a falhas</p>
+                            </div>
+                            <div class="study-card" onclick="showTopic('performance')">
+                                <h3>⚡ High-Performing Architectures</h3>
+                                <p>Otimização de performance e escalabilidade</p>
+                            </div>
+                            <div class="study-card" onclick="showTopic('secure')">
+                                <h3>🔒 Secure Applications</h3>
+                                <p>Implementação de segurança em aplicações</p>
+                            </div>
+                            <div class="study-card" onclick="showTopic('cost')">
+                                <h3>💰 Cost-Optimized Architectures</h3>
+                                <p>Otimização de custos e eficiência financeira</p>
+                            </div>
+                        </div>
+                        <div id="topic-content" class="topic-content"></div>
+                    </div>
                 </div>
             </section>
 
@@ -96,6 +127,7 @@
     <script src="../shared/components/breadcrumb.js"></script>
     <script src="../shared/js/exam-engine.js"></script>
     <script src="data/saa-study-material.js"></script>
+    <script src="data/saa-initial-assessment.js"></script>
     <script src="data/saa-questions-200.js"></script>
     <script src="data/resilient-questions.js"></script>
     <script src="data/performance-questions.js"></script>

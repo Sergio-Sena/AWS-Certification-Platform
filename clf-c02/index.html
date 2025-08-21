@@ -31,25 +31,56 @@
             <section id="study" class="content-section active">
                 <div class="study-material">
                     <h2>Material de Estudo CLF-C02</h2>
-                    <div class="study-grid">
-                        <div class="study-card" onclick="showTopic('cloud-concepts')">
-                            <h3>☁️ Cloud Concepts</h3>
-                            <p>Fundamentos de cloud computing, benefícios e modelos</p>
-                        </div>
-                        <div class="study-card" onclick="showTopic('security')">
-                            <h3>🔒 Security & Compliance</h3>
-                            <p>Modelo de responsabilidade compartilhada, IAM básico</p>
-                        </div>
-                        <div class="study-card" onclick="showTopic('technology')">
-                            <h3>⚙️ Technology & Services</h3>
-                            <p>Principais serviços AWS e casos de uso</p>
-                        </div>
-                        <div class="study-card" onclick="showTopic('billing')">
-                            <h3>💰 Billing & Pricing</h3>
-                            <p>Modelos de preços, calculadora, suporte</p>
+                    
+                    <!-- Avaliação Inicial -->
+                    <div class="assessment-section" id="assessment-section">
+                        <div class="assessment-intro">
+                            <h3>🎯 Avaliação Inicial</h3>
+                            <p>Responda 5 questões rápidas para personalizar seu plano de estudos</p>
+                            <div class="assessment-buttons">
+                                <button class="btn-primary" onclick="startAssessment()">🚀 Iniciar Avaliação</button>
+                                <button class="btn-secondary" onclick="skipToMaterial()">📚 Pular e Ir Direto ao Material</button>
+                            </div>
                         </div>
                     </div>
-                    <div id="topic-content" class="topic-content"></div>
+                    
+                    <!-- Interface da Avaliação -->
+                    <div id="assessment-interface" class="assessment-interface" style="display: none;">
+                        <div class="assessment-progress">
+                            <span>Questão <span id="assess-current">1</span> de <span id="assess-total">5</span></span>
+                        </div>
+                        <div id="assessment-question" class="assessment-question"></div>
+                        <div id="assessment-options" class="assessment-options"></div>
+                        <div class="assessment-controls">
+                            <button id="assess-next" onclick="nextAssessmentQuestion()" disabled>Próxima →</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Resultado da Avaliação -->
+                    <div id="assessment-result" class="assessment-result" style="display: none;"></div>
+                    
+                    <!-- Material de Estudo -->
+                    <div id="study-content" class="study-content" style="display: none;">
+                        <div class="study-grid">
+                            <div class="study-card" onclick="showTopic('cloud-concepts')">
+                                <h3>☁️ Cloud Concepts</h3>
+                                <p>Fundamentos de cloud computing, benefícios e modelos</p>
+                            </div>
+                            <div class="study-card" onclick="showTopic('security')">
+                                <h3>🔒 Security & Compliance</h3>
+                                <p>Modelo de responsabilidade compartilhada, IAM básico</p>
+                            </div>
+                            <div class="study-card" onclick="showTopic('technology')">
+                                <h3>⚙️ Technology & Services</h3>
+                                <p>Principais serviços AWS e casos de uso</p>
+                            </div>
+                            <div class="study-card" onclick="showTopic('billing')">
+                                <h3>💰 Billing & Pricing</h3>
+                                <p>Modelos de preços, calculadora, suporte</p>
+                            </div>
+                        </div>
+                        <div id="topic-content" class="topic-content"></div>
+                    </div>
                 </div>
             </section>
 
@@ -96,6 +127,7 @@
     <script src="../shared/components/breadcrumb.js"></script>
     <script src="../shared/js/exam-engine.js"></script>
     <script src="data/clf-study-material.js"></script>
+    <script src="data/clf-initial-assessment.js"></script>
     <script src="data/clf-questions-200.js"></script>
     <script src="data/security-questions.js"></script>
     <script src="data/technology-questions.js"></script>

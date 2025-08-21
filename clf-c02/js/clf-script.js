@@ -306,3 +306,100 @@ function shuffleArray(array) {
     }
     return shuffled;
 }
+
+// Avaliação Inicial
+let assessmentState = {
+    currentQuestion: 0,
+    answers: {},
+    isActive: false
+};
+
+function startAssessment() {
+    document.getElementById('assessment-section').style.display = 'none';
+    document.getElementById('assessment-interface').style.display = 'block';
+    assessmentState.currentQuestion = 0;
+    assessmentState.answers = {};
+    assessmentState.isActive = true;
+    showAssessmentQuestion();
+}
+
+function skipToMaterial() {
+    document.getElementById('assessment-section').style.display = 'none';
+    document.getElementById('study-content').style.display = 'block';
+}
+
+function showAssessmentQuestion() {
+    const question = clfInitialAssessment[assessmentState.currentQuestion];
+    document.getElementById('assess-current').textContent = assessmentState.currentQuestion + 1;
+    document.getElementById('assess-total').textContent = clfInitialAssessment.length;
+    
+    document.getElementById('assessment-question').innerHTML = `<h4>${question.question}</h4>`;
+    
+    const optionsContainer = document.getElementById('assessment-options');
+    optionsContainer.innerHTML = '';
+    
+    question.options.forEach((option, index) => {
+        const optionDiv = document.createElement('div');
+        optionDiv.className = 'option';
+        optionDiv.onclick = () => selectAssessmentOption(index);
+        optionDiv.innerHTML = `${String.fromCharCode(65 + index)}. ${option}`;
+        optionsContainer.appendChild(optionDiv);
+    });
+    
+    document.getElementById('assess-next').disabled = true;
+}
+
+function selectAssessmentOption(optionIndex) {
+    const questionId = clfInitialAssessment[assessmentState.currentQuestion].id;
+    assessmentState.answers[questionId] = optionIndex;
+    
+    document.querySelectorAll('#assessment-options .option').forEach((opt, idx) => {
+        opt.classList.toggle('selected', idx === optionIndex);
+    });
+    
+    document.getElementById('assess-next').disabled = false;
+}
+
+function nextAssessmentQuestion() {
+    if (assessmentState.currentQuestion < clfInitialAssessment.length - 1) {
+        assessmentState.currentQuestion++;
+        showAssessmentQuestion();
+    } else {
+        finishAssessment();
+    }
+}
+
+function finishAssessment() {
+    const results = assessCLFLevel(assessmentState.answers);
+    showAssessmentResults(results);
+}
+
+function showAssessmentResults(results) {
+    document.getElementById('assessment-interface').style.display = 'none';
+    
+    const resultDiv = document.getElementById('assessment-result');
+    resultDiv.style.display = 'block';
+    
+    resultDiv.innerHTML = `
+        <div class="assessment-result-card">
+            <h3>🎯 Resultado da Avaliação</h3>
+            <div class="result-score">${results.percentage}%</div>
+            <div class="result-level">Nível: <strong>${results.level}</strong></div>
+            <p>${results.score} de ${results.total} questões corretas</p>
+            
+            <h4>📚 Plano de Estudos Personalizado:</h4>
+            <ul>
+                ${results.recommendations.map(rec => `<li>${rec}</li>`).join('')}
+            </ul>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <button class="btn-primary" onclick="proceedToStudy()">Continuar para Material de Estudo</button>
+            </div>
+        </div>
+    `;
+}
+
+function proceedToStudy() {
+    document.getElementById('assessment-result').style.display = 'none';
+    document.getElementById('study-content').style.display = 'block';
+}
