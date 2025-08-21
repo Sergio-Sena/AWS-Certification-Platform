@@ -1,0 +1,89 @@
+/* AWS Certification Platform - Base Styles */
+:root {
+    /* Configurações Globais */
+    --approval-rate: 80%;
+    --font-family: 'Inter', sans-serif;
+    
+    /* Cores AWS Padrão */
+    --aws-orange: #FF9900;
+    --aws-dark: #232F3E;
+    --aws-blue: #007EB9;
+    --aws-green: #00A651;
+    
+    /* Cores de Sistema */
+    --success-color: #28A745;
+    --error-color: #DC3545;
+    --warning-color: #FFC107;
+    --info-color: #17A2B8;
+    
+    /* Layout */
+    --container-max-width: 1100px;
+    --border-radius: 8px;
+    --box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* Reset e Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f6f8;
+}
+
+.container {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Botões Base */
+.btn-primary {
+    background-color: var(--primary-color, var(--aws-orange));
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--box-shadow);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--primary-color, var(--aws-orange));
+    border: 2px solid var(--primary-color, var(--aws-orange));
+    padding: 0.8rem 2rem;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background: var(--primary-color, var(--aws-orange));
+    color: white;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .btn-primary, .btn-secondary {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+}
