@@ -1,16 +1,26 @@
 // AWS Certification Platform - Core Configuration
 const CERTIFICATION_CONFIG = {
-    // Configurações Globais
-    passingScore: 80,
+    // Configurações Globais (Seguindo padrões oficiais AWS)
+    passingScore: {
+        clf: 70, // CLF-C02 oficial: 700/1000 (70%)
+        dva: 72, // DVA-C02 oficial: 720/1000 (72%)
+        saa: 72  // SAA-C03 oficial: 720/1000 (72%)
+    },
     examQuestions: 65,
     bankQuestions: 200,
     examDuration: 130, // minutos
     
     // Mensagem Motivacional
-    motivationalMessage: `
-        💡 Nossa meta de 80% garante que você esteja REALMENTE preparado.
-        É mais desafiador que o exame oficial, mas isso te dará confiança total no dia da prova!
-    `,
+    getMotivationalMessage: function(cert, score) {
+        const officialScore = this.passingScore[cert];
+        if (score >= 80) {
+            return `🎉 Excelente! Com ${score}% você está MUITO bem preparado! Considere agendar sua prova oficial AWS - você tem grandes chances de aprovação!`;
+        } else if (score >= officialScore) {
+            return `✅ Parabéns! Você atingiu ${score}%, acima da nota oficial (${officialScore}%). Continue praticando para aumentar sua confiança!`;
+        } else {
+            return `📚 Você obteve ${score}%. A nota oficial é ${officialScore}%. Continue estudando - você está no caminho certo!`;
+        }
+    },
     
     // Distribuição de Questões por Certificação
     distributions: {

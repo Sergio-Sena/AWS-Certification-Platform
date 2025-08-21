@@ -1,11 +1,11 @@
 // Função para selecionar questões conforme distribuição oficial DVA-C02
 function selectQuestionsByDomain() {
-    // Distribuição oficial AWS DVA-C02:
+    // Distribuição oficial AWS DVA-C02 (65 questões):
     const domainDistribution = {
         development: 21,    // 32% de 65 questões
         security: 17,       // 26% de 65 questões  
-        deployment: 16,     // 24% de 65 questões
-        troubleshooting: 11 // 18% de 65 questões
+        deployment: 15,     // 24% de 65 questões (corrigido)
+        troubleshooting: 12 // 18% de 65 questões (corrigido)
     };
     
     // Classificar questões por domínio
