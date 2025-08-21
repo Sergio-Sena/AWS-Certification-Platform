@@ -25,7 +25,9 @@ function showSection(section) {
     document.getElementById(section).classList.add('active');
     
     document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
-    event.target.classList.add('active');
+    if (event && event.target) {
+        event.target.classList.add('active');
+    }
     
     currentSection = section;
 }
@@ -316,12 +318,6 @@ function shuffleArray(array) {
 }
 
 // Avaliação Inicial
-let assessmentState = {
-    currentQuestion: 0,
-    answers: {},
-    isActive: false
-};
-
 function startAssessment() {
     document.getElementById('assessment-intro').style.display = 'none';
     document.getElementById('assessment-quiz').style.display = 'block';
@@ -368,7 +364,7 @@ function selectAssessmentOption(optionIndex) {
         opt.classList.toggle('selected', idx === optionIndex);
     });
     
-    document.getElementById('assess-next').disabled = false;
+    document.getElementById('assessment-next').disabled = false;
 }
 
 function nextAssessmentQuestion() {

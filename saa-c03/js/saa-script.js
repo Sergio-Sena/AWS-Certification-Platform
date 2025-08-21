@@ -1,21 +1,4 @@
-// SAA-C03 Solutions Architect Associate - Script Principal
-
-// Configuração específica SAA-C03
-const SAA_CONFIG = {
-    examDuration: 130, // 130 minutos
-    totalQuestions: 65,
-    passingScore: 72, // Score oficial AWS
-    recommendedScore: 80, // Nossa recomendação
-    certification: 'SAA-C03',
-    domains: {
-        'resilient': { name: 'Resilient Architectures', weight: 30, examQuestions: 19, bankQuestions: 60 },
-        'performance': { name: 'High-Performing Architectures', weight: 28, examQuestions: 18, bankQuestions: 56 },
-        'secure': { name: 'Secure Applications', weight: 24, examQuestions: 16, bankQuestions: 48 },
-        'cost': { name: 'Cost-Optimized Architectures', weight: 18, examQuestions: 12, bankQuestions: 36 }
-    }
-};
-
-// Estado do exame
+// SAA-C03 Script Principal
 let currentSection = 'study';
 let currentTopic = null;
 let examState = {
@@ -24,70 +7,35 @@ let examState = {
     currentQuestion: 0,
     answers: {},
     startTime: null,
-    timeRemaining: SAA_CONFIG.examDuration * 60,
+    timeRemaining: 130 * 60, // 130 minutos para SAA-C03
     timer: null
 };
 
-let currentExam = {
-    questions: [],
-    currentIndex: 0,
+// Avaliação Inicial
+let assessmentState = {
+    currentQuestion: 0,
     answers: {},
-    startTime: null,
-    timeRemaining: SAA_CONFIG.examDuration * 60,
     isActive: false,
-    isPractice: false
+    completed: false
 };
 
-// Timer do exame
-let examTimer = null;
-
-// Inicializar aplicação
-document.addEventListener('DOMContentLoaded', function() {
-    initializeSAA();
-});
-
-function initializeSAA() {
-    console.log('Inicializando SAA-C03...');
-    
-    // Verificar se as questões estão carregadas
-    if (typeof window.saa200Questions === 'undefined') {
-        console.warn('Questões SAA-C03 não carregadas ainda');
-        setTimeout(initializeSAA, 100);
-        return;
-    }
-    
-    console.log('SAA-C03 inicializado com', window.saa200Questions.length, 'questões');
-    showSection('study');
-}
-
 // Navegação entre seções
-function showSection(sectionName) {
-    // Esconder todas as seções
-    document.querySelectorAll('.content-section').forEach(section => {
-        section.classList.remove('active');
-    });
+function showSection(section) {
+    document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+    document.getElementById(section).classList.add('active');
     
-    // Remover classe active de todos os botões
-    document.querySelectorAll('.nav-btn').forEach(btn => {
-        btn.classList.remove('active');
-    });
-    
-    // Mostrar seção selecionada
-    document.getElementById(sectionName).classList.add('active');
-    
-    // Ativar botão correspondente
-    event.target.classList.add('active');
-    
-    // Parar timer se mudou de seção durante exame
-    if (sectionName !== 'simulator' && currentExam.isActive) {
-        pauseExam();
+    document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+    if (event && event.target) {
+        event.target.classList.add('active');
     }
+    
+    currentSection = section;
 }
 
-// Mostrar tópico de estudo
-function showTopic(topicName) {
+// Material de Estudo
+function showTopic(topic) {
     const topicContent = document.getElementById('topic-content');
-    const material = saaStudyMaterial[topicName];
+    const material = saaStudyMaterial[topic];
     
     if (material) {
         topicContent.innerHTML = `
@@ -98,7 +46,7 @@ function showTopic(topicName) {
             </div>
         `;
         topicContent.classList.add('active');
-        currentTopic = topicName;
+        currentTopic = topic;
     }
 }
 
@@ -107,14 +55,269 @@ function hideTopic() {
     currentTopic = null;
 }
 
-// Avaliação Inicial
-let assessmentState = {
-    currentQuestion: 0,
-    answers: {},
-    isActive: false,
-    completed: false
-};
+// Sistema de Simulado
+function startExam() {
+    examState.questions = selectSAAExamQuestions();
+    examState.currentQuestion = 0;
+    examState.answers = {};
+    examState.startTime = new Date();
+    examState.timeRemaining = 130 * 60; // 130 minutos
+    examState.isActive = true;
+    
+    document.getElementById('exam-interface').style.display = 'block';
+    document.querySelector('.simulator-header').style.display = 'none';
+    
+    startTimer();
+    showQuestion();
+}
 
+function practiceMode() {
+    examState.questions = shuffleArray(saa200Questions).slice(0, 10);
+    examState.currentQuestion = 0;
+    examState.answers = {};
+    examState.startTime = new Date();
+    examState.timeRemaining = null; // Sem limite de tempo
+    examState.isActive = true;
+    
+    document.getElementById('exam-interface').style.display = 'block';
+    document.querySelector('.simulator-header').style.display = 'none';
+    document.getElementById('timer').parentElement.style.display = 'none';
+    
+    showQuestion();
+}
+
+function startTimer() {
+    if (examState.timeRemaining === null) return;
+    
+    examState.timer = setInterval(() => {
+        examState.timeRemaining--;
+        updateTimerDisplay();
+        
+        if (examState.timeRemaining <= 0) {
+            clearInterval(examState.timer);
+            finishExam();
+        }
+    }, 1000);
+}
+
+function updateTimerDisplay() {
+    const minutes = Math.floor(examState.timeRemaining / 60);
+    const seconds = examState.timeRemaining % 60;
+    document.getElementById('timer').textContent = 
+        `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+}
+
+function showQuestion() {
+    const question = examState.questions[examState.currentQuestion];
+    const isMultipleChoice = question.correct.length > 1;
+    
+    document.getElementById('current-q').textContent = examState.currentQuestion + 1;
+    document.getElementById('total-q').textContent = examState.questions.length;
+    
+    document.getElementById('question-text').innerHTML = `
+        <strong>Questão ${examState.currentQuestion + 1}</strong><br><br>
+        ${question.question}
+        ${isMultipleChoice ? '<br><br><em>Selecione todas as opções corretas:</em>' : ''}
+    `;
+    
+    const optionsContainer = document.getElementById('options-container');
+    optionsContainer.innerHTML = '';
+    
+    question.options.forEach((option, index) => {
+        const optionDiv = document.createElement('div');
+        optionDiv.className = 'option';
+        optionDiv.onclick = () => selectOption(index, isMultipleChoice);
+        
+        const inputType = isMultipleChoice ? 'checkbox' : 'radio';
+        const inputName = isMultipleChoice ? `q${question.id}_${index}` : `q${question.id}`;
+        
+        optionDiv.innerHTML = `
+            <input type="${inputType}" name="${inputName}" id="opt_${index}" ${isSelected(index) ? 'checked' : ''}>
+            <label for="opt_${index}">${String.fromCharCode(65 + index)}. ${option}</label>
+        `;
+        
+        if (isSelected(index)) {
+            optionDiv.classList.add('selected');
+        }
+        
+        optionsContainer.appendChild(optionDiv);
+    });
+    
+    document.getElementById('prev-btn').disabled = examState.currentQuestion === 0;
+    document.getElementById('next-btn').style.display = 
+        examState.currentQuestion === examState.questions.length - 1 ? 'none' : 'inline-block';
+    document.getElementById('finish-btn').style.display = 
+        examState.currentQuestion === examState.questions.length - 1 ? 'inline-block' : 'none';
+}
+
+function isSelected(optionIndex) {
+    const questionId = examState.questions[examState.currentQuestion].id;
+    const answer = examState.answers[questionId];
+    
+    if (!answer) return false;
+    
+    return Array.isArray(answer) ? answer.includes(optionIndex) : answer === optionIndex;
+}
+
+function selectOption(optionIndex, isMultipleChoice) {
+    const questionId = examState.questions[examState.currentQuestion].id;
+    
+    if (isMultipleChoice) {
+        if (!examState.answers[questionId]) {
+            examState.answers[questionId] = [];
+        }
+        
+        const answerArray = examState.answers[questionId];
+        const index = answerArray.indexOf(optionIndex);
+        
+        if (index > -1) {
+            answerArray.splice(index, 1);
+        } else {
+            answerArray.push(optionIndex);
+        }
+    } else {
+        examState.answers[questionId] = optionIndex;
+    }
+    
+    updateOptionVisuals();
+}
+
+function updateOptionVisuals() {
+    const options = document.querySelectorAll('.option');
+    const questionId = examState.questions[examState.currentQuestion].id;
+    const answer = examState.answers[questionId];
+    
+    options.forEach((option, index) => {
+        const input = option.querySelector('input');
+        const isSelected = Array.isArray(answer) ? 
+            answer.includes(index) : answer === index;
+        
+        input.checked = isSelected;
+        option.classList.toggle('selected', isSelected);
+    });
+}
+
+function previousQuestion() {
+    if (examState.currentQuestion > 0) {
+        examState.currentQuestion--;
+        showQuestion();
+    }
+}
+
+function nextQuestion() {
+    if (examState.currentQuestion < examState.questions.length - 1) {
+        examState.currentQuestion++;
+        showQuestion();
+    }
+}
+
+function finishExam() {
+    if (examState.timer) {
+        clearInterval(examState.timer);
+    }
+    
+    examState.isActive = false;
+    
+    const results = calculateResults();
+    showResults(results);
+    showSection('results');
+    
+    document.getElementById('exam-interface').style.display = 'none';
+    document.querySelector('.simulator-header').style.display = 'block';
+    document.getElementById('timer').parentElement.style.display = 'block';
+}
+
+function calculateResults() {
+    let correctAnswers = 0;
+    let totalQuestions = examState.questions.length;
+    let resultsByTopic = {};
+
+    examState.questions.forEach(question => {
+        const userAnswer = examState.answers[question.id];
+        const correctAnswer = question.correct;
+
+        if (!resultsByTopic[question.topic]) {
+            resultsByTopic[question.topic] = { correct: 0, total: 0 };
+        }
+        resultsByTopic[question.topic].total++;
+
+        let isCorrect = false;
+        if (correctAnswer.length > 1) {
+            if (Array.isArray(userAnswer) && userAnswer.length === correctAnswer.length) {
+                isCorrect = correctAnswer.every(ans => userAnswer.includes(ans)) && 
+                           userAnswer.every(ans => correctAnswer.includes(ans));
+            }
+        } else {
+            isCorrect = userAnswer === correctAnswer[0];
+        }
+
+        if (isCorrect) {
+            correctAnswers++;
+            resultsByTopic[question.topic].correct++;
+        }
+    });
+
+    const percentage = totalQuestions > 0 ? Math.round((correctAnswers / totalQuestions) * 100) : 0;
+    const officialScore = CERTIFICATION_CONFIG.passingScore.saa;
+    const passed = percentage >= officialScore;
+
+    return {
+        correctAnswers,
+        totalQuestions,
+        percentage,
+        officialScore,
+        passed,
+        resultsByTopic,
+        motivationalMessage: CERTIFICATION_CONFIG.getMotivationalMessage('saa', percentage)
+    };
+}
+
+function showResults(results) {
+    const resultsContent = document.getElementById('results-content');
+    
+    const statusText = results.passed ? '✅ APROVADO!' : '❌ REPROVADO';
+    
+    resultsContent.innerHTML = `
+        <div class="result-card">
+            <div class="result-score">${results.percentage}%</div>
+            <div class="result-status">${statusText}</div>
+            <p>${results.correctAnswers} de ${results.totalQuestions} questões corretas</p>
+            <p><strong>Nota oficial AWS: ${results.officialScore}%</strong></p>
+            <div style="background: #e8f4fd; border-radius: 8px; padding: 1rem; margin-top: 1rem;">
+                <p style="color: #0c5460; margin: 0;">${results.motivationalMessage}</p>
+            </div>
+        </div>
+        
+        <div style="margin-top: 2rem; text-align: center;">
+            <button class="btn-primary" onclick="startNewExam()">Novo Simulado</button>
+        </div>
+    `;
+}
+
+function startNewExam() {
+    examState = {
+        isActive: false,
+        questions: [],
+        currentQuestion: 0,
+        answers: {},
+        startTime: null,
+        timeRemaining: 130 * 60,
+        timer: null
+    };
+    
+    showSection('simulator');
+}
+
+function shuffleArray(array) {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+}
+
+// Avaliação Inicial
 function startAssessment() {
     document.getElementById('assessment-intro').style.display = 'none';
     document.getElementById('assessment-quiz').style.display = 'block';
@@ -161,7 +364,7 @@ function selectAssessmentOption(optionIndex) {
         opt.classList.toggle('selected', idx === optionIndex);
     });
     
-    document.getElementById('assess-next').disabled = false;
+    document.getElementById('assessment-next').disabled = false;
 }
 
 function nextAssessmentQuestion() {
@@ -207,290 +410,4 @@ function proceedToStudy() {
     document.getElementById('assessment-results').style.display = 'none';
     document.getElementById('study-material').style.display = 'block';
     assessmentState.completed = true;
-}
-
-// Iniciar simulado completo
-function startExam() {
-    if (!window.selectSAAExamQuestions) {
-        alert('Sistema de questões não carregado. Aguarde...');
-        return;
-    }
-    
-    currentExam.questions = window.selectSAAExamQuestions();
-    currentExam.currentIndex = 0;
-    currentExam.answers = {};
-    currentExam.startTime = new Date();
-    currentExam.timeRemaining = SAA_CONFIG.examDuration * 60;
-    currentExam.isActive = true;
-    currentExam.isPractice = false;
-    
-    document.getElementById('start-exam').style.display = 'none';
-    document.getElementById('practice-mode').style.display = 'none';
-    document.getElementById('exam-interface').style.display = 'block';
-    
-    startTimer();
-    displayQuestion();
-}
-
-// Modo prática
-function practiceMode() {
-    if (!window.selectSAAExamQuestions) {
-        alert('Sistema de questões não carregado. Aguarde...');
-        return;
-    }
-    
-    // Selecionar 10 questões aleatórias
-    const allQuestions = window.saa200Questions || [];
-    const shuffled = shuffleArray([...allQuestions]);
-    currentExam.questions = shuffled.slice(0, 10);
-    
-    currentExam.currentIndex = 0;
-    currentExam.answers = {};
-    currentExam.startTime = new Date();
-    currentExam.timeRemaining = null; // Sem limite de tempo
-    currentExam.isActive = true;
-    currentExam.isPractice = true;
-    
-    document.getElementById('start-exam').style.display = 'none';
-    document.getElementById('practice-mode').style.display = 'none';
-    document.getElementById('exam-interface').style.display = 'block';
-    
-    // Esconder timer no modo prática
-    document.querySelector('.timer').style.display = 'none';
-    document.getElementById('total-q').textContent = '10';
-    
-    displayQuestion();
-}
-
-// Iniciar timer
-function startTimer() {
-    if (currentExam.isPractice) return;
-    
-    examTimer = setInterval(() => {
-        currentExam.timeRemaining--;
-        updateTimerDisplay();
-        
-        if (currentExam.timeRemaining <= 0) {
-            finishExam();
-        }
-    }, 1000);
-}
-
-// Atualizar display do timer
-function updateTimerDisplay() {
-    const minutes = Math.floor(currentExam.timeRemaining / 60);
-    const seconds = currentExam.timeRemaining % 60;
-    document.getElementById('timer').textContent = 
-        `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-}
-
-// Pausar exame
-function pauseExam() {
-    if (examTimer) {
-        clearInterval(examTimer);
-        examTimer = null;
-    }
-    currentExam.isActive = false;
-}
-
-// Exibir questão atual
-function displayQuestion() {
-    const question = currentExam.questions[currentExam.currentIndex];
-    if (!question) return;
-    
-    document.getElementById('current-q').textContent = currentExam.currentIndex + 1;
-    document.getElementById('question-text').textContent = question.question;
-    
-    const optionsContainer = document.getElementById('options-container');
-    optionsContainer.innerHTML = '';
-    
-    question.options.forEach((option, index) => {
-        const optionDiv = document.createElement('div');
-        optionDiv.className = 'option';
-        optionDiv.textContent = option;
-        optionDiv.onclick = () => selectOption(index);
-        
-        // Marcar se já foi selecionada
-        if (currentExam.answers[question.id] && currentExam.answers[question.id].includes(index)) {
-            optionDiv.classList.add('selected');
-        }
-        
-        optionsContainer.appendChild(optionDiv);
-    });
-    
-    // Atualizar botões de navegação
-    document.getElementById('prev-btn').disabled = currentExam.currentIndex === 0;
-    document.getElementById('next-btn').style.display = 
-        currentExam.currentIndex === currentExam.questions.length - 1 ? 'none' : 'inline-block';
-    document.getElementById('finish-btn').style.display = 
-        currentExam.currentIndex === currentExam.questions.length - 1 ? 'inline-block' : 'none';
-}
-
-// Selecionar opção
-function selectOption(optionIndex) {
-    const question = currentExam.questions[currentExam.currentIndex];
-    
-    // Limpar seleções anteriores
-    document.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
-    
-    // Marcar nova seleção
-    document.querySelectorAll('.option')[optionIndex].classList.add('selected');
-    
-    // Salvar resposta
-    currentExam.answers[question.id] = [optionIndex];
-}
-
-// Questão anterior
-function previousQuestion() {
-    if (currentExam.currentIndex > 0) {
-        currentExam.currentIndex--;
-        displayQuestion();
-    }
-}
-
-// Próxima questão
-function nextQuestion() {
-    if (currentExam.currentIndex < currentExam.questions.length - 1) {
-        currentExam.currentIndex++;
-        displayQuestion();
-    }
-}
-
-// Finalizar exame
-function finishExam() {
-    if (examTimer) {
-        clearInterval(examTimer);
-        examTimer = null;
-    }
-    
-    currentExam.isActive = false;
-    
-    // Calcular resultados
-    const results = calculateResults();
-    
-    // Salvar no localStorage
-    saveResults(results);
-    
-    // Mostrar resultados
-    showSection('results');
-    displayResults(results);
-    
-    // Reset interface
-    resetExamInterface();
-}
-
-// Calcular resultados
-function calculateResults() {
-    let correct = 0;
-    const domainScores = {};
-    
-    // Inicializar scores por domínio
-    Object.keys(SAA_CONFIG.domains).forEach(domain => {
-        domainScores[domain] = { correct: 0, total: 0 };
-    });
-    
-    currentExam.questions.forEach(question => {
-        const userAnswer = currentExam.answers[question.id];
-        const isCorrect = userAnswer && 
-            JSON.stringify(userAnswer.sort()) === JSON.stringify(question.correct.sort());
-        
-        if (isCorrect) {
-            correct++;
-            if (domainScores[question.domain]) {
-                domainScores[question.domain].correct++;
-            }
-        }
-        
-        if (domainScores[question.domain]) {
-            domainScores[question.domain].total++;
-        }
-    });
-    
-    const percentage = Math.round((correct / currentExam.questions.length) * 100);
-    const passed = percentage >= SAA_CONFIG.passingScore;
-    
-    return {
-        certification: SAA_CONFIG.certification,
-        date: new Date().toISOString(),
-        score: percentage,
-        correct: correct,
-        total: currentExam.questions.length,
-        passed: passed,
-        isPractice: currentExam.isPractice,
-        timeSpent: currentExam.startTime ? Math.round((new Date() - currentExam.startTime) / 1000 / 60) : 0,
-        domainScores: domainScores
-    };
-}
-
-// Salvar resultados
-function saveResults(results) {
-    const saved = JSON.parse(localStorage.getItem('saa_results') || '[]');
-    saved.push(results);
-    localStorage.setItem('saa_results', JSON.stringify(saved));
-}
-
-// Exibir resultados
-function displayResults(results) {
-    const resultsContent = document.getElementById('results-content');
-    
-    const statusClass = results.passed ? 'success' : 'warning';
-    const statusText = results.passed ? 'APROVADO! 🎉' : 'Continue estudando 📚';
-    const motivationalMessage = results.score >= SAA_CONFIG.recommendedScore ? 
-        'Parabéns! Com ' + results.score + '% você está pronto para o exame oficial!' :
-        results.passed ? 
-            'Você passou com ' + results.score + '%! Recomendamos 80%+ para máxima confiança.' :
-            'Você obteve ' + results.score + '%. Nota oficial: 72%. Recomendamos 80%+ antes do exame real.';
-    
-    resultsContent.innerHTML = `
-        <div class="result-card">
-            <div class="score-display ${statusClass}">
-                <div class="score-percentage">${results.score}%</div>
-                <div class="score-status">${statusText}</div>
-                <div class="score-details">${results.correct}/${results.total} questões corretas</div>
-            </div>
-            
-            <div class="motivational-message">
-                <p><strong>💡 ${motivationalMessage}</strong></p>
-            </div>
-            
-            <div class="exam-info">
-                <p><strong>Tipo:</strong> ${results.isPractice ? 'Modo Prática (10 questões)' : 'Simulado Completo (65 questões)'}</p>
-                <p><strong>Data:</strong> ${new Date(results.date).toLocaleString('pt-BR')}</p>
-                ${!results.isPractice ? `<p><strong>Tempo gasto:</strong> ${results.timeSpent} minutos</p>` : ''}
-            </div>
-            
-            <div class="domain-breakdown">
-                <h4>Performance por Domínio:</h4>
-                ${Object.entries(results.domainScores).map(([domain, score]) => {
-                    const domainInfo = SAA_CONFIG.domains[domain];
-                    const domainPercentage = score.total > 0 ? Math.round((score.correct / score.total) * 100) : 0;
-                    return `
-                        <div class="domain-score">
-                            <span>${domainInfo ? domainInfo.name : domain}:</span>
-                            <span>${score.correct}/${score.total} (${domainPercentage}%)</span>
-                        </div>
-                    `;
-                }).join('')}
-            </div>
-        </div>
-    `;
-}
-
-// Reset da interface do exame
-function resetExamInterface() {
-    document.getElementById('exam-interface').style.display = 'none';
-    document.getElementById('start-exam').style.display = 'inline-block';
-    document.getElementById('practice-mode').style.display = 'inline-block';
-    document.querySelector('.timer').style.display = 'block';
-    document.getElementById('total-q').textContent = '65';
-}
-
-// Função auxiliar para embaralhar array
-function shuffleArray(array) {
-    const shuffled = [...array];
-    for (let i = shuffled.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-    }
-    return shuffled;
 }
