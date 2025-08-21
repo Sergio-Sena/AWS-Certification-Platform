@@ -2,214 +2,254 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>AWS Simulado</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS Certification Platform</title>
+    <link rel="stylesheet" href="shared/css/base.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23FF9900'/%3E%3Ccircle cx='50' cy='50' r='35' fill='%23232f3e'/%3E%3Ctext x='50' y='58' font-family='Arial,sans-serif' font-size='18' font-weight='bold' fill='%23FFFFFF' text-anchor='middle'%3EAWS%3C/text%3E%3C/svg%3E">
-
+    <style>
+        /* Landing Page Specific Styles */
+        .hero-section {
+            background: linear-gradient(135deg, #232F3E 0%, #FF9900 100%);
+            color: white;
+            text-align: center;
+            padding: 4rem 0;
+            margin-bottom: 3rem;
+        }
+        
+        .hero-section h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .hero-section p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+        
+        .cert-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border: 3px solid transparent;
+        }
+        
+        .cert-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+        
+        .cert-card.clf {
+            border-color: #00A651;
+        }
+        
+        .cert-card.clf:hover {
+            background: linear-gradient(135deg, #00A651 0%, #146EB4 100%);
+            color: white;
+        }
+        
+        .cert-card.dva {
+            border-color: #FF9900;
+        }
+        
+        .cert-card.dva:hover {
+            background: linear-gradient(135deg, #FF9900 0%, #E68A00 100%);
+            color: white;
+        }
+        
+        .cert-card.saa {
+            border-color: #007EB9;
+        }
+        
+        .cert-card.saa:hover {
+            background: linear-gradient(135deg, #007EB9 0%, #005A8B 100%);
+            color: white;
+        }
+        
+        .cert-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        
+        .cert-card h2 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: #232F3E;
+        }
+        
+        .cert-card:hover h2 {
+            color: white;
+        }
+        
+        .cert-code {
+            font-size: 1rem;
+            opacity: 0.7;
+            margin-bottom: 1rem;
+        }
+        
+        .cert-badge {
+            display: inline-block;
+            background: #f8f9fa;
+            color: #495057;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+        
+        .cert-card:hover .cert-badge {
+            background: rgba(255,255,255,0.2);
+            color: white;
+        }
+        
+        .features-section {
+            background: white;
+            padding: 3rem 0;
+            margin-top: 3rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .feature-item {
+            padding: 1.5rem;
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: #FF9900;
+            margin-bottom: 1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+            
+            .certifications-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .cert-card {
+                padding: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    
-    
-    
-    <header role="banner">
+    <header class="hero-section">
         <div class="container">
-            <h1><a href="javascript:void(0)" onclick="window.location.reload()" style="color: white; text-decoration: none; cursor: pointer;" aria-label="Voltar ao início"><i class="fas fa-cloud" style="color: #FF9900; margin-right: 0.5rem;" aria-hidden="true"></i>AWS Services Certification</a></h1>
-            <p>DVA-C02 Developer Associate - Domine os serviços AWS</p>
+            <h1><i class="fas fa-cloud" style="color: #FF9900; margin-right: 1rem;"></i>AWS Certification Platform</h1>
+            <p>Sua jornada completa para as principais certificações AWS com simulados realistas e material de estudo especializado</p>
         </div>
     </header>
 
-    <nav class="main-nav" role="navigation" aria-label="Navegação principal">
-        <div class="container">
-            <button class="nav-btn active" onclick="showSection('study')" aria-pressed="true">📚 Material de Estudo</button>
-            <button class="nav-btn" onclick="showSection('simulator')" aria-pressed="false">🎯 Simulado</button>
-            <button class="nav-btn" onclick="showSection('results')" aria-pressed="false">📊 Resultados</button>
-        </div>
-    </nav>
+    <main class="container">
+        <section class="certifications-grid">
+            <div class="cert-card clf" onclick="navigateTo('clf-c02')" role="button" tabindex="0" onkeypress="if(event.key==='Enter') navigateTo('clf-c02')">
+                <div class="cert-icon">☁️</div>
+                <h2>Cloud Practitioner</h2>
+                <p class="cert-code">CLF-C02 • Nível Fundamental</p>
+                <p>Fundamentos da AWS, conceitos de nuvem, segurança básica e modelos de preços. Ideal para iniciantes.</p>
+                <span class="cert-badge">200 Questões no Banco • 65 no Simulado</span>
+            </div>
+            
+            <div class="cert-card dva" onclick="navigateTo('dva-c02')" role="button" tabindex="0" onkeypress="if(event.key==='Enter') navigateTo('dva-c02')">
+                <div class="cert-icon">⚡</div>
+                <h2>Developer Associate</h2>
+                <p class="cert-code">DVA-C02 • Nível Associado</p>
+                <p>Desenvolvimento serverless, APIs, deployment e troubleshooting. Para desenvolvedores AWS.</p>
+                <span class="cert-badge">200 Questões no Banco • 65 no Simulado</span>
+            </div>
+            
+            <div class="cert-card saa" onclick="navigateTo('saa-c03')" role="button" tabindex="0" onkeypress="if(event.key==='Enter') navigateTo('saa-c03')">
+                <div class="cert-icon">🏗️</div>
+                <h2>Solutions Architect</h2>
+                <p class="cert-code">SAA-C03 • Nível Associado</p>
+                <p>Arquiteturas resilientes, performáticas e seguras. Design de soluções AWS completas.</p>
+                <span class="cert-badge">200 Questões no Banco • 65 no Simulado</span>
+            </div>
+        </section>
 
-    <main class="container" id="main-content" role="main">
-        <div class="content-wrapper">
-            <!-- SEÇÃO DE ESTUDOS -->
-            <section id="study" class="content-section active" role="region" aria-labelledby="study-heading">
-                <div id="assessment-intro" class="assessment-intro">
-                    <h2 id="study-heading"><i class="fas fa-brain" style="color: white; margin-right: 0.5rem;" aria-hidden="true"></i>Avaliação Inicial - DVA-C02</h2>
-                    <p>Como especialista em aprendizado acelerado, vou personalizar seu plano de estudos baseado no seu conhecimento atual.</p>
-                    <p><strong>Responda estas 5 perguntas rápidas</strong> para eu entender seu nível e focar no que realmente importa para sua aprovação.</p>
-                    <div style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                        <button class="btn-primary" onclick="startAssessment()" aria-describedby="assessment-description">Iniciar Avaliação 🚀</button>
-                        <button class="btn-secondary btn-skip" onclick="skipAssessment()">📚 Pular e Ir Direto ao Material</button>
+        <section class="features-section">
+            <div class="container">
+                <h2>Por que escolher nossa plataforma?</h2>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">🎯</div>
+                        <h3>Meta de 80%</h3>
+                        <p>Critério mais rigoroso que garante preparação real para o exame oficial</p>
                     </div>
-                    <div id="assessment-description" class="sr-only">Avaliação de 5 questões para personalizar seu plano de estudos</div>
-                </div>
-                
-                <div id="assessment-quiz" class="assessment-quiz" style="display: none;">
-                    <div class="assessment-header">
-                        <h3>Questão <span id="assessment-current">1</span> de 5</h3>
-                        <div class="assessment-progress" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" aria-label="Progresso da avaliação">
-                            <div id="assessment-progress-bar" class="progress-bar"></div>
-                        </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">📊</div>
+                        <h3>Distribuição Oficial</h3>
+                        <p>Questões distribuídas exatamente conforme os guias oficiais da AWS</p>
                     </div>
-                    <div id="assessment-question" class="assessment-question"></div>
-                    <div id="assessment-options" class="assessment-options"></div>
-                    <div class="assessment-controls">
-                        <button id="assessment-next" class="btn-primary" onclick="nextAssessmentQuestion()" disabled aria-describedby="next-help">Próxima</button>
-                        <div id="next-help" class="sr-only">Selecione uma resposta para continuar</div>
+                    <div class="feature-item">
+                        <div class="feature-icon">📚</div>
+                        <h3>Material Completo</h3>
+                        <p>Conteúdo especializado para cada nível com exemplos práticos</p>
                     </div>
-                </div>
-                
-                <div id="assessment-results" class="assessment-results" style="display: none;"></div>
-                
-                <div id="study-material" class="study-material" style="margin-top: 3rem;">
-                    <h2>Material de Estudo</h2>
-                <div class="study-grid" role="grid" aria-label="Tópicos de estudo disponíveis">
-                    <div class="study-card" onclick="showTopic('lambda')" role="button" tabindex="0" onkeypress="if(event.key==='Enter') showTopic('lambda')" aria-describedby="lambda-desc">
-                        <h3>⚡ AWS Lambda</h3>
-                        <p id="lambda-desc">Serverless computing, cold starts, performance</p>
-                    </div>
-                    <div class="study-card" onclick="showTopic('dynamodb')">
-                        <h3>🗄️ DynamoDB</h3>
-                        <p>NoSQL, throttling, GSI, DAX</p>
-                    </div>
-                    <div class="study-card" onclick="showTopic('apigateway')">
-                        <h3>🌐 API Gateway</h3>
-                        <p>REST/HTTP APIs, rate limiting, CORS</p>
-                    </div>
-                    <div class="study-card" onclick="showTopic('security')">
-                        <h3>🔒 Security & IAM</h3>
-                        <p>Policies, roles, least privilege</p>
-                    </div>
-                    <div class="study-card" onclick="showTopic('monitoring')">
-                        <h3>📊 Monitoring</h3>
-                        <p>CloudWatch, X-Ray, logging</p>
-                    </div>
-                    <div class="study-card" onclick="showTopic('deployment')">
-                        <h3>🚀 CI/CD</h3>
-                        <p>CodePipeline, deployment strategies</p>
-                    </div>
-                    <div class="study-card" onclick="showTopic('s3')">
-                        <h3><i class="fa-solid fa-bucket"></i> Amazon S3</h3>
-                        <p>Object storage, lifecycle, security</p>
-                    </div>
-                    <div class="study-card" onclick="showTopic('ec2')">
-                        <h3>☁️ Amazon EC2</h3>
-                        <p>Instances, AMIs, security groups</p>
-                    </div>
-                    <div class="study-card" onclick="showTopic('containers')">
-                        <h3>📦 Containers</h3>
-                        <p>ECS, EKS, Docker deployment</p>
-                    </div>
-                    <div class="study-card" onclick="showTopic('messaging')">
-                        <h3>📨 SNS & SQS</h3>
-                        <p>Messaging, queues, notifications</p>
-                    </div>
-                    <div class="study-card" onclick="showTopic('cognito')">
-                        <h3>👤 AWS Cognito</h3>
-                        <p>Authentication, user management</p>
-                    </div>
-                    <div class="study-card" onclick="showTopic('systems-manager')">
-                        <h3>⚙️ Systems Manager</h3>
-                        <p>Parameter Store, automation</p>
+                    <div class="feature-item">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Simulados Realistas</h3>
+                        <p>Ambiente idêntico ao exame oficial com timer e análise detalhada</p>
                     </div>
                 </div>
-
-                    <!-- Conteúdo dos tópicos -->
-                    <div id="topic-content" class="topic-content"></div>
-                </div>
-            </section>
-
-            <!-- SEÇÃO DO SIMULADO -->
-            <section id="simulator" class="content-section" role="region" aria-labelledby="simulator-heading">
-                <div class="simulator-header">
-                    <h2 id="simulator-heading"><i class="fas fa-laptop-code" style="color: #232f3e; margin-right: 0.5rem;" aria-hidden="true"></i>Simulado DVA-C02</h2>
-                    <div class="simulator-controls">
-                        <button id="start-exam" class="btn-primary" onclick="startExam()" aria-describedby="exam-description">Iniciar Simulado (65 questões)</button>
-                        <button id="practice-mode" class="btn-secondary" onclick="practiceMode()" aria-describedby="practice-description">Modo Prática</button>
-                    </div>
-                    <div id="exam-description" class="sr-only">Simulado completo com 65 questões e 130 minutos de duração</div>
-                    <div id="practice-description" class="sr-only">Modo prática com 10 questões aleatórias sem limite de tempo</div>
-                </div>
-
-                <div id="exam-interface" class="exam-interface" style="display: none;" role="application" aria-label="Interface do simulado">
-                    <div class="exam-header">
-                        <div class="timer" role="timer" aria-live="polite" aria-atomic="true">⏱️ Tempo: <span id="timer">130:00</span></div>
-                        <div class="progress" aria-live="polite">Questão <span id="current-q">1</span> de <span id="total-q">65</span></div>
-                    </div>
-
-                    <div class="question-container">
-                        <div id="question-text" class="question-text" role="heading" aria-level="3"></div>
-                        <div id="options-container" class="options-container" role="radiogroup" aria-labelledby="question-text"></div>
-                    </div>
-
-                    <div class="exam-controls">
-                        <button id="prev-btn" onclick="previousQuestion()" disabled aria-label="Questão anterior">← Anterior</button>
-                        <button id="next-btn" onclick="nextQuestion()" aria-label="Próxima questão">Próxima →</button>
-                        <button id="finish-btn" onclick="finishExam()" style="display: none;" aria-label="Finalizar simulado e ver resultados">Finalizar Simulado</button>
-                    </div>
-                </div>
-            </section>
-
-            <!-- SEÇÃO DE RESULTADOS -->
-            <section id="results" class="content-section" role="region" aria-labelledby="results-heading">
-                <h2 id="results-heading"><i class="fas fa-chart-line" style="margin-right: 0.5rem;" aria-hidden="true"></i>Seus Resultados</h2>
-                <div id="results-content" role="region" aria-live="polite">
-                    <p>Complete um simulado para ver seus resultados aqui.</p>
-                </div>
-            </section>
-        </div>
+            </div>
+        </section>
     </main>
 
-    <script src="data.js"></script>
-    <script src="additional-questions.js"></script>
-    <script src="complete-question-bank.js"></script>
-    <script src="multiple-choice-questions.js"></script>
-    <script src="initial-assessment.js"></script>
-    <script src="question-distribution.js"></script>
-    <script src="ux-enhancements.js"></script>
-    <script src="script.js"></script>
-    <!-- <script src="test-logic.js"></script> --> <!-- Descomente para testar -->
+    <script src="shared/js/core.js"></script>
     <script>
-        // Debug function - execute no console: debugAnswerCheck()
-        function debugAnswerCheck() {
-            if (!examState.isActive || examState.questions.length === 0) {
-                console.log('❌ Nenhum simulado ativo. Inicie um simulado primeiro.');
-                return;
-            }
+        // Adicionar suporte para navegação por teclado
+        document.addEventListener('DOMContentLoaded', function() {
+            const certCards = document.querySelectorAll('.cert-card');
             
-            console.log('🔍 Debug - Verificação de Respostas');
-            console.log('=====================================');
-            
-            let correctCount = 0;
-            examState.questions.forEach((question, index) => {
-                const userAnswer = examState.answers[question.id];
-                const correctAnswer = question.correct;
-                
-                let isCorrect = false;
-                if (correctAnswer.length > 1) { // Multiple choice
-                    if (Array.isArray(userAnswer) && userAnswer.length === correctAnswer.length) {
-                        isCorrect = correctAnswer.every(ans => userAnswer.includes(ans)) && 
-                                   userAnswer.every(ans => correctAnswer.includes(ans));
+            certCards.forEach(card => {
+                card.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        card.click();
                     }
-                } else { // Single choice
-                    isCorrect = userAnswer === correctAnswer[0];
-                }
-                
-                if (isCorrect) correctCount++;
-                
-                console.log(`Questão ${index + 1}:`);
-                console.log(`  Tipo: ${correctAnswer.length > 1 ? 'Múltipla' : 'Única'}`);
-                console.log(`  Resposta correta: ${JSON.stringify(correctAnswer)}`);
-                console.log(`  Sua resposta: ${JSON.stringify(userAnswer)}`);
-                console.log(`  Status: ${isCorrect ? '✅ CORRETO' : '❌ INCORRETO'}`);
-                console.log('---');
+                });
             });
-            
-            const percentage = Math.round((correctCount / examState.questions.length) * 100);
-            console.log(`📊 Resumo: ${correctCount}/${examState.questions.length} corretas (${percentage}%)`);
+        });
+        
+        // Analytics simples
+        function trackCertificationClick(cert) {
+            console.log(`Navegação para certificação: ${cert}`);
         }
         
-        window.debugAnswerCheck = debugAnswerCheck;
+        // Override da função navigateTo para adicionar tracking
+        const originalNavigateTo = window.navigateTo;
+        window.navigateTo = function(cert) {
+            trackCertificationClick(cert);
+            originalNavigateTo(cert);
+        };
     </script>
 </body>
 </html>
