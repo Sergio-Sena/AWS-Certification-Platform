@@ -52,34 +52,43 @@ const clfStudyMaterial = {
         content: `
             <h4>Compute Services</h4>
             <ul>
-                <li><strong>EC2:</strong> Virtual servers na nuvem</li>
-                <li><strong>Lambda:</strong> Serverless computing</li>
-                <li><strong>ECS/EKS:</strong> Container orchestration</li>
-                <li><strong>Elastic Beanstalk:</strong> Platform as a Service</li>
+                <li><strong>Amazon EC2 (Elastic Compute Cloud):</strong> Fornece capacidade de computação redimensionável na nuvem. Funciona como servidores virtuais que você pode configurar conforme necessário.</li>
+                <li><strong>AWS Lambda:</strong> Serviço de computação serverless que executa código sem provisionar servidores. Você paga apenas pelo tempo de execução.</li>
+                <li><strong>AWS Fargate:</strong> Mecanismo de computação serverless para containers que trabalha com ECS e EKS.</li>
+                <li><strong>AWS Elastic Beanstalk:</strong> Serviço PaaS para deploy fácil de aplicações web. Você faz upload do código e o Beanstalk gerencia a infraestrutura.</li>
+                <li><strong>Amazon Lightsail:</strong> Plataforma simplificada para projetos pequenos com preços previsíveis.</li>
             </ul>
             
             <h4>Storage Services</h4>
             <ul>
-                <li><strong>S3:</strong> Object storage</li>
-                <li><strong>EBS:</strong> Block storage para EC2</li>
-                <li><strong>EFS:</strong> File system compartilhado</li>
-                <li><strong>Glacier:</strong> Archive storage</li>
+                <li><strong>Amazon S3 (Simple Storage Service):</strong> Armazenamento de objetos seguro, durável e escalável. Ideal para websites, backups e arquivamento.</li>
+                <li><strong>Amazon EBS (Elastic Block Store):</strong> Volumes de armazenamento em bloco para instâncias EC2. Funciona como um disco rígido virtual.</li>
+                <li><strong>Amazon EFS (Elastic File System):</strong> Sistema de arquivos compartilhado que pode ser acessado por múltiplas instâncias EC2 simultaneamente.</li>
+                <li><strong>Amazon S3 Glacier:</strong> Armazenamento de baixo custo para arquivamento e backup de longo prazo.</li>
             </ul>
             
             <h4>Database Services</h4>
             <ul>
-                <li><strong>RDS:</strong> Relational databases</li>
-                <li><strong>DynamoDB:</strong> NoSQL database</li>
-                <li><strong>Redshift:</strong> Data warehouse</li>
-                <li><strong>ElastiCache:</strong> In-memory caching</li>
+                <li><strong>Amazon RDS (Relational Database Service):</strong> Serviço gerenciado para bancos relacionais (MySQL, PostgreSQL, Oracle, SQL Server).</li>
+                <li><strong>Amazon DynamoDB:</strong> Banco NoSQL rápido e flexível para qualquer escala. Ideal para aplicações que precisam de latência baixa.</li>
+                <li><strong>Amazon Aurora:</strong> Banco relacional compatível com MySQL/PostgreSQL, até 5x mais rápido que MySQL padrão.</li>
+                <li><strong>Amazon Redshift:</strong> Data warehouse para análise de big data com performance rápida.</li>
+                <li><strong>Amazon ElastiCache:</strong> Cache em memória que melhora performance de aplicações (Redis/Memcached).</li>
             </ul>
             
-            <h4>Networking</h4>
+            <h4>Networking & Content Delivery</h4>
             <ul>
-                <li><strong>VPC:</strong> Virtual Private Cloud</li>
-                <li><strong>CloudFront:</strong> Content Delivery Network</li>
-                <li><strong>Route 53:</strong> DNS service</li>
-                <li><strong>Direct Connect:</strong> Dedicated network connection</li>
+                <li><strong>Amazon VPC (Virtual Private Cloud):</strong> Rede privada virtual isolada onde você controla o ambiente de rede.</li>
+                <li><strong>Amazon CloudFront:</strong> CDN que acelera entrega de conteúdo para usuários globais através de edge locations.</li>
+                <li><strong>Amazon Route 53:</strong> Serviço DNS escalável e confiável para roteamento de tráfego.</li>
+                <li><strong>AWS Direct Connect:</strong> Conexão de rede dedicada entre seu datacenter e AWS.</li>
+            </ul>
+            
+            <h4>Analytics Services</h4>
+            <ul>
+                <li><strong>Amazon Athena:</strong> Consulta dados no S3 usando SQL padrão sem infraestrutura.</li>
+                <li><strong>Amazon Kinesis:</strong> Coleta, processa e analisa dados de streaming em tempo real.</li>
+                <li><strong>Amazon QuickSight:</strong> Business Intelligence para criar dashboards e visualizações.</li>
             </ul>
         `
     },
