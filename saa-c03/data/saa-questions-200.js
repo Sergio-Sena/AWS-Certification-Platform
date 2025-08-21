@@ -291,9 +291,18 @@ const saa200Questions = [
     }
 ];
 
+// Combinar todas as questões dos arquivos separados
+const allSAAQuestions = [
+    ...saa200Questions,
+    ...(window.resilientQuestions || []),
+    ...(window.performanceQuestions || []),
+    ...(window.secureQuestions || []),
+    ...(window.costQuestions || [])
+];
+
 // Função para obter questões por domínio
 function getSAAQuestionsByDomain(domain) {
-    return saa200Questions.filter(q => q.domain === domain);
+    return allSAAQuestions.filter(q => q.domain === domain);
 }
 
 // Função para selecionar 65 questões para simulado SAA
@@ -327,7 +336,7 @@ function shuffleArray(array) {
 }
 
 // Exportar para uso global
-window.saa200Questions = saa200Questions;
+window.saa200Questions = allSAAQuestions;
 window.getSAAQuestionsByDomain = getSAAQuestionsByDomain;
 window.selectSAAExamQuestions = selectSAAExamQuestions;
 
@@ -337,4 +346,4 @@ console.log('Resilient Architectures:', getSAAQuestionsByDomain('resilient').len
 console.log('High-Performing Architectures:', getSAAQuestionsByDomain('performance').length, '/ 56');
 console.log('Secure Applications:', getSAAQuestionsByDomain('secure').length, '/ 48');
 console.log('Cost-Optimized Architectures:', getSAAQuestionsByDomain('cost').length, '/ 36');
-console.log('Total Questions:', saa200Questions.length, '/ 200 (', Math.round((saa200Questions.length/200)*100), '% complete)');
+console.log('Total Questions:', allSAAQuestions.length, '/ 200');
