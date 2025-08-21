@@ -11,6 +11,14 @@ let examState = {
     timer: null
 };
 
+// Avaliação Inicial
+let assessmentState = {
+    currentQuestion: 0,
+    answers: {},
+    isActive: false,
+    completed: false
+};
+
 // Navegação entre seções
 function showSection(section) {
     document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
@@ -315,23 +323,26 @@ let assessmentState = {
 };
 
 function startAssessment() {
-    document.getElementById('assessment-section').style.display = 'none';
-    document.getElementById('assessment-interface').style.display = 'block';
+    document.getElementById('assessment-intro').style.display = 'none';
+    document.getElementById('assessment-quiz').style.display = 'block';
     assessmentState.currentQuestion = 0;
     assessmentState.answers = {};
     assessmentState.isActive = true;
     showAssessmentQuestion();
 }
 
-function skipToMaterial() {
-    document.getElementById('assessment-section').style.display = 'none';
-    document.getElementById('study-content').style.display = 'block';
+function skipAssessment() {
+    document.getElementById('assessment-intro').style.display = 'none';
+    document.getElementById('study-material').style.display = 'block';
 }
 
 function showAssessmentQuestion() {
     const question = clfInitialAssessment[assessmentState.currentQuestion];
-    document.getElementById('assess-current').textContent = assessmentState.currentQuestion + 1;
-    document.getElementById('assess-total').textContent = clfInitialAssessment.length;
+    document.getElementById('assessment-current').textContent = assessmentState.currentQuestion + 1;
+    
+    // Atualizar barra de progresso
+    const progress = ((assessmentState.currentQuestion + 1) / clfInitialAssessment.length) * 100;
+    document.getElementById('assessment-progress-bar').style.width = progress + '%';
     
     document.getElementById('assessment-question').innerHTML = `<h4>${question.question}</h4>`;
     
@@ -346,7 +357,7 @@ function showAssessmentQuestion() {
         optionsContainer.appendChild(optionDiv);
     });
     
-    document.getElementById('assess-next').disabled = true;
+    document.getElementById('assessment-next').disabled = true;
 }
 
 function selectAssessmentOption(optionIndex) {
@@ -375,9 +386,9 @@ function finishAssessment() {
 }
 
 function showAssessmentResults(results) {
-    document.getElementById('assessment-interface').style.display = 'none';
+    document.getElementById('assessment-quiz').style.display = 'none';
     
-    const resultDiv = document.getElementById('assessment-result');
+    const resultDiv = document.getElementById('assessment-results');
     resultDiv.style.display = 'block';
     
     resultDiv.innerHTML = `
@@ -400,6 +411,7 @@ function showAssessmentResults(results) {
 }
 
 function proceedToStudy() {
-    document.getElementById('assessment-result').style.display = 'none';
-    document.getElementById('study-content').style.display = 'block';
+    document.getElementById('assessment-results').style.display = 'none';
+    document.getElementById('study-material').style.display = 'block';
+    assessmentState.completed = true;
 }

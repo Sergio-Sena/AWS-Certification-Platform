@@ -16,6 +16,18 @@ const SAA_CONFIG = {
 };
 
 // Estado do exame
+let currentSection = 'study';
+let currentTopic = null;
+let examState = {
+    isActive: false,
+    questions: [],
+    currentQuestion: 0,
+    answers: {},
+    startTime: null,
+    timeRemaining: SAA_CONFIG.examDuration * 60,
+    timer: null
+};
+
 let currentExam = {
     questions: [],
     currentIndex: 0,
@@ -75,50 +87,55 @@ function showSection(sectionName) {
 // Mostrar tópico de estudo
 function showTopic(topicName) {
     const topicContent = document.getElementById('topic-content');
-    const domain = SAA_CONFIG.domains[topicName];
+    const material = saaStudyMaterial[topicName];
     
-    if (!domain) {
-        topicContent.innerHTML = '<p>Tópico não encontrado.</p>';
-        return;
-    }
-    
-    topicContent.innerHTML = `
-        <div class="topic-detail">
-            <h3>${domain.name}</h3>
-            <p><strong>Peso no exame:</strong> ${domain.weight}% (${domain.examQuestions} questões)</p>
-            <p><strong>Questões no banco:</strong> ${domain.bankQuestions} questões</p>
-            <div class="topic-description">
-                <p>Material de estudo para ${domain.name} será carregado aqui.</p>
+    if (material) {
+        topicContent.innerHTML = `
+            <h3>${material.title}</h3>
+            ${material.content}
+            <div style="margin-top: 2rem; text-align: center;">
+                <button class="btn-secondary" onclick="hideTopic()">Fechar</button>
             </div>
-        </div>
-    `;
+        `;
+        topicContent.classList.add('active');
+        currentTopic = topicName;
+    }
+}
+
+function hideTopic() {
+    document.getElementById('topic-content').classList.remove('active');
+    currentTopic = null;
 }
 
 // Avaliação Inicial
 let assessmentState = {
     currentQuestion: 0,
     answers: {},
-    isActive: false
+    isActive: false,
+    completed: false
 };
 
 function startAssessment() {
-    document.getElementById('assessment-section').style.display = 'none';
-    document.getElementById('assessment-interface').style.display = 'block';
+    document.getElementById('assessment-intro').style.display = 'none';
+    document.getElementById('assessment-quiz').style.display = 'block';
     assessmentState.currentQuestion = 0;
     assessmentState.answers = {};
     assessmentState.isActive = true;
     showAssessmentQuestion();
 }
 
-function skipToMaterial() {
-    document.getElementById('assessment-section').style.display = 'none';
-    document.getElementById('study-content').style.display = 'block';
+function skipAssessment() {
+    document.getElementById('assessment-intro').style.display = 'none';
+    document.getElementById('study-material').style.display = 'block';
 }
 
 function showAssessmentQuestion() {
     const question = saaInitialAssessment[assessmentState.currentQuestion];
-    document.getElementById('assess-current').textContent = assessmentState.currentQuestion + 1;
-    document.getElementById('assess-total').textContent = saaInitialAssessment.length;
+    document.getElementById('assessment-current').textContent = assessmentState.currentQuestion + 1;
+    
+    // Atualizar barra de progresso
+    const progress = ((assessmentState.currentQuestion + 1) / saaInitialAssessment.length) * 100;
+    document.getElementById('assessment-progress-bar').style.width = progress + '%';
     
     document.getElementById('assessment-question').innerHTML = `<h4>${question.question}</h4>`;
     
@@ -133,7 +150,7 @@ function showAssessmentQuestion() {
         optionsContainer.appendChild(optionDiv);
     });
     
-    document.getElementById('assess-next').disabled = true;
+    document.getElementById('assessment-next').disabled = true;
 }
 
 function selectAssessmentOption(optionIndex) {
@@ -162,9 +179,9 @@ function finishAssessment() {
 }
 
 function showAssessmentResults(results) {
-    document.getElementById('assessment-interface').style.display = 'none';
+    document.getElementById('assessment-quiz').style.display = 'none';
     
-    const resultDiv = document.getElementById('assessment-result');
+    const resultDiv = document.getElementById('assessment-results');
     resultDiv.style.display = 'block';
     
     resultDiv.innerHTML = `
@@ -187,8 +204,9 @@ function showAssessmentResults(results) {
 }
 
 function proceedToStudy() {
-    document.getElementById('assessment-result').style.display = 'none';
-    document.getElementById('study-content').style.display = 'block';
+    document.getElementById('assessment-results').style.display = 'none';
+    document.getElementById('study-material').style.display = 'block';
+    assessmentState.completed = true;
 }
 
 // Iniciar simulado completo
