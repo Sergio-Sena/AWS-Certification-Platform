@@ -1,0 +1,281 @@
+/* SAA-C03 Solutions Architect Associate Theme - Azul AWS */
+
+:root {
+    --primary-color: #007EB9;
+    --primary-dark: #005a85;
+    --primary-light: #4da6d9;
+    --secondary-color: #232F3E;
+    --accent-color: #FF9900;
+    --success-color: #00A651;
+    --warning-color: #FF9900;
+    --error-color: #D13212;
+    --text-primary: #232F3E;
+    --text-secondary: #545b64;
+    --background: #ffffff;
+    --surface: #f8f9fa;
+    --border: #e1e4e8;
+    --shadow: rgba(0, 126, 185, 0.1);
+}
+
+/* Header específico SAA */
+header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    color: white;
+    padding: 1.5rem 0;
+    box-shadow: 0 2px 10px var(--shadow);
+}
+
+header h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+header p {
+    margin: 0.5rem 0 0 0;
+    opacity: 0.9;
+    font-size: 1rem;
+}
+
+/* Navegação SAA */
+.main-nav {
+    background: var(--surface);
+    border-bottom: 2px solid var(--primary-color);
+    padding: 1rem 0;
+}
+
+.nav-btn {
+    background: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 0.75rem 1.5rem;
+    margin: 0 0.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.nav-btn:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+.nav-btn.active {
+    background: var(--primary-color);
+    color: white;
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+/* Cards de estudo SAA */
+.study-card {
+    background: white;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.study-card:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px var(--shadow);
+}
+
+.study-card h3 {
+    color: var(--primary-color);
+    margin: 0 0 0.5rem 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+/* Botões SAA */
+.btn-primary {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--shadow);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Interface do exame SAA */
+.exam-header {
+    background: var(--primary-color);
+    color: white;
+    padding: 1rem;
+    border-radius: 8px 8px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.timer {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.progress {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+/* Questões SAA */
+.question-container {
+    background: white;
+    border: 2px solid var(--border);
+    border-top: none;
+    padding: 2rem;
+    min-height: 400px;
+}
+
+.question-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+}
+
+.option {
+    background: var(--surface);
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 0.5rem 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.option:hover {
+    border-color: var(--primary-light);
+    background: rgba(0, 126, 185, 0.05);
+}
+
+.option.selected {
+    border-color: var(--primary-color);
+    background: rgba(0, 126, 185, 0.1);
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+/* Controles do exame */
+.exam-controls {
+    background: var(--surface);
+    padding: 1rem;
+    border-radius: 0 0 8px 8px;
+    display: flex;
+    justify-content: space-between;
+    border: 2px solid var(--border);
+    border-top: none;
+}
+
+.exam-controls button {
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.exam-controls button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Resultados SAA */
+.result-card {
+    background: white;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.score-display {
+    text-align: center;
+    padding: 2rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+    color: white;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+}
+
+.score-percentage {
+    font-size: 3rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.score-status {
+    font-size: 1.2rem;
+    margin: 0.5rem 0 0 0;
+    opacity: 0.9;
+}
+
+/* Responsividade SAA */
+@media (max-width: 768px) {
+    .nav-btn {
+        padding: 0.5rem 1rem;
+        margin: 0.25rem;
+        font-size: 0.9rem;
+    }
+    
+    .study-card {
+        padding: 1rem;
+    }
+    
+    .btn-primary, .btn-secondary {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .exam-header {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+    
+    .exam-controls {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .score-percentage {
+        font-size: 2.5rem;
+    }
+}

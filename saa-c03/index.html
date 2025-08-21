@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAA-C03 - Solutions Architect Associate</title>
+    <link rel="stylesheet" href="../shared/css/base.css">
+    <link rel="stylesheet" href="css/saa-theme.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <header role="banner">
+        <div class="container">
+            <h1><a href="../index.html" style="color: white; text-decoration: none;"><i class="fas fa-building" style="color: #007EB9; margin-right: 0.5rem;"></i>AWS Solutions Architect</a></h1>
+            <p>SAA-C03 - Arquitetura de Soluções AWS</p>
+        </div>
+    </header>
+
+    <nav class="main-nav" role="navigation">
+        <div class="container">
+            <button class="nav-btn active" onclick="showSection('study')">🏗️ Material de Estudo</button>
+            <button class="nav-btn" onclick="showSection('simulator')">🎯 Simulado</button>
+            <button class="nav-btn" onclick="showSection('results')">📊 Resultados</button>
+        </div>
+    </nav>
+
+    <main class="container" id="main-content" role="main">
+        <div class="content-wrapper">
+            <!-- SEÇÃO DE ESTUDOS -->
+            <section id="study" class="content-section active">
+                <div class="study-material">
+                    <h2>Material de Estudo SAA-C03</h2>
+                    <div class="study-grid">
+                        <div class="study-card" onclick="showTopic('resilient')">
+                            <h3>🏗️ Resilient Architectures</h3>
+                            <p>Design de arquiteturas resilientes e tolerantes a falhas</p>
+                        </div>
+                        <div class="study-card" onclick="showTopic('performance')">
+                            <h3>⚡ High-Performing Architectures</h3>
+                            <p>Otimização de performance e escalabilidade</p>
+                        </div>
+                        <div class="study-card" onclick="showTopic('secure')">
+                            <h3>🔒 Secure Applications</h3>
+                            <p>Implementação de segurança em aplicações</p>
+                        </div>
+                        <div class="study-card" onclick="showTopic('cost')">
+                            <h3>💰 Cost-Optimized Architectures</h3>
+                            <p>Otimização de custos e eficiência financeira</p>
+                        </div>
+                    </div>
+                    <div id="topic-content" class="topic-content"></div>
+                </div>
+            </section>
+
+            <!-- SEÇÃO DO SIMULADO -->
+            <section id="simulator" class="content-section">
+                <div class="simulator-header">
+                    <h2>Simulado SAA-C03</h2>
+                    <div class="simulator-controls">
+                        <button id="start-exam" class="btn-primary" onclick="startExam()">Iniciar Simulado (65 questões)</button>
+                        <button id="practice-mode" class="btn-secondary" onclick="practiceMode()">Modo Prática</button>
+                    </div>
+                </div>
+
+                <div id="exam-interface" class="exam-interface" style="display: none;">
+                    <div class="exam-header">
+                        <div class="timer">⏱️ Tempo: <span id="timer">130:00</span></div>
+                        <div class="progress">Questão <span id="current-q">1</span> de <span id="total-q">65</span></div>
+                    </div>
+
+                    <div class="question-container">
+                        <div id="question-text" class="question-text"></div>
+                        <div id="options-container" class="options-container"></div>
+                    </div>
+
+                    <div class="exam-controls">
+                        <button id="prev-btn" onclick="previousQuestion()" disabled>← Anterior</button>
+                        <button id="next-btn" onclick="nextQuestion()">Próxima →</button>
+                        <button id="finish-btn" onclick="finishExam()" style="display: none;">Finalizar Simulado</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SEÇÃO DE RESULTADOS -->
+            <section id="results" class="content-section">
+                <h2>Seus Resultados</h2>
+                <div id="results-content">
+                    <p>Complete um simulado para ver seus resultados aqui.</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="../shared/js/core.js"></script>
+    <script src="../shared/components/breadcrumb.js"></script>
+    <script src="../shared/js/exam-engine.js"></script>
+    <script src="data/saa-study-material.js"></script>
+    <script src="data/saa-questions-200.js"></script>
+    <script src="js/saa-script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            applyTheme('saa');
+            insertBreadcrumb('saa-c03');
+        });
+    </script>
+</body>
+</html>
