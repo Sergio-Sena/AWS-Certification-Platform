@@ -55,7 +55,23 @@ function hideTopic() {
 
 // Sistema de Simulado
 function startExam() {
-    examState.questions = selectCLFExamQuestions();
+    // Verificar se a função selectCLFExamQuestions existe
+    let questions;
+    if (typeof selectCLFExamQuestions === 'function') {
+        questions = selectCLFExamQuestions();
+    } else {
+        // Fallback: usar questões disponíveis
+        const availableQuestions = typeof clf200Questions !== 'undefined' ? clf200Questions : 
+                                  (typeof clfQuestions !== 'undefined' ? clfQuestions : []);
+        questions = shuffleArray(availableQuestions).slice(0, 65);
+    }
+    
+    if (!questions || questions.length === 0) {
+        alert('Questões não carregadas. Recarregue a página.');
+        return;
+    }
+    
+    examState.questions = questions;
     examState.currentQuestion = 0;
     examState.answers = {};
     examState.startTime = new Date();
@@ -70,7 +86,16 @@ function startExam() {
 }
 
 function practiceMode() {
-    examState.questions = shuffleArray(clf200Questions).slice(0, 10);
+    // Verificar se clf200Questions existe, senão usar questões disponíveis
+    const availableQuestions = typeof clf200Questions !== 'undefined' ? clf200Questions : 
+                              (typeof clfQuestions !== 'undefined' ? clfQuestions : []);
+    
+    if (availableQuestions.length === 0) {
+        alert('Questões não carregadas. Recarregue a página.');
+        return;
+    }
+    
+    examState.questions = shuffleArray(availableQuestions).slice(0, 10);
     examState.currentQuestion = 0;
     examState.answers = {};
     examState.startTime = new Date();

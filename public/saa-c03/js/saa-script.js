@@ -55,7 +55,23 @@ function hideTopic() {
 
 // Sistema de Simulado
 function startExam() {
-    examState.questions = selectSAAExamQuestions();
+    // Verificar se a função selectSAAExamQuestions existe
+    let questions;
+    if (typeof selectSAAExamQuestions === 'function') {
+        questions = selectSAAExamQuestions();
+    } else {
+        // Fallback: usar questões disponíveis
+        const availableQuestions = typeof saa200Questions !== 'undefined' ? saa200Questions : 
+                                  (typeof saaQuestions !== 'undefined' ? saaQuestions : []);
+        questions = shuffleArray(availableQuestions).slice(0, 65);
+    }
+    
+    if (!questions || questions.length === 0) {
+        alert('Questões não carregadas. Recarregue a página.');
+        return;
+    }
+    
+    examState.questions = questions;
     examState.currentQuestion = 0;
     examState.answers = {};
     examState.startTime = new Date();
@@ -70,7 +86,16 @@ function startExam() {
 }
 
 function practiceMode() {
-    examState.questions = shuffleArray(saa200Questions).slice(0, 10);
+    // Verificar questões disponíveis
+    const availableQuestions = typeof saa200Questions !== 'undefined' ? saa200Questions : 
+                              (typeof saaQuestions !== 'undefined' ? saaQuestions : []);
+    
+    if (availableQuestions.length === 0) {
+        alert('Questões não carregadas. Recarregue a página.');
+        return;
+    }
+    
+    examState.questions = shuffleArray(availableQuestions).slice(0, 10);
     examState.currentQuestion = 0;
     examState.answers = {};
     examState.startTime = new Date();

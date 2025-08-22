@@ -150,8 +150,16 @@ function startExam() {
 }
 
 function practiceMode() {
-    // Modo prática com 10 questões aleatórias
-    examState.questions = shuffleArray(questionBank).slice(0, 10);
+    // Verificar questões disponíveis
+    const availableQuestions = typeof questionBank !== 'undefined' ? questionBank : 
+                              (typeof dvaQuestions !== 'undefined' ? dvaQuestions : []);
+    
+    if (availableQuestions.length === 0) {
+        alert('Questões não carregadas. Recarregue a página.');
+        return;
+    }
+    
+    examState.questions = shuffleArray(availableQuestions).slice(0, 10);
     examState.currentQuestion = 0;
     examState.answers = {};
     examState.startTime = new Date();
