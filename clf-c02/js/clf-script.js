@@ -39,19 +39,17 @@ function showTopic(topic) {
     
     if (material) {
         topicContent.innerHTML = `
+            <button class="close-topic" onclick="hideTopic()" aria-label="Fechar">&times;</button>
             <h3>${material.title}</h3>
             ${material.content}
-            <div style="margin-top: 2rem; text-align: center;">
-                <button class="btn-secondary" onclick="hideTopic()">Fechar</button>
-            </div>
         `;
-        topicContent.classList.add('active');
+        topicContent.style.display = 'block';
         currentTopic = topic;
     }
 }
 
 function hideTopic() {
-    document.getElementById('topic-content').classList.remove('active');
+    document.getElementById('topic-content').style.display = 'none';
     currentTopic = null;
 }
 

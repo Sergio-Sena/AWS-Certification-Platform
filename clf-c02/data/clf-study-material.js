@@ -4,120 +4,167 @@ const clfStudyMaterial = {
     'cloud-concepts': {
         title: '☁️ Cloud Concepts',
         content: `
-            <h4>Conceitos Fundamentais de Cloud Computing</h4>
-            <ul>
-                <li><strong>Definição de Cloud Computing:</strong> Entrega sob demanda de recursos de TI via internet</li>
-                <li><strong>Modelos de Deployment:</strong> Public, Private, Hybrid Cloud</li>
-                <li><strong>Modelos de Serviço:</strong> IaaS, PaaS, SaaS</li>
-                <li><strong>Benefícios:</strong> Agilidade, elasticidade, economia de escala, pay-as-you-go</li>
-                <li><strong>Well-Architected Framework:</strong> 6 pilares (Operational Excellence, Security, Reliability, Performance, Cost, Sustainability)</li>
-            </ul>
-            
-            <h4>Conceitos AWS Essenciais</h4>
-            <ul>
-                <li><strong>Regions:</strong> Localizações geográficas com múltiplas AZs</li>
-                <li><strong>Availability Zones:</strong> Data centers isolados dentro de uma região</li>
-                <li><strong>Edge Locations:</strong> Pontos de presença para CloudFront</li>
-                <li><strong>Global Infrastructure:</strong> Rede mundial da AWS</li>
-            </ul>
+            <div class="topic-cards-grid">
+                <div class="topic-card">
+                    <h4>💡 Definição de Cloud Computing</h4>
+                    <p>Entrega sob demanda de recursos de TI via internet com modelo pay-as-you-go</p>
+                </div>
+                <div class="topic-card">
+                    <h4>🏗️ Modelos de Deployment</h4>
+                    <p><strong>Public Cloud:</strong> Recursos compartilhados<br>
+                    <strong>Private Cloud:</strong> Recursos dedicados<br>
+                    <strong>Hybrid Cloud:</strong> Combinação de ambos</p>
+                </div>
+                <div class="topic-card">
+                    <h4>⚙️ Modelos de Serviço</h4>
+                    <p><strong>IaaS:</strong> Infraestrutura como Serviço<br>
+                    <strong>PaaS:</strong> Plataforma como Serviço<br>
+                    <strong>SaaS:</strong> Software como Serviço</p>
+                </div>
+                <div class="topic-card">
+                    <h4>🚀 Benefícios da Nuvem</h4>
+                    <p>Agilidade, elasticidade, economia de escala, pay-as-you-go, alcance global</p>
+                </div>
+                <div class="topic-card">
+                    <h4>🏛️ Well-Architected Framework</h4>
+                    <p>6 pilares: Operational Excellence, Security, Reliability, Performance, Cost, Sustainability</p>
+                </div>
+                <div class="topic-card">
+                    <h4>🌍 Infraestrutura Global AWS</h4>
+                    <p><strong>Regions:</strong> Localizações geográficas<br>
+                    <strong>AZs:</strong> Data centers isolados<br>
+                    <strong>Edge Locations:</strong> Pontos CloudFront</p>
+                </div>
+            </div>
         `
     },
     'security': {
         title: '🔒 Security & Compliance',
         content: `
-            <h4>Modelo de Responsabilidade Compartilhada</h4>
-            <ul>
-                <li><strong>AWS é responsável por:</strong> Segurança DA nuvem (infraestrutura, hardware, software)</li>
-                <li><strong>Cliente é responsável por:</strong> Segurança NA nuvem (dados, aplicações, SO, rede)</li>
-            </ul>
-            
-            <h4>Serviços de Segurança</h4>
-            <ul>
-                <li><strong>IAM:</strong> Identity and Access Management</li>
-                <li><strong>CloudTrail:</strong> Auditoria de API calls</li>
-                <li><strong>GuardDuty:</strong> Detecção de ameaças</li>
-                <li><strong>Security Groups:</strong> Firewalls virtuais</li>
-                <li><strong>KMS:</strong> Gerenciamento de chaves de criptografia</li>
-            </ul>
-            
-            <h4>Compliance</h4>
-            <ul>
-                <li><strong>AWS Artifact:</strong> Relatórios de compliance</li>
-                <li><strong>Certificações:</strong> SOC, PCI DSS, HIPAA, GDPR</li>
-            </ul>
+            <div class="topic-cards-grid">
+                <div class="topic-card">
+                    <h4>🤝 Responsabilidade Compartilhada</h4>
+                    <p><strong>AWS:</strong> Segurança DA nuvem (infraestrutura, hardware)<br>
+                    <strong>Cliente:</strong> Segurança NA nuvem (dados, aplicações, SO)</p>
+                </div>
+                <div class="topic-card">
+                    <h4>👤 AWS IAM</h4>
+                    <p>Identity and Access Management - Controle de acesso a recursos AWS</p>
+                </div>
+                <div class="topic-card">
+                    <h4>📋 AWS CloudTrail</h4>
+                    <p>Auditoria e log de todas as chamadas de API na conta AWS</p>
+                </div>
+                <div class="topic-card">
+                    <h4>🛡️ Amazon GuardDuty</h4>
+                    <p>Serviço de detecção de ameaças usando machine learning</p>
+                </div>
+                <div class="topic-card">
+                    <h4>🔐 AWS KMS</h4>
+                    <p>Key Management Service - Gerenciamento de chaves de criptografia</p>
+                </div>
+                <div class="topic-card">
+                    <h4>📜 AWS Artifact</h4>
+                    <p>Portal para acessar relatórios de compliance e certificações (SOC, PCI DSS, HIPAA)</p>
+                </div>
+            </div>
         `
     },
     'technology': {
         title: '⚙️ Technology & Services',
         content: `
-            <h4>Compute Services</h4>
-            <ul>
-                <li><strong>Amazon EC2 (Elastic Compute Cloud):</strong> Fornece capacidade de computação redimensionável na nuvem. Funciona como servidores virtuais que você pode configurar conforme necessário.</li>
-                <li><strong>AWS Lambda:</strong> Serviço de computação serverless que executa código sem provisionar servidores. Você paga apenas pelo tempo de execução.</li>
-                <li><strong>AWS Fargate:</strong> Mecanismo de computação serverless para containers que trabalha com ECS e EKS.</li>
-                <li><strong>AWS Elastic Beanstalk:</strong> Serviço PaaS para deploy fácil de aplicações web. Você faz upload do código e o Beanstalk gerencia a infraestrutura.</li>
-                <li><strong>Amazon Lightsail:</strong> Plataforma simplificada para projetos pequenos com preços previsíveis.</li>
-            </ul>
-            
-            <h4>Storage Services</h4>
-            <ul>
-                <li><strong>Amazon S3 (Simple Storage Service):</strong> Armazenamento de objetos seguro, durável e escalável. Ideal para websites, backups e arquivamento.</li>
-                <li><strong>Amazon EBS (Elastic Block Store):</strong> Volumes de armazenamento em bloco para instâncias EC2. Funciona como um disco rígido virtual.</li>
-                <li><strong>Amazon EFS (Elastic File System):</strong> Sistema de arquivos compartilhado que pode ser acessado por múltiplas instâncias EC2 simultaneamente.</li>
-                <li><strong>Amazon S3 Glacier:</strong> Armazenamento de baixo custo para arquivamento e backup de longo prazo.</li>
-            </ul>
-            
-            <h4>Database Services</h4>
-            <ul>
-                <li><strong>Amazon RDS (Relational Database Service):</strong> Serviço gerenciado para bancos relacionais (MySQL, PostgreSQL, Oracle, SQL Server).</li>
-                <li><strong>Amazon DynamoDB:</strong> Banco NoSQL rápido e flexível para qualquer escala. Ideal para aplicações que precisam de latência baixa.</li>
-                <li><strong>Amazon Aurora:</strong> Banco relacional compatível com MySQL/PostgreSQL, até 5x mais rápido que MySQL padrão.</li>
-                <li><strong>Amazon Redshift:</strong> Data warehouse para análise de big data com performance rápida.</li>
-                <li><strong>Amazon ElastiCache:</strong> Cache em memória que melhora performance de aplicações (Redis/Memcached).</li>
-            </ul>
-            
-            <h4>Networking & Content Delivery</h4>
-            <ul>
-                <li><strong>Amazon VPC (Virtual Private Cloud):</strong> Rede privada virtual isolada onde você controla o ambiente de rede.</li>
-                <li><strong>Amazon CloudFront:</strong> CDN que acelera entrega de conteúdo para usuários globais através de edge locations.</li>
-                <li><strong>Amazon Route 53:</strong> Serviço DNS escalável e confiável para roteamento de tráfego.</li>
-                <li><strong>AWS Direct Connect:</strong> Conexão de rede dedicada entre seu datacenter e AWS.</li>
-            </ul>
-            
-            <h4>Analytics Services</h4>
-            <ul>
-                <li><strong>Amazon Athena:</strong> Consulta dados no S3 usando SQL padrão sem infraestrutura.</li>
-                <li><strong>Amazon Kinesis:</strong> Coleta, processa e analisa dados de streaming em tempo real.</li>
-                <li><strong>Amazon QuickSight:</strong> Business Intelligence para criar dashboards e visualizações.</li>
-            </ul>
+            <div class="topic-cards-grid">
+                <div class="topic-card">
+                    <h4>☁️ Amazon EC2</h4>
+                    <p>Elastic Compute Cloud - Servidores virtuais redimensionáveis na nuvem</p>
+                </div>
+                <div class="topic-card">
+                    <h4>⚡ AWS Lambda</h4>
+                    <p>Computação serverless - Execute código sem gerenciar servidores</p>
+                </div>
+                <div class="topic-card">
+                    <h4>🗄️ Amazon S3</h4>
+                    <p>Simple Storage Service - Armazenamento de objetos seguro e escalável</p>
+                </div>
+                <div class="topic-card">
+                    <h4>💾 Amazon EBS</h4>
+                    <p>Elastic Block Store - Volumes de armazenamento em bloco para EC2</p>
+                </div>
+                <div class="topic-card">
+                    <h4>🗃️ Amazon RDS</h4>
+                    <p>Relational Database Service - Bancos relacionais gerenciados</p>
+                </div>
+                <div class="topic-card">
+                    <h4>⚡ Amazon DynamoDB</h4>
+                    <p>Banco NoSQL rápido e flexível com latência de milissegundos</p>
+                </div>
+                <div class="topic-card">
+                    <h4>🌐 Amazon VPC</h4>
+                    <p>Virtual Private Cloud - Rede privada virtual isolada</p>
+                </div>
+                <div class="topic-card">
+                    <h4>🚀 Amazon CloudFront</h4>
+                    <p>CDN global para acelerar entrega de conteúdo</p>
+                </div>
+                <div class="topic-card">
+                    <h4>📡 Amazon Route 53</h4>
+                    <p>Serviço DNS escalável e confiável</p>
+                </div>
+                <div class="topic-card">
+                    <h4>🔍 Amazon Athena</h4>
+                    <p>Consulte dados no S3 usando SQL sem infraestrutura</p>
+                </div>
+                <div class="topic-card">
+                    <h4>📊 Amazon QuickSight</h4>
+                    <p>Business Intelligence para dashboards e visualizações</p>
+                </div>
+                <div class="topic-card">
+                    <h4>🎯 AWS Elastic Beanstalk</h4>
+                    <p>Deploy fácil de aplicações web - PaaS da AWS</p>
+                </div>
+            </div>
         `
     },
     'billing': {
         title: '💰 Billing & Pricing',
         content: `
-            <h4>Modelos de Preços</h4>
-            <ul>
-                <li><strong>On-Demand:</strong> Pay-as-you-go sem compromisso</li>
-                <li><strong>Reserved Instances:</strong> Desconto por compromisso de 1-3 anos</li>
-                <li><strong>Spot Instances:</strong> Capacidade não utilizada com desconto</li>
-                <li><strong>Savings Plans:</strong> Modelo flexível de desconto</li>
-            </ul>
-            
-            <h4>Ferramentas de Custo</h4>
-            <ul>
-                <li><strong>Pricing Calculator:</strong> Estimar custos antes de usar</li>
-                <li><strong>Cost Explorer:</strong> Visualizar e analisar custos</li>
-                <li><strong>AWS Budgets:</strong> Definir orçamentos e alertas</li>
-                <li><strong>Trusted Advisor:</strong> Recomendações de otimização</li>
-            </ul>
-            
-            <h4>Níveis de Suporte</h4>
-            <ul>
-                <li><strong>Basic:</strong> Gratuito, documentação e fóruns</li>
-                <li><strong>Developer:</strong> Suporte técnico durante horário comercial</li>
-                <li><strong>Business:</strong> Suporte 24/7, resposta em 1 hora</li>
-                <li><strong>Enterprise:</strong> TAM dedicado, resposta em 15 minutos</li>
-            </ul>
+            <div class="topic-cards-grid">
+                <div class="topic-card">
+                    <h4>💳 On-Demand</h4>
+                    <p>Pay-as-you-go sem compromisso de longo prazo. Pague apenas pelo que usar.</p>
+                </div>
+                <div class="topic-card">
+                    <h4>📅 Reserved Instances</h4>
+                    <p>Desconto significativo por compromisso de 1-3 anos. Até 75% de economia.</p>
+                </div>
+                <div class="topic-card">
+                    <h4>⚡ Spot Instances</h4>
+                    <p>Capacidade não utilizada com até 90% de desconto. Pode ser interrompida.</p>
+                </div>
+                <div class="topic-card">
+                    <h4>💡 Savings Plans</h4>
+                    <p>Modelo flexível de desconto baseado em compromisso de uso por hora.</p>
+                </div>
+                <div class="topic-card">
+                    <h4>🧮 Pricing Calculator</h4>
+                    <p>Ferramenta para estimar custos AWS antes de implementar recursos.</p>
+                </div>
+                <div class="topic-card">
+                    <h4>📊 Cost Explorer</h4>
+                    <p>Visualize e analise seus custos AWS com gráficos e relatórios detalhados.</p>
+                </div>
+                <div class="topic-card">
+                    <h4>🎯 AWS Budgets</h4>
+                    <p>Defina orçamentos personalizados e receba alertas quando exceder limites.</p>
+                </div>
+                <div class="topic-card">
+                    <h4>🏆 Níveis de Suporte</h4>
+                    <p><strong>Basic:</strong> Gratuito<br>
+                    <strong>Developer:</strong> Horário comercial<br>
+                    <strong>Business:</strong> 24/7<br>
+                    <strong>Enterprise:</strong> TAM dedicado</p>
+                </div>
+            </div>
         `
     }
 };

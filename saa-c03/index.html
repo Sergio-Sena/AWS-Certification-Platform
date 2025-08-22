@@ -9,6 +9,309 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23007EB9'/%3E%3Ccircle cx='50' cy='50' r='35' fill='%23232f3e'/%3E%3Ctext x='50' y='58' font-family='Arial,sans-serif' font-size='18' font-weight='bold' fill='%23FFFFFF' text-anchor='middle'%3EAWS%3C/text%3E%3C/svg%3E">
+    <style>
+        body {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            min-height: 100vh;
+        }
+        
+        .services-section {
+            background: #f8f9fa;
+            padding: 3rem 0;
+            margin-top: 3rem;
+            border-radius: 12px;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .service-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border-left: 4px solid #007EB9;
+            cursor: pointer;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+        }
+        
+        .service-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .service-card h3 {
+            color: #232F3E;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .service-card p {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        
+        .main-nav {
+            background: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .main-nav .container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .nav-btn {
+            background: transparent;
+            border: none;
+            color: #555;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-btn:hover {
+            background-color: #f0f0f0;
+            color: #232f3e;
+        }
+        
+        .nav-btn.active {
+            background-color: #007EB9;
+            color: white;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(0, 126, 185, 0.3);
+        }
+        
+        .assessment-intro {
+            text-align: center;
+            background: #232f3e;
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 12px;
+        }
+        
+        .topic-content {
+            position: relative;
+        }
+        
+        .close-topic {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #007EB9;
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .content-section {
+            display: none;
+            background: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+        }
+        
+        .content-section.active {
+            display: block;
+        }
+        
+        .simulator-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+        
+        .simulator-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .btn-primary {
+            background-color: #007EB9;
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 126, 185, 0.2);
+        }
+        
+        .btn-primary:hover {
+            background-color: #005A8B;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 126, 185, 0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: #007EB9;
+            border: 2px solid #007EB9;
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background: #007EB9;
+            color: white;
+        }
+        
+        .exam-interface {
+            background: #f9f9f9;
+            border-radius: 10px;
+            padding: 2rem;
+        }
+        
+        .exam-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .timer {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #d9534f;
+        }
+        
+        .question-text {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        
+        .option {
+            background: white;
+            border: 2px solid #e0e0e0;
+            padding: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .option:hover {
+            border-color: #007EB9;
+        }
+        
+        .option.selected {
+            border-color: #232f3e;
+            background-color: #f0f8ff;
+        }
+        
+        .exam-controls button {
+            background: #232f3e;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.3s ease;
+        }
+        
+        .exam-controls button:hover:not(:disabled) {
+            background: #3a4a5d;
+        }
+        
+        .exam-controls button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .result-card {
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .result-score {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .result-details {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .services-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 1rem;
+            }
+            
+            .service-card {
+                padding: 1.2rem;
+            }
+            
+            .main-nav .container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .nav-btn {
+                text-align: center;
+            }
+            
+            .content-section {
+                padding: 1.5rem;
+            }
+            
+            .simulator-controls {
+                flex-direction: column;
+            }
+            
+            .btn-primary, .btn-secondary {
+                width: 100%;
+            }
+        }
+    </style>
 
 </head>
 <body>
@@ -64,56 +367,36 @@
                 
                 <div id="study-material" class="study-material" style="margin-top: 3rem; display: block;">
                     <h2>Material de Estudo</h2>
-                <div class="study-grid" role="grid" aria-label="Tópicos de estudo disponíveis">
-                    <div class="study-card" onclick="showTopic('resilient')" role="button" tabindex="0" onkeypress="if(event.key==='Enter') showTopic('resilient')" aria-describedby="resilient-desc">
-                        <h3>🏗️ Resilient Architectures</h3>
-                        <p id="resilient-desc">Design de arquiteturas resilientes e tolerantes a falhas</p>
-                    </div>
-                    <div class="study-card" onclick="showTopic('performance')">
-                        <h3>⚡ High-Performing Architectures</h3>
-                        <p>Otimização de performance e escalabilidade</p>
-                    </div>
-                    <div class="study-card" onclick="showTopic('secure')">
-                        <h3>🔒 Secure Applications</h3>
-                        <p>Implementação de segurança em aplicações</p>
-                    </div>
-                    <div class="study-card" onclick="showTopic('cost')">
-                        <h3>💰 Cost-Optimized Architectures</h3>
-                        <p>Otimização de custos e eficiência financeira</p>
-                    </div>
-                    <div class="study-card" onclick="showTopic('ec2')">
-                        <h3>☁️ Amazon EC2</h3>
-                        <p>Instances, AMIs, security groups</p>
-                    </div>
-                    <div class="study-card" onclick="showTopic('s3')">
-                        <h3><i class="fa-solid fa-bucket"></i> Amazon S3</h3>
-                        <p>Object storage, lifecycle, security</p>
-                    </div>
-                    <div class="study-card" onclick="showTopic('lambda')">
-                        <h3>⚡ AWS Lambda</h3>
-                        <p>Serverless computing, cold starts, performance</p>
-                    </div>
-                    <div class="study-card" onclick="showTopic('rds')">
-                        <h3>🗄️ Amazon RDS</h3>
-                        <p>Multi-AZ, read replicas, Aurora</p>
-                    </div>
-                    <div class="study-card" onclick="showTopic('vpc')">
-                        <h3>🌐 Amazon VPC</h3>
-                        <p>Subnets, routing, security groups</p>
-                    </div>
-                    <div class="study-card" onclick="showTopic('elb')">
-                        <h3>⚖️ Elastic Load Balancing</h3>
-                        <p>ALB, NLB, CLB, target groups</p>
-                    </div>
-                    <div class="study-card" onclick="showTopic('cloudfront')">
-                        <h3>🚀 CloudFront</h3>
-                        <p>CDN, edge locations, caching</p>
-                    </div>
-                    <div class="study-card" onclick="showTopic('autoscaling')">
-                        <h3>📈 Auto Scaling</h3>
-                        <p>Scaling policies, launch templates</p>
-                    </div>
-                </div>
+                    
+                    <section class="services-section">
+                        <div class="container">
+                            <h2 style="text-align: center; margin-bottom: 2rem; color: #232F3E;">Serviços AWS Cobertos - SAA-C03</h2>
+                            <div class="services-grid" role="grid" aria-label="Tópicos de estudo disponíveis">
+                                <div class="service-card" onclick="showTopic('resilient')" role="button" tabindex="0" onkeypress="if(event.key==='Enter') showTopic('resilient')" aria-describedby="resilient-desc">
+                                    <div class="service-icon">🏗️</div>
+                                    <h3>Resilient Architectures</h3>
+                                    <p id="resilient-desc">Design de arquiteturas resilientes e tolerantes a falhas</p>
+                                </div>
+                                <div class="service-card" onclick="showTopic('performance')" role="button" tabindex="0" onkeypress="if(event.key==='Enter') showTopic('performance')">
+                                    <div class="service-icon">⚡</div>
+                                    <h3>High-Performing Architectures</h3>
+                                    <p>Otimização de performance e escalabilidade</p>
+                                </div>
+                                <div class="service-card" onclick="showTopic('secure')" role="button" tabindex="0" onkeypress="if(event.key==='Enter') showTopic('secure')">
+                                    <div class="service-icon">🔒</div>
+                                    <h3>Secure Applications</h3>
+                                    <p>Implementação de segurança em aplicações</p>
+                                </div>
+                                <div class="service-card" onclick="showTopic('cost')" role="button" tabindex="0" onkeypress="if(event.key==='Enter') showTopic('cost')">
+                                    <div class="service-icon">💰</div>
+                                    <h3>Cost-Optimized Architectures</h3>
+                                    <p>Otimização de custos e eficiência financeira</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+
 
                     <!-- Conteúdo dos tópicos -->
                     <div id="topic-content" class="topic-content"></div>
