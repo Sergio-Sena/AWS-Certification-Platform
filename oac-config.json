@@ -1,0 +1,7 @@
+{
+    "Name": "aws-certification-platform-oac",
+    "Description": "OAC for AWS Certification Platform",
+    "OriginAccessControlOriginType": "s3",
+    "SigningBehavior": "always",
+    "SigningProtocol": "sigv4"
+}

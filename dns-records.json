@@ -1,0 +1,31 @@
+{
+    "Comment": "AWS Certification Platform DNS Records",
+    "Changes": [
+        {
+            "Action": "CREATE",
+            "ResourceRecordSet": {
+                "Name": "aws-cert.sstechnologies-cloud.com",
+                "Type": "CNAME",
+                "TTL": 300,
+                "ResourceRecords": [
+                    {
+                        "Value": "d3sti4gw25532i.cloudfront.net"
+                    }
+                ]
+            }
+        },
+        {
+            "Action": "CREATE",
+            "ResourceRecordSet": {
+                "Name": "simulados.sstechnologies-cloud.com",
+                "Type": "CNAME",
+                "TTL": 300,
+                "ResourceRecords": [
+                    {
+                        "Value": "d3sti4gw25532i.cloudfront.net"
+                    }
+                ]
+            }
+        }
+    ]
+}

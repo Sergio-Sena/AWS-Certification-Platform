@@ -1,0 +1,18 @@
+{
+    "Comment": "Update AWS Certification Platform DNS with project name",
+    "Changes": [
+        {
+            "Action": "UPSERT",
+            "ResourceRecordSet": {
+                "Name": "aws-certification-platform.sstechnologies-cloud.com",
+                "Type": "CNAME",
+                "TTL": 300,
+                "ResourceRecords": [
+                    {
+                        "Value": "d3sti4gw25532i.cloudfront.net"
+                    }
+                ]
+            }
+        }
+    ]
+}

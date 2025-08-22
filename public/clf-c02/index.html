@@ -4,12 +4,118 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>AWS Simulado</title>
-    <link rel="stylesheet" href="../../src/shared/css/base.css">
+    <!-- Base CSS inline -->
     <link rel="stylesheet" href="css/clf-theme.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%2300A651'/%3E%3Ccircle cx='50' cy='50' r='35' fill='%23232f3e'/%3E%3Ctext x='50' y='58' font-family='Arial,sans-serif' font-size='18' font-weight='bold' fill='%23FFFFFF' text-anchor='middle'%3EAWS%3C/text%3E%3C/svg%3E">
     <style>
+        /* Base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #232F3E 0%, #3a4a5d 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        header p {
+            opacity: 0.9;
+        }
+        
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        .assessment-quiz {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .assessment-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .assessment-progress {
+            width: 100%;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            margin-top: 1rem;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: #00A651;
+            transition: width 0.3s ease;
+            width: 20%;
+        }
+        
+        .assessment-question {
+            margin: 2rem 0;
+        }
+        
+        .assessment-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .assessment-controls {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        
+        .assessment-results {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .assessment-result-card {
+            text-align: center;
+        }
+        
+        .result-level {
+            font-size: 1.2rem;
+            margin: 1rem 0;
+        }
         body {
             background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
             min-height: 100vh;
@@ -356,6 +462,14 @@
             .service-card {
                 padding: 1.2rem;
             }
+            
+            .container {
+                padding: 0 1rem;
+            }
+            
+            header h1 {
+                font-size: 1.5rem;
+            }
         }
     </style>
 
@@ -488,8 +602,7 @@
         </div>
     </main>
 
-    <script src="../../src/shared/js/core.js"></script>
-    <script src="../../src/shared/components/breadcrumb.js"></script>
+    <!-- Core JS inline -->
     <script src="data/clf-study-material.js"></script>
     <script src="data/clf-initial-assessment.js"></script>
     <script src="data/clf-questions-200.js"></script>
@@ -542,10 +655,9 @@
         
         window.debugAnswerCheck = debugAnswerCheck;
         
-        // Aplicar tema CLF e inserir breadcrumb
+        // Aplicar tema CLF
         document.addEventListener('DOMContentLoaded', function() {
-            applyTheme('clf');
-            insertBreadcrumb('clf-c02');
+            console.log('CLF-C02 carregado com sucesso!');
         });
     </script>
 </body>

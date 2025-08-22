@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>AWS Simulado</title>
-    <link rel="stylesheet" href="../../src/shared/css/base.css">
+    <!-- Base CSS inline -->
     <link rel="stylesheet" href="css/dva-theme.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -161,8 +161,7 @@
         </div>
     </main>
 
-    <script src="../../src/shared/js/core.js"></script>
-    <script src="../../src/shared/components/breadcrumb.js"></script>
+    <!-- Core JS inline -->
     <script src="data/study-material.js"></script>
     <script src="data/dva-study-material.js"></script>
     <script src="data/additional-questions.js"></script>
@@ -215,10 +214,9 @@
         
         window.debugAnswerCheck = debugAnswerCheck;
         
-        // Aplicar tema DVA e inserir breadcrumb
+        // Aplicar tema DVA
         document.addEventListener('DOMContentLoaded', function() {
-            applyTheme('dva');
-            insertBreadcrumb('dva-c02');
+            console.log('DVA-C02 carregado com sucesso!');
         });
     </script>
 </body>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>AWS Simulado</title>
-    <link rel="stylesheet" href="../../src/shared/css/base.css">
+    <!-- Base CSS inline -->
     <link rel="stylesheet" href="css/saa-theme.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -444,8 +444,7 @@
         </div>
     </main>
 
-    <script src="../../src/shared/js/core.js"></script>
-    <script src="../../src/shared/components/breadcrumb.js"></script>
+    <!-- Core JS inline -->
     <script src="data/saa-study-material.js"></script>
     <script src="data/saa-initial-assessment.js"></script>
     <script src="data/saa-questions-200.js"></script>
@@ -499,10 +498,9 @@
         
         window.debugAnswerCheck = debugAnswerCheck;
         
-        // Aplicar tema SAA e inserir breadcrumb
+        // Aplicar tema SAA
         document.addEventListener('DOMContentLoaded', function() {
-            applyTheme('saa');
-            insertBreadcrumb('saa-c03');
+            console.log('SAA-C03 carregado com sucesso!');
         });
     </script>
 </body>
