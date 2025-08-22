@@ -20,6 +20,12 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1
         
+    - name: Debug AWS credentials
+      run: |
+        echo "Testing AWS credentials..."
+        aws sts get-caller-identity
+        aws s3 ls
+        
     - name: Sync files to S3
       run: |
         aws s3 sync public/ s3://${{ secrets.S3_BUCKET_NAME }} --delete --cache-control "max-age=86400"
