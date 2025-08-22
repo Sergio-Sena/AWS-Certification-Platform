@@ -256,8 +256,17 @@ function calculateResults() {
     });
 
     const percentage = totalQuestions > 0 ? Math.round((correctAnswers / totalQuestions) * 100) : 0;
-    const officialScore = CERTIFICATION_CONFIG.passingScore.saa;
-    const passed = percentage >= officialScore;
+    const officialScore = 72; // SAA-C03 passing score
+    const passed = percentage >= 80; // Nossa meta é 80%
+
+    let motivationalMessage;
+    if (percentage >= 80) {
+        motivationalMessage = "🎉 Excelente! Você está pronto para o exame oficial. Sua preparação está sólida!";
+    } else if (percentage >= 72) {
+        motivationalMessage = "👍 Bom trabalho! Você passaria no exame oficial, mas recomendamos mais prática para atingir nossa meta de 80%.";
+    } else {
+        motivationalMessage = "📚 Continue estudando! Foque nos tópicos com menor performance e pratique mais simulados.";
+    }
 
     return {
         correctAnswers,
@@ -266,7 +275,7 @@ function calculateResults() {
         officialScore,
         passed,
         resultsByTopic,
-        motivationalMessage: CERTIFICATION_CONFIG.getMotivationalMessage('saa', percentage)
+        motivationalMessage
     };
 }
 
