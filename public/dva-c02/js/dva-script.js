@@ -121,7 +121,8 @@ function startExam() {
     // Simular carregamento das questões
     setTimeout(() => {
         // Selecionar 65 questões conforme distribuição oficial DVA-C02
-        examState.questions = selectQuestionsByDomain();
+        examState.questions = typeof selectExamQuestions === 'function' ? selectExamQuestions() : 
+                             shuffleArray(availableQuestions).slice(0, 65);
         examState.currentQuestion = 0;
         examState.answers = {};
         examState.startTime = new Date();
