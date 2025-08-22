@@ -61,8 +61,7 @@ function startExam() {
         questions = selectCLFExamQuestions();
     } else {
         // Fallback: usar questões disponíveis
-        const availableQuestions = typeof clf200Questions !== 'undefined' ? clf200Questions : 
-                                  (typeof clfQuestions !== 'undefined' ? clfQuestions : []);
+        const availableQuestions = window.clf200Questions || [];
         questions = shuffleArray(availableQuestions).slice(0, 65);
     }
     
@@ -87,8 +86,7 @@ function startExam() {
 
 function practiceMode() {
     // Verificar se clf200Questions existe, senão usar questões disponíveis
-    const availableQuestions = typeof clf200Questions !== 'undefined' ? clf200Questions : 
-                              (typeof clfQuestions !== 'undefined' ? clfQuestions : []);
+    const availableQuestions = window.clf200Questions || [];
     
     if (availableQuestions.length === 0) {
         alert('Questões não carregadas. Recarregue a página.');

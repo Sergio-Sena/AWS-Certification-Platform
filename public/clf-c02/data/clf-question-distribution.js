@@ -16,8 +16,11 @@ function selectCLFExamQuestions() {
         'billing': []
     };
     
+    // Usar todas as questões disponíveis
+    const allQuestions = window.clf200Questions || [];
+    
     // Classificar questões existentes por domínio
-    clf200Questions.forEach(question => {
+    allQuestions.forEach(question => {
         const domain = question.domain || question.topic || 'technology';
         if (questionsByDomain[domain]) {
             questionsByDomain[domain].push(question);
@@ -39,7 +42,7 @@ function selectCLFExamQuestions() {
     
     // Se não temos questões suficientes, completar com questões aleatórias
     while (selectedQuestions.length < 65) {
-        const remaining = clf200Questions.filter(q => !selectedQuestions.includes(q));
+        const remaining = allQuestions.filter(q => !selectedQuestions.includes(q));
         if (remaining.length === 0) break;
         const randomQuestion = remaining[Math.floor(Math.random() * remaining.length)];
         selectedQuestions.push(randomQuestion);
