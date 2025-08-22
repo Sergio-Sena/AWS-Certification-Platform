@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS Certification Platform</title>
+    <link rel="stylesheet" href="../src/shared/css/base.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .certification-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .cert-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-top: 4px solid;
+        }
+        
+        .cert-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+        
+        .cert-card.clf { border-top-color: #00A651; }
+        .cert-card.dva { border-top-color: #FF9900; }
+        .cert-card.saa { border-top-color: #007EB9; }
+        
+        .cert-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .cert-card.clf .cert-icon { color: #00A651; }
+        .cert-card.dva .cert-icon { color: #FF9900; }
+        .cert-card.saa .cert-icon { color: #007EB9; }
+        
+        .cert-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #232F3E;
+        }
+        
+        .cert-subtitle {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cert-stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #232F3E;
+        }
+        
+        .stat-label {
+            font-size: 0.8rem;
+            color: #666;
+        }
+        
+        .cert-btn {
+            background: linear-gradient(135deg, #232F3E 0%, #3a4a5d 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .cert-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(35, 47, 62, 0.3);
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #232F3E 0%, #3a4a5d 100%);
+            color: white;
+            margin-bottom: 3rem;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .approval-message {
+            background: #e8f5e8;
+            border: 1px solid #00A651;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .approval-message strong {
+            color: #00A651;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="container">
+            <h1><i class="fas fa-cloud" style="color: #FF9900;"></i> AWS Certification Platform</h1>
+            <p>Prepare-se para as certificações AWS com simulados completos e material de estudo</p>
+        </div>
+    </div>
+
+    <main class="container">
+        <div class="approval-message">
+            <p><strong>🎯 Nossa Meta: 80% de Aprovação</strong></p>
+            <p>Recomendamos atingir 80% ou mais nos nossos simulados antes de agendar o exame oficial. Isso garante que você esteja REALMENTE preparado!</p>
+        </div>
+
+        <div class="certification-grid">
+            <!-- CLF-C02 -->
+            <div class="cert-card clf">
+                <div class="cert-icon">
+                    <i class="fas fa-cloud"></i>
+                </div>
+                <h2 class="cert-title">Cloud Practitioner</h2>
+                <p class="cert-subtitle">CLF-C02 - Fundamentos AWS</p>
+                <div class="cert-stats">
+                    <div class="stat">
+                        <div class="stat-number">200</div>
+                        <div class="stat-label">Questões</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">90min</div>
+                        <div class="stat-label">Duração</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">70%</div>
+                        <div class="stat-label">Aprovação</div>
+                    </div>
+                </div>
+                <button class="cert-btn" onclick="window.location.href='clf-c02/'">
+                    Iniciar Estudos
+                </button>
+            </div>
+
+            <!-- DVA-C02 -->
+            <div class="cert-card dva">
+                <div class="cert-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h2 class="cert-title">Developer Associate</h2>
+                <p class="cert-subtitle">DVA-C02 - Desenvolvimento AWS</p>
+                <div class="cert-stats">
+                    <div class="stat">
+                        <div class="stat-number">200</div>
+                        <div class="stat-label">Questões</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">130min</div>
+                        <div class="stat-label">Duração</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">72%</div>
+                        <div class="stat-label">Aprovação</div>
+                    </div>
+                </div>
+                <button class="cert-btn" onclick="window.location.href='dva-c02/'">
+                    Iniciar Estudos
+                </button>
+            </div>
+
+            <!-- SAA-C03 -->
+            <div class="cert-card saa">
+                <div class="cert-icon">
+                    <i class="fas fa-sitemap"></i>
+                </div>
+                <h2 class="cert-title">Solutions Architect</h2>
+                <p class="cert-subtitle">SAA-C03 - Arquitetura de Soluções</p>
+                <div class="cert-stats">
+                    <div class="stat">
+                        <div class="stat-number">200</div>
+                        <div class="stat-label">Questões</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">130min</div>
+                        <div class="stat-label">Duração</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">72%</div>
+                        <div class="stat-label">Aprovação</div>
+                    </div>
+                </div>
+                <button class="cert-btn" onclick="window.location.href='saa-c03/'">
+                    Iniciar Estudos
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <script type="module">
+        import { CERTIFICATIONS } from '../src/config/certifications.js';
+        console.log('Certificações carregadas:', Object.keys(CERTIFICATIONS));
+    </script>
+</body>
+</html>

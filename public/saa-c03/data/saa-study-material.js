@@ -4,7 +4,7 @@ const saaStudyMaterial = {
     resilient: {
         title: "🏗️ Resilient Architectures",
         content: `
-            <button class="close-topic" onclick="closeTopic()" aria-label="Fechar tópico">×</button>
+            <button class="close-topic" onclick="hideTopic()" aria-label="Fechar tópico">×</button>
             <h4>Conceitos de Resiliência (30% do exame)</h4>
             <p>Arquiteturas resilientes são projetadas para resistir a falhas e se recuperar rapidamente.</p>
             
@@ -75,7 +75,7 @@ const saaStudyMaterial = {
     performance: {
         title: "⚡ High-Performing Architectures",
         content: `
-            <button class="close-topic" onclick="closeTopic()" aria-label="Fechar tópico">×</button>
+            <button class="close-topic" onclick="hideTopic()" aria-label="Fechar tópico">×</button>
             <h4>Arquiteturas de Alto Desempenho (28% do exame)</h4>
             <p>Otimização de performance para computação, armazenamento, banco de dados e rede.</p>
             
@@ -146,7 +146,7 @@ const saaStudyMaterial = {
     secure: {
         title: "🔒 Secure Applications",
         content: `
-            <button class="close-topic" onclick="closeTopic()" aria-label="Fechar tópico">×</button>
+            <button class="close-topic" onclick="hideTopic()" aria-label="Fechar tópico">×</button>
             <h4>Aplicações Seguras (24% do exame)</h4>
             <p>Implementação de segurança em múltiplas camadas para proteger dados e aplicações.</p>
             
@@ -217,7 +217,7 @@ const saaStudyMaterial = {
     cost: {
         title: "💰 Cost-Optimized Architectures",
         content: `
-            <button class="close-topic" onclick="closeTopic()" aria-label="Fechar tópico">×</button>
+            <button class="close-topic" onclick="hideTopic()" aria-label="Fechar tópico">×</button>
             <h4>Arquiteturas Otimizadas para Custo (18% do exame)</h4>
             <p>Estratégias para minimizar custos mantendo performance e disponibilidade.</p>
             
@@ -243,7 +243,7 @@ const saaStudyMaterial = {
                     <p>Até 90% desconto, pode ser interrompido</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">🪣</div>
+                    <div class="service-icon">📊</div>
                     <h3>S3 Standard</h3>
                     <p>Acesso frequente, 99.999999999% durabilidade</p>
                 </div>
