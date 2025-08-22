@@ -405,20 +405,23 @@ const clf200Questions = [
         explanation: "AWS IAM (Identity and Access Management) gerencia usuários, grupos, roles e políticas de acesso.",
         topic: "security", domain: "security"
     }
+];
+
+// Combinar todas as questões dos arquivos
+const allCLFQuestions = [
+    ...clf200Questions,
+    ...(typeof securityQuestions !== 'undefined' ? securityQuestions : []),
+    ...(typeof technologyQuestions !== 'undefined' ? technologyQuestions : []),
+    ...(typeof billingQuestions !== 'undefined' ? billingQuestions : [])
+];
 
 // Função para selecionar questões para simulado CLF
 function selectCLFExamQuestions() {
-    // Usar as questões disponíveis e repetir se necessário para atingir 65
-    const availableQuestions = clf200Questions;
+    const availableQuestions = allCLFQuestions;
     const shuffled = shuffleArray(availableQuestions);
     
-    // Se temos menos de 65 questões, repetir algumas
-    let selectedQuestions = [];
-    for (let i = 0; i < 65; i++) {
-        selectedQuestions.push(shuffled[i % shuffled.length]);
-    }
-    
-    return shuffleArray(selectedQuestions);
+    // Selecionar 65 questões
+    return shuffled.slice(0, Math.min(65, shuffled.length));
 }
 
 function shuffleArray(array) {
@@ -431,8 +434,13 @@ function shuffleArray(array) {
 }
 
 // Exportar para uso global
-window.clf200Questions = clf200Questions;
+window.clf200Questions = allCLFQuestions;
 window.selectCLFExamQuestions = selectCLFExamQuestions;
 
 // Estatísticas do banco de questões
-console.log('CLF-C02 Question Bank loaded:', clf200Questions.length, 'questions');
+console.log('CLF-C02 Question Bank Statistics:');
+console.log('Cloud Concepts:', clf200Questions.filter(q => q.domain === 'cloud-concepts').length);
+console.log('Security & Compliance:', (typeof securityQuestions !== 'undefined' ? securityQuestions.length : 0));
+console.log('Technology & Services:', (typeof technologyQuestions !== 'undefined' ? technologyQuestions.length : 0));
+console.log('Billing & Support:', (typeof billingQuestions !== 'undefined' ? billingQuestions.length : 0));
+console.log('Total Questions:', allCLFQuestions.length);
