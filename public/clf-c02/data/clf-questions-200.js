@@ -406,36 +406,17 @@ const clf200Questions = [
         topic: "security", domain: "security"
     }
 
-// Combinar todas as questões dos arquivos separados
-const allCLFQuestions = [
-    ...clf200Questions,
-    ...(window.securityQuestions || []),
-    ...(window.technologyQuestions || []),
-    ...(window.billingQuestions || [])
-];
-
-// Função para obter questões por domínio
-function getCLFQuestionsByDomain(domain) {
-    return allCLFQuestions.filter(q => q.domain === domain);
-}
-
-// Função para selecionar 65 questões para simulado CLF
+// Função para selecionar questões para simulado CLF
 function selectCLFExamQuestions() {
-    const distribution = {
-        'cloud-concepts': 16,    // 24%
-        'security': 19,          // 30%
-        'technology': 22,        // 34%
-        'billing': 8             // 12%
-    };
+    // Usar as questões disponíveis e repetir se necessário para atingir 65
+    const availableQuestions = clf200Questions;
+    const shuffled = shuffleArray(availableQuestions);
     
+    // Se temos menos de 65 questões, repetir algumas
     let selectedQuestions = [];
-    
-    Object.keys(distribution).forEach(domain => {
-        const domainQuestions = getCLFQuestionsByDomain(domain);
-        const shuffled = shuffleArray(domainQuestions);
-        const selected = shuffled.slice(0, distribution[domain]);
-        selectedQuestions = selectedQuestions.concat(selected);
-    });
+    for (let i = 0; i < 65; i++) {
+        selectedQuestions.push(shuffled[i % shuffled.length]);
+    }
     
     return shuffleArray(selectedQuestions);
 }
@@ -450,14 +431,8 @@ function shuffleArray(array) {
 }
 
 // Exportar para uso global
-window.clf200Questions = allCLFQuestions;
-window.getCLFQuestionsByDomain = getCLFQuestionsByDomain;
+window.clf200Questions = clf200Questions;
 window.selectCLFExamQuestions = selectCLFExamQuestions;
 
 // Estatísticas do banco de questões
-console.log('CLF-C02 Question Bank Statistics:');
-console.log('Cloud Concepts:', getCLFQuestionsByDomain('cloud-concepts').length, '/ 48');
-console.log('Security & Compliance:', getCLFQuestionsByDomain('security').length, '/ 60');
-console.log('Technology & Services:', getCLFQuestionsByDomain('technology').length, '/ 68');
-console.log('Billing & Support:', getCLFQuestionsByDomain('billing').length, '/ 24');
-console.log('Total Questions:', allCLFQuestions.length, '/ 200');
+console.log('CLF-C02 Question Bank loaded:', clf200Questions.length, 'questions');
