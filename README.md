@@ -310,18 +310,21 @@ Projeto educacional para fins de estudo das certificações AWS.
 
 ## 🎯 Roadmap Futuro
 
-### **Próximas Features**
-- [ ] **Modo Escuro/Claro**: Toggle de tema
-- [ ] **Exportação PDF**: Relatórios de resultados
-- [ ] **Calendário**: Integração com plano de estudos
-- [ ] **Imagens**: Questões com diagramas AWS
-- [ ] **Gamificação**: Sistema de badges e conquistas
-- [ ] **Social**: Comparação com outros usuários
+📋 **Documentação Completa**: `docs/ROADMAP-FUTURO.md`
+
+### **Próximas Features Planejadas**
+- 📊 **Analytics**: Google Analytics + CloudWatch
+- 🌙 **Modo Escuro/Claro**: Toggle de tema persistente
+- 📱 **PWA**: App instalável com offline support
+- 🎮 **Gamificação**: Badges, streaks e rankings
+- 📄 **Exportação PDF**: Relatórios personalizados
+- 👥 **Social**: Comunidade e comparações
 
 ### **Novas Certificações**
-- [ ] **SOA-C02**: SysOps Administrator
-- [ ] **ANS-C01**: Advanced Networking
-- [ ] **SCS-C02**: Security Specialty
+- 🔧 **SOA-C02**: SysOps Administrator
+- 🌐 **ANS-C01**: Advanced Networking
+- 🔒 **SCS-C02**: Security Specialty
+- ⚙️ **DOP-C02**: DevOps Engineer
 
 ---
 
