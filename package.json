@@ -1,12 +1,11 @@
 {
   "name": "aws-certification-platform",
-  "version": "2.1.0",
-  "description": "Plataforma completa para certificações AWS",
-  "main": "index.html",
+  "version": "3.0.0",
+  "description": "Plataforma completa para certificações AWS - CLF, DVA, SAA, DOP, AIF",
+  "main": "public/index.html",
   "scripts": {
-    "dev": "python -m http.server 8000",
-    "validate": "echo 'Validating 80% pass score...' && grep -r '80%' --include='*.js' .",
-    "deploy": "echo 'Deploy via GitHub Actions only'"
+    "dev": "cd public && python -m http.server 8000",
+    "serve": "cd public && npx serve ."
   },
   "repository": {
     "type": "git",
@@ -15,14 +14,15 @@
   "keywords": [
     "aws",
     "certification",
+    "clf-c02",
     "dva-c02",
-    "clf-c02", 
     "saa-c03",
+    "dop-c02",
+    "aif-c01",
     "simulator"
   ],
-  "author": "AWS Certification Team",
+  "author": "Sergio Sena",
   "license": "MIT",
-  "devDependencies": {},
   "engines": {
     "node": ">=18.0.0"
   }

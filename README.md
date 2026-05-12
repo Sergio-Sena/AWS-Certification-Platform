@@ -3,331 +3,138 @@
 ## 🎯 Visão Geral
 Plataforma completa de estudos e simulação para certificações AWS com sistema de aprendizado personalizado, interface profissional e suporte a múltiplas certificações.
 
-### 🏆 Certificações Suportadas
-- **CLF-C02** - Cloud Practitioner (Verde AWS)
-- **DVA-C02** - Developer Associate (Laranja AWS) 
-- **SAA-C03** - Solutions Architect Associate (Azul AWS)
+---
+
+## 🏆 Certificações Suportadas
+
+| Certificação | Código | Cor | Status |
+|---|---|---|---|
+| Cloud Practitioner | **CLF-C02** | 🟢 Verde | ✅ Completo |
+| Developer Associate | **DVA-C02** | 🟠 Laranja | ✅ Completo |
+| Solutions Architect Associate | **SAA-C03** | 🔵 Azul | 🚧 Em progresso |
+| DevOps Engineer Professional | **DOP-C02** | 🟣 Roxo | 📋 Planejado |
+| AI Practitioner | **AIF-C01** | 🩵 Teal | 📋 Planejado |
 
 ---
 
-## ✨ Funcionalidades Principais
+## ✨ Funcionalidades
 
 ### 📚 Sistema de Estudos
-- **Avaliação Inicial**: 5 questões para personalizar o plano de estudos
-- **Material Completo**: Tópicos essenciais com cards visuais interativos
-- **Planos Personalizados**: Recomendações baseadas no nível do usuário
-- **Layout Responsivo**: Cards organizados por domínios oficiais AWS
+- Avaliação inicial para personalizar plano de estudos
+- Material completo com cards visuais por domínio
+- Layout responsivo e acessível (WCAG 2.1 AA)
 
 ### 🎯 Simulador de Exame
-- **600 Questões Total**: 200 questões por certificação
-- **Simulado Completo**: 65 questões seguindo distribuição oficial AWS
-- **Modo Prática**: 10 questões aleatórias sem limite de tempo
-- **Tipos de Questão**: Escolha única e múltipla escolha
-- **Timer Inteligente**: 90min (CLF) / 130min (DVA/SAA)
+- 200 questões por certificação
+- Simulado completo seguindo distribuição oficial AWS
+- Modo prática com 10 questões aleatórias
+- Timer inteligente por certificação
 
-### 📊 Sistema de Resultados
-- **Meta 80%**: Recomendação acima do score oficial para máxima confiança
-- **Análise Detalhada**: Performance por tópico e domínio
-- **Revisão de Respostas**: Explicações detalhadas para cada questão
-- **Histórico**: Acompanhamento do progresso ao longo do tempo
+### 📊 Resultados
+- Meta 80% (acima do score oficial)
+- Análise por domínio
+- Revisão com explicações detalhadas
 
 ---
 
-## 🏗️ Arquitetura do Projeto
+## 🏗️ Estrutura do Projeto
 
-### **Nova Estrutura Organizada**
 ```
 aws-certification-platform/
-├── public/                          # Arquivos servidos
-│   ├── index.html                   # Landing page principal
-│   ├── clf-c02/                     # Cloud Practitioner
-│   │   ├── index.html
-│   │   ├── css/clf-theme.css        # Verde AWS
-│   │   ├── data/                    # 200 questões + material
-│   │   └── js/                      # Scripts específicos
-│   ├── dva-c02/                     # Developer Associate
-│   │   ├── index.html
-│   │   ├── css/dva-theme.css        # Laranja AWS
-│   │   ├── data/                    # 200 questões + material
-│   │   └── js/                      # Scripts específicos
-│   └── saa-c03/                     # Solutions Architect
-│       ├── index.html
-│       ├── css/saa-theme.css        # Azul AWS
-│       ├── data/                    # 200 questões + material
-│       └── js/                      # Scripts específicos
-├── src/                             # Código fonte
-│   ├── assets/                      # Recursos estáticos
-│   │   ├── images/                  # AWS.svg, logos
-│   │   └── docs/                    # PDFs oficiais AWS
-│   ├── config/                      # Configurações
-│   │   └── certifications.js       # Config centralizada
-│   ├── shared/                      # Recursos compartilhados
-│   │   ├── css/base.css            # Estilos base
-│   │   ├── js/core.js              # Lógica principal
-│   │   └── components/             # Componentes reutilizáveis
-│   └── utils/                       # Utilitários
-│       └── pathResolver.js          # Resolução de caminhos
-├── docs/                            # Documentação + PDFs oficiais
-├── tests/                           # Testes automatizados
-└── .github/workflows/               # CI/CD Pipeline
+├── public/                     # Deploy (GitHub Pages)
+│   ├── index.html              # Landing page
+│   ├── clf-c02/                # Cloud Practitioner ✅
+│   ├── dva-c02/                # Developer Associate ✅
+│   ├── saa-c03/                # Solutions Architect 🚧
+│   ├── dop-c02/                # DevOps Engineer 📋
+│   └── aif-c01/                # AI Practitioner 📋
+├── src/                        # Código fonte compartilhado
+│   ├── assets/                 # Imagens e recursos
+│   ├── config/                 # Configurações
+│   ├── shared/                 # CSS/JS compartilhados
+│   └── utils/                  # Utilitários
+├── docs/                       # Guias oficiais AWS (PDFs)
+├── tests/                      # Testes automatizados
+└── .github/workflows/          # CI/CD
 ```
 
-### **Tecnologias Utilizadas**
-- **HTML5**: Estrutura semântica com roles ARIA
-- **CSS3**: Grid, Flexbox, animações e media queries
-- **JavaScript ES6+**: Módulos, async/await, localStorage
-- **Font Awesome**: Ícones profissionais
-- **Google Fonts**: Tipografia Inter
-
 ---
 
-## 📊 Distribuição Oficial AWS
+## 📊 Distribuição por Exame
 
-### **CLF-C02 - Cloud Practitioner**
-| Domínio | Peso | Simulado (65q) | Banco (200q) |
-|---------|------|----------------|--------------|
-| Cloud Concepts | 24% | 16 | 48 |
-| Security & Compliance | 30% | 19 | 60 |
-| Technology & Services | 34% | 22 | 68 |
-| Billing & Support | 12% | 8 | 24 |
-| **Score Oficial** | **70%** | **Meta: 80%** | **90min** |
+### CLF-C02 — Cloud Practitioner (65q / 90min / 70%)
+| Domínio | Peso |
+|---|---|
+| Cloud Concepts | 24% |
+| Security & Compliance | 30% |
+| Technology & Services | 34% |
+| Billing & Support | 12% |
 
-### **DVA-C02 - Developer Associate**
-| Domínio | Peso | Simulado (65q) | Banco (200q) |
-|---------|------|----------------|--------------|
-| Development | 32% | 21 | 64 |
-| Security | 26% | 17 | 52 |
-| Deployment | 24% | 15 | 48 |
-| Troubleshooting | 18% | 12 | 36 |
-| **Score Oficial** | **72%** | **Meta: 80%** | **130min** |
+### DVA-C02 — Developer Associate (65q / 130min / 72%)
+| Domínio | Peso |
+|---|---|
+| Development | 32% |
+| Security | 26% |
+| Deployment | 24% |
+| Troubleshooting | 18% |
 
-### **SAA-C03 - Solutions Architect**
-| Domínio | Peso | Simulado (65q) | Banco (200q) |
-|---------|------|----------------|--------------|
-| Resilient Architectures | 30% | 19 | 60 |
-| High-Performing Architectures | 28% | 18 | 56 |
-| Secure Applications | 24% | 16 | 48 |
-| Cost-Optimized Architectures | 18% | 12 | 36 |
-| **Score Oficial** | **72%** | **Meta: 80%** | **130min** |
+### SAA-C03 — Solutions Architect (65q / 130min / 72%)
+| Domínio | Peso |
+|---|---|
+| Resilient Architectures | 30% |
+| High-Performing Architectures | 28% |
+| Secure Applications | 24% |
+| Cost-Optimized Architectures | 18% |
 
----
+### DOP-C02 — DevOps Engineer (75q / 180min / 75%)
+| Domínio | Peso |
+|---|---|
+| SDLC Automation | 22% |
+| Configuration Management & IaC | 17% |
+| Resilient Cloud Solutions | 16% |
+| Monitoring & Logging | 15% |
+| Incident & Event Response | 18% |
+| Compliance & Governance | 12% |
 
-## 🎨 Design e UX
-
-### **Acessibilidade (WCAG 2.1 AA)**
-- ✅ **Skip Links**: Navegação rápida para conteúdo principal
-- ✅ **ARIA Labels**: Suporte completo para leitores de tela
-- ✅ **Navegação por Teclado**: Tab, Enter, setas funcionais
-- ✅ **Alto Contraste**: Suporte para preferências do usuário
-- ✅ **Movimento Reduzido**: Respeita configurações de acessibilidade
-
-### **Interface Visual**
-- ✅ **Paleta AWS Oficial**: Cores autênticas por certificação
-- ✅ **Design Responsivo**: Mobile-first com breakpoints inteligentes
-- ✅ **Cards Interativos**: Microinterações e efeitos hover
-- ✅ **Estados Visuais**: Loading, feedback e transições suaves
-
-### **Experiência do Usuário**
-- ✅ **Auto-save**: Progresso salvo automaticamente
-- ✅ **Notificações Toast**: Feedback visual não-intrusivo
-- ✅ **Proteção Touch**: Prevenção de toques fantasma
-- ✅ **Performance Monitor**: Rastreamento de interações
+### AIF-C01 — AI Practitioner (85q / 120min / 70%)
+| Domínio | Peso |
+|---|---|
+| Fundamentals of AI & ML | 20% |
+| Fundamentals of Generative AI | 24% |
+| Applications of Foundation Models | 28% |
+| Guidelines for Responsible AI | 14% |
+| Security & Compliance for AI | 14% |
 
 ---
 
 ## 🚀 Como Usar
 
-### **Acesso Rápido**
-- 🌐 **Produção**: https://sergio-sena.github.io/AWS-Certification-Platform/
-- 💻 **Local**: Abrir `public/index.html` no navegador
-
-### **Primeira Utilização**
-1. **Escolha a Certificação**: CLF-C02, DVA-C02 ou SAA-C03
-2. **Avaliação Inicial**: 5 questões para personalização
-3. **Material de Estudo**: Explore cards visuais por domínio
-4. **Simulado**: Pratique com questões reais do exame
-
-### **Navegação**
-- **Teclado**: Tab, Enter, Setas para navegação completa
-- **Mouse/Touch**: Cliques e toques otimizados
-- **Atalhos**: Skip links para navegação rápida
-
----
-
-## 🔧 Desenvolvimento
-
-### **Setup Local**
 ```bash
-# Clonar repositório
+# Clonar
 git clone https://github.com/Sergio-Sena/AWS-Certification-Platform.git
 cd AWS-Certification-Platform
 
-# Servir arquivos localmente
+# Servir localmente
 cd public
 python -m http.server 8000
-# ou
-npx serve .
-
 # Acessar: http://localhost:8000
 ```
 
-### **Estrutura de Desenvolvimento**
-- **`public/`** - Arquivos servidos (deploy)
-- **`src/`** - Código fonte e recursos
-- **`docs/`** - Documentação e PDFs oficiais
-- **`tests/`** - Testes automatizados
-
-### **Adicionando Nova Certificação**
-1. Criar pasta em `public/nova-cert/`
-2. Adicionar configuração em `src/config/certifications.js`
-3. Implementar tema CSS específico
-4. Criar banco de 200 questões
-5. Atualizar landing page
+**Produção**: https://sergio-sena.github.io/AWS-Certification-Platform/
 
 ---
 
-## 🚀 CI/CD Pipeline
-
-### **Ambientes**
-- **DEV**: GitHub Pages (branches feature/*)
-- **PROD**: GitHub Pages (branch main)
-
-### **Deploy Automático**
-```yaml
-# .github/workflows/deploy.yml
-name: Deploy AWS Certification Platform
-
-on:
-  push:
-    branches: [main]
-  workflow_dispatch:
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
-```
-
-### **URLs Importantes**
-- **Site**: https://sergio-sena.github.io/AWS-Certification-Platform/
-- **Actions**: https://github.com/Sergio-Sena/AWS-Certification-Platform/actions
-- **Configurações**: https://github.com/Sergio-Sena/AWS-Certification-Platform/settings
-
----
-
-## 📊 Métricas de Qualidade
-
-### **Performance** ✅
-- ⚡ **Carregamento**: < 2s em conexões 3G
-- 🎯 **Interatividade**: Feedback visual < 100ms
-- 📱 **Responsividade**: Transições suaves 60fps
-
-### **Acessibilidade** ✅
-- ♿ **WCAG 2.1 AA**: Conformidade completa
-- 🎨 **Contraste**: Mínimo 4.5:1 para texto normal
-- ⌨️ **Navegação**: 100% funcional por teclado
-- 🔊 **Leitores de Tela**: Suporte completo NVDA/JAWS
-
-### **Compatibilidade** ✅
-- 🌐 **Navegadores**: Chrome 90+, Firefox 88+, Safari 14+, Edge 90+
-- 📱 **Dispositivos**: Desktop, tablet, smartphone
-- 💻 **Sistemas**: Windows, macOS, Linux, iOS, Android
-
----
-
-## 🎓 Conteúdo Educacional
-
-### **CLF-C02 - Tópicos Cobertos**
-- ☁️ **Cloud Concepts**: Fundamentos AWS, modelos de nuvem
-- 🔒 **Security**: IAM, compliance, shared responsibility
-- ⚙️ **Technology**: Compute, storage, database, networking
-- 💰 **Billing**: Pricing models, cost optimization, support
-
-### **DVA-C02 - Tópicos Cobertos**
-- 🔧 **Development**: Lambda, API Gateway, SDK/CLI
-- 🛡️ **Security**: IAM, KMS, Cognito, secrets management
-- 🚀 **Deployment**: CI/CD, CloudFormation, containers
-- 🔍 **Troubleshooting**: CloudWatch, X-Ray, debugging
-
-### **SAA-C03 - Tópicos Cobertos**
-- 🏗️ **Resilient**: Multi-AZ, load balancing, disaster recovery
-- ⚡ **Performance**: CloudFront, caching, compute optimization
-- 🔐 **Security**: Network security, data protection, monitoring
-- 💸 **Cost**: Pricing models, storage classes, optimization
-
----
-
-## 📈 Status do Projeto
-
-### **✅ Concluído (95%)**
-- ✅ **3 Certificações**: CLF-C02, DVA-C02, SAA-C03 implementadas
-- ✅ **600 Questões**: 200 por certificação com distribuição oficial
-- ✅ **Cards Visuais**: Interface moderna com interações
-- ✅ **80% Standard**: Meta acima do score oficial
-- ✅ **Estrutura Organizada**: Melhores práticas implementadas
-- ✅ **CI/CD**: Deploy automático configurado
-
-### **🚧 Em Andamento (5%)**
-- ⏳ **Testes Automatizados**: Cobertura de código
-- ⏳ **Performance Audit**: Otimizações finais
-- ⏳ **Documentação**: Guias de contribuição
-
----
-
-## 🤝 Contribuição
-
-### **Como Contribuir**
-1. Fork o repositório
-2. Crie branch feature (`git checkout -b feature/nova-funcionalidade`)
-3. Commit mudanças (`git commit -m 'Add: nova funcionalidade'`)
-4. Push para branch (`git push origin feature/nova-funcionalidade`)
-5. Abra Pull Request
-
-### **Diretrizes**
-- Seguir estrutura de pastas existente
-- Manter acessibilidade WCAG 2.1 AA
-- Testar em múltiplos dispositivos
-- Documentar mudanças significativas
+## 🎨 Tecnologias
+- HTML5 + CSS3 (Grid, Flexbox, animações)
+- JavaScript ES6+ (módulos, localStorage)
+- Font Awesome + Google Fonts (Inter)
+- GitHub Pages + GitHub Actions
 
 ---
 
 ## 📄 Licença
-
-Projeto educacional para fins de estudo das certificações AWS. 
-
-### **Recursos Oficiais**
-- 📚 **Guias Oficiais**: Incluídos em `docs/`
-- 🎯 **Distribuições**: Baseadas em documentação AWS oficial
-- ✅ **Compliance**: Seguindo diretrizes educacionais
+MIT — Projeto educacional para certificações AWS.
 
 ---
-
-## 🎯 Roadmap Futuro
-
-📋 **Documentação Completa**: `docs/ROADMAP-FUTURO.md`
-
-### **Próximas Features Planejadas**
-- 📊 **Analytics**: Google Analytics + CloudWatch
-- 🌙 **Modo Escuro/Claro**: Toggle de tema persistente
-- 📱 **PWA**: App instalável com offline support
-- 🎮 **Gamificação**: Badges, streaks e rankings
-- 📄 **Exportação PDF**: Relatórios personalizados
-- 👥 **Social**: Comunidade e comparações
-
-### **Novas Certificações**
-- 🔧 **SOA-C02**: SysOps Administrator
-- 🌐 **ANS-C01**: Advanced Networking
-- 🔒 **SCS-C02**: Security Specialty
-- ⚙️ **DOP-C02**: DevOps Engineer
-
----
-
-**🚀 Desenvolvido com ❤️ para a comunidade AWS**
 
 > 💡 **"Nossa meta de 80% garante que você esteja REALMENTE preparado. É mais desafiador que o exame oficial, mas isso te dará confiança total no dia da prova!"**

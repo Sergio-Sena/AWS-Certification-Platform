@@ -63,55 +63,70 @@
                 <div id="assessment-results" class="assessment-results" style="display: none;"></div>
                 
                 <div id="study-material" class="study-material" style="margin-top: 3rem;">
-                    <h2>Material de Estudo</h2>
-                <div class="study-grid" role="grid" aria-label="Tópicos de estudo disponíveis">
-                    <div class="study-card" onclick="showTopic('lambda')" role="button" tabindex="0" onkeypress="if(event.key==='Enter') showTopic('lambda')" aria-describedby="lambda-desc">
-                        <h3>⚡ AWS Lambda</h3>
-                        <p id="lambda-desc">Serverless computing, cold starts, performance</p>
+                    <h2>Material de Estudo - DVA-C02</h2>
+                    
+                    <!-- Resumo da Distribuição -->
+                    <div class="exam-distribution">
+                        <h3>📊 Distribuição Oficial do Exame DVA-C02</h3>
+                        <div class="distribution-grid">
+                            <div class="distribution-item development">
+                                <div class="percentage">32%</div>
+                                <div class="domain-name">Development</div>
+                                <div class="questions">21 questões</div>
+                            </div>
+                            <div class="distribution-item security">
+                                <div class="percentage">26%</div>
+                                <div class="domain-name">Security</div>
+                                <div class="questions">17 questões</div>
+                            </div>
+                            <div class="distribution-item deployment">
+                                <div class="percentage">24%</div>
+                                <div class="domain-name">Deployment</div>
+                                <div class="questions">15 questões</div>
+                            </div>
+                            <div class="distribution-item troubleshooting">
+                                <div class="percentage">18%</div>
+                                <div class="domain-name">Troubleshooting</div>
+                                <div class="questions">12 questões</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="study-card" onclick="showTopic('dynamodb')">
-                        <h3>🗄️ DynamoDB</h3>
-                        <p>NoSQL, throttling, GSI, DAX</p>
+                    
+                    <!-- Domain Grid -->
+                    <div class="domains-grid">
+                        <div class="domain-card development" onclick="showDomainServices('development')" role="button" tabindex="0">
+                            <div class="domain-icon">⚡</div>
+                            <h3>Development</h3>
+                            <div class="domain-percentage">32%</div>
+                            <p>21 questões</p>
+                        </div>
+                        <div class="domain-card security" onclick="showDomainServices('security')" role="button" tabindex="0">
+                            <div class="domain-icon">🔒</div>
+                            <h3>Security</h3>
+                            <div class="domain-percentage">26%</div>
+                            <p>17 questões</p>
+                        </div>
+                        <div class="domain-card deployment" onclick="showDomainServices('deployment')" role="button" tabindex="0">
+                            <div class="domain-icon">🚀</div>
+                            <h3>Deployment</h3>
+                            <div class="domain-percentage">24%</div>
+                            <p>15 questões</p>
+                        </div>
+                        <div class="domain-card troubleshooting" onclick="showDomainServices('troubleshooting')" role="button" tabindex="0">
+                            <div class="domain-icon">🔍</div>
+                            <h3>Troubleshooting</h3>
+                            <div class="domain-percentage">18%</div>
+                            <p>12 questões</p>
+                        </div>
                     </div>
-                    <div class="study-card" onclick="showTopic('apigateway')">
-                        <h3>🌐 API Gateway</h3>
-                        <p>REST/HTTP APIs, rate limiting, CORS</p>
-                    </div>
-                    <div class="study-card" onclick="showTopic('security')">
-                        <h3>🔒 Security & IAM</h3>
-                        <p>Policies, roles, least privilege</p>
-                    </div>
-                    <div class="study-card" onclick="showTopic('monitoring')">
-                        <h3>📊 Monitoring</h3>
-                        <p>CloudWatch, X-Ray, logging</p>
-                    </div>
-                    <div class="study-card" onclick="showTopic('deployment')">
-                        <h3>🚀 CI/CD</h3>
-                        <p>CodePipeline, deployment strategies</p>
-                    </div>
-                    <div class="study-card" onclick="showTopic('s3')">
-                        <h3><i class="fa-solid fa-bucket"></i> Amazon S3</h3>
-                        <p>Object storage, lifecycle, security</p>
-                    </div>
-                    <div class="study-card" onclick="showTopic('ec2')">
-                        <h3>☁️ Amazon EC2</h3>
-                        <p>Instances, AMIs, security groups</p>
-                    </div>
-                    <div class="study-card" onclick="showTopic('containers')">
-                        <h3>📦 Containers</h3>
-                        <p>ECS, EKS, Docker deployment</p>
-                    </div>
-                    <div class="study-card" onclick="showTopic('messaging')">
-                        <h3>📨 SNS & SQS</h3>
-                        <p>Messaging, queues, notifications</p>
-                    </div>
-                    <div class="study-card" onclick="showTopic('cognito')">
-                        <h3>👤 AWS Cognito</h3>
-                        <p>Authentication, user management</p>
-                    </div>
-                    <div class="study-card" onclick="showTopic('systems-manager')">
-                        <h3>⚙️ Systems Manager</h3>
-                        <p>Parameter Store, automation</p>
+                    
+                    <!-- Services Grid (hidden by default) -->
+                    <div id="services-section" class="services-section" style="display: none;">
+                        <div class="services-header">
+                            <h3 id="services-title">Serviços AWS</h3>
+                            <button class="btn-secondary" onclick="hideDomainServices()">Voltar aos Domínios</button>
+                        </div>
+                        <div id="services-grid" class="study-grid"></div>
                     </div>
                 </div>
 
@@ -162,13 +177,15 @@
     </main>
 
     <!-- Core JS inline -->
-    <script src="data/study-material.js"></script>
+    <script src="data/dva-services.js"></script>
     <script src="data/dva-study-material.js"></script>
-    <script src="data/additional-questions.js"></script>
-    <script src="data/complete-question-bank.js"></script>
-    <script src="data/multiple-choice-questions.js"></script>
-    <script src="data/initial-assessment.js"></script>
+    <script src="data/development-questions-real.js"></script>
+    <script src="data/security-questions-real.js"></script>
+    <script src="data/deployment-questions-real.js"></script>
+    <script src="data/troubleshooting-questions-real.js"></script>
+    <script src="data/questions-200.js"></script>
     <script src="data/question-distribution.js"></script>
+    <script src="data/initial-assessment.js"></script>
     <script src="js/ux-enhancements.js"></script>
     <script src="js/dva-script.js"></script>
     <!-- <script src="test-logic.js"></script> --> <!-- Descomente para testar -->

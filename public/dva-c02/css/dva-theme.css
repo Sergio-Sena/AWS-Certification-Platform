@@ -98,7 +98,7 @@ main {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.5rem;
-    margin-top: 2rem;
+    margin-top: 1rem;
 }
 
 .study-card {
@@ -335,4 +335,243 @@ main {
 
 .study-card:hover h3 i {
     color: white;
+}
+
+/* DOMAINS GRID */
+.domains-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.domain-card {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border-top: 4px solid;
+}
+
+.domain-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.domain-card.development {
+    border-top-color: #FF9900;
+}
+
+.domain-card.development:hover {
+    background: #FF9900;
+    color: white;
+}
+
+.domain-card.security {
+    border-top-color: #d9534f;
+}
+
+.domain-card.security:hover {
+    background: #d9534f;
+    color: white;
+}
+
+.domain-card.deployment {
+    border-top-color: #5cb85c;
+}
+
+.domain-card.deployment:hover {
+    background: #5cb85c;
+    color: white;
+}
+
+.domain-card.troubleshooting {
+    border-top-color: #5bc0de;
+}
+
+.domain-card.troubleshooting:hover {
+    background: #5bc0de;
+    color: white;
+}
+
+.domain-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.domain-card h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #232f3e;
+    margin-bottom: 0.5rem;
+}
+
+.domain-card:hover h3 {
+    color: white;
+}
+
+.domain-percentage {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #FF9900;
+    margin: 0.5rem 0;
+}
+
+.domain-card:hover .domain-percentage {
+    color: white;
+}
+
+.domain-card p {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.domain-card:hover p {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* SERVICES SECTION */
+.services-section {
+    margin-top: 2rem;
+}
+
+.services-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.services-header h3 {
+    color: #232f3e;
+    font-size: 1.3rem;
+}
+
+@media (max-width: 768px) {
+    .domains-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .domain-card {
+        padding: 1.5rem;
+    }
+    
+    .services-header {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+}
+
+/* EXAM DISTRIBUTION */
+.exam-distribution {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    text-align: center;
+}
+
+.exam-distribution h3 {
+    color: #232f3e;
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+}
+
+.distribution-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.distribution-item {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 1.5rem;
+    text-align: center;
+    border-top: 4px solid;
+    transition: transform 0.3s ease;
+}
+
+.distribution-item:hover {
+    transform: translateY(-3px);
+}
+
+.distribution-item.development {
+    border-top-color: #FF9900;
+}
+
+.distribution-item.security {
+    border-top-color: #d9534f;
+}
+
+.distribution-item.deployment {
+    border-top-color: #5cb85c;
+}
+
+.distribution-item.troubleshooting {
+    border-top-color: #5bc0de;
+}
+
+.distribution-item .percentage {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #232f3e;
+    margin-bottom: 0.5rem;
+}
+
+.distribution-item .domain-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 0.25rem;
+}
+
+.distribution-item .questions {
+    font-size: 0.9rem;
+    color: #777;
+}
+
+.card-footer {
+    margin-top: 1rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid #e0e0e0;
+    font-size: 0.85rem;
+    color: #666;
+    font-style: italic;
+}
+
+.study-card:hover .card-footer {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+@media (max-width: 768px) {
+    .distribution-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+    }
+    
+    .distribution-item {
+        padding: 1rem;
+    }
+    
+    .distribution-item .percentage {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .distribution-grid {
+        grid-template-columns: 1fr;
+    }
 }

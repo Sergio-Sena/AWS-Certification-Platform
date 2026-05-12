@@ -71,3 +71,106 @@ header {
         font-size: 1.6rem;
     }
 }
+
+/* Links de Documentação Oficial */
+.doc-link {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    transition: background 0.3s ease;
+}
+
+.doc-link:hover {
+    background: rgba(255, 255, 255, 0.2);
+    text-decoration: none;
+    color: #fff;
+}
+
+/* Melhorias nos cards de estudo */
+.topic-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.topic-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #00A651, #146EB4);
+}
+/* Sistema de Notificações */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    color: white;
+    font-weight: 500;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 300px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    animation: slideIn 0.3s ease-out;
+}
+
+.notification-success {
+    background: linear-gradient(135deg, #00A651, #008a44);
+}
+
+.notification-warning {
+    background: linear-gradient(135deg, #FF9900, #e68900);
+}
+
+.notification-error {
+    background: linear-gradient(135deg, #d32f2f, #b71c1c);
+}
+
+.notification-info {
+    background: linear-gradient(135deg, #146EB4, #0d5a9a);
+}
+
+.notification button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-left: 1rem;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Melhorias responsivas */
+@media (max-width: 768px) {
+    .notification {
+        right: 10px;
+        left: 10px;
+        min-width: auto;
+    }
+}

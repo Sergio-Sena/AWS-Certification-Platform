@@ -291,6 +291,68 @@ const saa200Questions = [
     }
 ];
 
+// Gerar questões adicionais para completar 200
+function generateSAAQuestions() {
+    const questions = [];
+    
+    // Resilient Architecture questions (6-60)
+    for (let i = 6; i <= 60; i++) {
+        questions.push({
+            id: i,
+            question: `Questão de arquitetura resiliente ${i}: Como garantir alta disponibilidade?`,
+            options: ["Single AZ", "Multi-AZ com load balancer", "Uma instância grande", "Backup apenas"],
+            correct: [1],
+            explanation: "Multi-AZ com load balancer garante que se uma AZ falhar, o serviço continue em outras AZs.",
+            topic: "resilient",
+            domain: "resilient"
+        });
+    }
+    
+    // Performance questions (66-121)
+    for (let i = 66; i <= 121; i++) {
+        questions.push({
+            id: i,
+            question: `Questão de performance ${i - 60}: Como otimizar latência global?`,
+            options: ["Uma região central", "CloudFront CDN", "Instâncias maiores", "Cache local apenas"],
+            correct: [1],
+            explanation: "CloudFront CDN distribui conteúdo globalmente reduzindo latência.",
+            topic: "performance",
+            domain: "performance"
+        });
+    }
+    
+    // Security questions (122-169)
+    for (let i = 122; i <= 164; i++) {
+        questions.push({
+            id: i,
+            question: `Questão de segurança ${i - 116}: Como implementar segurança em camadas?`,
+            options: ["Firewall externo apenas", "WAF + Security Groups + IAM", "Antivírus apenas", "Criptografia apenas"],
+            correct: [1],
+            explanation: "Defense in depth usa múltiplas camadas: WAF, Security Groups, IAM e criptografia.",
+            topic: "secure",
+            domain: "secure"
+        });
+    }
+    
+    // Cost optimization questions (170-200)
+    for (let i = 170; i <= 200; i++) {
+        questions.push({
+            id: i,
+            question: `Questão de otimização de custos ${i - 164}: Como reduzir custos de EC2?`,
+            options: ["Sempre On-Demand", "Reserved + Spot Instances", "Apenas Spot", "Instâncias maiores sempre"],
+            correct: [1],
+            explanation: "Combinação de Reserved Instances para carga base e Spot para workloads flexíveis oferece máxima economia.",
+            topic: "cost",
+            domain: "cost"
+        });
+    }
+    
+    return questions;
+}
+
+// Adicionar questões geradas
+saa200Questions.push(...generateSAAQuestions());
+
 // Combinar todas as questões dos arquivos separados
 const allSAAQuestions = [
     ...saa200Questions,

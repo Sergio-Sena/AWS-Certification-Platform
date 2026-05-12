@@ -3,10 +3,10 @@
 const technologyQuestions = [
     {
         id: 111,
-        question: "O que é Amazon RDS?",
-        options: ["Serviço de banco de dados relacional gerenciado", "Serviço de armazenamento", "Serviço de computação", "Serviço de rede"],
-        correct: [0],
-        explanation: "Amazon RDS é um serviço de banco de dados relacional gerenciado que suporta MySQL, PostgreSQL, Oracle, SQL Server e outros.",
+        question: "Uma startup precisa de um banco de dados MySQL para sua aplicação web, mas não quer gerenciar backups, patches ou alta disponibilidade. Qual solução AWS é ideal?",
+        options: ["MySQL em EC2 com gerenciamento manual", "Amazon RDS MySQL com Multi-AZ", "DynamoDB apenas", "Instalar MySQL em containers"],
+        correct: [1],
+        explanation: "Amazon RDS MySQL gerencia automaticamente backups, patches, monitoramento e pode ser configurado com Multi-AZ para alta disponibilidade. Documentação: https://docs.aws.amazon.com/rds/",
         topic: "technology", domain: "technology"
     },
     {

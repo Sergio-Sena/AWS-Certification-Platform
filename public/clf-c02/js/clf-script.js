@@ -55,18 +55,31 @@ function hideTopic() {
 
 // Sistema de Simulado
 function startExam() {
-    // Verificar se a função selectCLFExamQuestions existe
+    // Verificar se as questões estão carregadas
+    const availableQuestions = window.clf200Questions || [];
+    
+    if (availableQuestions.length < 65) {
+        showNotification('⚠️ Carregando questões... Aguarde um momento.', 'warning');
+        setTimeout(() => {
+            if ((window.clf200Questions || []).length >= 65) {
+                startExam();
+            } else {
+                showNotification('❌ Erro ao carregar questões. Recarregue a página.', 'error');
+            }
+        }, 2000);
+        return;
+    }
+    
+    // Usar função de seleção inteligente se disponível
     let questions;
     if (typeof selectCLFExamQuestions === 'function') {
         questions = selectCLFExamQuestions();
     } else {
-        // Fallback: usar questões disponíveis
-        const availableQuestions = window.clf200Questions || [];
         questions = shuffleArray(availableQuestions).slice(0, 65);
     }
     
-    if (!questions || questions.length === 0) {
-        alert('Questões não carregadas. Recarregue a página.');
+    if (!questions || questions.length < 65) {
+        showNotification('❌ Questões insuficientes para simulado completo.', 'error');
         return;
     }
     
@@ -85,11 +98,17 @@ function startExam() {
 }
 
 function practiceMode() {
-    // Verificar se clf200Questions existe, senão usar questões disponíveis
     const availableQuestions = window.clf200Questions || [];
     
-    if (availableQuestions.length === 0) {
-        alert('Questões não carregadas. Recarregue a página.');
+    if (availableQuestions.length < 10) {
+        showNotification('⚠️ Carregando questões para modo prática...', 'warning');
+        setTimeout(() => {
+            if ((window.clf200Questions || []).length >= 10) {
+                practiceMode();
+            } else {
+                showNotification('❌ Questões insuficientes para modo prática.', 'error');
+            }
+        }, 1500);
         return;
     }
     
@@ -443,3 +462,61 @@ function proceedToStudy() {
     document.getElementById('study-material').scrollIntoView({ behavior: 'smooth' });
     assessmentState.completed = true;
 }
+// Sistema de Notificações
+function showNotification(message, type = 'info') {
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.innerHTML = `
+        <span>${message}</span>
+        <button onclick="this.parentElement.remove()" aria-label="Fechar">&times;</button>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Auto-remove após 5 segundos
+    setTimeout(() => {
+        if (notification.parentElement) {
+            notification.remove();
+        }
+    }, 5000);
+}
+
+// Validação de Performance
+function validatePerformance() {
+    const startTime = performance.now();
+    
+    // Verificar se questões estão carregadas
+    const questionsLoaded = window.clf200Questions && window.clf200Questions.length >= 200;
+    const materialLoaded = window.clfStudyMaterial && Object.keys(window.clfStudyMaterial).length >= 4;
+    
+    const loadTime = performance.now() - startTime;
+    
+    if (loadTime > 100) {
+        console.warn('Performance: Carregamento lento detectado');
+    }
+    
+    return {
+        questionsLoaded,
+        materialLoaded,
+        loadTime: Math.round(loadTime)
+    };
+}
+
+// Inicialização aprimorada
+document.addEventListener('DOMContentLoaded', function() {
+    const validation = validatePerformance();
+    
+    if (!validation.questionsLoaded) {
+        showNotification('⚠️ Algumas questões ainda estão carregando...', 'warning');
+    }
+    
+    if (!validation.materialLoaded) {
+        showNotification('⚠️ Material de estudo carregando...', 'warning');
+    }
+    
+    if (validation.questionsLoaded && validation.materialLoaded) {
+        showNotification('✅ CLF-C02 carregado com sucesso!', 'success');
+    }
+    
+    console.log('CLF-C02 Performance:', validation);
+});

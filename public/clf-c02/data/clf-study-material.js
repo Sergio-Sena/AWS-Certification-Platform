@@ -8,6 +8,7 @@ const clfStudyMaterial = {
                 <div class="topic-card">
                     <h4>💡 Definição de Cloud Computing</h4>
                     <p>Entrega sob demanda de recursos de TI via internet com modelo pay-as-you-go</p>
+                    <a href="https://aws.amazon.com/what-is-cloud-computing/" target="_blank" class="doc-link">📚 Documentação Oficial</a>
                 </div>
                 <div class="topic-card">
                     <h4>🏗️ Modelos de Deployment</h4>
@@ -46,6 +47,7 @@ const clfStudyMaterial = {
                     <h4>🤝 Responsabilidade Compartilhada</h4>
                     <p><strong>AWS:</strong> Segurança DA nuvem (infraestrutura, hardware)<br>
                     <strong>Cliente:</strong> Segurança NA nuvem (dados, aplicações, SO)</p>
+                    <a href="https://aws.amazon.com/compliance/shared-responsibility-model/" target="_blank" class="doc-link">📚 Modelo Oficial</a>
                 </div>
                 <div class="topic-card">
                     <h4>👤 AWS IAM</h4>

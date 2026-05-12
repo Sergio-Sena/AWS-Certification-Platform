@@ -59,6 +59,8 @@
         .cert-card.clf { border-top-color: #00A651; }
         .cert-card.dva { border-top-color: #FF9900; }
         .cert-card.saa { border-top-color: #007EB9; }
+        .cert-card.dop { border-top-color: #8B5CF6; }
+        .cert-card.aif { border-top-color: #06B6D4; }
         
         .cert-icon {
             font-size: 3rem;
@@ -68,6 +70,20 @@
         .cert-card.clf .cert-icon { color: #00A651; }
         .cert-card.dva .cert-icon { color: #FF9900; }
         .cert-card.saa .cert-icon { color: #007EB9; }
+        .cert-card.dop .cert-icon { color: #8B5CF6; }
+        .cert-card.aif .cert-icon { color: #06B6D4; }
+        
+        .cert-badge-status {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+        .badge-ready { background: #e8f5e8; color: #00A651; }
+        .badge-wip { background: #FFF3E0; color: #F57C00; }
         
         .cert-title {
             font-size: 1.5rem;
@@ -259,6 +275,60 @@
                 </div>
                 <button class="cert-btn" onclick="window.location.href='saa-c03/index.html'">
                     Iniciar Estudos
+                </button>
+            </div>
+
+            <!-- DOP-C02 -->
+            <div class="cert-card dop">
+                <div class="cert-icon">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <span class="cert-badge-status badge-wip">Em Desenvolvimento</span>
+                <h2 class="cert-title">DevOps Engineer</h2>
+                <p class="cert-subtitle">DOP-C02 - DevOps Professional</p>
+                <div class="cert-stats">
+                    <div class="stat">
+                        <div class="stat-number">75</div>
+                        <div class="stat-label">Questões</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">180min</div>
+                        <div class="stat-label">Duração</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">75%</div>
+                        <div class="stat-label">Aprovação</div>
+                    </div>
+                </div>
+                <button class="cert-btn" onclick="window.location.href='dop-c02/index.html'">
+                    Ver Detalhes
+                </button>
+            </div>
+
+            <!-- AIF-C01 -->
+            <div class="cert-card aif">
+                <div class="cert-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <span class="cert-badge-status badge-wip">Em Desenvolvimento</span>
+                <h2 class="cert-title">AI Practitioner</h2>
+                <p class="cert-subtitle">AIF-C01 - Inteligência Artificial</p>
+                <div class="cert-stats">
+                    <div class="stat">
+                        <div class="stat-number">85</div>
+                        <div class="stat-label">Questões</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">120min</div>
+                        <div class="stat-label">Duração</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">70%</div>
+                        <div class="stat-label">Aprovação</div>
+                    </div>
+                </div>
+                <button class="cert-btn" onclick="window.location.href='aif-c01/index.html'">
+                    Ver Detalhes
                 </button>
             </div>
         </div>

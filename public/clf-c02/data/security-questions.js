@@ -19,10 +19,10 @@ const securityQuestions = [
     },
     {
         id: 53,
-        question: "O que é AWS KMS?",
-        options: ["Serviço de monitoramento", "Serviço de gerenciamento de chaves de criptografia", "Serviço de backup", "Serviço de rede"],
+        question: "Uma empresa precisa criptografar dados sensíveis em S3 e rotacionar chaves automaticamente. Qual serviço AWS é mais adequado?",
+        options: ["AWS CloudHSM apenas", "AWS KMS com rotação automática", "Criptografia manual com OpenSSL", "AWS Secrets Manager apenas"],
         correct: [1],
-        explanation: "AWS KMS (Key Management Service) gerencia chaves de criptografia de forma segura.",
+        explanation: "AWS KMS gerencia chaves de criptografia com rotação automática anual, integra nativamente com S3 e outros serviços AWS. Documentação: https://docs.aws.amazon.com/kms/",
         topic: "security", domain: "security"
     },
     {

@@ -3,10 +3,10 @@
 const billingQuestions = [
     {
         id: 179,
-        question: "Quais são os níveis de suporte AWS disponíveis?",
-        options: ["Basic, Developer, Business, Enterprise", "Free, Paid, Premium", "Standard, Advanced, Professional", "Starter, Professional, Enterprise"],
-        correct: [0],
-        explanation: "AWS oferece quatro níveis: Basic (gratuito), Developer, Business e Enterprise On-Ramp/Enterprise.",
+        question: "Uma empresa de médio porte precisa de suporte AWS 24/7 para aplicações críticas em produção, mas não precisa de Technical Account Manager. Qual nível de suporte é mais adequado?",
+        options: ["Basic Support (gratuito)", "Developer Support", "Business Support", "Enterprise Support"],
+        correct: [2],
+        explanation: "Business Support oferece suporte 24/7 para sistemas de produção com tempo de resposta de 1 hora para casos críticos, sem o custo do Enterprise que inclui TAM. Documentação: https://aws.amazon.com/support/",
         topic: "billing", domain: "billing"
     },
     {

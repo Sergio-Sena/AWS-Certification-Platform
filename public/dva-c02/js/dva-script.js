@@ -88,10 +88,47 @@ function announceToScreenReader(message) {
     }, 1000);
 }
 
+// Domain Services
+function showDomainServices(domain) {
+    const servicesSection = document.getElementById('services-section');
+    const servicesTitle = document.getElementById('services-title');
+    const servicesGrid = document.getElementById('services-grid');
+    
+    const domainNames = {
+        development: 'Development with AWS Services (32%)',
+        security: 'Security (26%)',
+        deployment: 'Deployment (24%)',
+        troubleshooting: 'Troubleshooting & Optimization (18%)'
+    };
+    
+    const services = window.dvaServices ? window.dvaServices[domain] : [];
+    
+    servicesTitle.textContent = domainNames[domain] || 'Serviços AWS';
+    
+    servicesGrid.innerHTML = services.map(service => `
+        <div class="study-card" onclick="showTopic('${service.id}')" role="button" tabindex="0" onkeypress="if(event.key==='Enter') showTopic('${service.id}')">
+            <h3>${service.title}</h3>
+            <p>${service.description}</p>
+        </div>
+    `).join('');
+    
+    // Hide domains grid and show services
+    document.querySelector('.domains-grid').style.display = 'none';
+    servicesSection.style.display = 'block';
+    
+    // Scroll to services section
+    servicesSection.scrollIntoView({ behavior: 'smooth' });
+}
+
+function hideDomainServices() {
+    document.querySelector('.domains-grid').style.display = 'grid';
+    document.getElementById('services-section').style.display = 'none';
+}
+
 // Material de Estudo
 function showTopic(topic) {
     const topicContent = document.getElementById('topic-content');
-    const material = studyMaterial[topic];
+    const material = window.dvaStudyMaterial ? window.dvaStudyMaterial[topic] : null;
     
     if (material) {
         topicContent.innerHTML = `
@@ -101,13 +138,16 @@ function showTopic(topic) {
                 <button class="btn-secondary" onclick="hideTopic()">Fechar</button>
             </div>
         `;
-        topicContent.classList.add('active');
+        topicContent.style.display = 'block';
         currentTopic = topic;
+        
+        // Scroll to topic content
+        topicContent.scrollIntoView({ behavior: 'smooth' });
     }
 }
 
 function hideTopic() {
-    document.getElementById('topic-content').classList.remove('active');
+    document.getElementById('topic-content').style.display = 'none';
     currentTopic = null;
 }
 
@@ -121,7 +161,8 @@ function startExam() {
     // Simular carregamento das questões
     setTimeout(() => {
         // Selecionar 65 questões conforme distribuição oficial DVA-C02
-        examState.questions = typeof selectExamQuestions === 'function' ? selectExamQuestions() : 
+        const availableQuestions = window.dva200Questions || [];
+        examState.questions = typeof selectQuestionsByDomain === 'function' ? selectQuestionsByDomain() : 
                              shuffleArray(availableQuestions).slice(0, 65);
         examState.currentQuestion = 0;
         examState.answers = {};
@@ -152,8 +193,7 @@ function startExam() {
 
 function practiceMode() {
     // Verificar questões disponíveis
-    const availableQuestions = typeof questionBank !== 'undefined' ? questionBank : 
-                              (typeof dvaQuestions !== 'undefined' ? dvaQuestions : []);
+    const availableQuestions = window.dva200Questions || [];
     
     if (availableQuestions.length === 0) {
         alert('Questões não carregadas. Recarregue a página.');
