@@ -1,0 +1,22 @@
+{
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "./public", "./src", "./docs"],
+      "description": "Acesso ao filesystem do projeto para ler/escrever questões e materiais"
+    },
+    "fetch": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-fetch"],
+      "description": "Buscar documentação AWS online (FAQs, whitepapers, service pages)"
+    },
+    "aws-docs": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-fetch"],
+      "env": {
+        "USER_AGENT": "AWS-Certification-Platform/3.0"
+      },
+      "description": "Acesso às páginas de documentação AWS para extrair informações de serviços"
+    }
+  }
+}

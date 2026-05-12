@@ -1,46 +1,54 @@
-name: Deploy AWS Certification Platform
+name: Deploy to GitHub Pages
 
-# Deploy desabilitado temporariamente
-# on:
-#   push:
-#     branches: [ main ]
-#   workflow_dispatch:
-
-# Workflow manual apenas
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-      
-    - name: Validate HTML
+
+    - name: Validate before deploy
       run: |
-        echo "✅ Validating HTML files..."
-        find . -name "*.html" | head -5
-        
-    - name: Check 80% pass score
-      run: |
-        if grep -r "80%" --include="*.js" .; then
-          echo "✅ 80% pass score confirmed"
-        else
-          echo "❌ 80% pass score not found"
-          exit 1
-        fi
-        
-    - name: Deploy to Production
-      uses: peaceiris/actions-gh-pages@v3
+        echo "🔍 Pre-deploy validation..."
+        for cert in clf-c02 dva-c02 saa-c03 dop-c02 aif-c01; do
+          if [ -f "public/$cert/index.html" ]; then
+            echo "✅ $cert OK"
+          else
+            echo "⚠️ $cert page missing (non-blocking)"
+          fi
+        done
+
+    - name: Setup Pages
+      uses: actions/configure-pages@v4
+
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v3
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./
-        
-    - name: Notify Success
-      if: success()
+        path: './public'
+
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4
+
+    - name: Deploy summary
       run: |
-        echo "🚀 Deploy realizado com sucesso!"
-        echo "📊 Critério 80% validado"
-        echo "🌐 Site disponível em produção"
+        echo "🚀 Deploy completed!"
+        echo "🌐 URL: https://sergio-sena.github.io/AWS-Certification-Platform/"

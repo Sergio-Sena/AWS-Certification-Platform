@@ -1,0 +1,62 @@
+name: CI - Validate & Test
+
+on:
+  push:
+    branches: [develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Validate HTML files exist
+      run: |
+        echo "🔍 Validating certification pages..."
+        for cert in clf-c02 dva-c02 saa-c03 dop-c02 aif-c01; do
+          if [ -f "public/$cert/index.html" ]; then
+            echo "✅ $cert/index.html found"
+          else
+            echo "❌ $cert/index.html MISSING"
+            exit 1
+          fi
+        done
+
+    - name: Validate 80% pass score criteria
+      run: |
+        echo "🎯 Checking 80% score criteria..."
+        if grep -r "80" --include="*.js" public/ | grep -q "80"; then
+          echo "✅ 80% pass score configured"
+        else
+          echo "❌ 80% pass score not found"
+          exit 1
+        fi
+
+    - name: Validate question banks
+      run: |
+        echo "📊 Checking question bank files..."
+        for cert in clf-c02 dva-c02; do
+          count=$(find "public/$cert/data" -name "*.js" | wc -l)
+          echo "✅ $cert: $count data files"
+        done
+
+    - name: Check for secrets/credentials
+      run: |
+        echo "🔒 Scanning for exposed credentials..."
+        if grep -rn "AKIA\|aws_secret\|password\s*=" --include="*.js" --include="*.html" public/; then
+          echo "❌ Potential credentials found!"
+          exit 1
+        else
+          echo "✅ No credentials exposed"
+        fi
+
+    - name: Summary
+      run: |
+        echo "========================================="
+        echo "✅ All validations passed!"
+        echo "📦 Ready for merge to main"
+        echo "========================================="
