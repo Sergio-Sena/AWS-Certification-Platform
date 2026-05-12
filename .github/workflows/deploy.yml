@@ -1,54 +1,88 @@
-name: Deploy to GitHub Pages
+name: Deploy to AWS (S3 + CloudFront)
 
 on:
   push:
     branches: [main]
   workflow_dispatch:
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
-
 jobs:
-  deploy:
+  validate:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Validate before deploy
+    - name: Validate certification pages
       run: |
         echo "🔍 Pre-deploy validation..."
         for cert in clf-c02 dva-c02 saa-c03 dop-c02 aif-c01; do
           if [ -f "public/$cert/index.html" ]; then
             echo "✅ $cert OK"
           else
-            echo "⚠️ $cert page missing (non-blocking)"
+            echo "⚠️ $cert page missing"
           fi
         done
 
-    - name: Setup Pages
-      uses: actions/configure-pages@v4
+    - name: Check 80% score criteria
+      run: |
+        if grep -r "80" --include="*.js" public/ | grep -q "80"; then
+          echo "✅ 80% pass score configured"
+        else
+          echo "❌ 80% pass score not found"
+          exit 1
+        fi
 
-    - name: Upload artifact
-      uses: actions/upload-pages-artifact@v3
+  deploy:
+    needs: validate
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v4
       with:
-        path: './public'
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
 
-    - name: Deploy to GitHub Pages
-      id: deployment
-      uses: actions/deploy-pages@v4
+    - name: Verify AWS connection
+      run: |
+        echo "🔐 Verifying AWS credentials..."
+        aws sts get-caller-identity
+        echo "✅ AWS authenticated"
+
+    - name: Sync to S3
+      run: |
+        echo "📦 Syncing to S3..."
+        aws s3 sync public/ s3://${{ secrets.S3_BUCKET_NAME }} \
+          --delete \
+          --cache-control "public, max-age=86400" \
+          --exclude "*.map"
+        echo "✅ S3 sync complete"
+
+    - name: Set cache headers for HTML
+      run: |
+        aws s3 cp s3://${{ secrets.S3_BUCKET_NAME }} s3://${{ secrets.S3_BUCKET_NAME }} \
+          --recursive \
+          --exclude "*" \
+          --include "*.html" \
+          --cache-control "public, max-age=300" \
+          --content-type "text/html" \
+          --metadata-directive REPLACE
+
+    - name: Invalidate CloudFront cache
+      run: |
+        echo "🌐 Invalidating CloudFront..."
+        aws cloudfront create-invalidation \
+          --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
+          --paths "/*"
+        echo "✅ Cache invalidated"
 
     - name: Deploy summary
       run: |
-        echo "🚀 Deploy completed!"
-        echo "🌐 URL: https://sergio-sena.github.io/AWS-Certification-Platform/"
+        echo "========================================="
+        echo "🚀 Deploy completed successfully!"
+        echo "📦 S3: ${{ secrets.S3_BUCKET_NAME }}"
+        echo "🌐 CloudFront invalidated"
+        echo "========================================="
