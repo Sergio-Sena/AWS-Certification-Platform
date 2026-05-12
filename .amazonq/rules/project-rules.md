@@ -6,7 +6,7 @@
 - **Bucket**: `sstech-cdn-unified`
 - **Prefixo**: `/aws-cert/`
 - **Distribution**: `E9ZQJ3RPSA04N`
-- **URL**: `https://sstech.cloud/aws-cert/`
+- **URL**: `https://certificacoes.sstechnologies-cloud.com/`
 
 ## Certificações
 | Código | Nome | Banco | Status |
