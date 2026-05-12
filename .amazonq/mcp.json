@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "terraform": {
+      "command": "npx",
+      "args": ["-y", "@anthropic/terraform-mcp-server"]
+    },
+    "aws-docs": {
+      "command": "npx",
+      "args": ["-y", "aws-documentation-mcp-server"],
+      "env": { "AWS_REGION": "us-east-1" }
+    }
+  }
+}

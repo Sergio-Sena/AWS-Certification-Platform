@@ -1,12 +1,17 @@
-name: Deploy to AWS (S3 + CloudFront)
+name: Deploy to AWS (CDN Unificado)
 
 on:
   push:
     branches: [main]
   workflow_dispatch:
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+  AWS_REGION: us-east-1
+  PROJECT_PREFIX: aws-cert
+
 jobs:
-  validate:
+  test:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
@@ -14,12 +19,12 @@ jobs:
 
     - name: Validate certification pages
       run: |
-        echo "🔍 Pre-deploy validation..."
+        echo "🔍 Validating..."
         for cert in clf-c02 dva-c02 saa-c03 dop-c02 aif-c01; do
           if [ -f "public/$cert/index.html" ]; then
             echo "✅ $cert OK"
           else
-            echo "⚠️ $cert page missing"
+            echo "⚠️ $cert missing (non-blocking)"
           fi
         done
 
@@ -32,8 +37,17 @@ jobs:
           exit 1
         fi
 
-  deploy:
-    needs: validate
+    - name: Check for exposed credentials
+      run: |
+        if grep -rn "AKIA\|aws_secret\|password\s*=" --include="*.js" --include="*.html" public/; then
+          echo "❌ Credentials found!"
+          exit 1
+        else
+          echo "✅ No credentials exposed"
+        fi
+
+  deploy-frontend:
+    needs: test
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
@@ -50,20 +64,21 @@ jobs:
       run: |
         echo "🔐 Verifying AWS credentials..."
         aws sts get-caller-identity
-        echo "✅ AWS authenticated"
+        echo "✅ Authenticated"
 
-    - name: Sync to S3
+    - name: Sync to S3 (prefix aws-cert/)
       run: |
-        echo "📦 Syncing to S3..."
-        aws s3 sync public/ s3://${{ secrets.S3_BUCKET_NAME }} \
+        echo "📦 Syncing public/ → s3://sstech-cdn-unified/aws-cert/"
+        aws s3 sync public/ s3://${{ secrets.S3_BUCKET_FRONTEND }}/aws-cert/ \
           --delete \
           --cache-control "public, max-age=86400" \
           --exclude "*.map"
-        echo "✅ S3 sync complete"
+        echo "✅ S3 sync complete (prefix: aws-cert/)"
 
-    - name: Set cache headers for HTML
+    - name: Set short cache for HTML files
       run: |
-        aws s3 cp s3://${{ secrets.S3_BUCKET_NAME }} s3://${{ secrets.S3_BUCKET_NAME }} \
+        aws s3 cp s3://${{ secrets.S3_BUCKET_FRONTEND }}/aws-cert/ \
+          s3://${{ secrets.S3_BUCKET_FRONTEND }}/aws-cert/ \
           --recursive \
           --exclude "*" \
           --include "*.html" \
@@ -71,18 +86,41 @@ jobs:
           --content-type "text/html" \
           --metadata-directive REPLACE
 
-    - name: Invalidate CloudFront cache
+    - name: Invalidate CloudFront (prefix only)
       run: |
-        echo "🌐 Invalidating CloudFront..."
+        echo "🌐 Invalidating /aws-cert/*..."
         aws cloudfront create-invalidation \
           --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
-          --paths "/*"
-        echo "✅ Cache invalidated"
+          --paths "/aws-cert/*"
+        echo "✅ Cache invalidated for /aws-cert/ only"
 
+  health-check:
+    needs: deploy-frontend
+    runs-on: ubuntu-latest
+    steps:
+    - name: Wait for propagation
+      run: sleep 15
+
+    - name: Check site availability
+      run: |
+        echo "🏥 Health check..."
+        STATUS=$(curl -s -o /dev/null -w "%{http_code}" "https://sstech.cloud/aws-cert/" || echo "000")
+        if [ "$STATUS" = "200" ]; then
+          echo "✅ Site responding (HTTP $STATUS)"
+        else
+          echo "⚠️ Site returned HTTP $STATUS (CDN may still be propagating)"
+        fi
+
+  notify:
+    needs: [deploy-frontend, health-check]
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
     - name: Deploy summary
       run: |
         echo "========================================="
-        echo "🚀 Deploy completed successfully!"
-        echo "📦 S3: ${{ secrets.S3_BUCKET_NAME }}"
-        echo "🌐 CloudFront invalidated"
+        echo "🚀 AWS Certification Platform - Deploy"
+        echo "📦 Bucket: sstech-cdn-unified/aws-cert/"
+        echo "🌐 CDN: E9ZQJ3RPSA04N"
+        echo "🔗 URL: https://sstech.cloud/aws-cert/"
         echo "========================================="
