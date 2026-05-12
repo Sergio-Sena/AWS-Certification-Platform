@@ -45,10 +45,10 @@ export const CERTIFICATIONS = {
         recommendedScore: 80,
         bankSize: 200,
         domains: [
-            { name: 'Resilient Architectures', weight: 30, examQuestions: 19, bankQuestions: 60 },
-            { name: 'High-Performing Architectures', weight: 28, examQuestions: 18, bankQuestions: 56 },
-            { name: 'Secure Applications', weight: 24, examQuestions: 16, bankQuestions: 48 },
-            { name: 'Cost-Optimized Architectures', weight: 18, examQuestions: 12, bankQuestions: 36 }
+            { name: 'Secure Architectures', weight: 30, examQuestions: 19, bankQuestions: 60 },
+            { name: 'Resilient Architectures', weight: 26, examQuestions: 17, bankQuestions: 52 },
+            { name: 'High-Performing Architectures', weight: 24, examQuestions: 16, bankQuestions: 48 },
+            { name: 'Cost-Optimized Architectures', weight: 20, examQuestions: 13, bankQuestions: 40 }
         ]
     },
     'dop-c02': {
@@ -62,12 +62,12 @@ export const CERTIFICATIONS = {
         recommendedScore: 80,
         bankSize: 225,
         domains: [
-            { name: 'SDLC Automation', weight: 22, examQuestions: 17, bankQuestions: 50 },
+            { name: 'SDLC Automation', weight: 22, examQuestions: 16, bankQuestions: 50 },
             { name: 'Configuration Management & IaC', weight: 17, examQuestions: 13, bankQuestions: 38 },
-            { name: 'Resilient Cloud Solutions', weight: 16, examQuestions: 12, bankQuestions: 36 },
+            { name: 'Resilient Cloud Solutions', weight: 15, examQuestions: 11, bankQuestions: 34 },
             { name: 'Monitoring & Logging', weight: 15, examQuestions: 11, bankQuestions: 34 },
-            { name: 'Incident & Event Response', weight: 18, examQuestions: 13, bankQuestions: 40 },
-            { name: 'Compliance & Governance', weight: 12, examQuestions: 9, bankQuestions: 27 }
+            { name: 'Incident & Event Response', weight: 14, examQuestions: 10, bankQuestions: 32 },
+            { name: 'Security & Compliance', weight: 17, examQuestions: 13, bankQuestions: 37 }
         ]
     },
     'aif-c01': {
@@ -75,17 +75,17 @@ export const CERTIFICATIONS = {
         code: 'AIF-C01',
         theme: 'teal',
         primaryColor: '#06B6D4',
-        duration: 120,
-        totalQuestions: 85,
+        duration: 90,
+        totalQuestions: 65,
         passingScore: 70,
         recommendedScore: 80,
-        bankSize: 255,
+        bankSize: 195,
         domains: [
-            { name: 'Fundamentals of AI & ML', weight: 20, examQuestions: 17, bankQuestions: 51 },
-            { name: 'Fundamentals of Generative AI', weight: 24, examQuestions: 20, bankQuestions: 61 },
-            { name: 'Applications of Foundation Models', weight: 28, examQuestions: 24, bankQuestions: 72 },
-            { name: 'Guidelines for Responsible AI', weight: 14, examQuestions: 12, bankQuestions: 36 },
-            { name: 'Security & Compliance for AI', weight: 14, examQuestions: 12, bankQuestions: 35 }
+            { name: 'Fundamentals of AI & ML', weight: 20, examQuestions: 13, bankQuestions: 39 },
+            { name: 'Fundamentals of Generative AI', weight: 24, examQuestions: 16, bankQuestions: 47 },
+            { name: 'Applications of Foundation Models', weight: 28, examQuestions: 18, bankQuestions: 54 },
+            { name: 'Guidelines for Responsible AI', weight: 14, examQuestions: 9, bankQuestions: 27 },
+            { name: 'Security & Compliance for AI', weight: 14, examQuestions: 9, bankQuestions: 28 }
         ]
     }
 };
