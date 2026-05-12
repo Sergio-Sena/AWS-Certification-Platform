@@ -129,7 +129,7 @@ jobs:
     - name: Check site availability
       run: |
         echo "🏥 Health check..."
-        STATUS=$(curl -s -o /dev/null -w "%{http_code}" "https://certificacoes.sstechnologies-cloud.com/" || echo "000")
+        STATUS=$(curl -s -o /dev/null -w "%{http_code}" "https://cert.sstechnologies-cloud.com/" || echo "000")
         if [ "$STATUS" = "200" ]; then
           echo "✅ Site responding (HTTP $STATUS)"
         else
@@ -172,7 +172,7 @@ jobs:
         echo "🚀 AWS Certification Platform - Deploy"
         echo "📦 Bucket: sstech-cdn-unified/aws-cert/"
         echo "🌐 CDN: E9ZQJ3RPSA04N"
-        echo "🔗 URL: https://certificacoes.sstechnologies-cloud.com/"
+        echo "🔗 URL: https://cert.sstechnologies-cloud.com/"
         echo "🤖 AI Audit: completed"
         echo "💰 FinOps: report sent"
         echo "========================================="
