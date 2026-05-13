@@ -38,7 +38,8 @@ document.addEventListener('DOMContentLoaded', function() {
         ...(window.generativeAiQuestions || []),
         ...(window.foundationModelsQuestions || []),
         ...(window.responsibleAiQuestions || []),
-        ...(window.securityAiQuestions || [])
+        ...(window.securityAiQuestions || []),
+        ...(window.aifExtraQuestions || [])
     ];
     console.log('AIF-C01 Question Bank:');
     console.log('  AI/ML:', (window.aiMlQuestions || []).length, '/ 39');
@@ -46,5 +47,6 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('  Foundation Models:', (window.foundationModelsQuestions || []).length, '/ 54');
     console.log('  Responsible AI:', (window.responsibleAiQuestions || []).length, '/ 27');
     console.log('  Security:', (window.securityAiQuestions || []).length, '/ 28');
-    console.log('  Total:', window.aif195Questions.length, '/ 195');
+    console.log('  Extra (matching/ordering):', (window.aifExtraQuestions || []).length);
+    console.log('  Total:', window.aif195Questions.length);
 });

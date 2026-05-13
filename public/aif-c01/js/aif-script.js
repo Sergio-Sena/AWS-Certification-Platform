@@ -47,25 +47,28 @@ function renderDomains() {
     const grid = document.getElementById('domains-grid');
     if (!window.aifStudyMaterial) return;
 
-    grid.innerHTML = Object.entries(aifStudyMaterial).map(([key, domain]) => `
+    const allMaterial = { ...aifStudyMaterial, ...(window.aifServicesReference || {}) };
+
+    grid.innerHTML = Object.entries(allMaterial).map(([key, domain]) => `
         <div class="domain-card ${domain.priority}" onclick="showTopic('${key}')">
             <div class="domain-header">
-                <span class="domain-weight-badge">${domain.weight}%</span>
+                ${domain.weight ? `<span class="domain-weight-badge">${domain.weight}%</span>` : '<span class="domain-weight-badge">REF</span>'}
                 ${domain.priority === 'vital' ? '<span class="vital-badge">VITAL</span>' : ''}
             </div>
             <h3>${domain.title}</h3>
-            <p class="pareto-hint">${domain.pareto}</p>
+            ${domain.pareto ? `<p class="pareto-hint">${domain.pareto}</p>` : ''}
         </div>
     `).join('');
 }
 
 function showTopic(key) {
-    const material = aifStudyMaterial[key];
+    const allMaterial = { ...aifStudyMaterial, ...(window.aifServicesReference || {}) };
+    const material = allMaterial[key];
     if (!material) return;
     const div = document.getElementById('topic-content');
     div.innerHTML = `
         <button class="close-topic" onclick="hideTopic()">&times;</button>
-        <h3>${material.title} <span class="weight-tag">${material.weight}% do exame</span></h3>
+        <h3>${material.title} ${material.weight ? `<span class="weight-tag">${material.weight}% do exame</span>` : ''}</h3>
         ${material.content}
     `;
     div.style.display = 'block';
