@@ -355,3 +355,360 @@ const sdlcQuestions = [
 ];
 
 window.sdlcQuestions = sdlcQuestions;
+
+
+// SDLC Automation - Lote 2 (questões 26-50)
+const sdlcQuestions2 = [
+    {
+        id: 'sdlc_026',
+        question: "Uma empresa quer que builds falhem automaticamente se cobertura de testes cair abaixo de 80%. Como implementar no CodeBuild?",
+        options: [
+            "Verificar manualmente após build",
+            "No buildspec.yml post_build: verificar coverage report e exit 1 se < 80%",
+            "Configurar no CodePipeline",
+            "Usar CloudWatch alarm"
+        ],
+        correct: [1],
+        explanation: "buildspec post_build phase: script verifica coverage report gerado na build phase. Se coverage < threshold, exit 1 falha o build. Pipeline não avança. Quality gate automatizado.",
+        topic: "codebuild",
+        domain: "sdlc"
+    },
+    {
+        id: 'sdlc_027',
+        question: "CodeDeploy Blue/Green para EC2 Auto Scaling: como funciona o processo?",
+        options: [
+            "Atualiza instâncias existentes",
+            "Cria novo ASG (green) com nova versão → testa → redireciona ELB → termina ASG antigo (blue)",
+            "Swap de AMIs no ASG existente",
+            "Rolling update no ASG"
+        ],
+        correct: [1],
+        explanation: "Blue/Green EC2: CodeDeploy cria novo ASG com nova launch config/template. Após health checks, ELB redireciona tráfego. ASG antigo é terminado após wait time configurável (rollback window).",
+        topic: "codedeploy",
+        domain: "sdlc"
+    },
+    {
+        id: 'sdlc_028',
+        question: "Uma equipe quer notificação no Slack quando pipeline falha. Como implementar?",
+        options: [
+            "Verificar console manualmente",
+            "CodePipeline event → EventBridge rule → SNS → AWS Chatbot → Slack channel",
+            "Email apenas",
+            "CloudWatch Dashboard"
+        ],
+        correct: [1],
+        explanation: "EventBridge captura eventos de falha do CodePipeline. SNS como target. AWS Chatbot integra SNS com Slack/Teams. Notificação instantânea com detalhes do erro no canal da equipe.",
+        topic: "codepipeline",
+        domain: "sdlc"
+    },
+    {
+        id: 'sdlc_029',
+        question: "Uma aplicação precisa de database migrations durante deploy. Como integrar migrations no pipeline sem downtime?",
+        options: [
+            "Rodar migrations manualmente antes do deploy",
+            "CodePipeline stage com CodeBuild que executa migrations backward-compatible ANTES do deploy de código",
+            "Migrations no startup da aplicação",
+            "Migrations após deploy"
+        ],
+        correct: [1],
+        explanation: "Migrations backward-compatible primeiro: adicionar colunas (não remover), depois deploy código que usa novas colunas, depois cleanup de colunas antigas. Expand-contract pattern. Zero downtime.",
+        topic: "practices",
+        domain: "sdlc"
+    },
+    {
+        id: 'sdlc_030',
+        question: "CodeBuild precisa acessar um secret do Secrets Manager durante o build (ex: API key para testes). Como configurar de forma segura?",
+        options: [
+            "Hardcode no buildspec",
+            "Referência ao secret no buildspec env/secrets-manager + IAM role do CodeBuild com permissão secretsmanager:GetSecretValue",
+            "Variável de ambiente plain text",
+            "Arquivo .env no repositório"
+        ],
+        correct: [1],
+        explanation: "buildspec env.secrets-manager: referencia secret por ARN. CodeBuild injeta valor em runtime como env var. IAM role precisa de GetSecretValue. Secret nunca aparece no código ou logs.",
+        topic: "codebuild",
+        domain: "sdlc"
+    },
+    {
+        id: 'sdlc_031',
+        question: "Uma empresa quer implementar feature flags para separar deploy de release. Qual serviço AWS?",
+        options: [
+            "Parameter Store apenas",
+            "AWS AppConfig com feature flags + gradual rollout + instant rollback",
+            "Lambda environment variables",
+            "S3 config file"
+        ],
+        correct: [1],
+        explanation: "AppConfig: feature flags gerenciados com validação, gradual rollout (% de usuários), instant rollback, monitoring integration. Separa deploy (código) de release (ativar feature).",
+        topic: "practices",
+        domain: "sdlc"
+    },
+    {
+        id: 'sdlc_032',
+        question: "Um pipeline precisa fazer build de múltiplos microservices em paralelo a partir de um monorepo. Como estruturar?",
+        options: [
+            "Um pipeline por serviço com trigger separado",
+            "CodePipeline com source trigger em monorepo + parallel actions no build stage (um CodeBuild por serviço) + change detection por path",
+            "Build sequencial de todos",
+            "Um único build para tudo"
+        ],
+        correct: [1],
+        explanation: "Monorepo: trigger detecta quais paths mudaram. Parallel CodeBuild actions compilam apenas serviços afetados. Reduz tempo total e evita builds desnecessários. EventBridge pode filtrar por path.",
+        topic: "codepipeline",
+        domain: "sdlc"
+    },
+    {
+        id: 'sdlc_033',
+        question: "CodeDeploy em Lambda: qual é a diferença entre Canary, Linear e AllAtOnce?",
+        options: [
+            "Não há diferença para Lambda",
+            "Canary: X% por N minutos depois 100%. Linear: X% a cada N minutos. AllAtOnce: 100% imediato",
+            "Canary é mais lento que Linear",
+            "AllAtOnce é o mais seguro"
+        ],
+        correct: [1],
+        explanation: "Canary10Percent5Minutes: 10% por 5min, depois 100%. Linear10PercentEvery1Minute: +10% a cada minuto. AllAtOnce: shift imediato. Canary detecta problemas com menor blast radius.",
+        topic: "codedeploy",
+        domain: "sdlc"
+    },
+    {
+        id: 'sdlc_034',
+        question: "Uma empresa quer garantir que imagens Docker no ECR sejam escaneadas para vulnerabilidades antes de deploy. Como automatizar?",
+        options: [
+            "Scan manual periódico",
+            "ECR image scanning on push + EventBridge rule que bloqueia deploy se CRITICAL findings + CodePipeline gate",
+            "Scan apenas em produção",
+            "Usar apenas imagens oficiais"
+        ],
+        correct: [1],
+        explanation: "ECR scan on push: detecta CVEs automaticamente. EventBridge captura scan results. Se CRITICAL: Lambda atualiza SSM parameter ou falha pipeline gate. Shift-left security para containers.",
+        topic: "practices",
+        domain: "sdlc"
+    },
+    {
+        id: 'sdlc_035',
+        question: "Uma equipe usa CodePipeline mas quer migrar para GitHub Actions mantendo deploy na AWS. Como integrar?",
+        options: [
+            "Não é possível",
+            "GitHub Actions com aws-actions/configure-aws-credentials (OIDC) + aws CLI para deploy S3/ECS/Lambda",
+            "Manter CodePipeline obrigatoriamente",
+            "Usar Jenkins"
+        ],
+        correct: [1],
+        explanation: "GitHub Actions + OIDC: assume IAM role sem access keys estáticas. Actions fazem build/test. Deploy via AWS CLI/SDK (S3 sync, ECS update-service, Lambda update). Flexibilidade do GitHub com segurança AWS.",
+        topic: "practices",
+        domain: "sdlc"
+    },
+    {
+        id: 'sdlc_036',
+        question: "Um deploy CodeDeploy em EC2 falha no hook AfterInstall com 'Script timeout'. O que verificar?",
+        options: [
+            "Verificar IAM permissions",
+            "Script no hook está demorando mais que o timeout configurado no appspec.yml — aumentar timeout ou otimizar script",
+            "Verificar VPC settings",
+            "Verificar CodePipeline"
+        ],
+        correct: [1],
+        explanation: "AppSpec hooks têm timeout padrão (3600s). Se script demora mais, falha. Soluções: otimizar script, aumentar timeout no appspec (timeout: 1800), ou mover lógica pesada para background.",
+        topic: "codedeploy",
+        domain: "sdlc"
+    },
+    {
+        id: 'sdlc_037',
+        question: "Uma empresa quer implementar continuous deployment (sem aprovação manual) mas com safety net. Qual abordagem?",
+        options: [
+            "Deploy direto sem proteção",
+            "Canary deployment + CloudWatch alarms + automatic rollback se métricas degradam + feature flags para kill switch",
+            "Apenas testes unitários",
+            "Deploy apenas em horário comercial"
+        ],
+        correct: [1],
+        explanation: "Continuous deployment seguro: canary (blast radius pequeno), alarms monitoram métricas reais (latência, erros), rollback automático se alarm dispara, feature flags para desabilitar sem redeploy.",
+        topic: "practices",
+        domain: "sdlc"
+    },
+    {
+        id: 'sdlc_038',
+        question: "CodePipeline precisa fazer deploy em ECS Fargate. Qual action type usar?",
+        options: [
+            "CodeDeploy action (ECS)",
+            "ECS deploy action (standard rolling) OU CodeDeploy ECS (Blue/Green) — depende da strategy desejada",
+            "CloudFormation deploy",
+            "Lambda invoke"
+        ],
+        correct: [1],
+        explanation: "Duas opções: 1) ECS standard action: rolling update (simples). 2) CodeDeploy ECS action: Blue/Green com canary/linear (mais controle, test traffic, hooks). Escolher baseado em requisitos de rollback.",
+        topic: "codepipeline",
+        domain: "sdlc"
+    },
+    {
+        id: 'sdlc_039',
+        question: "Uma equipe quer que o pipeline execute testes de carga antes de deploy em produção e falhe se latência P99 > 500ms. Como?",
+        options: [
+            "Testes manuais",
+            "CodeBuild stage que executa load test tool (k6/Locust) contra staging → analisa resultados → exit 1 se P99 > threshold",
+            "Testar em produção",
+            "CloudWatch alarm apenas"
+        ],
+        correct: [1],
+        explanation: "Load testing no pipeline: CodeBuild executa ferramenta (k6, Locust, Artillery) contra staging. Script analisa output (P99 latency). Se > threshold, exit 1 bloqueia deploy em prod. Performance gate.",
+        topic: "codebuild",
+        domain: "sdlc"
+    },
+    {
+        id: 'sdlc_040',
+        question: "Uma empresa quer rollback automático se o deploy causar aumento de erros 5xx acima de 5% por mais de 2 minutos. Como configurar?",
+        options: [
+            "Monitorar manualmente",
+            "CloudWatch Alarm (5xx rate > 5%, period 1min, evaluation 2) + CodeDeploy automatic rollback on alarm",
+            "Rollback após 1 hora",
+            "Usar Blue/Green sem alarm"
+        ],
+        correct: [1],
+        explanation: "CloudWatch Alarm: métrica HTTPCode_Target_5XX_Count / RequestCount > 0.05, period 60s, evaluation periods 2. CodeDeploy deployment group: enable automatic rollback when alarm triggers.",
+        topic: "codedeploy",
+        domain: "sdlc"
+    },
+    {
+        id: 'sdlc_041',
+        question: "Uma empresa quer que cada commit em develop trigger CI (build+test) mas deploy só aconteça quando merge para main. Como?",
+        options: [
+            "Um pipeline para tudo",
+            "Pipeline CI: source=develop, stages=build+test (sem deploy). Pipeline CD: source=main, stages=deploy. Ou um pipeline com branch conditions",
+            "Manual trigger para deploy",
+            "Cron job para deploy"
+        ],
+        correct: [1],
+        explanation: "Separação CI/CD: CI pipeline trigger em develop (valida código). CD pipeline trigger em main (deploya). Merge de develop→main via PR (com CI obrigatório). Garante que main é sempre deployable.",
+        topic: "codepipeline",
+        domain: "sdlc"
+    },
+    {
+        id: 'sdlc_042',
+        question: "CodeBuild reporta 'BUILD_GENERAL1_SMALL: not enough memory'. Como resolver?",
+        options: [
+            "Otimizar código apenas",
+            "Mudar compute type para BUILD_GENERAL1_MEDIUM ou LARGE no CodeBuild project configuration",
+            "Adicionar swap",
+            "Usar cache"
+        ],
+        correct: [1],
+        explanation: "CodeBuild compute types: SMALL (3GB RAM), MEDIUM (7GB), LARGE (15GB), 2XLARGE (145GB). Se build precisa de mais memória (ex: compilar projeto grande), upgrade o compute type.",
+        topic: "codebuild",
+        domain: "sdlc"
+    },
+    {
+        id: 'sdlc_043',
+        question: "Uma empresa quer implementar semantic versioning automático baseado em conventional commits. Como integrar no pipeline?",
+        options: [
+            "Versionar manualmente",
+            "CodeBuild step que analisa commit messages (feat/fix/breaking) e bumpa version automaticamente + cria tag",
+            "Usar timestamp como versão",
+            "Incrementar sempre major"
+        ],
+        correct: [1],
+        explanation: "Conventional commits + semantic-release: feat = minor bump, fix = patch, BREAKING CHANGE = major. CodeBuild executa tool (semantic-release) que analisa commits, bumpa version, cria tag e changelog.",
+        topic: "practices",
+        domain: "sdlc"
+    },
+    {
+        id: 'sdlc_044',
+        question: "Uma aplicação serverless (SAM) precisa de pipeline CI/CD. Qual é a forma mais simples de configurar?",
+        options: [
+            "CodePipeline manual",
+            "SAM Pipelines (sam pipeline init) — gera pipeline completo (CodePipeline + CodeBuild) com stages para cada ambiente",
+            "Deploy manual com sam deploy",
+            "CloudFormation apenas"
+        ],
+        correct: [1],
+        explanation: "sam pipeline init: gera automaticamente CodePipeline + CodeBuild + IAM roles + stages (dev/staging/prod) para aplicações SAM. Inclui build, test, package e deploy. Bootstrap completo.",
+        topic: "practices",
+        domain: "sdlc"
+    },
+    {
+        id: 'sdlc_045',
+        question: "Uma empresa quer que deploys em produção só aconteçam em janelas de manutenção (terça e quinta, 2-4am). Como enforçar?",
+        options: [
+            "Disciplina da equipe",
+            "CodePipeline com manual approval + SSM Maintenance Window que auto-aprova apenas no horário permitido",
+            "Cron job",
+            "Desabilitar pipeline fora do horário"
+        ],
+        correct: [1],
+        explanation: "Maintenance windows: SSM Automation pode aprovar pending approvals apenas durante janela. Fora da janela, approval fica pendente. Alternativa: EventBridge scheduled rule que habilita/desabilita pipeline stage.",
+        topic: "codepipeline",
+        domain: "sdlc"
+    },
+    {
+        id: 'sdlc_046',
+        question: "CodeDeploy appspec.yml para ECS: quais são os hooks disponíveis para validação?",
+        options: [
+            "BeforeInstall e AfterInstall apenas",
+            "BeforeInstall, AfterInstall, AfterAllowTestTraffic, BeforeAllowTraffic, AfterAllowTraffic",
+            "Apenas ValidateService",
+            "Não há hooks para ECS"
+        ],
+        correct: [1],
+        explanation: "ECS hooks: AfterAllowTestTraffic (validar com test traffic antes de prod), BeforeAllowTraffic (última chance antes de shift), AfterAllowTraffic (validar após shift). Cada hook = Lambda function.",
+        topic: "codedeploy",
+        domain: "sdlc"
+    },
+    {
+        id: 'sdlc_047',
+        question: "Uma empresa quer rastrear qual commit causou um bug em produção. Como implementar traceability no pipeline?",
+        options: [
+            "Git blame manualmente",
+            "Tags de deploy com commit SHA + CloudWatch Annotations no momento do deploy + CodeDeploy revision tracking",
+            "Logs apenas",
+            "Não é possível"
+        ],
+        correct: [1],
+        explanation: "Traceability: cada deploy registra commit SHA (CodeDeploy revision). CloudWatch annotation marca momento do deploy no dashboard. Correlacionar: bug apareceu após deploy X = commit Y causou.",
+        topic: "practices",
+        domain: "sdlc"
+    },
+    {
+        id: 'sdlc_048',
+        question: "Uma equipe quer que o pipeline falhe se houver secrets (API keys, passwords) no código fonte. Como implementar?",
+        options: [
+            "Code review manual",
+            "CodeBuild step com git-secrets ou trufflehog que escaneia código por padrões de secrets + exit 1 se encontrar",
+            "Confiar no .gitignore",
+            "Usar apenas variáveis de ambiente"
+        ],
+        correct: [1],
+        explanation: "Secret scanning no CI: git-secrets, trufflehog, ou detect-secrets escaneiam código por padrões (AKIA*, private keys, passwords). Se encontrar, build falha. Previne leak antes de chegar ao repo.",
+        topic: "practices",
+        domain: "sdlc"
+    },
+    {
+        id: 'sdlc_049',
+        question: "Uma empresa tem 10 microservices com pipelines independentes. Quando service A deploya, precisa trigger testes de integração com services B e C. Como?",
+        options: [
+            "Testes manuais",
+            "Pipeline A emite evento via EventBridge após deploy → trigger pipeline de integration tests que testa A+B+C juntos",
+            "Testar apenas isoladamente",
+            "Deploy todos juntos sempre"
+        ],
+        correct: [1],
+        explanation: "Event-driven pipelines: deploy de A emite evento. EventBridge rule trigger pipeline de integration tests. Testa contratos entre serviços. Se falhar, alerta equipe (não rollback automático de A).",
+        topic: "codepipeline",
+        domain: "sdlc"
+    },
+    {
+        id: 'sdlc_050',
+        question: "Uma empresa quer medir 'time to production' — tempo desde commit até estar rodando em produção. Como instrumentar?",
+        options: [
+            "Cronômetro manual",
+            "CodePipeline execution history (startTime → deploy complete) + custom CloudWatch metric + dashboard",
+            "Apenas contar deploys por dia",
+            "Git log timestamps"
+        ],
+        correct: [1],
+        explanation: "Lead time for changes (DORA): CodePipeline registra start/end de cada execution. Custom metric: endTime - startTime. Dashboard mostra trend. Meta: reduzir continuamente. EventBridge events para cálculo preciso.",
+        topic: "practices",
+        domain: "sdlc"
+    }
+];
+
+sdlcQuestions.push(...sdlcQuestions2);
