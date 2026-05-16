@@ -389,170 +389,170 @@ const aiMlQuestions2 = [
     },
     {
         id: 'aiml_028',
-        question: "Qual serviço AWS converte texto em fala natural (text-to-speech)?",
+        question: "Qual algoritmo de aprendizado não supervisionado é amplamente utilizado para clustering (agrupar dados similares)?",
         options: [
-            "Amazon Transcribe",
-            "Amazon Polly",
-            "Amazon Comprehend",
-            "Amazon Lex"
+            "K-NN",
+            "K-Means",
+            "XGBoost",
+            "Regressão Linear"
         ],
         correct: [1],
-        explanation: "Amazon Polly converte texto em fala realista em múltiplos idiomas e vozes. Transcribe faz o inverso (speech-to-text). Polly = TTS, Transcribe = STT.",
-        topic: "aws-services",
+        explanation: "K-Means é o algoritmo padrão de clustering (não supervisionado). Divide dados em K grupos por similaridade. K-NN é classificação (supervisionado). Não confundir!",
+        topic: "algorithms",
         domain: "ai-ml"
     },
     {
         id: 'aiml_029',
-        question: "Uma empresa quer recomendar produtos personalizados para cada usuário baseado em histórico de compras. Qual serviço AWS é especializado nisso?",
+        question: "Qual é a diferença entre K-NN e K-Means?",
         options: [
-            "Amazon Comprehend",
-            "Amazon Personalize",
-            "Amazon Forecast",
-            "Amazon Kendra"
+            "São o mesmo algoritmo com nomes diferentes",
+            "K-NN é classificação (supervisionado, usa vizinhos); K-Means é clustering (não supervisionado, agrupa por centróides)",
+            "K-Means é supervisionado e K-NN não supervisionado",
+            "Ambos são algoritmos de regressão"
         ],
         correct: [1],
-        explanation: "Amazon Personalize cria sistemas de recomendação personalizados usando ML. Ingere dados de interação (compras, cliques) e gera recomendações em tempo real sem precisar de expertise em ML.",
-        topic: "aws-services",
+        explanation: "K-NN: classifica baseado nos K vizinhos mais próximos (precisa de rótulos). K-Means: agrupa dados em K clusters por similaridade (sem rótulos). Confusão comum no exame!",
+        topic: "algorithms",
         domain: "ai-ml"
     },
     {
         id: 'aiml_030',
-        question: "O que é underfitting em Machine Learning?",
+        question: "O MSE (Mean Squared Error) calcula:",
         options: [
-            "Modelo é muito complexo para os dados",
-            "Modelo é muito simples e não captura padrões — baixa acurácia tanto no treino quanto no teste",
-            "Modelo treina por tempo demais",
-            "Modelo usa dados demais"
+            "A quantidade de dados categóricos",
+            "A média dos erros ao quadrado entre valor previsto e valor real",
+            "A precisão do modelo de classificação",
+            "O número de clusters encontrados"
         ],
         correct: [1],
-        explanation: "Underfitting: modelo muito simples para capturar a complexidade dos dados. Resultado: performance ruim em treino E teste. Solução: modelo mais complexo, mais features, mais treinamento.",
-        topic: "concepts",
+        explanation: "MSE = média dos (previsto - real)². Penaliza erros grandes (elevados ao quadrado). Usado em regressão. Quanto menor, melhor. Unidade ao quadrado (não interpretável diretamente).",
+        topic: "metrics",
         domain: "ai-ml"
     },
     {
         id: 'aiml_031',
-        question: "Qual é a função de um dataset de validação no processo de treinamento de ML?",
+        question: "O RMSE é utilizado principalmente em:",
         options: [
-            "Treinar o modelo",
-            "Ajustar hiperparâmetros e detectar overfitting durante o treinamento",
-            "Testar o modelo final em produção",
-            "Rotular dados automaticamente"
+            "Problemas de clustering",
+            "Problemas de regressão (prever valores numéricos)",
+            "Redes de computadores",
+            "Classificação binária"
         ],
         correct: [1],
-        explanation: "Dataset de validação: usado durante treinamento para ajustar hiperparâmetros e detectar overfitting. Diferente do teste (avaliação final) e treino (ajuste de pesos). Split típico: 70/15/15.",
-        topic: "concepts",
+        explanation: "RMSE = raiz quadrada do MSE. Volta à unidade original dos dados. Interpretação: 'em média, o modelo erra X unidades'. Usado em regressão para comunicar magnitude do erro.",
+        topic: "metrics",
         domain: "ai-ml"
     },
     {
         id: 'aiml_032',
-        question: "Uma empresa quer prever demanda de produtos para os próximos 3 meses baseado em dados históricos de vendas. Qual serviço AWS?",
+        question: "O que o R² (coeficiente de determinação) mede?",
         options: [
-            "Amazon Personalize",
-            "Amazon Forecast",
-            "Amazon Comprehend",
-            "Amazon SageMaker apenas"
+            "O erro absoluto do modelo",
+            "Quanto da variância dos dados o modelo consegue explicar (0 a 1)",
+            "A velocidade de treinamento",
+            "O número de features usadas"
         ],
         correct: [1],
-        explanation: "Amazon Forecast usa ML para previsão de séries temporais (demanda, receita, inventário). Ingere dados históricos e gera previsões sem necessidade de expertise em ML.",
-        topic: "aws-services",
+        explanation: "R² mede poder explicativo: 1.0 = perfeito, 0.8 = muito bom, 0.5 = razoável, 0 = igual chutar a média, negativo = pior que chutar. Complementa MSE/RMSE.",
+        topic: "metrics",
         domain: "ai-ml"
     },
     {
         id: 'aiml_033',
-        question: "Qual é a diferença entre classificação e regressão em aprendizado supervisionado?",
+        question: "Uma organização de saúde precisa realizar inferência em grandes conjuntos de dados (vários GB) sem necessidade de resposta imediata. Qual tipo de inferência SageMaker usar?",
         options: [
-            "Classificação usa mais dados",
-            "Classificação prevê categorias discretas; regressão prevê valores numéricos contínuos",
-            "Regressão é mais precisa",
-            "Não há diferença"
+            "Inferência em tempo real",
+            "Inferência assíncrona",
+            "Transformação em lote (Batch Transform)",
+            "Inferência serverless"
         ],
-        correct: [1],
-        explanation: "Classificação: output é categoria (spam/não-spam, gato/cachorro). Regressão: output é número contínuo (preço, temperatura, idade). Ambos são supervisionados (precisam de rótulos).",
-        topic: "ml-types",
+        correct: [2],
+        explanation: "Batch Transform: processa grandes volumes de uma vez, sem resposta imediata. Ideal para scoring noturno, relatórios, datasets grandes. Recursos alocados apenas durante o job.",
+        topic: "inference-types",
         domain: "ai-ml"
     },
     {
         id: 'aiml_034',
-        question: "O que é feature engineering em Machine Learning?",
+        question: "Uma instituição lida com arquivos de até 1GB e tempos de processamento de 1 hora, mas precisa de resultados quase em tempo real. Qual inferência SageMaker?",
         options: [
-            "Treinar o modelo por mais tempo",
-            "Processo de selecionar, transformar e criar variáveis de entrada que melhoram a performance do modelo",
-            "Aumentar o tamanho do modelo",
-            "Rotular dados manualmente"
+            "Transformação em lote",
+            "Inferência em tempo real",
+            "Inferência assíncrona",
+            "Inferência serverless"
         ],
-        correct: [1],
-        explanation: "Feature engineering: transformar dados brutos em features úteis para o modelo. Ex: extrair dia da semana de uma data, normalizar valores, criar combinações. Impacta diretamente a qualidade do modelo.",
-        topic: "concepts",
+        correct: [2],
+        explanation: "Inferência assíncrona: payloads grandes, processamento longo, mas resultado entregue quando pronto (sem bloqueio). Entre batch (sem urgência) e real-time (resposta imediata).",
+        topic: "inference-types",
         domain: "ai-ml"
     },
     {
         id: 'aiml_035',
-        question: "Qual serviço AWS converte fala em texto (speech-to-text) para transcrição de áudio?",
+        question: "Uma instituição acadêmica quer treinar seu próprio LLM focando em reduzir custo e impacto ambiental. Qual instância EC2 é mais indicada?",
         options: [
-            "Amazon Polly",
-            "Amazon Transcribe",
-            "Amazon Comprehend",
-            "Amazon Lex"
+            "Amazon EC2 série C (compute)",
+            "Amazon EC2 série P (GPU NVIDIA)",
+            "Amazon EC2 série Trn (Trainium)",
+            "Amazon EC2 série G (graphics)"
         ],
-        correct: [1],
-        explanation: "Amazon Transcribe converte áudio em texto (STT). Suporta múltiplos idiomas, speaker identification, vocabulário customizado. Polly faz o inverso (TTS).",
-        topic: "aws-services",
+        correct: [2],
+        explanation: "EC2 Trainium (Trn): chip AWS otimizado para treinamento de deep learning. Custo competitivo e eficiência energética superior para treinar LLMs. Trainium = treinar.",
+        topic: "infrastructure",
         domain: "ai-ml"
     },
     {
         id: 'aiml_036',
-        question: "Uma empresa quer detectar anomalias em dados de sensores IoT sem ter exemplos de falhas rotulados. Qual abordagem de ML?",
+        question: "Qual instância EC2 é otimizada para servir modelos de IA em produção com baixa latência e alto volume de previsões?",
         options: [
-            "Classificação supervisionada",
-            "Detecção de anomalias com aprendizado não supervisionado",
-            "Regressão linear",
-            "Aprendizado por reforço"
+            "EC2 série Trn (Trainium)",
+            "EC2 série Inf (Inferentia)",
+            "EC2 série M (general purpose)",
+            "EC2 série T (burstable)"
         ],
         correct: [1],
-        explanation: "Sem rótulos de falha, usa-se detecção de anomalias não supervisionada. O modelo aprende o padrão 'normal' e identifica desvios. Serviço AWS: Amazon Lookout for Equipment.",
-        topic: "ml-types",
+        explanation: "EC2 Inferentia (Inf): chip AWS otimizado para inferência. Baixa latência, alto throughput, custo por inferência reduzido. Regra: Trainium = treinar, Inferentia = inferir (servir).",
+        topic: "infrastructure",
         domain: "ai-ml"
     },
     {
         id: 'aiml_037',
-        question: "Qual é o papel do Amazon SageMaker Clarify?",
+        question: "Um analista precisa apresentar um relatório sobre modelo de ML garantindo transparência e explicabilidade para gestores. O que deve incluir?",
         options: [
-            "Treinar modelos mais rápido",
-            "Detectar bias em dados e modelos + fornecer explicabilidade das previsões",
-            "Rotular dados automaticamente",
-            "Fazer deploy de modelos"
+            "Código fonte do treinamento",
+            "Gráficos de Dependência Parcial (PDPs) mostrando como variáveis influenciam previsões",
+            "Dados de amostra para treinamento",
+            "Tabelas de convergência do modelo"
         ],
         correct: [1],
-        explanation: "SageMaker Clarify: detecta viés (bias) nos dados de treinamento e nas previsões do modelo. Também fornece explicabilidade (feature importance) — quais features influenciaram cada previsão.",
-        topic: "aws-services",
+        explanation: "PDPs (Partial Dependence Plots): mostram visualmente como cada variável afeta a previsão. Ferramenta de explicabilidade para modelos caixa-preta. Atende requisitos de transparência e auditoria.",
+        topic: "explainability",
         domain: "ai-ml"
     },
     {
         id: 'aiml_038',
-        question: "O que diferencia dados estruturados de dados não estruturados no contexto de IA?",
+        question: "O XGBoost é um algoritmo que combina várias árvores de decisão em sequência. Qual é sua principal vantagem?",
         options: [
-            "Dados estruturados são maiores",
-            "Estruturados são tabulares (SQL); não estruturados são texto, imagem, áudio (precisam de embeddings para análise)",
-            "Não estruturados são mais fáceis de processar",
-            "Dados estruturados não podem ser usados em ML"
+            "É o mais simples de implementar",
+            "Cada árvore corrige erros das anteriores, resultando em alta precisão para dados tabulares",
+            "Funciona apenas com imagens",
+            "Não precisa de dados rotulados"
         ],
         correct: [1],
-        explanation: "Estruturados: tabelas, linhas/colunas, SQL (fácil para ML clássico). Não estruturados: texto, imagem, áudio, vídeo (maioria dos dados do mundo). Precisam de embeddings/deep learning para análise.",
-        topic: "concepts",
+        explanation: "XGBoost (boosting): treina árvores sequencialmente, cada uma focando nos erros da anterior. Alta precisão em dados tabulares. Padrão de mercado para classificação e regressão. Também usado para ranking.",
+        topic: "algorithms",
         domain: "ai-ml"
     },
     {
         id: 'aiml_039',
-        question: "Uma empresa quer traduzir automaticamente conteúdo do site para 10 idiomas. Qual serviço AWS?",
+        question: "Qual característica do MSE é verdadeira?",
         options: [
-            "Amazon Comprehend",
-            "Amazon Translate",
-            "Amazon Polly",
-            "Amazon Transcribe"
+            "Penaliza mais erros grandes (por elevar ao quadrado)",
+            "Funciona apenas para clustering",
+            "Não utiliza valores numéricos",
+            "Mede tempo de resposta do modelo"
         ],
-        correct: [1],
-        explanation: "Amazon Translate é o serviço de tradução neural da AWS. Traduz texto entre idiomas com qualidade de ML. Suporta tradução em tempo real e em batch para grandes volumes.",
-        topic: "aws-services",
+        correct: [0],
+        explanation: "MSE eleva erros ao quadrado: erro de 1 = 1, erro de 5 = 25. Erros grandes pesam desproporcionalmente. Útil quando erros grandes são muito piores que erros pequenos. Sensível a outliers.",
+        topic: "metrics",
         domain: "ai-ml"
     }
 ];

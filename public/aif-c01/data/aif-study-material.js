@@ -7,7 +7,7 @@ const aifStudyMaterial = {
         title: '🧠 Fundamentos de IA e ML',
         weight: 20,
         priority: 'vital',
-        pareto: 'Domine: tipos de aprendizado + diferença entre IA/ML/DL/GenAI + treinamento vs inferência',
+        pareto: 'Domine: tipos de aprendizado + algoritmos (K-Means, XGBoost, K-NN) + métricas (MSE, RMSE, F1, AUC) + inferência (batch/real-time/serverless) + Trainium/Inferentia',
         content: `
             <div class="study-section">
                 <h4>📌 20% Vital — O que cai mais:</h4>
@@ -16,24 +16,64 @@ const aifStudyMaterial = {
                     <li><strong>Tipos de aprendizado:</strong> Supervisionado (dados rotulados), Não supervisionado (padrões sem rótulo), Reforço (tentativa/erro/recompensa), Federado (privacidade), Transferência (reaproveitar modelo)</li>
                     <li><strong>Treinamento vs Inferência:</strong> Treinamento = caro, pontual, GPUs. Inferência = barato, contínuo, tempo real</li>
                     <li><strong>Modelo vs Algoritmo:</strong> Algoritmo é o método. Modelo é o resultado</li>
+                    <li><strong>Qualidade de dados:</strong> Dados relevantes e de qualidade são o requisito mais importante para um bom modelo</li>
                 </ul>
 
-                <h4>🔑 Conceitos-chave:</h4>
+                <h4>🔑 Algoritmos de ML (cai no exame!):</h4>
                 <table>
-                    <tr><th>Conceito</th><th>Definição</th><th>Exemplo AWS</th></tr>
-                    <tr><td>Supervisionado</td><td>Aprende com dados rotulados (entrada→resposta)</td><td>SageMaker com dataset rotulado</td></tr>
-                    <tr><td>Não supervisionado</td><td>Descobre padrões sem rótulos</td><td>Clustering, detecção de anomalias</td></tr>
-                    <tr><td>Reforço</td><td>Aprende por recompensa/penalidade</td><td>AWS DeepRacer, RLHF em LLMs</td></tr>
-                    <tr><td>Deep Learning</td><td>Redes neurais com múltiplas camadas</td><td>CNNs (imagem), Transformers (texto)</td></tr>
-                    <tr><td>Foundation Model</td><td>Modelo grande pré-treinado, adaptável</td><td>Claude, Titan, Llama no Bedrock</td></tr>
+                    <tr><th>Algoritmo</th><th>Tipo</th><th>Quando usar</th></tr>
+                    <tr><td><strong>Regressão Linear</strong></td><td>Supervisionado (regressão)</td><td>Prever valor numérico com relação linear (preço, demanda)</td></tr>
+                    <tr><td><strong>Árvores de Decisão</strong></td><td>Supervisionado</td><td>Relações não-lineares, regras condicionais, fácil de interpretar</td></tr>
+                    <tr><td><strong>XGBoost</strong></td><td>Supervisionado (classificação/regressão)</td><td>Alta precisão em dados tabulares, combina múltiplas árvores</td></tr>
+                    <tr><td><strong>K-NN</strong></td><td>Supervisionado (classificação)</td><td>Classificar baseado nos K vizinhos mais próximos</td></tr>
+                    <tr><td><strong>K-Means</strong></td><td>Não supervisionado (clustering)</td><td>Agrupar dados similares sem rótulos (segmentação de clientes)</td></tr>
                 </table>
 
-                <h4>🏗️ Redes Neurais (tipos):</h4>
+                <h4>📊 Métricas de Avaliação (cai MUITO!):</h4>
+                <table>
+                    <tr><th>Métrica</th><th>Tipo</th><th>O que mede</th><th>Quando usar</th></tr>
+                    <tr><td><strong>Acurácia</strong></td><td>Classificação</td><td>% de acertos total</td><td>Classes balanceadas</td></tr>
+                    <tr><td><strong>Precisão</strong></td><td>Classificação</td><td>Dos previstos positivos, quantos são reais</td><td>Custo alto de falso positivo</td></tr>
+                    <tr><td><strong>Recall</strong></td><td>Classificação</td><td>Dos reais positivos, quantos foram encontrados</td><td>Custo alto de falso negativo (fraude, doença)</td></tr>
+                    <tr><td><strong>F1 Score</strong></td><td>Classificação</td><td>Média harmônica de Precisão e Recall</td><td>Classes desbalanceadas</td></tr>
+                    <tr><td><strong>AUC</strong></td><td>Classificação</td><td>Capacidade de distinguir classes (0.5=aleatório, 1=perfeito)</td><td>Comparar modelos</td></tr>
+                    <tr><td><strong>MSE</strong></td><td>Regressão</td><td>Média dos erros ao quadrado (penaliza erros grandes)</td><td>Otimização do modelo</td></tr>
+                    <tr><td><strong>RMSE</strong></td><td>Regressão</td><td>Raiz do MSE (mesma unidade dos dados)</td><td>Comunicar erro de forma interpretável</td></tr>
+                    <tr><td><strong>R²</strong></td><td>Regressão</td><td>% da variância explicada pelo modelo (0 a 1)</td><td>Avaliar poder explicativo</td></tr>
+                    <tr><td><strong>MAE</strong></td><td>Regressão</td><td>Média do erro absoluto</td><td>Erro médio sem penalizar outliers</td></tr>
+                </table>
+
+                <h4>🔄 Tipos de Inferência:</h4>
+                <table>
+                    <tr><th>Tipo</th><th>Latência</th><th>Custo</th><th>Quando usar</th></tr>
+                    <tr><td><strong>Batch (Lote)</strong></td><td>Alta (min/horas)</td><td>Menor</td><td>Grandes volumes, sem urgência (relatórios noturnos)</td></tr>
+                    <tr><td><strong>Real-time</strong></td><td>Baixa (ms)</td><td>Maior (endpoint 24/7)</td><td>Apps interativos, fraude online</td></tr>
+                    <tr><td><strong>Assíncrona</strong></td><td>Média</td><td>Médio</td><td>Payload grande, cliente pode esperar</td></tr>
+                    <tr><td><strong>Serverless</strong></td><td>Variável (cold start)</td><td>Pay-per-use</td><td>Tráfego imprevisível, baixo volume</td></tr>
+                </table>
+
+                <h4>🖥️ Infraestrutura AWS para IA:</h4>
+                <table>
+                    <tr><th>Instância</th><th>Chip</th><th>Foco</th><th>Quando usar</th></tr>
+                    <tr><td><strong>EC2 Trn (Trainium)</strong></td><td>AWS Trainium</td><td>TREINAMENTO</td><td>Treinar modelos grandes (deep learning, LLMs)</td></tr>
+                    <tr><td><strong>EC2 Inf (Inferentia)</strong></td><td>AWS Inferentia</td><td>INFERÊNCIA</td><td>Servir modelos em produção (baixa latência, alto volume)</td></tr>
+                </table>
+                <p><em>Regra: Trainium = treinar. Inferentia = inferir (usar).</em></p>
+
+                <h4>📈 Explicabilidade — PDPs:</h4>
                 <ul>
-                    <li><strong>Feedforward:</strong> Fluxo unidirecional (base)</li>
-                    <li><strong>CNN (Convolucional):</strong> Imagens e dados espaciais</li>
-                    <li><strong>RNN (Recorrente):</strong> Sequências (substituída por Transformers)</li>
-                    <li><strong>Transformer:</strong> Arquitetura moderna — atenção, paralelismo, base dos LLMs</li>
+                    <li><strong>Partial Dependence Plots:</strong> Gráficos que mostram como uma variável influencia a previsão do modelo</li>
+                    <li>Eixo X = valores da variável, Eixo Y = efeito na previsão</li>
+                    <li>Curva crescente = variável aumenta previsão. Plana = sem efeito</li>
+                    <li>Usado para: explicabilidade, auditoria, governança, comunicação com negócio</li>
+                </ul>
+
+                <h4>⚠️ Quando NÃO usar IA:</h4>
+                <ul>
+                    <li>Regra fixa e bem definida (if/else resolve)</li>
+                    <li>Baixo ROI (custo > benefício)</li>
+                    <li>Dados insuficientes ou de má qualidade</li>
+                    <li>Decisão crítica sem possibilidade de supervisão humana</li>
                 </ul>
 
                 <h4>📎 Serviços AWS relacionados:</h4>
@@ -41,6 +81,8 @@ const aifStudyMaterial = {
                     <li><strong>SageMaker:</strong> Treinar, ajustar e implantar modelos ML</li>
                     <li><strong>SageMaker Ground Truth:</strong> Rotulagem de dados em escala</li>
                     <li><strong>SageMaker Canvas:</strong> ML no-code para business analysts</li>
+                    <li><strong>SageMaker Clarify:</strong> Detectar bias + explicabilidade (SHAP + PDPs)</li>
+                    <li><strong>SageMaker Serverless Inference:</strong> Endpoint sem gerenciar infra</li>
                 </ul>
             </div>
         `

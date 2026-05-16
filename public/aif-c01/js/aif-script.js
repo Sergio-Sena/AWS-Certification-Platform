@@ -47,7 +47,7 @@ function renderDomains() {
     const grid = document.getElementById('domains-grid');
     if (!window.aifStudyMaterial) return;
 
-    const allMaterial = { ...aifStudyMaterial, ...(window.aifServicesReference || {}) };
+    const allMaterial = { ...aifStudyMaterial, ...(window.aifServicesReference || {}), ...(window.aifAlgorithmsMetrics || {}) };
 
     grid.innerHTML = Object.entries(allMaterial).map(([key, domain]) => `
         <div class="domain-card ${domain.priority}" onclick="showTopic('${key}')">
@@ -62,7 +62,7 @@ function renderDomains() {
 }
 
 function showTopic(key) {
-    const allMaterial = { ...aifStudyMaterial, ...(window.aifServicesReference || {}) };
+    const allMaterial = { ...aifStudyMaterial, ...(window.aifServicesReference || {}), ...(window.aifAlgorithmsMetrics || {}) };
     const material = allMaterial[key];
     if (!material) return;
     const div = document.getElementById('topic-content');
