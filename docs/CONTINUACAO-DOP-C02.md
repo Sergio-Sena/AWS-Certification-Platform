@@ -12,13 +12,13 @@ Plataforma de certificações AWS com 5 certs: CLF-C02 ✅, DVA-C02 ✅, SAA-C03
 | Domínio | Peso | Questões feitas | Faltam | Arquivo |
 |---|---|---|---|---|
 | SDLC Automation | 22% | 50/50 ✅ | 0 | `sdlc-questions.js` |
-| Config Management & IaC | 17% | 20/38 | **18** | `config-iac-questions.js` (append) |
-| Resilient Cloud Solutions | 15% | 0/34 | **34** | `resilient-questions.js` (criar) |
-| Monitoring & Logging | 15% | 0/34 | **34** | `monitoring-questions.js` (criar) |
-| Incident & Event Response | 14% | 0/32 | **32** | `incident-questions.js` (criar) |
-| Security & Compliance | 17% | 0/37 | **37** | `security-questions.js` (criar) |
+| Config Management & IaC | 17% | 38/38 ✅ | 0 | `config-iac-questions.js` |
+| Resilient Cloud Solutions | 15% | 34/34 ✅ | 0 | `resilient-questions.js` |
+| Monitoring & Logging | 15% | 34/34 ✅ | 0 | `monitoring-questions.js` |
+| Incident & Event Response | 14% | 32/32 ✅ | 0 | `incident-questions.js` |
+| Security & Compliance | 17% | 37/37 ✅ | 0 | `security-questions.js` |
 
-### Total restante: 155 questões em lotes de ~20
+### Total: 225/225 ✅ COMPLETO
 
 ## Padrão das Questões
 - Scenario-based (cenário empresarial → qual solução AWS)

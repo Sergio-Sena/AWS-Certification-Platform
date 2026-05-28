@@ -284,4 +284,258 @@ const configIacQuestions = [
     }
 ];
 
+    {
+        id: 'cfg_021',
+        question: "Uma empresa quer atualizar instâncias EC2 em um Auto Scaling Group gerenciado por CloudFormation sem downtime. Qual configuração?",
+        options: [
+            "Deletar stack e recriar",
+            "UpdatePolicy com AutoScalingRollingUpdate — define MinInstancesInService, MaxBatchSize e PauseTime para rolling update",
+            "Terminar instâncias manualmente",
+            "Usar Blue/Green com Route 53"
+        ],
+        correct: [1],
+        explanation: "AutoScalingRollingUpdate: CloudFormation atualiza instâncias em batches. MinInstancesInService garante capacidade mínima. MaxBatchSize controla quantas atualizam por vez. PauseTime aguarda health check. Zero downtime.",
+        topic: "cloudformation",
+        domain: "config-iac"
+    },
+    {
+        id: 'cfg_022',
+        question: "Uma instância EC2 criada por CloudFormation precisa instalar pacotes, criar arquivos e iniciar serviços durante bootstrap. Qual helper script?",
+        options: [
+            "User-data bash script apenas",
+            "cfn-init — lê metadata (AWS::CloudFormation::Init) e executa packages, files, commands, services de forma declarativa",
+            "SSM Run Command",
+            "CodeDeploy agent"
+        ],
+        correct: [1],
+        explanation: "cfn-init: lê AWS::CloudFormation::Init metadata do template. Instala packages (yum/apt), cria files, executa commands, configura services. Declarativo e idempotente. Mais robusto que user-data scripts.",
+        topic: "cloudformation",
+        domain: "config-iac"
+    },
+    {
+        id: 'cfg_023',
+        question: "Após deploy inicial, a equipe quer que instâncias EC2 detectem mudanças no CloudFormation metadata e se reconfigurem automaticamente. Qual helper?",
+        options: [
+            "Redeploy manual",
+            "cfn-hup — daemon que detecta mudanças na metadata do stack e re-executa cfn-init automaticamente",
+            "CloudWatch Agent",
+            "SSM State Manager"
+        ],
+        correct: [1],
+        explanation: "cfn-hup: daemon que monitora metadata changes no stack. Quando detecta mudança, executa hooks (geralmente re-run cfn-init). Permite atualizar configuração de instâncias existentes sem replace.",
+        topic: "cloudformation",
+        domain: "config-iac"
+    },
+    {
+        id: 'cfg_024',
+        question: "Uma equipe CDK quer reutilizar um padrão de infraestrutura (VPC + subnets + NAT) em múltiplos projetos. Qual nível de construct usar?",
+        options: [
+            "L1 (CfnResource) — mapeamento 1:1 com CloudFormation",
+            "L3 (Patterns) — constructs de alto nível que combinam múltiplos recursos com best practices embutidas",
+            "L2 (curated constructs)",
+            "Custom Resource"
+        ],
+        correct: [1],
+        explanation: "L1: raw CloudFormation (Cfn*). L2: abstrações curadas com defaults inteligentes (ex: Bucket com encryption). L3 (Patterns): combinam múltiplos L2 em padrões reutilizáveis (ex: ApplicationLoadBalancedFargateService).",
+        topic: "cdk",
+        domain: "config-iac"
+    },
+    {
+        id: 'cfg_025',
+        question: "Uma empresa quer enforçar que todos os S3 buckets criados via CDK tenham encryption e versioning habilitados, independente do que o dev definiu. Como?",
+        options: [
+            "Code review manual",
+            "CDK Aspects — visitor pattern que percorre toda a construct tree e aplica/valida regras em todos os nodes",
+            "Config Rules após deploy",
+            "Pre-commit hooks"
+        ],
+        correct: [1],
+        explanation: "Aspects: implementam IAspect interface. Percorrem construct tree durante synth. Podem modificar propriedades (adicionar encryption) ou reportar errors/warnings. Enforcement em tempo de síntese, antes do deploy.",
+        topic: "cdk",
+        domain: "config-iac"
+    },
+    {
+        id: 'cfg_026',
+        question: "Uma equipe CDK precisa usar valores diferentes por ambiente (dev/staging/prod) como instance size e replica count. Como parametrizar?",
+        options: [
+            "Hardcode por branch",
+            "CDK Context (cdk.json ou -c flag) — valores por ambiente acessíveis via node.tryGetContext() no código",
+            "Environment variables apenas",
+            "CloudFormation Parameters"
+        ],
+        correct: [1],
+        explanation: "CDK Context: valores em cdk.json ou passados via CLI (-c env=prod). Acessados com tryGetContext(). Permite stacks determinísticos por ambiente. Melhor que CFN Parameters pois resolve em synth time.",
+        topic: "cdk",
+        domain: "config-iac"
+    },
+    {
+        id: 'cfg_027',
+        question: "Uma equipe quer testar que seu CDK stack gera os recursos esperados antes de deployar. Qual abordagem?",
+        options: [
+            "Deploy em dev e verificar",
+            "CDK Assertions (Template.fromStack) — testa template sintetizado: hasResource, hasResourceProperties, resourceCountIs",
+            "CloudFormation validate-template",
+            "Linting apenas"
+        ],
+        correct: [1],
+        explanation: "CDK Assertions: unit tests no template sintetizado. Template.fromStack(stack).hasResourceProperties('AWS::S3::Bucket', {Encryption: 'AES256'}). Fine-grained assertions ou snapshot testing. Roda sem deploy.",
+        topic: "cdk",
+        domain: "config-iac"
+    },
+    {
+        id: 'cfg_028',
+        question: "Uma empresa com 500 instâncias (EC2 + on-premises) precisa inventariar software instalado, patches e configurações. Qual serviço?",
+        options: [
+            "Script manual em cada servidor",
+            "SSM Inventory — coleta metadata (apps instalados, patches, network config, Windows updates) de managed instances automaticamente",
+            "AWS Config apenas",
+            "CloudWatch Agent"
+        ],
+        correct: [1],
+        explanation: "SSM Inventory: coleta automaticamente metadata de instâncias (applications, AWS components, network config, Windows updates, custom inventory). Visualiza em Resource Data Sync (S3 + Athena). Suporta on-premises.",
+        topic: "ssm",
+        domain: "config-iac"
+    },
+    {
+        id: 'cfg_029',
+        question: "Uma empresa precisa visualizar quais instâncias estão non-compliant com patch baselines e associações do State Manager. Qual feature?",
+        options: [
+            "CloudWatch Dashboard",
+            "SSM Compliance — dashboard unificado mostrando compliance status de patches e associations em todas as instâncias",
+            "AWS Config",
+            "Security Hub"
+        ],
+        correct: [1],
+        explanation: "SSM Compliance: visão unificada de patch compliance + association compliance. Mostra Compliant/Non-Compliant por instância. Integra com EventBridge para alertas. Pode enviar dados para Security Hub.",
+        topic: "ssm",
+        domain: "config-iac"
+    },
+    {
+        id: 'cfg_030',
+        question: "Uma empresa precisa distribuir e instalar software custom (agentes de monitoramento) em centenas de instâncias de forma versionada. Qual feature do SSM?",
+        options: [
+            "Run Command com script",
+            "SSM Distributor — cria packages versionados que podem ser instalados/atualizados em managed instances via State Manager ou Run Command",
+            "S3 + user-data",
+            "CodeDeploy"
+        ],
+        correct: [1],
+        explanation: "Distributor: empacota software (zip + manifest). Versiona packages. Instala via Run Command (ad-hoc) ou State Manager (contínuo). Suporta install, update, uninstall. Cross-platform (Linux/Windows).",
+        topic: "ssm",
+        domain: "config-iac"
+    },
+    {
+        id: 'cfg_031',
+        question: "Uma empresa quer gerenciar servidores on-premises com SSM (Run Command, Patch Manager, Inventory). O que é necessário?",
+        options: [
+            "VPN apenas",
+            "Instalar SSM Agent + criar Hybrid Activation (activation code/ID) + IAM service role para registrar como managed instances",
+            "Direct Connect obrigatório",
+            "Instalar CloudWatch Agent apenas"
+        ],
+        correct: [1],
+        explanation: "Hybrid Activation: gera activation code + ID. Instala SSM Agent no servidor on-premises com o activation. Servidor aparece como 'mi-' (managed instance). Acesso a todos os SSM features. Requer internet ou VPC endpoint.",
+        topic: "ssm",
+        domain: "config-iac"
+    },
+    {
+        id: 'cfg_032',
+        question: "CloudFormation UpdatePolicy com AutoScalingReplacingUpdate cria um novo ASG inteiro. Quando usar isso ao invés de RollingUpdate?",
+        options: [
+            "Sempre usar RollingUpdate",
+            "Quando a mudança requer novo Launch Template incompatível — ReplacingUpdate cria novo ASG, valida, e deleta o antigo (immutable update)",
+            "Quando tem poucas instâncias",
+            "Quando não tem ALB"
+        ],
+        correct: [1],
+        explanation: "ReplacingUpdate: cria ASG novo → aguarda instâncias healthy → swap → deleta ASG antigo. Mais seguro para mudanças breaking (novo AMI, novo instance type). RollingUpdate: atualiza in-place em batches. Mais rápido mas mais risco.",
+        topic: "cloudformation",
+        domain: "config-iac"
+    },
+    {
+        id: 'cfg_033',
+        question: "Uma equipe CDK quer que o pipeline de CI falhe se algum construct criar um Security Group com ingress 0.0.0.0/0. Como implementar?",
+        options: [
+            "Config Rule após deploy",
+            "CDK Aspect que verifica CfnSecurityGroup ingress rules e chama Annotations.of(node).addError() para falhar o synth",
+            "Code review manual",
+            "cfn-lint"
+        ],
+        correct: [1],
+        explanation: "Aspect com addError(): percorre tree, verifica propriedades, adiciona error annotation. cdk synth falha se há errors. Pipeline CI quebra antes do deploy. Shift-left security. Pode ser publicado como library compartilhada.",
+        topic: "cdk",
+        domain: "config-iac"
+    },
+    {
+        id: 'cfg_034',
+        question: "Uma empresa quer que CloudFormation aguarde o ASG ter instâncias healthy no ELB antes de prosseguir com o update. Qual configuração?",
+        options: [
+            "PauseTime longo",
+            "UpdatePolicy AutoScalingRollingUpdate com WaitOnResourceSignals: true + PauseTime — aguarda cfn-signal das novas instâncias",
+            "Health check do ALB apenas",
+            "MinSuccessfulInstancesPercent"
+        ],
+        correct: [1],
+        explanation: "WaitOnResourceSignals: true faz CloudFormation aguardar cfn-signal de cada instância nova antes de continuar batch. PauseTime define timeout. Garante que instância está serving traffic antes de atualizar próximo batch.",
+        topic: "cloudformation",
+        domain: "config-iac"
+    },
+    {
+        id: 'cfg_035',
+        question: "Uma empresa quer centralizar dados de SSM Inventory de múltiplas contas/regiões em um único S3 bucket para análise. Como?",
+        options: [
+            "Export manual",
+            "Resource Data Sync — sincroniza dados de Inventory para S3 bucket centralizado. Usar Athena/QuickSight para análise cross-account",
+            "CloudWatch Logs",
+            "AWS Config Aggregator"
+        ],
+        correct: [1],
+        explanation: "Resource Data Sync: envia Inventory data para S3 em formato estruturado. Múltiplas contas/regiões → um bucket. Athena queries para análise (ex: quais instâncias têm Java < 11). QuickSight para dashboards.",
+        topic: "ssm",
+        domain: "config-iac"
+    },
+    {
+        id: 'cfg_036',
+        question: "Uma equipe quer usar CloudFormation helper scripts mas a instância não tem acesso à internet. Como resolver?",
+        options: [
+            "Abrir internet access",
+            "Usar VPC Endpoint para CloudFormation (com.amazonaws.region.cloudformation) — helpers se comunicam via endpoint privado",
+            "Copiar scripts para S3",
+            "Usar SSM ao invés"
+        ],
+        correct: [1],
+        explanation: "cfn-init/cfn-signal precisam se comunicar com CloudFormation service. Sem internet: VPC Interface Endpoint para CloudFormation. Também precisa endpoint para S3 (se baixa packages) e logs (se envia logs).",
+        topic: "cloudformation",
+        domain: "config-iac"
+    },
+    {
+        id: 'cfg_037',
+        question: "Uma empresa quer que CDK gere nomes de recursos previsíveis para facilitar referências cross-stack, mas sem conflitos. Qual abordagem?",
+        options: [
+            "Hardcode nomes",
+            "Usar physicalName com naming convention (incluir stage/account) + SSM Parameter Store para compartilhar ARNs entre stacks",
+            "Deixar CDK gerar nomes aleatórios",
+            "CloudFormation Exports apenas"
+        ],
+        correct: [1],
+        explanation: "CDK gera nomes únicos por padrão (hash). Para cross-stack: physicalName com convention (app-stage-resource) ou exportar para SSM. SSM é mais flexível que CFN Exports (sem dependência circular, pode deletar independente).",
+        topic: "cdk",
+        domain: "config-iac"
+    },
+    {
+        id: 'cfg_038',
+        question: "Uma empresa quer executar um documento SSM Automation em múltiplas contas de uma AWS Organization automaticamente. Como?",
+        options: [
+            "Executar manualmente em cada conta",
+            "SSM Automation com targets por AWS Organizations OU — executa runbook em todas as contas da OU com rate control e error threshold",
+            "StackSets apenas",
+            "Lambda cross-account"
+        ],
+        correct: [1],
+        explanation: "Automation multi-account: target por OU ou lista de contas. Management account ou delegated admin executa. Rate control (concurrency/error threshold). Ideal para remediation em escala organizacional.",
+        topic: "ssm",
+        domain: "config-iac"
+    }
+];
+
 window.configIacQuestions = configIacQuestions;

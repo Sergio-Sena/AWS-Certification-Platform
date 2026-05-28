@@ -76,13 +76,53 @@ const aifStudyMaterial = {
                     <li>Decisão crítica sem possibilidade de supervisão humana</li>
                 </ul>
 
+                <h4>🧬 GANs — Generative Adversarial Networks:</h4>
+                <ul>
+                    <li><strong>Gerador:</strong> Cria dados sintéticos a partir de ruído aleatório</li>
+                    <li><strong>Discriminador:</strong> Julga se o dado é real ou falso</li>
+                    <li><strong>Competição:</strong> As duas redes competem → resultados cada vez mais realistas</li>
+                    <li><strong>Aplicações:</strong> Geração de imagens, data augmentation, restauração de imagens</li>
+                </ul>
+
+                <h4>👁️ Visão Computacional:</h4>
+                <table>
+                    <tr><th>Tarefa</th><th>O que faz</th><th>Exemplo</th></tr>
+                    <tr><td>Classificação</td><td>Identifica categoria da imagem</td><td>"É um gato"</td></tr>
+                    <tr><td>Detecção de objetos</td><td>Localiza e rotula objetos</td><td>Bounding boxes em carros</td></tr>
+                    <tr><td>Reconhecimento facial</td><td>Identifica/compara rostos</td><td>Verificação de identidade</td></tr>
+                    <tr><td>Segmentação</td><td>Delimita regiões pixel a pixel</td><td>Separar fundo de objeto</td></tr>
+                    <tr><td>OCR</td><td>Lê texto em imagens</td><td>Extrair texto de documentos</td></tr>
+                </table>
+
+                <h4>🔄 Ciclo de Vida de ML (MLOps):</h4>
+                <ol>
+                    <li><strong>Definir:</strong> Problema de negócio, métricas de sucesso, dados disponíveis</li>
+                    <li><strong>Desenvolver:</strong> Coletar → Preparar (60-80% do tempo!) → Treinar → Avaliar</li>
+                    <li><strong>Implantar:</strong> Endpoint (real-time, serverless, batch, async)</li>
+                    <li><strong>Monitorar:</strong> Detectar drift, degradação, retreinar quando necessário</li>
+                </ol>
+                <p><em>Ciclo iterativo. Sem monitoramento, modelos degradam silenciosamente.</em></p>
+
+                <h4>⚠️ Problemas comuns em ML:</h4>
+                <table>
+                    <tr><th>Problema</th><th>Sinal</th><th>Solução</th></tr>
+                    <tr><td><strong>Overfitting</strong></td><td>Treino: 98%, Teste: 65%</td><td>Mais dados, regularização, simplificar modelo</td></tr>
+                    <tr><td><strong>Underfitting</strong></td><td>Treino: 62%, Teste: 60%</td><td>Modelo mais complexo, mais features</td></tr>
+                    <tr><td><strong>Data Leakage</strong></td><td>Métricas 95%+ no dev, falha em prod</td><td>Análise temporal rigorosa, separar por data</td></tr>
+                    <tr><td><strong>Data Drift</strong></td><td>Precisão cai após deploy</td><td>Model Monitor + retreino</td></tr>
+                </table>
+
                 <h4>📎 Serviços AWS relacionados:</h4>
                 <ul>
-                    <li><strong>SageMaker:</strong> Treinar, ajustar e implantar modelos ML</li>
+                    <li><strong>SageMaker Studio:</strong> IDE web completa para cientistas de dados</li>
                     <li><strong>SageMaker Ground Truth:</strong> Rotulagem de dados em escala</li>
                     <li><strong>SageMaker Canvas:</strong> ML no-code para business analysts</li>
-                    <li><strong>SageMaker Clarify:</strong> Detectar bias + explicabilidade (SHAP + PDPs)</li>
-                    <li><strong>SageMaker Serverless Inference:</strong> Endpoint sem gerenciar infra</li>
+                    <li><strong>SageMaker Data Wrangler:</strong> Preparação visual de dados (300+ transformações)</li>
+                    <li><strong>SageMaker Feature Store:</strong> Repositório centralizado de features (Online <10ms + Offline em S3)</li>
+                    <li><strong>SageMaker Model Monitor:</strong> Detecta drift em produção (Data Quality, Model Quality, Bias Drift, Feature Attribution)</li>
+                    <li><strong>SageMaker Clarify:</strong> Detectar bias + explicabilidade (SHAP, LIME, PDPs)</li>
+                    <li><strong>SageMaker Serverless Inference:</strong> Endpoint sem gerenciar infra, escala a zero</li>
+                    <li><strong>Mechanical Turk:</strong> Força de trabalho humana para rotulagem e validação</li>
                 </ul>
             </div>
         `
@@ -135,7 +175,10 @@ const aifStudyMaterial = {
                 <h4>📎 Serviços AWS:</h4>
                 <ul>
                     <li><strong>Amazon Bedrock:</strong> Acesso a foundation models (Claude, Titan, Llama, Mistral) via API</li>
-                    <li><strong>Amazon Q:</strong> Assistente IA para empresas e desenvolvedores</li>
+                    <li><strong>Amazon Titan:</strong> Família de FMs da AWS (texto, embeddings, imagens)</li>
+                    <li><strong>Amazon Nova:</strong> Nova geração de FMs multimodais (texto, imagem, vídeo) com variantes por custo/qualidade</li>
+                    <li><strong>Amazon Q Developer:</strong> Assistente IA para devs (código, testes, refatoração)</li>
+                    <li><strong>Amazon Q em QuickSight:</strong> Assistente IA para análise de dados (linguagem natural → dashboards)</li>
                     <li><strong>PartyRock:</strong> Playground no-code para experimentar GenAI</li>
                 </ul>
             </div>
@@ -186,15 +229,45 @@ const aifStudyMaterial = {
                     <li><strong>Geração multimodal:</strong> Cria conteúdo de um tipo a partir de outro (texto→imagem)</li>
                 </ul>
 
-                <h4>📎 Serviços AWS:</h4>
+                <h4>🤖 Serviços de IA Gerenciados da AWS (cai MUITO!):</h4>
+                <table>
+                    <tr><th>Serviço</th><th>Tipo de dado</th><th>O que faz</th></tr>
+                    <tr><td><strong>Rekognition</strong></td><td>Imagem/Vídeo</td><td>Detecção de objetos, faces, conteúdo impróprio, texto em imagens</td></tr>
+                    <tr><td><strong>Rekognition Custom Labels</strong></td><td>Imagem</td><td>Treinar modelo de visão com seus próprios dados/labels</td></tr>
+                    <tr><td><strong>Comprehend</strong></td><td>Texto</td><td>Entidades, sentimento, frases-chave, classificação, idioma</td></tr>
+                    <tr><td><strong>Comprehend Medical</strong></td><td>Texto clínico</td><td>Extrai condições, medicamentos, PHI. Vincula a ICD-10/RxNorm</td></tr>
+                    <tr><td><strong>HealthScribe</strong></td><td>Áudio clínico</td><td>Transcreve consultas médicas → notas clínicas estruturadas</td></tr>
+                    <tr><td><strong>Textract</strong></td><td>Documentos</td><td>OCR avançado: texto + formulários + tabelas + queries em linguagem natural</td></tr>
+                    <tr><td><strong>Translate</strong></td><td>Texto</td><td>Tradução neural entre dezenas de idiomas (real-time ou batch)</td></tr>
+                    <tr><td><strong>Polly</strong></td><td>Texto → Áudio</td><td>TTS com vozes Standard (robótica) e Neural (natural)</td></tr>
+                    <tr><td><strong>Transcribe</strong></td><td>Áudio → Texto</td><td>STT com identificação de falantes, timestamps, vocabulário custom</td></tr>
+                    <tr><td><strong>Lex</strong></td><td>Texto/Voz</td><td>Bots conversacionais (mesma tech da Alexa). Intenções + slots</td></tr>
+                    <tr><td><strong>Personalize</strong></td><td>Interações</td><td>Recomendação personalizada (filtragem colaborativa + conteúdo)</td></tr>
+                    <tr><td><strong>Fraud Detector</strong></td><td>Eventos</td><td>Detecção de fraudes em tempo real (ML + regras de negócio)</td></tr>
+                </table>
+
+                <h4>🔗 Pipeline integrado de serviços:</h4>
+                <p><em>Áudio → Transcribe → Comprehend → Polly → Áudio (base de URAs inteligentes e assistentes)</em></p>
+
+                <h4>📎 Serviços para RAG e busca:</h4>
                 <ul>
                     <li><strong>Bedrock Knowledge Bases:</strong> RAG gerenciado end-to-end</li>
                     <li><strong>Bedrock Agents:</strong> Modelos que executam ações via APIs</li>
                     <li><strong>Bedrock Guardrails:</strong> Filtros de conteúdo e segurança</li>
-                    <li><strong>Amazon Kendra:</strong> Enterprise search (pode ser fonte para RAG)</li>
-                    <li><strong>OpenSearch Serverless:</strong> Banco vetorial para embeddings</li>
-                    <li><strong>Aurora PostgreSQL + pgvector:</strong> Vetores em banco relacional</li>
+                    <li><strong>Bedrock Prompt Management:</strong> Criar, versionar e compartilhar prompts entre times</li>
+                    <li><strong>Amazon Kendra:</strong> Busca corporativa com NLP (linguagem natural → resposta direta). 40+ conectores. Respeita permissões</li>
+                    <li><strong>OpenSearch Service:</strong> Busca por palavra-chave + semântica + vetorial. Suporta RAG com embeddings</li>
+                    <li><strong>Aurora PostgreSQL + pgvector:</strong> Vetores em banco relacional (SQL + similaridade)</li>
                 </ul>
+
+                <h4>🔍 Kendra vs OpenSearch (cai no exame!):</h4>
+                <table>
+                    <tr><th>Critério</th><th>Kendra</th><th>OpenSearch</th></tr>
+                    <tr><td>Foco</td><td>Busca corporativa em linguagem natural</td><td>Busca técnica, logs, observabilidade</td></tr>
+                    <tr><td>Consulta</td><td>Pergunta natural → resposta direta</td><td>Palavra-chave, filtros, busca vetorial</td></tr>
+                    <tr><td>Config</td><td>Pronto para uso, baixa configuração</td><td>Flexível, exige modelagem do índice</td></tr>
+                    <tr><td>Usuário</td><td>Funcionários, agentes, pesquisadores</td><td>Engenheiros, SREs, DevOps</td></tr>
+                </table>
             </div>
         `
     },
@@ -281,6 +354,16 @@ const aifStudyMaterial = {
                     <li><strong>CloudTrail:</strong> Audita todas as chamadas de API ao Bedrock</li>
                 </ul>
 
+                <h4>🔑 Distribuição de Credenciais (princípios):</h4>
+                <ul>
+                    <li><strong>Menor privilégio:</strong> Conceder apenas o necessário para a tarefa</li>
+                    <li><strong>Credenciais temporárias:</strong> Preferíveis a chaves permanentes (IAM Roles, STS)</li>
+                    <li><strong>Separação de responsabilidades:</strong> Perfis distintos para funções distintas</li>
+                    <li><strong>Rastreabilidade:</strong> CloudTrail registra e audita cada acesso</li>
+                    <li><strong>Rotação periódica:</strong> Trocar chaves e segredos regularmente</li>
+                    <li><strong>Nunca embarcar credenciais em código-fonte</strong></li>
+                </ul>
+
                 <h4>📎 Serviços AWS:</h4>
                 <ul>
                     <li><strong>IAM:</strong> Policies para Bedrock, SageMaker</li>
@@ -298,20 +381,25 @@ const aifStudyMaterial = {
 // Mapa 80/20: Os 20% vitais que cobrem 80% do exame
 const aifParetoMap = {
     vital: [
-        { topic: 'Amazon Bedrock (Foundation Models, RAG, Agents, Guardrails)', domains: [2, 3, 4, 5], weight: 'Aparece em 4 dos 5 domínios' },
+        { topic: 'Amazon Bedrock (Foundation Models, RAG, Agents, Guardrails, Prompt Management)', domains: [2, 3, 4, 5], weight: 'Aparece em 4 dos 5 domínios' },
         { topic: 'Tipos de Aprendizado (supervisionado, não supervisionado, reforço)', domains: [1], weight: 'Base do Domínio 1 inteiro' },
-        { topic: 'Prompt Engineering (zero-shot, few-shot, chain-of-thought, temperatura)', domains: [2, 3], weight: '52% do exame (D2+D3)' },
-        { topic: 'RAG (Retrieval-Augmented Generation)', domains: [3], weight: 'Maior domínio: 28%' },
-        { topic: 'Responsible AI (bias, fairness, alucinações, guardrails)', domains: [4, 5], weight: '28% do exame (D4+D5)' },
-        { topic: 'Embeddings e Bancos Vetoriais', domains: [1, 3], weight: 'Base de RAG e busca semântica' }
+        { topic: 'Prompt Engineering (zero-shot, few-shot, chain-of-thought, temperatura, top-p)', domains: [2, 3], weight: '52% do exame (D2+D3)' },
+        { topic: 'RAG (Retrieval-Augmented Generation) + Kendra + OpenSearch', domains: [3], weight: 'Maior domínio: 28%' },
+        { topic: 'Responsible AI (bias, fairness, alucinações, guardrails, LIME/SHAP)', domains: [4, 5], weight: '28% do exame (D4+D5)' },
+        { topic: 'Embeddings, Bancos Vetoriais e Cosine Similarity', domains: [1, 3], weight: 'Base de RAG e busca semântica' },
+        { topic: 'MLOps: Ciclo de ML + Model Monitor + Feature Store + Data Wrangler', domains: [1], weight: 'Pipeline completo cai muito' }
     ],
     complementary: [
         { topic: 'SageMaker (training, inference, Ground Truth, Clarify)', domains: [1, 4] },
-        { topic: 'Serviços de IA (Comprehend, Rekognition, Lex, Textract, Polly)', domains: [1, 3] },
+        { topic: 'Serviços de IA: Comprehend, Rekognition, Textract, Polly, Transcribe, Lex', domains: [1, 3] },
+        { topic: 'Serviços de IA: Personalize, Fraud Detector, Translate, HealthScribe', domains: [1, 3] },
+        { topic: 'GANs, Visão Computacional e NLP (sub-campos da IA)', domains: [1] },
+        { topic: 'Amazon Titan, Nova e OpenSearch (busca vetorial + RAG)', domains: [2, 3] },
+        { topic: 'Amazon Q Developer vs Q em QuickSight', domains: [2, 3] },
         { topic: 'Fine-tuning vs Pre-training', domains: [3] },
         { topic: 'LLMs vs SLMs (quando usar cada)', domains: [2] },
         { topic: 'Tokenização e Janela de Contexto', domains: [2] },
-        { topic: 'Data Privacy e IAM para IA', domains: [5] }
+        { topic: 'Data Privacy, IAM e Distribuição de Credenciais', domains: [5] }
     ]
 };
 
