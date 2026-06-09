@@ -768,3 +768,94 @@ const foundationModelsQuestions2 = [
 ];
 
 foundationModelsQuestions.push(...foundationModelsQuestions2);
+
+
+// Simulado 03 - Domain 3 additions
+const foundationModelsQuestions3 = [
+    {
+        id: 'fm_055',
+        question: "Uma operadora de pedágios quer LER AUTOMATICAMENTE as placas dos veículos a partir de fotos capturadas pelas câmeras de aproximação, sem treinar um modelo do zero. Qual recurso da AWS é o MAIS adequado?",
+        options: [
+            "Amazon Textract, para análise de formulários e tabelas em documentos",
+            "Amazon Polly, para converter texto em fala",
+            "Amazon Comprehend, para análise de entidades em texto já transcrito",
+            "Amazon Rekognition com DetectText, para extrair texto de IMAGENS de cenas naturais"
+        ],
+        correct: [3],
+        explanation: "Rekognition DetectText extrai texto de imagens de cenas naturais (placas, letreiros, sinalizações). Textract é para documentos digitalizados (formulários, tabelas). Polly converte texto em fala. Comprehend analisa texto já existente.",
+        topic: "agents",
+        domain: "foundation-models"
+    },
+    {
+        id: 'fm_056',
+        question: "Uma empresa farmacêutica usa Amazon Polly para narrar treinamentos internos. Os textos contêm muitos NOMES TÉCNICOS de medicamentos que o Polly pronuncia INCORRETAMENTE por padrão. A empresa precisa garantir a pronúncia adequada SEM alterar o texto-fonte. Qual recurso atende a esse requisito?",
+        options: [
+            "Mudar a voz do Polly para uma voz neural diferente",
+            "Migrar para o Amazon Transcribe para realizar a transcrição",
+            "Aumentar a velocidade de fala (rate) do Polly globalmente",
+            "Configurar um Lexicon (léxico de pronúncia)"
+        ],
+        correct: [3],
+        explanation: "Polly Lexicon mapeia termos para pronúncias customizadas (formato PLS) sem alterar o texto-fonte. Mudar a voz altera timbre, não pronúncia. Transcribe faz fala→texto (inverso). Velocidade não corrige pronúncia.",
+        topic: "agents",
+        domain: "foundation-models"
+    },
+    {
+        id: 'fm_057',
+        question: "Uma editora quer ANALISAR milhares de artigos de blog para descobrir, de forma NÃO SUPERVISIONADA, quais TÓPICOS PRINCIPAIS aparecem na coleção sem precisar definir categorias previamente. Qual recurso da AWS atende a esse requisito?",
+        options: [
+            "Amazon Comprehend — Topic Modeling, que descobre tópicos latentes em uma coleção de documentos",
+            "Amazon Comprehend — Sentiment Analysis, que classifica sentimento positivo/negativo/neutro",
+            "Amazon Comprehend — Custom Classification, que requer categorias rotuladas",
+            "Amazon Translate, que traduz texto entre idiomas"
+        ],
+        correct: [0],
+        explanation: "Comprehend Topic Modeling descobre tópicos latentes usando LDA (não supervisionado), sem rótulos prévios. Sentiment Analysis detecta emoção. Custom Classification exige categorias rotuladas. Translate apenas traduz idiomas.",
+        topic: "agents",
+        domain: "foundation-models"
+    },
+    {
+        id: 'fm_058',
+        question: "Uma empresa processa milhares de contratos digitalizados e precisa extrair CAMPOS ESPECÍFICOS de cada documento usando perguntas em linguagem natural, como 'Qual é a data de assinatura?' e 'Qual é o valor total do contrato?', sem treinar um modelo customizado. Qual recurso atende a esse requisito?",
+        options: [
+            "Amazon Textract — Queries, que extrai informações respondendo a perguntas em linguagem natural sobre o documento",
+            "Amazon Comprehend Custom Entity Recognition, treinando um modelo customizado para cada campo",
+            "Amazon Rekognition Custom Labels, para identificar logos no documento",
+            "Amazon Translate, para traduzir o contrato antes da análise"
+        ],
+        correct: [0],
+        explanation: "Textract Queries extrai campos respondendo a perguntas em linguagem natural sobre documentos, sem treino de modelo customizado. Comprehend Custom Entity exige rotular dataset. Rekognition Custom Labels é para imagens. Translate apenas traduz.",
+        topic: "agents",
+        domain: "foundation-models"
+    },
+    {
+        id: 'fm_059',
+        question: "Uma empresa de tecnologia traduz documentação técnica do inglês para o português usando Amazon Translate e precisa garantir que TERMOS ESPECÍFICOS do produto (nomes de funcionalidades, jargões internos) sejam traduzidos de forma CONSISTENTE em todos os documentos. Qual recurso atende a esse requisito?",
+        options: [
+            "Utilizar o Active Custom Translation (ACT) para adaptar o modelo ao estilo técnico",
+            "Implementar Custom Terminology, fornecendo um arquivo de glossário (CSV ou TMX) aplicado durante a inferência",
+            "Configurar Amazon Comprehend Custom Entities para isolar jargões antes da tradução",
+            "Criar dicionário usando Amazon Transcribe Custom Vocabulary"
+        ],
+        correct: [1],
+        explanation: "Amazon Translate Custom Terminology aplica um glossário (CSV/TMX) durante a tradução para garantir consistência de termos específicos. ACT adapta estilo, não termos exatos. Comprehend e Transcribe são serviços diferentes com propósitos distintos.",
+        topic: "agents",
+        domain: "foundation-models"
+    },
+    {
+        id: 'fm_060',
+        question: "Uma empresa usa o Amazon Connect como central de atendimento e quer oferecer aos AGENTES, EM TEMPO REAL durante as chamadas, respostas sugeridas e trechos relevantes da base de conhecimento interna. Qual serviço da AWS atende a esse requisito?",
+        options: [
+            "Amazon Q in Connect, que sugere respostas e ações em tempo real para agentes de call center",
+            "Amazon Q Developer, focado em geração e revisão de código para desenvolvedores",
+            "Amazon Q Business, para consultas a dados corporativos a partir de uma interface web",
+            "Amazon Polly, para gerar áudios de mensagens automáticas"
+        ],
+        correct: [0],
+        explanation: "Amazon Q in Connect (antigo Amazon Connect Wisdom) sugere respostas e ações em tempo real aos agentes durante chamadas, buscando na base de conhecimento interna. Q Developer é para código. Q Business é consulta web. Polly gera áudio.",
+        topic: "agents",
+        domain: "foundation-models"
+    }
+];
+
+foundationModelsQuestions.push(...foundationModelsQuestions3);

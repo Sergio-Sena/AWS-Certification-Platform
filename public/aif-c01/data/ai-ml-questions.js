@@ -558,3 +558,24 @@ const aiMlQuestions2 = [
 ];
 
 aiMlQuestions.push(...aiMlQuestions2);
+
+
+// Simulado 03 - Domain 1 additions
+const aiMlQuestions3 = [
+    {
+        id: 'aiml_040',
+        question: "Uma equipe testa muitas combinações de hiperparâmetros, algoritmos e datasets em paralelo e precisa REGISTRAR de forma organizada os parâmetros, métricas e artefatos de cada execução para COMPARAR resultados depois. Qual recurso do Amazon SageMaker atende a esse requisito?",
+        options: [
+            "Amazon SageMaker Experiments, para rastrear, organizar e comparar execuções de treino",
+            "Amazon SageMaker Model Monitor, para detectar drift em produção",
+            "Amazon SageMaker Feature Store, para armazenar atributos",
+            "Amazon SageMaker Ground Truth, para rotular dados"
+        ],
+        correct: [0],
+        explanation: "SageMaker Experiments rastreia, organiza e compara execuções (runs) de treino. Registra parâmetros, métricas e artefatos de cada run. Model Monitor atua em produção (drift), Feature Store gerencia atributos, Ground Truth rotula dados.",
+        topic: "aws-services",
+        domain: "ai-ml"
+    }
+];
+
+aiMlQuestions.push(...aiMlQuestions3);

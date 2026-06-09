@@ -670,3 +670,53 @@ const generativeAiQuestions2 = [
 ];
 
 generativeAiQuestions.push(...generativeAiQuestions2);
+
+
+// Simulado 03 - Domain 2 additions
+const generativeAiQuestions3 = [
+    {
+        id: 'genai_048',
+        question: "Uma equipe quer avaliar a qualidade INTRÍNSECA de modelos de linguagem comparando quão BEM cada modelo prevê o PRÓXIMO TOKEN em um conjunto de teste de texto. Qual métrica é a MAIS adequada?",
+        options: [
+            "BLEU, que mede sobreposição de n-gramas entre tradução gerada e referência",
+            "Perplexity, que mede quão BEM o modelo prevê o próximo token (valores menores = melhor)",
+            "Acurácia binária entre saída e gabarito",
+            "Pontuação F1 sobre classes de tópicos"
+        ],
+        correct: [1],
+        explanation: "Perplexity mede quão bem o modelo prevê o próximo token — valores menores indicam melhor performance. É uma métrica intrínseca de LLMs. BLEU/ROUGE são métricas extrínsecas (tradução/sumarização). Acurácia e F1 são para classificação.",
+        topic: "parameters",
+        domain: "generative-ai"
+    },
+    {
+        id: 'genai_049',
+        question: "Uma empresa tem uma aplicação de IA generativa com TRÁFEGO ALTO, PREVISÍVEL e SUSTENTADO ao longo do dia, exigindo capacidade GARANTIDA e latência consistente, e quer otimizar o custo por requisição. Qual modalidade de cobrança do Amazon Bedrock é a MAIS adequada?",
+        options: [
+            "Provisioned Throughput, com capacidade reservada e custo previsível para tráfego alto e sustentado",
+            "On-Demand (sob demanda), pago por token, ideal para tráfego intermitente",
+            "AWS Spot Instances, com preço reduzido e interrupções possíveis",
+            "AWS Savings Plan para Amazon EC2"
+        ],
+        correct: [0],
+        explanation: "Provisioned Throughput reserva capacidade dedicada no Bedrock com throughput garantido, sem throttling, custo previsível. Ideal para tráfego alto e sustentado. On-Demand é melhor para tráfego intermitente. Spot e Savings Plans são de EC2, não Bedrock.",
+        topic: "aws-bedrock",
+        domain: "generative-ai"
+    },
+    {
+        id: 'genai_050',
+        question: "Uma empresa estima o custo mensal de uma aplicação RAG sobre o Amazon Bedrock e o time financeiro precisa entender os principais COMPONENTES do custo de inferência. Selecione DOIS componentes FUNDAMENTAIS. (Selecione 2)",
+        options: [
+            "Custo fixo mensal de licença por modelo, independentemente de uso",
+            "Tokens de ENTRADA (incluindo prompt do usuário + trechos recuperados da base de conhecimento)",
+            "Custo de armazenamento dos pesos do modelo na conta do cliente",
+            "Custo de aluguel das GPUs físicas onde o modelo está hospedado",
+            "Tokens de SAÍDA (resposta gerada pelo modelo)"
+        ],
+        correct: [1, 4],
+        explanation: "No Bedrock On-Demand o custo é tokens de entrada + tokens de saída. Em RAG, tokens de entrada incluem o prompt e o contexto recuperado. Não existe custo fixo de licença, o cliente não armazena pesos nem aluga GPUs — tudo é gerenciado pela AWS.",
+        topic: "aws-bedrock",
+        domain: "generative-ai"
+    }
+];
+
+generativeAiQuestions.push(...generativeAiQuestions3);
