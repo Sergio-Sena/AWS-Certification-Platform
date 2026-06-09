@@ -60,13 +60,23 @@ const aifStudyMaterial = {
                 </table>
                 <p><em>Regra: Trainium = treinar. Inferentia = inferir (usar).</em></p>
 
-                <h4>📈 Explicabilidade — PDPs:</h4>
-                <ul>
-                    <li><strong>Partial Dependence Plots:</strong> Gráficos que mostram como uma variável influencia a previsão do modelo</li>
-                    <li>Eixo X = valores da variável, Eixo Y = efeito na previsão</li>
-                    <li>Curva crescente = variável aumenta previsão. Plana = sem efeito</li>
-                    <li>Usado para: explicabilidade, auditoria, governança, comunicação com negócio</li>
-                </ul>
+                <h4>📈 Explicabilidade e Ferramentas:</h4>
+                <table>
+                    <tr><th>Técnica</th><th>Escopo</th><th>Como funciona</th></tr>
+                    <tr><td><strong>PDPs</strong></td><td>Global</td><td>Mostra efeito médio de uma variável na previsão</td></tr>
+                    <tr><td><strong>SHAP</strong></td><td>Local + Global</td><td>Contribuição de cada feature via teoria de jogos</td></tr>
+                    <tr><td><strong>LIME</strong></td><td>Local</td><td>Aproxima modelo complexo localmente por modelo simples</td></tr>
+                    <tr><td><strong>Feature Importance</strong></td><td>Global</td><td>Ranking de impacto de cada variável no modelo</td></tr>
+                </table>
+
+                <h4>📊 Data Augmentation:</h4>
+                <table>
+                    <tr><th>Tipo de dado</th><th>Técnicas</th></tr>
+                    <tr><td>Imagem</td><td>Rotação, recorte, espelhamento, variações de cor</td></tr>
+                    <tr><td>Texto</td><td>Sinônimos, paráfrases, tradução de ida e volta</td></tr>
+                    <tr><td>Áudio</td><td>Mudança de tom, ruído de fundo, variação de velocidade</td></tr>
+                    <tr><td>Tabular</td><td>SMOTE para classes raras, perturbação de variáveis</td></tr>
+                </table>
 
                 <h4>⚠️ Quando NÃO usar IA:</h4>
                 <ul>
@@ -176,14 +186,31 @@ const aifStudyMaterial = {
                 <ul>
                     <li><strong>Amazon Bedrock:</strong> Acesso a foundation models (Claude, Titan, Llama, Mistral) via API</li>
                     <li><strong>Amazon Titan:</strong> Família de FMs da AWS (texto, embeddings, imagens)</li>
-                    <li><strong>Amazon Nova:</strong> Nova geração de FMs multimodais (texto, imagem, vídeo) com variantes por custo/qualidade</li>
+                    <li><strong>Amazon Nova:</strong> Nova geração de FMs multimodais (Micro/Lite/Pro — custo vs qualidade)</li>
                     <li><strong>Amazon Q Developer:</strong> Assistente IA para devs (código, testes, refatoração)</li>
                     <li><strong>Amazon Q em QuickSight:</strong> Assistente IA para análise de dados (linguagem natural → dashboards)</li>
                     <li><strong>PartyRock:</strong> Playground no-code para experimentar GenAI</li>
                 </ul>
-            </div>
-        `
-    },
+
+                <h4>🎯 Métricas para Foundation Models (cai no exame!):</h4>
+                <table>
+                    <tr><th>Métrica</th><th>O que mede</th><th>Quando usar</th><th>Limitação</th></tr>
+                    <tr><td><strong>BLEU</strong></td><td>Sobreposição de n-gramas (precisão)</td><td>Tradução automática</td><td>Penaliza sinônimos/paráfrases</td></tr>
+                    <tr><td><strong>ROUGE</strong></td><td>Quanto da referência aparece na saída (recall)</td><td>Resumo automático</td><td>Não captura semântica</td></tr>
+                    <tr><td><strong>BERTScore</strong></td><td>Similaridade semântica via embeddings</td><td>Geração livre, diálogos</td><td>Mais caro computacionalmente</td></tr>
+                </table>
+                <p><em>Avaliação completa combina métricas automáticas + revisão humana qualitativa.</em></p>
+
+                <h4>🔧 Estratégias de Customização (ordem de custo):</h4>
+                <table>
+                    <tr><th>Estratégia</th><th>Dados necessários</th><th>Custo</th><th>Quando usar</th></tr>
+                    <tr><td>Prompt Engineering</td><td>Nenhum</td><td>Zero</td><td>Sempre primeiro</td></tr>
+                    <tr><td>Few-shot</td><td>Exemplos no prompt</td><td>Tokens extras</td><td>Formato específico</td></tr>
+                    <tr><td>RAG</td><td>Docs externos</td><td>Médio</td><td>Dados atualizados/privados</td></tr>
+                    <tr><td>Pré-treino continuado</td><td>Textos do domínio (não rotulados)</td><td>Alto</td><td>Vocabulário/estilo do setor</td></tr>
+                    <tr><td>Fine-tuning (Full/LoRA/PEFT)</td><td>Pares prompt→completion</td><td>Alto</td><td>Comportamento específico</td></tr>
+                    <tr><td>Treinar do zero</td><td>Trilhões de tokens</td><td>Milhões $$</td><td>Quase nunca</td></tr>
+                </table>
 
     // DOMÍNIO 3: Applications of Foundation Models (28%)
     'foundation-models': {
@@ -301,12 +328,25 @@ const aifStudyMaterial = {
 
                 <h4>🛡️ Mitigação:</h4>
                 <ul>
-                    <li><strong>Bedrock Guardrails:</strong> Filtros de conteúdo (toxicidade, PII, tópicos proibidos)</li>
+                    <li><strong>Bedrock Guardrails:</strong> Filtros de conteúdo (toxicidade, PII, tópicos proibidos, prompt injection)</li>
                     <li><strong>Human-in-the-loop:</strong> Revisão humana antes de ações críticas</li>
+                    <li><strong>Amazon A2I:</strong> Serviço gerenciado para HITL — envia previsões de baixa confiança para revisão humana automática</li>
                     <li><strong>Diverse training data:</strong> Dados representativos de todos os grupos</li>
-                    <li><strong>Model cards:</strong> Documentação de limitações e uso pretendido</li>
-                    <li><strong>SageMaker Clarify:</strong> Detecta bias em dados e modelos</li>
+                    <li><strong>AWS AI Service Cards:</strong> Documentam casos de uso, limitações e considerações de cada serviço de IA</li>
+                    <li><strong>SageMaker Clarify:</strong> Detecta bias em dados e modelos (SHAP, LIME)</li>
+                    <li><strong>Data augmentation:</strong> SMOTE e técnicas para balancear classes sub-representadas</li>
                 </ul>
+
+                <h4>🔐 Generative AI Security Scoping Matrix (5 escopos):</h4>
+                <table>
+                    <tr><th>Escopo</th><th>Descrição</th><th>Responsabilidade do cliente</th></tr>
+                    <tr><td>1</td><td>App de IA consumidor (ex: ChatGPT)</td><td>Mínima</td></tr>
+                    <tr><td>2</td><td>App empresarial pronto (ex: Q Business)</td><td>Dados + identidade + config</td></tr>
+                    <tr><td>3</td><td>App de terceiros via API (ex: Bedrock on-demand)</td><td>Dados + prompts + segurança de integração</td></tr>
+                    <tr><td>4</td><td>FM pré-treinado com fine-tuning</td><td>Alta (dados de treino + modelo + segurança)</td></tr>
+                    <tr><td>5</td><td>Modelo treinado do zero</td><td><strong>Máxima</strong> (tudo é do cliente)</td></tr>
+                </table>
+                <p><em>Regra: quanto mais customizado → mais responsabilidade de segurança.</em></p>
 
                 <h4>📎 Serviços AWS:</h4>
                 <ul>
