@@ -1,446 +1,861 @@
-// DOMAIN 1: RESILIENT ARCHITECTURES - 55 questões adicionais (30% total = 60 questões)
+// SAA-C03 Domain 1: Resilient Architectures (60 questões - 30%)
+// Tópicos: Multi-AZ, Multi-Region, Auto Scaling, ELB, Route 53, RDS, S3, DR strategies
 
 const resilientQuestions = [
     {
-        id: 6,
-        question: "Como implementar failover automático para banco de dados RDS?",
-        options: ["Single-AZ apenas", "Multi-AZ deployment com failover automático", "Backup manual", "Read replica apenas"],
+        id: 'res_001',
+        question: "Uma empresa tem uma aplicação web em EC2 com Auto Scaling Group em uma única AZ. Durante uma falha na AZ, a aplicação ficou indisponível por 45 minutos. Como redesenhar para minimizar downtime?",
+        options: [
+            "Aumentar o número de instâncias na mesma AZ",
+            "Configurar Auto Scaling Group em múltiplas AZs com Application Load Balancer",
+            "Usar instâncias maiores com Enhanced Networking",
+            "Adicionar uma instância standby na mesma AZ"
+        ],
         correct: [1],
-        explanation: "Multi-AZ RDS fornece failover automático para instância standby em outra AZ em caso de falha.",
-        topic: "resilient", domain: "resilient"
+        explanation: "ASG multi-AZ distribui instâncias entre AZs. Se uma AZ falhar, o ALB roteia tráfego para instâncias saudáveis nas outras AZs automaticamente.",
+        topic: "multi-az",
+        domain: "resilient"
     },
     {
-        id: 7,
-        question: "Qual é a melhor estratégia para distribuir carga entre múltiplas instâncias?",
-        options: ["DNS round-robin", "Application Load Balancer com health checks", "IP fixo", "Proxy reverso manual"],
-        correct: [1],
-        explanation: "ALB distribui tráfego automaticamente e remove instâncias não saudáveis da rotação.",
-        topic: "resilient", domain: "resilient"
-    },
-    {
-        id: 8,
-        question: "Como garantir que Auto Scaling funcione corretamente durante picos de tráfego?",
-        options: ["Scaling manual", "Políticas baseadas em múltiplas métricas com cooldown apropriado", "Instâncias fixas", "Scaling apenas por CPU"],
-        correct: [1],
-        explanation: "Múltiplas métricas (CPU, memória, requests) com cooldown evitam scaling desnecessário.",
-        topic: "resilient", domain: "resilient"
-    },
-    {
-        id: 9,
-        question: "Qual serviço AWS fornece DNS com failover automático?",
-        options: ["Route 53 com health checks", "CloudFront apenas", "ELB apenas", "VPC DNS"],
+        id: 'res_002',
+        question: "Uma aplicação crítica usa RDS MySQL Single-AZ. O CTO exige RTO < 5 minutos e RPO = 0. Qual solução atende esses requisitos com menor custo?",
+        options: [
+            "RDS Multi-AZ com failover automático",
+            "RDS com read replicas em outra AZ",
+            "Snapshots automáticos a cada 5 minutos",
+            "Aurora Global Database"
+        ],
         correct: [0],
-        explanation: "Route 53 health checks monitoram endpoints e fazem failover automático para recursos saudáveis.",
-        topic: "resilient", domain: "resilient"
+        explanation: "RDS Multi-AZ fornece failover automático em 1-2 minutos (RTO < 5min) com replicação síncrona (RPO = 0). Read replicas são assíncronas (RPO > 0).",
+        topic: "rds",
+        domain: "resilient"
     },
     {
-        id: 10,
-        question: "Como implementar backup cross-region para dados críticos?",
-        options: ["Backup local apenas", "S3 Cross-Region Replication + AWS Backup", "Manual copy", "Single region backup"],
+        id: 'res_003',
+        question: "Uma empresa global precisa de disaster recovery com RTO < 15 minutos para sua aplicação principal. O orçamento é limitado. Qual estratégia DR é mais adequada?",
+        options: [
+            "Backup & Restore (RTO: horas)",
+            "Pilot Light com componentes core rodando na região DR",
+            "Warm Standby com ambiente reduzido na região DR",
+            "Active-Active multi-region"
+        ],
+        correct: [2],
+        explanation: "Warm Standby mantém ambiente reduzido rodando na região DR, permitindo scale-up rápido (RTO ~minutos). Pilot Light tem RTO maior (dezenas de minutos). Active-Active é mais caro.",
+        topic: "dr",
+        domain: "resilient"
+    },
+    {
+        id: 'res_004',
+        question: "Uma aplicação stateful em EC2 perde dados de sessão quando instâncias são terminadas pelo Auto Scaling. Como resolver mantendo elasticidade?",
+        options: [
+            "Desabilitar scale-in no Auto Scaling",
+            "Externalizar sessões para ElastiCache Redis com Multi-AZ",
+            "Usar sticky sessions no ALB",
+            "Armazenar sessões em EBS volumes"
+        ],
         correct: [1],
-        explanation: "CRR replica dados automaticamente e AWS Backup pode fazer backup cross-region de múltiplos serviços.",
-        topic: "resilient", domain: "resilient"
+        explanation: "ElastiCache Redis Multi-AZ externaliza sessões, permitindo que qualquer instância acesse os dados. Sticky sessions não resolvem terminação e EBS não é compartilhado.",
+        topic: "elasticache",
+        domain: "resilient"
     },
     {
-        id: 11,
-        question: "Qual é a diferença entre RTO e RPO em disaster recovery?",
-        options: ["São iguais", "RTO é tempo para recuperar, RPO é perda de dados aceitável", "RTO é custo, RPO é tempo", "Não há diferença"],
+        id: 'res_005',
+        question: "Route 53 health checks detectam que o endpoint primário em us-east-1 está down. O failover para eu-west-1 não está acontecendo. Qual é a causa mais provável?",
+        options: [
+            "TTL do DNS muito alto",
+            "Failover routing policy não configurada — está usando Simple routing",
+            "Health check interval muito longo",
+            "A região secundária não tem capacity"
+        ],
         correct: [1],
-        explanation: "RTO (Recovery Time Objective) é tempo máximo para restaurar serviços, RPO (Recovery Point Objective) é perda máxima de dados aceitável.",
-        topic: "resilient", domain: "resilient"
+        explanation: "Simple routing não suporta failover. É necessário usar Failover routing policy com health checks associados ao record primário.",
+        topic: "route53",
+        domain: "resilient"
     },
     {
-        id: 12,
-        question: "Como implementar circuit breaker pattern na AWS?",
-        options: ["API Gateway com throttling", "Lambda com error handling", "ELB health checks", "Todas as anteriores"],
-        correct: [3],
-        explanation: "Circuit breaker pode ser implementado em múltiplas camadas: API Gateway, Lambda functions e load balancers.",
-        topic: "resilient", domain: "resilient"
-    },
-    {
-        id: 13,
-        question: "Qual estratégia de deployment minimiza downtime?",
-        options: ["Big bang deployment", "Blue-green deployment", "Recreate deployment", "Manual deployment"],
+        id: 'res_006',
+        question: "Uma aplicação processa pedidos via SQS. Algumas mensagens falham repetidamente e bloqueiam o processamento de novas mensagens. Como resolver?",
+        options: [
+            "Aumentar o visibility timeout para 12 horas",
+            "Configurar Dead Letter Queue com maxReceiveCount = 3",
+            "Deletar mensagens com erro manualmente",
+            "Usar FIFO queue ao invés de Standard"
+        ],
         correct: [1],
-        explanation: "Blue-green deployment permite testar nova versão e fazer switch instantâneo sem downtime.",
-        topic: "resilient", domain: "resilient"
+        explanation: "DLQ com maxReceiveCount move mensagens problemáticas após N tentativas, desbloqueando a fila principal para processar novas mensagens.",
+        topic: "sqs",
+        domain: "resilient"
     },
     {
-        id: 14,
-        question: "Como garantir que dados em EBS sejam resilientes?",
-        options: ["Single volume", "EBS snapshots regulares + Multi-AZ", "Local storage", "RAM apenas"],
+        id: 'res_007',
+        question: "Uma empresa precisa replicar dados S3 para outra região para compliance e DR. Objetos existentes (500TB) também precisam ser replicados. Qual abordagem?",
+        options: [
+            "Habilitar Cross-Region Replication — replica tudo automaticamente",
+            "Habilitar CRR + usar S3 Batch Replication para objetos existentes",
+            "Copiar manualmente com aws s3 cp",
+            "Usar S3 Transfer Acceleration"
+        ],
         correct: [1],
-        explanation: "EBS snapshots são armazenados no S3 e podem ser restaurados em qualquer AZ.",
-        topic: "resilient", domain: "resilient"
+        explanation: "CRR só replica objetos novos após habilitação. S3 Batch Replication é necessário para replicar objetos existentes.",
+        topic: "s3",
+        domain: "resilient"
     },
     {
-        id: 15,
-        question: "Qual é a melhor prática para monitoramento de saúde de aplicações?",
-        options: ["Logs apenas", "CloudWatch + health checks + custom metrics", "Manual checking", "CPU monitoring apenas"],
+        id: 'res_008',
+        question: "Um Auto Scaling Group tem min=2, desired=2, max=10. Durante um pico, as instâncias novas levam 5 minutos para passar no health check do ALB. Usuários recebem erros 503 nesse período. Como resolver?",
+        options: [
+            "Aumentar max capacity para 20",
+            "Usar predictive scaling + warm pool com instâncias pre-initialized",
+            "Reduzir health check interval para 5 segundos",
+            "Usar instâncias maiores"
+        ],
         correct: [1],
-        explanation: "Combinação de CloudWatch, health checks e métricas customizadas fornece visibilidade completa.",
-        topic: "resilient", domain: "resilient"
+        explanation: "Warm pool mantém instâncias pre-initialized prontas para uso imediato. Predictive scaling antecipa picos baseado em padrões históricos.",
+        topic: "autoscaling",
+        domain: "resilient"
     },
     {
-        id: 16,
-        question: "Como implementar retry logic resiliente?",
-        options: ["Retry infinito", "Exponential backoff com jitter", "Retry fixo", "Sem retry"],
+        id: 'res_009',
+        question: "Uma aplicação usa Aurora MySQL. O requisito é RPO = 0 e RTO < 1 minuto mesmo em caso de falha regional completa. Qual solução?",
+        options: [
+            "Aurora Multi-AZ com read replicas",
+            "Aurora Global Database com managed failover",
+            "RDS Multi-AZ com cross-region read replica",
+            "Aurora Serverless v2"
+        ],
         correct: [1],
-        explanation: "Exponential backoff com jitter evita thundering herd e reduz carga em sistemas sob stress.",
-        topic: "resilient", domain: "resilient"
+        explanation: "Aurora Global Database replica dados com lag < 1 segundo entre regiões e managed failover promove região secundária em < 1 minuto. RPO tipicamente < 1s.",
+        topic: "aurora",
+        domain: "resilient"
     },
     {
-        id: 17,
-        question: "Qual serviço AWS ajuda com chaos engineering?",
-        options: ["AWS Fault Injection Simulator", "CloudWatch", "X-Ray", "Config"],
-        correct: [0],
-        explanation: "FIS permite injetar falhas controladas para testar resiliência de sistemas.",
-        topic: "resilient", domain: "resilient"
-    },
-    {
-        id: 18,
-        question: "Como garantir resiliência em arquiteturas serverless?",
-        options: ["Lambda em single AZ", "Lambda multi-AZ + DLQ + retry policies", "Sem error handling", "Synchronous apenas"],
+        id: 'res_010',
+        question: "Uma aplicação serverless (API Gateway + Lambda + DynamoDB) precisa funcionar em caso de falha regional. Qual arquitetura multi-region é mais adequada?",
+        options: [
+            "Deploy manual na região secundária quando necessário",
+            "DynamoDB Global Tables + Lambda em ambas regiões + Route 53 failover",
+            "Replicar apenas DynamoDB e usar Lambda@Edge",
+            "S3 Cross-Region Replication com static website"
+        ],
         correct: [1],
-        explanation: "Lambda automaticamente executa em múltiplas AZs, DLQ captura falhas e retry policies aumentam resiliência.",
-        topic: "resilient", domain: "resilient"
+        explanation: "DynamoDB Global Tables replica dados automaticamente. Lambda deploy em ambas regiões com Route 53 failover routing fornece DR completo para serverless.",
+        topic: "serverless-dr",
+        domain: "resilient"
     },
     {
-        id: 19,
-        question: "Qual é a melhor estratégia para database failover?",
-        options: ["Manual failover", "RDS Multi-AZ com automatic failover", "Single database", "Read replica promotion manual"],
+        id: 'res_011',
+        question: "Um ELB Application Load Balancer mostra targets unhealthy, mas a aplicação responde normalmente quando acessada diretamente. Qual é a causa mais provável?",
+        options: [
+            "Security Group do ALB não permite tráfego de saída",
+            "Health check path retorna HTTP 404 ou o Security Group da instância não permite tráfego do ALB",
+            "A instância está em uma subnet privada",
+            "O ALB está em uma AZ diferente"
+        ],
         correct: [1],
-        explanation: "RDS Multi-AZ detecta falhas e faz failover automático em 1-2 minutos.",
-        topic: "resilient", domain: "resilient"
+        explanation: "Causas comuns: health check path incorreto (404), ou Security Group da instância não permite inbound do ALB. O SG da instância deve permitir tráfego do SG do ALB.",
+        topic: "elb",
+        domain: "resilient"
     },
     {
-        id: 20,
-        question: "Como implementar graceful degradation?",
-        options: ["Falhar completamente", "Circuit breakers + fallback responses", "Ignorar erros", "Retry infinito"],
+        id: 'res_012',
+        question: "Uma empresa tem aplicação em 3 AZs com Auto Scaling. Após uma AZ failure, o ASG lança instâncias nas 2 AZs restantes mas atinge o limite de capacity da conta. Como prevenir?",
+        options: [
+            "Aumentar max capacity do ASG",
+            "Solicitar aumento de EC2 service quota e configurar AZ rebalancing",
+            "Usar instâncias menores",
+            "Reduzir min capacity"
+        ],
         correct: [1],
-        explanation: "Circuit breakers detectam falhas e fallback responses mantêm funcionalidade básica.",
-        topic: "resilient", domain: "resilient"
+        explanation: "Service quotas limitam instâncias por AZ/região. Solicitar aumento preventivo e AZ rebalancing garante distribuição adequada após falha.",
+        topic: "autoscaling",
+        domain: "resilient"
     },
     {
-        id: 21,
-        question: "Qual é a importância de idempotency em sistemas distribuídos?",
-        options: ["Não é importante", "Permite retry seguro de operações", "Apenas para performance", "Apenas para segurança"],
+        id: 'res_013',
+        question: "Uma aplicação de e-commerce precisa manter pedidos em processamento mesmo durante deploys. Qual padrão arquitetural garante zero perda de mensagens?",
+        options: [
+            "Processar pedidos sincronamente via API",
+            "SQS queue com Lambda consumer + DLQ + connection draining no ALB",
+            "Armazenar pedidos em memória da instância",
+            "Usar database polling"
+        ],
         correct: [1],
-        explanation: "Idempotency garante que retry de operações não cause efeitos colaterais indesejados.",
-        topic: "resilient", domain: "resilient"
+        explanation: "SQS persiste mensagens independente do consumer. Connection draining permite que instâncias terminem requests em andamento. DLQ captura falhas.",
+        topic: "sqs",
+        domain: "resilient"
     },
     {
-        id: 22,
-        question: "Como implementar bulkhead pattern na AWS?",
-        options: ["Single resource pool", "Separate resource pools por função crítica", "Shared resources", "No isolation"],
+        id: 'res_014',
+        question: "Uma aplicação usa EFS para storage compartilhado entre instâncias EC2. Performance degrada durante picos de I/O. Qual solução mantém resiliência e melhora performance?",
+        options: [
+            "Migrar para EBS io2 por instância",
+            "Usar EFS com Provisioned Throughput mode ou migrar para FSx for Lustre",
+            "Adicionar mais instâncias EC2",
+            "Usar S3 como storage principal"
+        ],
         correct: [1],
-        explanation: "Bulkhead isola recursos críticos em pools separados para evitar que falhas se propaguem.",
-        topic: "resilient", domain: "resilient"
+        explanation: "EFS Provisioned Throughput garante throughput consistente. FSx for Lustre oferece alta performance para workloads intensivos mantendo acesso compartilhado.",
+        topic: "storage",
+        domain: "resilient"
     },
     {
-        id: 23,
-        question: "Qual estratégia para backup de bancos de dados distribuídos?",
-        options: ["Backup de um nó apenas", "Point-in-time recovery coordenado", "Sem backup", "Backup manual"],
+        id: 'res_015',
+        question: "Uma empresa quer implementar blue-green deployment para sua aplicação em EC2 atrás de ALB. Como fazer o switch com zero downtime?",
+        options: [
+            "Parar instâncias blue e iniciar green",
+            "Criar novo target group (green), testar, e alterar listener rules do ALB",
+            "Usar DNS para apontar para novo IP",
+            "Deploy in-place com rolling update"
+        ],
         correct: [1],
-        explanation: "Point-in-time recovery coordenado garante consistência entre todos os nós do cluster.",
-        topic: "resilient", domain: "resilient"
+        explanation: "ALB listener rules permitem switch instantâneo entre target groups (blue→green). Se green falhar, reverter a rule imediatamente.",
+        topic: "deployment",
+        domain: "resilient"
     },
     {
-        id: 24,
-        question: "Como garantir resiliência de APIs?",
-        options: ["Single endpoint", "Rate limiting + circuit breakers + health checks", "Sem proteção", "Manual monitoring"],
+        id: 'res_016',
+        question: "DynamoDB table com on-demand capacity está retornando ThrottlingException durante picos súbitos. A tabela foi criada há 30 minutos. Qual é a causa?",
+        options: [
+            "On-demand não suporta picos",
+            "Tabelas novas em on-demand têm limite inicial que escala gradualmente",
+            "Partition key com hot partition",
+            "DynamoDB está em manutenção"
+        ],
         correct: [1],
-        explanation: "Combinação de rate limiting, circuit breakers e health checks protege APIs de sobrecarga.",
-        topic: "resilient", domain: "resilient"
+        explanation: "Tabelas on-demand novas começam com capacity limitada e escalam automaticamente. Para picos imediatos em tabelas novas, usar provisioned com auto-scaling ou pre-warm.",
+        topic: "dynamodb",
+        domain: "resilient"
     },
     {
-        id: 25,
-        question: "Qual é a melhor prática para session management resiliente?",
-        options: ["Server-side sessions", "Stateless tokens + external session store", "In-memory apenas", "Database sessions"],
+        id: 'res_017',
+        question: "Uma aplicação multi-tier tem web servers, app servers e database. O arquiteto quer garantir que falha em uma camada não derrube as outras. Qual padrão aplicar?",
+        options: [
+            "Deploy tudo na mesma instância",
+            "Desacoplamento com SQS entre camadas + circuit breakers",
+            "Usar apenas um load balancer na frente",
+            "Aumentar timeout entre camadas"
+        ],
         correct: [1],
-        explanation: "Stateless tokens com session store externo (Redis/DynamoDB) permite failover sem perda de sessão.",
-        topic: "resilient", domain: "resilient"
+        explanation: "SQS desacopla camadas (se app server cair, mensagens ficam na fila). Circuit breakers evitam cascading failures quando uma camada está degradada.",
+        topic: "decoupling",
+        domain: "resilient"
     },
     {
-        id: 26,
-        question: "Como implementar timeout apropriados?",
-        options: ["Timeout infinito", "Timeouts em cascata com valores apropriados", "Sem timeout", "Timeout fixo"],
+        id: 'res_018',
+        question: "Uma empresa precisa de backup automatizado para múltiplos serviços (EC2, RDS, EFS, DynamoDB) com retenção de 30 dias e cópia cross-region. Qual solução centralizada?",
+        options: [
+            "Scripts customizados com Lambda para cada serviço",
+            "AWS Backup com backup plan, vault e cross-region copy rule",
+            "Snapshots manuais agendados via CloudWatch Events",
+            "Cada equipe gerencia seus próprios backups"
+        ],
         correct: [1],
-        explanation: "Timeouts em cascata (client > proxy > service) evitam resource exhaustion.",
-        topic: "resilient", domain: "resilient"
+        explanation: "AWS Backup centraliza backup de múltiplos serviços com policies, retenção, cross-region copy e compliance reporting em um único serviço.",
+        topic: "backup",
+        domain: "resilient"
     },
     {
-        id: 27,
-        question: "Qual serviço AWS fornece service mesh para resiliência?",
-        options: ["App Mesh", "API Gateway", "CloudFront", "Route 53"],
-        correct: [0],
-        explanation: "App Mesh fornece circuit breakers, retry policies e observability para microservices.",
-        topic: "resilient", domain: "resilient"
-    },
-    {
-        id: 28,
-        question: "Como implementar disaster recovery pilot light?",
-        options: ["Full replication", "Core components running + data replication", "Cold backup", "No DR"],
+        id: 'res_019',
+        question: "Uma aplicação usa CloudFront com origin em ALB. O ALB está em us-east-1. Se us-east-1 ficar indisponível, como manter o site online?",
+        options: [
+            "CloudFront cache serve conteúdo estático indefinidamente",
+            "Configurar CloudFront Origin Failover com origin group (primário us-east-1, secundário eu-west-1)",
+            "Usar Route 53 para failover do CloudFront",
+            "Replicar CloudFront distribution em outra região"
+        ],
         correct: [1],
-        explanation: "Pilot light mantém componentes core rodando com dados replicados, permitindo scale-up rápido.",
-        topic: "resilient", domain: "resilient"
+        explanation: "CloudFront Origin Groups permitem failover automático para origin secundário quando o primário retorna 5xx ou timeout. Transparente para o usuário.",
+        topic: "cloudfront",
+        domain: "resilient"
     },
     {
-        id: 29,
-        question: "Qual é a importância de correlation IDs?",
-        options: ["Não são importantes", "Rastreamento de requests através de sistemas distribuídos", "Apenas para logs", "Apenas para debug"],
+        id: 'res_020',
+        question: "Uma aplicação processa eventos com Lambda via Kinesis Data Streams. Alguns records causam erro e a Lambda fica presa reprocessando o mesmo batch. Como resolver sem perder dados?",
+        options: [
+            "Aumentar timeout da Lambda",
+            "Configurar bisect batch on error + maximum retry attempts + on-failure destination",
+            "Ignorar erros com try/catch",
+            "Usar Kinesis Firehose ao invés"
+        ],
         correct: [1],
-        explanation: "Correlation IDs permitem rastrear requests através de múltiplos serviços para debugging e monitoring.",
-        topic: "resilient", domain: "resilient"
-    },
-    {
-        id: 30,
-        question: "Como garantir resiliência em message queues?",
-        options: ["Single queue", "Dead letter queues + retry policies + visibility timeout", "No error handling", "Synchronous processing"],
-        correct: [1],
-        explanation: "DLQ captura mensagens com falha, retry policies reprocessam e visibility timeout evita duplicação.",
-        topic: "resilient", domain: "resilient"
-    },
-    {
-        id: 31,
-        question: "Qual estratégia para rolling deployments seguros?",
-        options: ["Deploy tudo de uma vez", "Canary deployment com health checks", "Manual deployment", "No testing"],
-        correct: [1],
-        explanation: "Canary deployment testa nova versão com pequeno percentual de tráfego antes de full rollout.",
-        topic: "resilient", domain: "resilient"
-    },
-    {
-        id: 32,
-        question: "Como implementar rate limiting distribuído?",
-        options: ["Local rate limiting", "API Gateway + ElastiCache para state compartilhado", "No rate limiting", "Manual throttling"],
-        correct: [1],
-        explanation: "API Gateway com ElastiCache permite rate limiting consistente através de múltiplas instâncias.",
-        topic: "resilient", domain: "resilient"
-    },
-    {
-        id: 33,
-        question: "Qual é a melhor prática para connection pooling?",
-        options: ["Single connection", "Connection pools com circuit breakers", "Unlimited connections", "No pooling"],
-        correct: [1],
-        explanation: "Connection pools otimizam recursos e circuit breakers protegem contra connection exhaustion.",
-        topic: "resilient", domain: "resilient"
-    },
-    {
-        id: 34,
-        question: "Como garantir data consistency em sistemas distribuídos?",
-        options: ["Strong consistency sempre", "Eventual consistency com conflict resolution", "No consistency", "Manual resolution"],
-        correct: [1],
-        explanation: "Eventual consistency com estratégias de conflict resolution balanceia performance e consistência.",
-        topic: "resilient", domain: "resilient"
-    },
-    {
-        id: 35,
-        question: "Qual serviço AWS para orchestração resiliente de workflows?",
-        options: ["Step Functions com error handling", "Lambda apenas", "SQS apenas", "Manual orchestration"],
-        correct: [0],
-        explanation: "Step Functions fornece retry policies, error handling e state management para workflows complexos.",
-        topic: "resilient", domain: "resilient"
-    },
-    {
-        id: 36,
-        question: "Como implementar health checks efetivos?",
-        options: ["Ping apenas", "Deep health checks com dependencies", "No health checks", "Manual checks"],
-        correct: [1],
-        explanation: "Deep health checks verificam dependencies críticas e fornecem status real da aplicação.",
-        topic: "resilient", domain: "resilient"
-    },
-    {
-        id: 37,
-        question: "Qual estratégia para cache resiliente?",
-        options: ["Single cache instance", "Multi-AZ cache com failover", "No caching", "Local cache apenas"],
-        correct: [1],
-        explanation: "Multi-AZ cache (ElastiCache) fornece failover automático e alta disponibilidade.",
-        topic: "resilient", domain: "resilient"
-    },
-    {
-        id: 38,
-        question: "Como implementar graceful shutdown?",
-        options: ["Kill process", "Drain connections + finish requests + cleanup", "Immediate stop", "No shutdown handling"],
-        correct: [1],
-        explanation: "Graceful shutdown drena conexões, completa requests em andamento e faz cleanup de recursos.",
-        topic: "resilient", domain: "resilient"
-    },
-    {
-        id: 39,
-        question: "Qual é a importância de monitoring distribuído?",
-        options: ["Não é importante", "Visibilidade end-to-end com tracing", "Local monitoring apenas", "Manual monitoring"],
-        correct: [1],
-        explanation: "Distributed tracing (X-Ray) fornece visibilidade completa de requests através de sistemas distribuídos.",
-        topic: "resilient", domain: "resilient"
-    },
-    {
-        id: 40,
-        question: "Como garantir resiliência de storage?",
-        options: ["Single storage", "Multi-AZ storage com replication", "Local storage apenas", "No backup"],
-        correct: [1],
-        explanation: "Multi-AZ storage (EFS, S3) com replication automática garante durabilidade e disponibilidade.",
-        topic: "resilient", domain: "resilient"
-    },
-    {
-        id: 41,
-        question: "Qual estratégia para error propagation?",
-        options: ["Propagate all errors", "Fail fast com error boundaries", "Hide all errors", "Manual handling"],
-        correct: [1],
-        explanation: "Fail fast com error boundaries evita cascading failures e isola problemas.",
-        topic: "resilient", domain: "resilient"
-    },
-    {
-        id: 42,
-        question: "Como implementar load shedding?",
-        options: ["Accept all requests", "Priority-based request dropping", "Random dropping", "No load shedding"],
-        correct: [1],
-        explanation: "Load shedding baseado em prioridade mantém funcionalidade crítica durante sobrecarga.",
-        topic: "resilient", domain: "resilient"
-    },
-    {
-        id: 43,
-        question: "Qual é a melhor prática para dependency management?",
-        options: ["Tight coupling", "Loose coupling com service discovery", "Hard-coded dependencies", "No dependency management"],
-        correct: [1],
-        explanation: "Loose coupling com service discovery (Route 53, ELB) permite mudanças sem impacto.",
-        topic: "resilient", domain: "resilient"
-    },
-    {
-        id: 44,
-        question: "Como garantir resiliência em batch processing?",
-        options: ["Single batch job", "Checkpointing + retry + dead letter processing", "No error handling", "Manual retry"],
-        correct: [1],
-        explanation: "Checkpointing salva progresso, retry reprocessa falhas e DLQ captura jobs problemáticos.",
-        topic: "resilient", domain: "resilient"
-    },
-    {
-        id: 45,
-        question: "Qual serviço AWS para disaster recovery automation?",
-        options: ["Manual processes", "AWS Elastic Disaster Recovery", "Local backup", "No DR"],
-        correct: [1],
-        explanation: "Elastic Disaster Recovery automatiza replication e failover para DR sites.",
-        topic: "resilient", domain: "resilient"
-    },
-    {
-        id: 46,
-        question: "Como implementar feature flags resilientes?",
-        options: ["Hard-coded flags", "External config service com fallbacks", "No feature flags", "Manual flags"],
-        correct: [1],
-        explanation: "External config service (AppConfig) com fallbacks permite mudanças seguras sem deploy.",
-        topic: "resilient", domain: "resilient"
-    },
-    {
-        id: 47,
-        question: "Qual estratégia para network partitioning?",
-        options: ["Ignore partitions", "Partition tolerance com eventual consistency", "Fail immediately", "Manual handling"],
-        correct: [1],
-        explanation: "Partition tolerance permite operação durante network splits com eventual consistency.",
-        topic: "resilient", domain: "resilient"
-    },
-    {
-        id: 48,
-        question: "Como garantir resiliência de authentication?",
-        options: ["Single auth service", "Multi-region auth com token caching", "No auth", "Local auth apenas"],
-        correct: [1],
-        explanation: "Multi-region auth (Cognito) com token caching mantém autenticação durante falhas.",
-        topic: "resilient", domain: "resilient"
-    },
-    {
-        id: 49,
-        question: "Qual é a importância de capacity planning?",
-        options: ["Não é importante", "Prevent resource exhaustion com auto-scaling", "Fixed capacity", "Manual scaling"],
-        correct: [1],
-        explanation: "Capacity planning com auto-scaling previne resource exhaustion durante picos de demanda.",
-        topic: "resilient", domain: "resilient"
-    },
-    {
-        id: 50,
-        question: "Como implementar progressive delivery?",
-        options: ["Big bang release", "Feature flags + canary + blue-green", "Manual rollout", "No delivery strategy"],
-        correct: [1],
-        explanation: "Progressive delivery combina feature flags, canary e blue-green para releases seguros.",
-        topic: "resilient", domain: "resilient"
-    },
-    {
-        id: 51,
-        question: "Qual estratégia para data backup verification?",
-        options: ["No verification", "Automated backup testing + restore validation", "Manual verification", "Trust backups"],
-        correct: [1],
-        explanation: "Automated testing e restore validation garantem que backups são válidos e restauráveis.",
-        topic: "resilient", domain: "resilient"
-    },
-    {
-        id: 52,
-        question: "Como garantir resiliência de CDN?",
-        options: ["Single CDN", "Multi-CDN com failover", "No CDN", "Manual failover"],
-        correct: [1],
-        explanation: "Multi-CDN strategy com failover automático garante entrega de conteúdo mesmo com falhas de CDN.",
-        topic: "resilient", domain: "resilient"
-    },
-    {
-        id: 53,
-        question: "Qual é a melhor prática para incident response?",
-        options: ["Manual response", "Automated incident detection + runbooks", "Ignore incidents", "Reactive only"],
-        correct: [1],
-        explanation: "Automated detection com runbooks padronizados acelera response e reduz MTTR.",
-        topic: "resilient", domain: "resilient"
-    },
-    {
-        id: 54,
-        question: "Como implementar self-healing systems?",
-        options: ["Manual intervention", "Auto-scaling + health checks + auto-restart", "No healing", "Reactive healing"],
-        correct: [1],
-        explanation: "Self-healing combina auto-scaling, health checks e auto-restart para recuperação automática.",
-        topic: "resilient", domain: "resilient"
-    },
-    {
-        id: 55,
-        question: "Qual estratégia para cross-region resilience?",
-        options: ["Single region", "Active-active multi-region com data sync", "Passive backup", "No cross-region"],
-        correct: [1],
-        explanation: "Active-active multi-region com data synchronization fornece máxima resiliência e performance.",
-        topic: "resilient", domain: "resilient"
-    },
-    {
-        id: 56,
-        question: "Como garantir resiliência de microservices?",
-        options: ["Monolithic design", "Service mesh + circuit breakers + bulkheads", "Tight coupling", "No resilience patterns"],
-        correct: [1],
-        explanation: "Service mesh com circuit breakers e bulkheads isola falhas e mantém resiliência.",
-        topic: "resilient", domain: "resilient"
-    },
-    {
-        id: 57,
-        question: "Qual é a importância de chaos testing?",
-        options: ["Não é importante", "Proactive resilience validation", "Apenas para produção", "Manual testing apenas"],
-        correct: [1],
-        explanation: "Chaos testing valida resiliência proativamente identificando pontos fracos antes de falhas reais.",
-        topic: "resilient", domain: "resilient"
-    },
-    {
-        id: 58,
-        question: "Como implementar resilient data pipelines?",
-        options: ["Single pipeline", "Checkpointing + retry + monitoring + alerting", "No error handling", "Manual recovery"],
-        correct: [1],
-        explanation: "Resilient pipelines usam checkpointing, retry logic, monitoring e alerting para recuperação automática.",
-        topic: "resilient", domain: "resilient"
-    },
-    {
-        id: 59,
-        question: "Qual estratégia para API versioning resiliente?",
-        options: ["Breaking changes", "Backward compatibility + graceful deprecation", "No versioning", "Force upgrades"],
-        correct: [1],
-        explanation: "Backward compatibility com graceful deprecation mantém clientes funcionando durante transições.",
-        topic: "resilient", domain: "resilient"
-    },
-    {
-        id: 60,
-        question: "Como garantir resilient configuration management?",
-        options: ["Hard-coded config", "External config service + validation + rollback", "No config management", "Manual config"],
-        correct: [1],
-        explanation: "External config service (AppConfig) com validation e rollback permite mudanças seguras de configuração.",
-        topic: "resilient", domain: "resilient"
+        explanation: "Bisect batch divide o batch para isolar o record problemático. Maximum retry limita tentativas. On-failure destination (SQS/SNS) captura records com falha para análise.",
+        topic: "kinesis",
+        domain: "resilient"
     }
 ];
 
 window.resilientQuestions = resilientQuestions;
+
+
+// Resilient Architectures - Lote 2 (questões 21-40)
+const resilientQuestions2 = [
+    {
+        id: 'res_021',
+        question: "Uma aplicação em ECS Fargate precisa manter disponibilidade durante deploys. Atualmente, durante rolling updates, usuários recebem erros 502 por 30 segundos. Como resolver?",
+        options: [
+            "Aumentar o número de tasks",
+            "Configurar deregistration delay no target group + health check grace period no ECS service",
+            "Usar deployment type DAEMON",
+            "Desabilitar rolling updates"
+        ],
+        correct: [1],
+        explanation: "Deregistration delay permite que tasks existentes terminem requests em andamento. Health check grace period dá tempo para novas tasks ficarem saudáveis antes de receber tráfego.",
+        topic: "ecs",
+        domain: "resilient"
+    },
+    {
+        id: 'res_022',
+        question: "Uma empresa tem VPN Site-to-Site como única conexão com a AWS. Se a VPN cair, toda comunicação é perdida. Como adicionar resiliência com custo controlado?",
+        options: [
+            "Adicionar segunda VPN connection ao mesmo Virtual Private Gateway",
+            "Migrar para Direct Connect dedicado",
+            "Usar internet pública como fallback",
+            "Configurar VPN sobre Direct Connect"
+        ],
+        correct: [0],
+        explanation: "Segunda VPN connection ao mesmo VGW fornece redundância. Cada VPN já tem 2 tunnels. Com 2 connections = 4 tunnels de redundância, custo muito menor que Direct Connect.",
+        topic: "networking",
+        domain: "resilient"
+    },
+    {
+        id: 'res_023',
+        question: "Uma aplicação usa ElastiCache Redis cluster (cluster mode disabled) como cache principal. O nó primário falhou e a aplicação ficou sem cache por 2 minutos. Como melhorar?",
+        options: [
+            "Usar cluster mode enabled com múltiplos shards",
+            "Habilitar Multi-AZ com automatic failover e pelo menos 1 read replica",
+            "Aumentar o tamanho do nó",
+            "Usar Memcached ao invés"
+        ],
+        correct: [1],
+        explanation: "Multi-AZ com automatic failover promove read replica para primário automaticamente em ~30 segundos. Sem replica, Redis precisa ser recriado do zero.",
+        topic: "elasticache",
+        domain: "resilient"
+    },
+    {
+        id: 'res_024',
+        question: "Uma aplicação processa uploads de vídeo. O processamento leva 20 minutos por arquivo. Se a instância EC2 falhar durante o processamento, o trabalho é perdido. Como tornar resiliente?",
+        options: [
+            "Usar instâncias maiores para processar mais rápido",
+            "Usar SQS + checkpointing em S3 + Auto Scaling com spot instances",
+            "Aumentar o EBS volume para mais IOPS",
+            "Usar Lambda com timeout de 15 minutos"
+        ],
+        correct: [1],
+        explanation: "SQS garante que o job não é perdido (visibility timeout). Checkpointing em S3 permite retomar de onde parou. Spot instances reduzem custo com ASG repondo instâncias terminadas.",
+        topic: "decoupling",
+        domain: "resilient"
+    },
+    {
+        id: 'res_025',
+        question: "Uma empresa opera em us-east-1 e precisa de DR em us-west-2. O banco é Aurora PostgreSQL com 2TB. Qual estratégia fornece RTO < 5 minutos com menor custo?",
+        options: [
+            "Aurora cross-region read replica com promotion",
+            "Aurora Global Database",
+            "Snapshots cross-region a cada hora",
+            "AWS DMS continuous replication"
+        ],
+        correct: [1],
+        explanation: "Aurora Global Database replica com lag < 1s e failover managed em < 5 min. Cross-region read replica requer promotion manual (RTO maior). Snapshots têm RPO de horas.",
+        topic: "aurora",
+        domain: "resilient"
+    },
+    {
+        id: 'res_026',
+        question: "Um API Gateway recebe 50.000 requests/segundo durante flash sales. Lambda functions atingem concurrency limit e retornam 429. Como garantir que pedidos não sejam perdidos?",
+        options: [
+            "Aumentar Lambda reserved concurrency para 50.000",
+            "API Gateway → SQS queue → Lambda consumer com reserved concurrency controlada",
+            "Usar API Gateway caching",
+            "Adicionar mais regiões"
+        ],
+        correct: [1],
+        explanation: "SQS absorve picos (buffer). Lambda consome no ritmo que consegue sem throttling. Pedidos ficam na fila até serem processados — zero perda.",
+        topic: "serverless",
+        domain: "resilient"
+    },
+    {
+        id: 'res_027',
+        question: "Uma aplicação usa S3 para armazenar documentos críticos. Um desenvolvedor acidentalmente deletou um bucket inteiro. Como prevenir e recuperar?",
+        options: [
+            "Usar apenas IAM policies restritivas",
+            "Habilitar versioning + MFA Delete + S3 Object Lock + bucket policy deny delete",
+            "Fazer backup diário para outro bucket",
+            "Usar Glacier Vault Lock"
+        ],
+        correct: [1],
+        explanation: "Versioning mantém versões anteriores. MFA Delete exige MFA para deletar. Object Lock previne deleção. Bucket policy com deny delete adiciona camada extra.",
+        topic: "s3",
+        domain: "resilient"
+    },
+    {
+        id: 'res_028',
+        question: "Uma aplicação multi-region usa Route 53 weighted routing (70% us-east-1, 30% eu-west-1). Quando us-east-1 falha, 70% dos usuários ficam sem serviço. Como corrigir?",
+        options: [
+            "Mudar para simple routing",
+            "Associar health checks aos weighted records — Route 53 redistribui automaticamente",
+            "Usar latency-based routing",
+            "Configurar TTL = 0"
+        ],
+        correct: [1],
+        explanation: "Com health checks associados, Route 53 remove records unhealthy e redistribui o peso para records saudáveis automaticamente.",
+        topic: "route53",
+        domain: "resilient"
+    },
+    {
+        id: 'res_029',
+        question: "Uma empresa tem 50 microservices em EKS. Um serviço com memory leak causa cascading failures em serviços dependentes. Como isolar o impacto?",
+        options: [
+            "Aumentar memória de todos os pods",
+            "Implementar resource limits + liveness/readiness probes + circuit breakers (Istio/App Mesh)",
+            "Usar um único pod por serviço",
+            "Desabilitar auto-scaling"
+        ],
+        correct: [1],
+        explanation: "Resource limits contêm o memory leak. Probes detectam e reiniciam pods unhealthy. Circuit breakers (service mesh) evitam que falhas se propaguem para dependentes.",
+        topic: "containers",
+        domain: "resilient"
+    },
+    {
+        id: 'res_030',
+        question: "Uma aplicação usa NLB com targets em 2 AZs. Cross-zone load balancing está desabilitado. AZ-a tem 2 instâncias e AZ-b tem 8 instâncias. Usuários na AZ-a reportam lentidão. Por quê?",
+        options: [
+            "NLB não suporta múltiplas AZs",
+            "Sem cross-zone, cada AZ recebe 50% do tráfego — AZ-a com 2 instâncias fica sobrecarregada",
+            "As instâncias em AZ-a são menores",
+            "Health checks estão falhando"
+        ],
+        correct: [1],
+        explanation: "Sem cross-zone load balancing, tráfego é dividido igualmente entre AZs (50/50). AZ-a com 2 instâncias recebe 25% cada, enquanto AZ-b com 8 recebe 6.25% cada.",
+        topic: "elb",
+        domain: "resilient"
+    },
+    {
+        id: 'res_031',
+        question: "Uma aplicação precisa processar exatamente uma vez cada transação financeira, mesmo com retries. Qual combinação de serviços garante exactly-once processing?",
+        options: [
+            "SQS Standard + Lambda",
+            "SQS FIFO + Lambda com idempotency (DynamoDB conditional writes)",
+            "SNS + Lambda",
+            "Kinesis + Lambda"
+        ],
+        correct: [1],
+        explanation: "SQS FIFO garante exactly-once delivery. Lambda idempotency com DynamoDB conditional writes garante que mesmo com retry, a transação é processada apenas uma vez.",
+        topic: "messaging",
+        domain: "resilient"
+    },
+    {
+        id: 'res_032',
+        question: "Uma empresa precisa migrar 100TB de dados para AWS com janela de 1 semana. A conexão internet é 1Gbps. Qual método garante entrega no prazo?",
+        options: [
+            "AWS DataSync pela internet",
+            "AWS Snowball Edge (múltiplos devices em paralelo)",
+            "S3 Transfer Acceleration",
+            "Direct Connect dedicado"
+        ],
+        correct: [1],
+        explanation: "1Gbps = ~10TB/semana (insuficiente para 100TB). Snowball Edge devices em paralelo transferem petabytes em dias. DataSync/Transfer Acceleration limitados pela bandwidth.",
+        topic: "migration",
+        domain: "resilient"
+    },
+    {
+        id: 'res_033',
+        question: "Uma aplicação stateless em ASG precisa de deployment com zero downtime e capacidade de rollback instantâneo. Qual estratégia de deployment usar?",
+        options: [
+            "Rolling update com 25% batch size",
+            "Immutable deployment com novo ASG + swap no ALB target group",
+            "In-place deployment",
+            "All-at-once deployment"
+        ],
+        correct: [1],
+        explanation: "Immutable deployment cria novo ASG com nova versão. Após health checks passarem, swap no ALB. Rollback = apontar ALB de volta ao ASG antigo (instantâneo).",
+        topic: "deployment",
+        domain: "resilient"
+    },
+    {
+        id: 'res_034',
+        question: "Uma aplicação usa DynamoDB com provisioned capacity. Durante Black Friday, WCU é insuficiente e writes falham com ProvisionedThroughputExceededException. Como prevenir sem over-provisioning?",
+        options: [
+            "Mudar para on-demand permanentemente",
+            "Usar auto-scaling com target utilization 70% + scheduled scaling para eventos conhecidos",
+            "Provisionar 10x a capacity normal",
+            "Usar DAX para absorver writes"
+        ],
+        correct: [1],
+        explanation: "Auto-scaling ajusta capacity automaticamente. Scheduled scaling pre-escala antes de eventos conhecidos (Black Friday). Evita custo de on-demand permanente ou over-provisioning.",
+        topic: "dynamodb",
+        domain: "resilient"
+    },
+    {
+        id: 'res_035',
+        question: "Uma aplicação em EC2 depende de um serviço externo (API de pagamento). O serviço externo fica intermitentemente indisponível, causando timeout e degradação. Como tornar a aplicação resiliente?",
+        options: [
+            "Aumentar timeout para 60 segundos",
+            "Implementar circuit breaker + retry com exponential backoff + fallback response",
+            "Cachear todas as respostas indefinidamente",
+            "Usar múltiplos provedores de pagamento simultaneamente"
+        ],
+        correct: [1],
+        explanation: "Circuit breaker evita chamadas a serviço down. Retry com backoff tenta novamente sem sobrecarregar. Fallback response mantém UX (ex: 'pagamento será processado em breve').",
+        topic: "patterns",
+        domain: "resilient"
+    },
+    {
+        id: 'res_036',
+        question: "Uma empresa tem Direct Connect de 10Gbps como conexão principal com AWS. Qual é a melhor estratégia de backup para a conexão?",
+        options: [
+            "Segunda Direct Connect no mesmo location",
+            "Direct Connect em location diferente + VPN como backup terciário",
+            "VPN Site-to-Site apenas",
+            "Internet pública"
+        ],
+        correct: [1],
+        explanation: "DX em location diferente protege contra falha do location físico. VPN como backup terciário fornece conectividade mesmo se ambos DX falharem (menor bandwidth mas funcional).",
+        topic: "networking",
+        domain: "resilient"
+    },
+    {
+        id: 'res_037',
+        question: "Uma aplicação usa Lambda com event source mapping para processar records de DynamoDB Streams. A Lambda está falhando e o stream está acumulando records (iterator age crescendo). Como resolver?",
+        options: [
+            "Aumentar o shard count",
+            "Configurar maximum retry attempts + bisect batch + on-failure destination + aumentar parallelization factor",
+            "Deletar e recriar o stream",
+            "Usar Kinesis ao invés"
+        ],
+        correct: [1],
+        explanation: "Maximum retry limita tentativas. Bisect isola records problemáticos. On-failure destination captura falhas. Parallelization factor aumenta throughput de processamento.",
+        topic: "dynamodb-streams",
+        domain: "resilient"
+    },
+    {
+        id: 'res_038',
+        question: "Uma aplicação web tem picos previsíveis às 9h (início do expediente). Auto Scaling reage com 3-5 minutos de delay, causando lentidão. Como antecipar o scaling?",
+        options: [
+            "Manter capacity máxima 24/7",
+            "Scheduled scaling action para scale-out às 8:50 + predictive scaling",
+            "Reduzir cooldown period para 30 segundos",
+            "Usar step scaling com thresholds baixos"
+        ],
+        correct: [1],
+        explanation: "Scheduled scaling pre-escala antes do pico conhecido. Predictive scaling usa ML para antecipar padrões. Ambos eliminam o delay reativo do auto-scaling.",
+        topic: "autoscaling",
+        domain: "resilient"
+    },
+    {
+        id: 'res_039',
+        question: "Uma empresa precisa garantir que dados em S3 não possam ser deletados ou modificados por 7 anos (compliance regulatória). Qual feature usar?",
+        options: [
+            "Bucket policy com deny delete",
+            "S3 Object Lock em Compliance mode com retention period de 7 anos",
+            "Versioning habilitado",
+            "Glacier Vault Lock"
+        ],
+        correct: [1],
+        explanation: "S3 Object Lock Compliance mode impede que QUALQUER pessoa (incluindo root) delete ou modifique objetos durante o retention period. Atende requisitos regulatórios (SEC, FINRA).",
+        topic: "s3",
+        domain: "resilient"
+    },
+    {
+        id: 'res_040',
+        question: "Uma aplicação usa múltiplos microservices que se comunicam via HTTP síncrono. Quando um serviço downstream fica lento, todos os serviços upstream ficam lentos (cascading latency). Como resolver?",
+        options: [
+            "Aumentar timeout de todos os serviços",
+            "Implementar comunicação assíncrona via EventBridge/SQS + timeouts agressivos + bulkhead pattern",
+            "Usar instâncias maiores",
+            "Adicionar cache em todos os serviços"
+        ],
+        correct: [1],
+        explanation: "Comunicação assíncrona desacopla serviços. Timeouts agressivos evitam espera longa. Bulkhead isola thread pools por dependência, evitando que um serviço lento esgote recursos.",
+        topic: "patterns",
+        domain: "resilient"
+    }
+];
+
+resilientQuestions.push(...resilientQuestions2);
+
+
+// Resilient Architectures - Lote 3 (questões 41-60)
+const resilientQuestions3 = [
+    {
+        id: 'res_041',
+        question: "Uma aplicação em EC2 usa EBS gp3 para dados críticos. A instância falhou e o volume ficou em estado 'error'. Como garantir recuperação rápida dos dados?",
+        options: [
+            "Reattach o volume a outra instância",
+            "Usar EBS snapshots automáticos com Amazon Data Lifecycle Manager + Multi-Attach para io2",
+            "Usar instance store para melhor performance",
+            "Fazer backup manual diário"
+        ],
+        correct: [1],
+        explanation: "DLM automatiza snapshots com schedule e retenção. Snapshots permitem criar novo volume em qualquer AZ. Multi-Attach (io2) permite acesso simultâneo de múltiplas instâncias.",
+        topic: "storage",
+        domain: "resilient"
+    },
+    {
+        id: 'res_042',
+        question: "Uma aplicação global precisa servir conteúdo dinâmico com latência < 100ms para usuários em 5 continentes. Qual arquitetura?",
+        options: [
+            "Single region com CloudFront",
+            "Multi-region deployment com Global Accelerator + regional ALBs",
+            "CloudFront com Lambda@Edge",
+            "Apenas aumentar instâncias na região principal"
+        ],
+        correct: [1],
+        explanation: "Global Accelerator usa a rede AWS global para rotear tráfego ao endpoint regional mais próximo. ALBs regionais processam requests localmente com baixa latência.",
+        topic: "global",
+        domain: "resilient"
+    },
+    {
+        id: 'res_043',
+        question: "Uma empresa usa AWS Organizations com 20 contas. Precisa garantir que todas as contas tenham backups habilitados e conformes. Como centralizar?",
+        options: [
+            "Configurar AWS Backup manualmente em cada conta",
+            "AWS Backup com delegated administrator + backup policies via Organizations",
+            "Scripts Lambda em cada conta",
+            "Usar apenas snapshots manuais"
+        ],
+        correct: [1],
+        explanation: "AWS Backup com Organizations permite criar backup policies centralizadas que se aplicam automaticamente a todas as contas membros.",
+        topic: "backup",
+        domain: "resilient"
+    },
+    {
+        id: 'res_044',
+        question: "Uma aplicação usa Aurora MySQL com 5 read replicas. Durante failover, a aplicação continua tentando conectar ao endpoint antigo por 30 segundos. Como reduzir?",
+        options: [
+            "Usar IP fixo para o writer",
+            "Usar cluster endpoint (writer) + configurar DNS TTL baixo + connection retry logic na aplicação",
+            "Usar read replica endpoint para writes",
+            "Implementar proxy customizado"
+        ],
+        correct: [1],
+        explanation: "Cluster endpoint atualiza automaticamente durante failover. DNS TTL baixo (5s) acelera propagação. Retry logic na aplicação reconecta rapidamente ao novo writer.",
+        topic: "aurora",
+        domain: "resilient"
+    },
+    {
+        id: 'res_045',
+        question: "Uma aplicação de IoT recebe 1 milhão de mensagens/segundo. Precisa processar todas sem perda, mesmo durante picos de 3x. Qual arquitetura?",
+        options: [
+            "API Gateway + Lambda diretamente",
+            "IoT Core → Kinesis Data Streams (on-demand) → Lambda com enhanced fan-out",
+            "SQS Standard queue + EC2 consumers",
+            "SNS + múltiplos subscribers"
+        ],
+        correct: [1],
+        explanation: "Kinesis on-demand escala automaticamente para picos. Enhanced fan-out fornece throughput dedicado por consumer. IoT Core ingere milhões de mensagens/segundo nativamente.",
+        topic: "streaming",
+        domain: "resilient"
+    },
+    {
+        id: 'res_046',
+        question: "Uma empresa tem aplicação em us-east-1 com RDS PostgreSQL. Precisa de read-only access em eu-west-1 para equipe europeia com latência < 50ms. Qual solução?",
+        options: [
+            "VPN entre regiões para acessar RDS diretamente",
+            "RDS cross-region read replica em eu-west-1",
+            "Replicar dados para S3 e usar Athena",
+            "Aurora Global Database"
+        ],
+        correct: [1],
+        explanation: "Cross-region read replica fornece acesso read-only local na Europa com latência baixa. Replicação assíncrona é aceitável para reads. Aurora Global seria over-engineering para apenas reads.",
+        topic: "rds",
+        domain: "resilient"
+    },
+    {
+        id: 'res_047',
+        question: "Uma aplicação usa Step Functions para orquestrar um workflow de 10 etapas. Se uma etapa intermediária falhar, todo o workflow reinicia do zero. Como implementar recuperação parcial?",
+        options: [
+            "Aumentar retry em cada etapa",
+            "Usar Step Functions com Catch + ResultPath para error handling + checkpoint state em DynamoDB",
+            "Dividir em 10 Step Functions separadas",
+            "Usar SQS entre cada etapa"
+        ],
+        correct: [1],
+        explanation: "Catch com ResultPath permite tratar erros por etapa. Checkpoint em DynamoDB salva progresso, permitindo retomar do ponto de falha ao invés de reiniciar.",
+        topic: "orchestration",
+        domain: "resilient"
+    },
+    {
+        id: 'res_048',
+        question: "Uma aplicação web tem pico de 100.000 usuários simultâneos durante eventos ao vivo. O banco RDS atinge max_connections e novos usuários recebem erro. Como resolver?",
+        options: [
+            "Aumentar instance type do RDS",
+            "RDS Proxy para connection pooling + read replicas + ElastiCache para queries frequentes",
+            "Migrar para DynamoDB",
+            "Usar múltiplos bancos RDS independentes"
+        ],
+        correct: [1],
+        explanation: "RDS Proxy gerencia connection pool (multiplexing). Read replicas distribuem reads. ElastiCache elimina queries repetitivas. Juntos, reduzem drasticamente conexões ao writer.",
+        topic: "rds",
+        domain: "resilient"
+    },
+    {
+        id: 'res_049',
+        question: "Uma empresa precisa garantir que EC2 instances em um ASG sejam distribuídas igualmente entre 3 AZs, mesmo após scale-in. Qual configuração?",
+        options: [
+            "Configurar min capacity = 3",
+            "Habilitar AZ rebalancing + usar allocation strategy 'lowest-price' com múltiplos instance types",
+            "Fixar desired capacity",
+            "Usar placement groups"
+        ],
+        correct: [1],
+        explanation: "AZ rebalancing redistribui instâncias automaticamente entre AZs. Múltiplos instance types com lowest-price garante capacity mesmo se um tipo estiver indisponível em uma AZ.",
+        topic: "autoscaling",
+        domain: "resilient"
+    },
+    {
+        id: 'res_050',
+        question: "Uma aplicação usa SNS para notificar 5 microservices sobre novos pedidos. Se um subscriber falhar, as mensagens são perdidas. Como garantir entrega?",
+        options: [
+            "Aumentar retry do SNS",
+            "SNS → SQS queue por subscriber (fan-out pattern) com DLQ em cada queue",
+            "Usar polling ao invés de push",
+            "Implementar retry na aplicação publisher"
+        ],
+        correct: [1],
+        explanation: "Fan-out pattern: SNS publica para SQS queues individuais por subscriber. Cada queue persiste mensagens independentemente. DLQ captura falhas por subscriber sem afetar outros.",
+        topic: "messaging",
+        domain: "resilient"
+    },
+    {
+        id: 'res_051',
+        question: "Uma aplicação precisa de DNS failover com detecção de falha em < 10 segundos. Route 53 health checks padrão têm intervalo de 30 segundos. Como acelerar?",
+        options: [
+            "Não é possível com Route 53",
+            "Usar Fast health checks (intervalo 10s) + configurar health check com string matching + low TTL",
+            "Usar CloudWatch Alarms como health check",
+            "Implementar DNS customizado"
+        ],
+        correct: [1],
+        explanation: "Fast health checks (10s interval) com 1 failure threshold detectam falha em ~10s. String matching valida conteúdo real (não apenas HTTP 200). Low TTL acelera propagação.",
+        topic: "route53",
+        domain: "resilient"
+    },
+    {
+        id: 'res_052',
+        question: "Uma empresa opera banco de dados on-premises com 50TB. Precisa migrar para Aurora com downtime máximo de 1 hora. Qual estratégia?",
+        options: [
+            "mysqldump e restore (dias de downtime)",
+            "AWS DMS com full load + CDC (Change Data Capture) para replicação contínua",
+            "Snowball para transferir dados",
+            "Aurora clone do banco on-premises"
+        ],
+        correct: [1],
+        explanation: "DMS full load migra dados iniciais enquanto aplicação roda. CDC replica mudanças em tempo real. Cutover final requer apenas minutos de downtime para switch.",
+        topic: "migration",
+        domain: "resilient"
+    },
+    {
+        id: 'res_053',
+        question: "Uma aplicação em Lambda processa arquivos S3. Ocasionalmente, o mesmo arquivo é processado 2 vezes (Lambda retry). Como garantir idempotência?",
+        options: [
+            "Desabilitar retries na Lambda",
+            "Usar DynamoDB conditional put com file key como idempotency token antes de processar",
+            "Verificar se arquivo já existe no destino",
+            "Usar SQS FIFO como trigger"
+        ],
+        correct: [1],
+        explanation: "DynamoDB conditional put (attribute_not_exists) falha se o token já existe, garantindo que o processamento ocorra apenas uma vez mesmo com retries.",
+        topic: "patterns",
+        domain: "resilient"
+    },
+    {
+        id: 'res_054',
+        question: "Uma aplicação tem frontend em S3+CloudFront e backend em ALB+EC2. O certificado SSL do ALB expirou e o site ficou inacessível. Como prevenir?",
+        options: [
+            "Renovar manualmente antes de expirar",
+            "Usar ACM (AWS Certificate Manager) com renovação automática + CloudWatch alarm para expiração",
+            "Usar certificado self-signed",
+            "Desabilitar HTTPS no ALB"
+        ],
+        correct: [1],
+        explanation: "ACM renova certificados automaticamente (para domínios validados por DNS). CloudWatch alarm em dias para expiração alerta caso renovação falhe.",
+        topic: "security",
+        domain: "resilient"
+    },
+    {
+        id: 'res_055',
+        question: "Uma aplicação usa API Gateway com Lambda integration. Durante picos, Lambda cold starts causam timeout no API Gateway (29s limit). Como resolver?",
+        options: [
+            "Aumentar Lambda memory",
+            "Provisioned Concurrency para Lambda + API Gateway timeout adequado",
+            "Usar HTTP API ao invés de REST API",
+            "Cachear todas as respostas"
+        ],
+        correct: [1],
+        explanation: "Provisioned Concurrency elimina cold starts mantendo instâncias warm. API Gateway REST tem limite fixo de 29s, então eliminar cold start é essencial.",
+        topic: "serverless",
+        domain: "resilient"
+    },
+    {
+        id: 'res_056',
+        question: "Uma empresa precisa de storage compartilhado entre instâncias EC2 em múltiplas AZs com failover automático. Dados são arquivos de configuração (< 1GB). Qual serviço?",
+        options: [
+            "EBS Multi-Attach",
+            "Amazon EFS com mount targets em cada AZ",
+            "S3 com sync periódico",
+            "Instance store replicado"
+        ],
+        correct: [1],
+        explanation: "EFS é NFS gerenciado, acessível de múltiplas AZs simultaneamente com failover automático. Mount targets em cada AZ garantem acesso local. EBS Multi-Attach é single-AZ (io2 apenas).",
+        topic: "storage",
+        domain: "resilient"
+    },
+    {
+        id: 'res_057',
+        question: "Uma aplicação usa EventBridge para integrar 15 microservices. Um evento crítico ('order.placed') precisa ser processado por todos os consumers sem falha. Como garantir?",
+        options: [
+            "Configurar retry policy no EventBridge",
+            "EventBridge rule → SQS queue por consumer (com DLQ) + archive para replay de eventos perdidos",
+            "Usar SNS ao invés",
+            "Implementar polling por cada consumer"
+        ],
+        correct: [1],
+        explanation: "SQS por consumer persiste eventos independentemente. DLQ captura falhas. EventBridge Archive permite replay de eventos históricos para recovery.",
+        topic: "event-driven",
+        domain: "resilient"
+    },
+    {
+        id: 'res_058',
+        question: "Uma aplicação em EKS tem pods que consomem muita memória e são killed pelo OOM killer, causando indisponibilidade. Como tornar resiliente?",
+        options: [
+            "Remover memory limits",
+            "Configurar resource requests/limits + HPA baseado em memory + PodDisruptionBudget",
+            "Usar nodes maiores",
+            "Desabilitar OOM killer"
+        ],
+        correct: [1],
+        explanation: "Resource limits contêm consumo. HPA escala pods antes de atingir limite. PodDisruptionBudget garante mínimo de pods disponíveis durante disruptions.",
+        topic: "containers",
+        domain: "resilient"
+    },
+    {
+        id: 'res_059',
+        question: "Uma empresa precisa de RPO = 0 para seu banco DynamoDB global. Atualmente usa Global Tables mas observa replication lag de 1-2 segundos. Como atingir RPO = 0?",
+        options: [
+            "DynamoDB Global Tables já garante RPO = 0",
+            "Não é possível RPO = 0 com Global Tables — usar strong consistency com single-region + Multi-AZ",
+            "Aumentar WCU nas tabelas",
+            "Usar DAX para reduzir lag"
+        ],
+        correct: [1],
+        explanation: "Global Tables usa replicação assíncrona (eventual consistency) — RPO > 0 sempre. Para RPO = 0, usar single-region com Multi-AZ (replicação síncrona dentro da região).",
+        topic: "dynamodb",
+        domain: "resilient"
+    },
+    {
+        id: 'res_060',
+        question: "Uma aplicação crítica precisa de 99.99% de disponibilidade. Atualmente está em single-region com Multi-AZ. Qual mudança arquitetural é necessária?",
+        options: [
+            "Adicionar mais instâncias na mesma região",
+            "Multi-region active-active com Route 53 health checks + data replication + automated failover",
+            "Usar instâncias dedicated",
+            "Adicionar mais AZs na mesma região"
+        ],
+        correct: [1],
+        explanation: "99.99% requer tolerância a falha regional. Multi-region active-active com failover automático é necessário. Single-region Multi-AZ tipicamente atinge 99.95%.",
+        topic: "high-availability",
+        domain: "resilient"
+    }
+];
+
+resilientQuestions.push(...resilientQuestions3);

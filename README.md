@@ -81,22 +81,22 @@ aws-certification-platform/
 ### SAA-C03 — Solutions Architect (65q / 130min / 72%)
 | Domínio | Peso |
 |---|---|
-| Resilient Architectures | 30% |
-| High-Performing Architectures | 28% |
-| Secure Applications | 24% |
-| Cost-Optimized Architectures | 18% |
+| Secure Architectures | 30% |
+| Resilient Architectures | 26% |
+| High-Performing Architectures | 24% |
+| Cost-Optimized Architectures | 20% |
 
 ### DOP-C02 — DevOps Engineer (75q / 180min / 75%)
 | Domínio | Peso |
 |---|---|
 | SDLC Automation | 22% |
 | Configuration Management & IaC | 17% |
-| Resilient Cloud Solutions | 16% |
+| Resilient Cloud Solutions | 15% |
 | Monitoring & Logging | 15% |
-| Incident & Event Response | 18% |
-| Compliance & Governance | 12% |
+| Incident & Event Response | 14% |
+| Security & Compliance | 17% |
 
-### AIF-C01 — AI Practitioner (85q / 120min / 70%)
+### AIF-C01 — AI Practitioner (65q / 90min / 70%)
 | Domínio | Peso |
 |---|---|
 | Fundamentals of AI & ML | 20% |

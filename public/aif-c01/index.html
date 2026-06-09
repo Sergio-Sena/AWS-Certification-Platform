@@ -10,12 +10,10 @@
 </head>
 <body>
     <a href="#main-content" class="skip-link">Pular para conteúdo principal</a>
-    
+
     <header class="header">
         <div class="header-content">
-            <a href="../index.html" class="back-link" aria-label="Voltar para página inicial">
-                <i class="fas fa-arrow-left"></i> Voltar
-            </a>
+            <a href="../index.html" class="back-link"><i class="fas fa-arrow-left"></i> Voltar</a>
             <div class="cert-badge">
                 <span class="cert-code">AIF-C01</span>
                 <span class="cert-name">AI Practitioner</span>
@@ -23,79 +21,92 @@
         </div>
     </header>
 
+    <nav class="main-nav">
+        <button class="nav-btn active" onclick="showSection('study')">📚 Estudo 80/20</button>
+        <button class="nav-btn" onclick="showSection('simulator')">🎯 Simulado</button>
+        <button class="nav-btn" onclick="showSection('progress')">📊 Progresso</button>
+    </nav>
+
     <main id="main-content" class="main-container">
-        <section class="hero-section">
-            <h1><i class="fas fa-brain"></i> AWS AI Practitioner</h1>
-            <p class="hero-description">Fundamentos de IA/ML, IA generativa e serviços de IA da AWS</p>
-            <div class="cert-stats">
-                <div class="stat"><span class="stat-value">85</span><span class="stat-label">Questões</span></div>
-                <div class="stat"><span class="stat-value">120</span><span class="stat-label">Minutos</span></div>
-                <div class="stat"><span class="stat-value">70%</span><span class="stat-label">Score Mínimo</span></div>
-                <div class="stat"><span class="stat-value">80%</span><span class="stat-label">Nossa Meta</span></div>
+
+        <!-- SEÇÃO ESTUDO 80/20 -->
+        <section id="study" class="content-section active">
+            <div class="pareto-banner">
+                <h2><i class="fas fa-bullseye"></i> Método 80/20 — Foque no que importa</h2>
+                <p>Os <strong>6 tópicos vitais</strong> abaixo cobrem <strong>80% do exame</strong>. Domine-os primeiro.</p>
+            </div>
+
+            <!-- Mapa Pareto -->
+            <div id="pareto-map" class="pareto-map">
+                <h3>🎯 20% Vital (estude primeiro)</h3>
+                <div id="vital-topics" class="topics-grid"></div>
+
+                <h3 style="margin-top:2rem; opacity:0.7;">📎 Complementar (estude depois)</h3>
+                <div id="complementary-topics" class="topics-grid complementary"></div>
+            </div>
+
+            <!-- Domínios de estudo -->
+            <div class="domains-study">
+                <h3>📚 Material por Domínio</h3>
+                <div class="domains-grid" id="domains-grid"></div>
+            </div>
+
+            <!-- Conteúdo do tópico expandido -->
+            <div id="topic-content" class="topic-content" style="display:none;"></div>
+        </section>
+
+        <!-- SEÇÃO SIMULADO -->
+        <section id="simulator" class="content-section" style="display:none;">
+            <div class="simulator-header">
+                <h2><i class="fas fa-laptop-code"></i> Simulado AIF-C01</h2>
+                <p>65 questões | 90 minutos | Aprovação: 70% | Nossa meta: 80%</p>
+                <div class="simulator-controls">
+                    <button class="btn-primary" onclick="startExam()">Iniciar Simulado (65 questões)</button>
+                    <button class="btn-secondary" onclick="practiceMode()">Modo Prática (10 questões)</button>
+                </div>
+            </div>
+
+            <div id="exam-interface" class="exam-interface" style="display:none;">
+                <div class="exam-header">
+                    <div class="timer">⏱️ <span id="timer">90:00</span></div>
+                    <div>Questão <span id="current-q">1</span> de <span id="total-q">65</span></div>
+                </div>
+                <div id="question-text" class="question-text"></div>
+                <div id="options-container" class="options-container"></div>
+                <div class="exam-controls">
+                    <button id="prev-btn" onclick="previousQuestion()" disabled>← Anterior</button>
+                    <button id="next-btn" onclick="nextQuestion()">Próxima →</button>
+                    <button id="finish-btn" onclick="finishExam()" style="display:none;">Finalizar</button>
+                </div>
             </div>
         </section>
 
-        <section class="status-section">
-            <div class="status-card">
-                <i class="fas fa-hammer"></i>
-                <h2>Em Desenvolvimento</h2>
-                <p>Esta certificação está sendo construída. Em breve teremos 200 questões e material completo.</p>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 0%"></div>
-                </div>
-                <span class="progress-text">0% concluído</span>
-            </div>
-        </section>
-
-        <section class="domains-preview">
-            <h2>Domínios do Exame</h2>
-            <div class="domains-grid">
-                <div class="domain-card">
-                    <div class="domain-header">
-                        <i class="fas fa-lightbulb"></i>
-                        <span class="domain-weight">20%</span>
-                    </div>
-                    <h3>Fundamentals of AI & ML</h3>
-                    <p>Conceitos básicos de IA, ML, deep learning e tipos de modelos</p>
-                </div>
-                <div class="domain-card">
-                    <div class="domain-header">
-                        <i class="fas fa-robot"></i>
-                        <span class="domain-weight">24%</span>
-                    </div>
-                    <h3>Fundamentals of Generative AI</h3>
-                    <p>LLMs, foundation models, prompt engineering, Amazon Bedrock</p>
-                </div>
-                <div class="domain-card">
-                    <div class="domain-header">
-                        <i class="fas fa-cloud"></i>
-                        <span class="domain-weight">28%</span>
-                    </div>
-                    <h3>Applications of Foundation Models</h3>
-                    <p>RAG, fine-tuning, agentes, casos de uso empresariais</p>
-                </div>
-                <div class="domain-card">
-                    <div class="domain-header">
-                        <i class="fas fa-shield-alt"></i>
-                        <span class="domain-weight">14%</span>
-                    </div>
-                    <h3>Guidelines for Responsible AI</h3>
-                    <p>Ética, bias, fairness, transparência e governança de IA</p>
-                </div>
-                <div class="domain-card">
-                    <div class="domain-header">
-                        <i class="fas fa-lock"></i>
-                        <span class="domain-weight">14%</span>
-                    </div>
-                    <h3>Security & Compliance for AI</h3>
-                    <p>Segurança de dados, privacidade, compliance e guardrails</p>
-                </div>
+        <!-- SEÇÃO PROGRESSO -->
+        <section id="progress" class="content-section" style="display:none;">
+            <h2><i class="fas fa-chart-line"></i> Seu Progresso</h2>
+            <div id="progress-content">
+                <div class="progress-overview" id="progress-overview"></div>
+                <div class="pareto-feedback" id="pareto-feedback"></div>
             </div>
         </section>
     </main>
 
     <footer class="footer">
-        <p>&copy; 2025 AWS Certification Platform | Meta 80% para máxima confiança</p>
+        <p>&copy; 2025 AWS Certification Platform | Método 80/20 — Foque nos 20% que geram 80% do resultado</p>
     </footer>
+
+    <script src="data/aif-study-material.js"></script>
+    <script src="data/aif-services-reference.js"></script>
+    <script src="data/aif-algorithms-metrics.js"></script>
+    <script src="data/aif-aws-practical.js"></script>
+    <script src="data/aif-initial-assessment.js"></script>
+    <script src="data/ai-ml-questions.js"></script>
+    <script src="data/generative-ai-questions.js"></script>
+    <script src="data/foundation-models-questions.js"></script>
+    <script src="data/responsible-ai-questions.js"></script>
+    <script src="data/security-ai-questions.js"></script>
+    <script src="data/aif-extra-questions.js"></script>
+    <script src="data/aif-questions-195.js"></script>
+    <script src="js/aif-script.js"></script>
 </body>
 </html>

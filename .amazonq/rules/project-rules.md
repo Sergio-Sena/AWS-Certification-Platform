@@ -6,7 +6,7 @@
 - **Bucket**: `sstech-cdn-unified`
 - **Prefixo**: `/aws-cert/`
 - **Distribution**: `E9ZQJ3RPSA04N`
-- **URL**: `https://sstech.cloud/aws-cert/`
+- **URL**: `https://cert.sstechnologies-cloud.com/`
 
 ## Certificações
 | Código | Nome | Banco | Status |
@@ -15,7 +15,7 @@
 | DVA-C02 | Developer Associate | 200q | ✅ |
 | SAA-C03 | Solutions Architect | 200q | 🚧 |
 | DOP-C02 | DevOps Engineer | 225q | 📋 |
-| AIF-C01 | AI Practitioner | 255q | 📋 |
+| AIF-C01 | AI Practitioner | 195q | 📋 |
 
 ## Regras de Segurança
 - NUNCA expor credentials em código
