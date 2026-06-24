@@ -211,6 +211,9 @@ const aifStudyMaterial = {
                     <tr><td>Fine-tuning (Full/LoRA/PEFT)</td><td>Pares prompt→completion</td><td>Alto</td><td>Comportamento específico</td></tr>
                     <tr><td>Treinar do zero</td><td>Trilhões de tokens</td><td>Milhões $$</td><td>Quase nunca</td></tr>
                 </table>
+            </div>
+        `
+    },
 
     // DOMÍNIO 3: Applications of Foundation Models (28%)
     'foundation-models': {
