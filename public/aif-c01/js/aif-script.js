@@ -257,10 +257,136 @@ function showResults(results) {
     document.getElementById('exam-interface').style.display = 'none';
     document.querySelector('.simulator-header').style.display = 'block';
     document.getElementById('timer').parentElement.style.display = 'block';
-    showSection('progress');
-    // Trigger nav button
+
+    // Renderizar revisão detalhada diretamente na seção progresso
+    renderProgress();
+    renderDetailedReview();
+
+    // Mostrar seção progresso
+    document.querySelectorAll('.content-section').forEach(s => s.style.display = 'none');
+    document.getElementById('progress').style.display = 'block';
     document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
     document.querySelectorAll('.nav-btn')[2].classList.add('active');
+}
+
+// === REVISÃO DETALHADA PÓS-SIMULADO ===
+function renderDetailedReview() {
+    const container = document.getElementById('pareto-feedback');
+    if (!examState.questions.length) return;
+
+    const domainNames = {
+        'ai-ml': 'Fundamentals AI/ML',
+        'generative-ai': 'Generative AI',
+        'foundation-models': 'Foundation Models',
+        'responsible-ai': 'Responsible AI',
+        'security-ai': 'Security & Compliance'
+    };
+
+    const domainMaterialMap = {
+        'ai-ml': 'ai-ml-fundamentals',
+        'generative-ai': 'generative-ai',
+        'foundation-models': 'foundation-models',
+        'responsible-ai': 'responsible-ai',
+        'security-ai': 'security-ai'
+    };
+
+    // Separar acertos e erros
+    const wrongQuestions = [];
+    const correctQuestions = [];
+
+    examState.questions.forEach((q, idx) => {
+        const userAnswer = examState.answers[q.id];
+        const isCorrect = userAnswer === q.correct[0];
+        const item = { question: q, userAnswer, index: idx + 1, isCorrect };
+        if (isCorrect) correctQuestions.push(item);
+        else wrongQuestions.push(item);
+    });
+
+    let html = `
+        <div class="pareto-feedback-card" style="margin-top:2rem;">
+            <h4>📋 Revisão Detalhada — ${examState.questions.length} questões</h4>
+            <p style="margin-bottom:1rem; color: var(--aif-text-muted);">
+                ✅ ${correctQuestions.length} corretas | ❌ ${wrongQuestions.length} erradas
+            </p>
+            <div style="display:flex; gap:0.5rem; margin-bottom:1.5rem; flex-wrap:wrap;">
+                <button class="btn-secondary" onclick="toggleReviewFilter('wrong')" id="btn-filter-wrong" style="font-size:0.85rem; padding:0.5rem 1rem;">❌ Ver Erradas (${wrongQuestions.length})</button>
+                <button class="btn-secondary" onclick="toggleReviewFilter('correct')" id="btn-filter-correct" style="font-size:0.85rem; padding:0.5rem 1rem;">✅ Ver Corretas (${correctQuestions.length})</button>
+                <button class="btn-secondary" onclick="toggleReviewFilter('all')" id="btn-filter-all" style="font-size:0.85rem; padding:0.5rem 1rem;">📋 Ver Todas</button>
+            </div>
+        </div>
+    `;
+
+    // Renderizar questões erradas (visíveis por default)
+    html += '<div id="review-wrong" class="review-section">';
+    if (wrongQuestions.length === 0) {
+        html += '<p style="text-align:center; padding:2rem; color: var(--aif-success);">🎉 Parabéns! Nenhuma questão errada!</p>';
+    } else {
+        html += wrongQuestions.map(item => renderReviewQuestion(item, domainNames, domainMaterialMap)).join('');
+    }
+    html += '</div>';
+
+    // Renderizar questões corretas (ocultas por default)
+    html += '<div id="review-correct" class="review-section" style="display:none;">';
+    html += correctQuestions.map(item => renderReviewQuestion(item, domainNames, domainMaterialMap)).join('');
+    html += '</div>';
+
+    // Renderizar todas (ocultas por default)
+    html += '<div id="review-all" class="review-section" style="display:none;">';
+    const allItems = examState.questions.map((q, idx) => {
+        const userAnswer = examState.answers[q.id];
+        return { question: q, userAnswer, index: idx + 1, isCorrect: userAnswer === q.correct[0] };
+    });
+    html += allItems.map(item => renderReviewQuestion(item, domainNames, domainMaterialMap)).join('');
+    html += '</div>';
+
+    container.innerHTML += html;
+}
+
+function renderReviewQuestion(item, domainNames, domainMaterialMap) {
+    const q = item.question;
+    const correctIdx = q.correct[0];
+    const userIdx = item.userAnswer;
+    const domainName = domainNames[q.domain] || q.domain;
+    const materialKey = domainMaterialMap[q.domain] || '';
+
+    return `
+        <div class="review-item ${item.isCorrect ? 'review-correct-item' : 'review-wrong-item'}">
+            <div class="review-header">
+                <span class="review-number">${item.isCorrect ? '✅' : '❌'} Questão ${item.index}</span>
+                <span class="review-domain" ${materialKey ? `onclick="showTopic('${materialKey}')" style="cursor:pointer;"` : ''}>${domainName} ${!item.isCorrect ? '→ Revisar' : ''}</span>
+            </div>
+            <div class="review-question">${q.question}</div>
+            <div class="review-options">
+                ${q.options.map((opt, i) => {
+                    let cls = 'review-opt';
+                    let icon = '';
+                    if (i === correctIdx) { cls += ' review-opt-correct'; icon = '✅'; }
+                    else if (i === userIdx && !item.isCorrect) { cls += ' review-opt-wrong'; icon = '❌'; }
+                    return `<div class="${cls}">${icon} ${String.fromCharCode(65+i)}. ${opt}</div>`;
+                }).join('')}
+            </div>
+            <div class="review-explanation">
+                <strong>💡 Explicação:</strong> ${q.explanation}
+            </div>
+        </div>
+    `;
+}
+
+function toggleReviewFilter(filter) {
+    document.getElementById('review-wrong').style.display = filter === 'wrong' || filter === 'all' ? 'block' : 'none';
+    document.getElementById('review-correct').style.display = filter === 'correct' ? 'block' : 'none';
+    document.getElementById('review-all').style.display = filter === 'all' ? 'block' : 'none';
+
+    if (filter === 'all') {
+        document.getElementById('review-wrong').style.display = 'none';
+        document.getElementById('review-correct').style.display = 'none';
+    }
+
+    // Visual feedback nos botões
+    ['wrong','correct','all'].forEach(f => {
+        const btn = document.getElementById(`btn-filter-${f}`);
+        if (btn) btn.style.opacity = f === filter ? '1' : '0.5';
+    });
 }
 
 // === UTILS ===
