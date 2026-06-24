@@ -4,68 +4,220 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AWS Certification Platform</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>&#x1F680;</text></svg>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.6; color: #333; background: #f8f9fa; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.6; color: #333; background: #f0f2f5; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-        @media (max-width: 768px) { .container { padding: 0 1rem; } }
-        .certification-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin: 3rem 0; }
-        .cert-card { background: white; border-radius: 12px; padding: 2rem; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.1); transition: all 0.3s ease; border-top: 4px solid; }
-        .cert-card:hover { transform: translateY(-8px); box-shadow: 0 8px 30px rgba(0,0,0,0.15); }
+
+        /* Hero com animação sutil */
+        .hero {
+            text-align: center;
+            padding: 5rem 0 4rem;
+            background: linear-gradient(135deg, #0f1b2d 0%, #1a2940 40%, #232F3E 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,153,0,0.03) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+        .hero-content { position: relative; z-index: 1; }
+        .hero h1 { font-size: 2.8rem; font-weight: 800; margin-bottom: 0.8rem; letter-spacing: -0.5px; }
+        .hero h1 i { color: #FF9900; margin-right: 0.5rem; }
+        .hero p { font-size: 1.15rem; opacity: 0.85; max-width: 600px; margin: 0 auto; }
+        .hero-stats { display: flex; justify-content: center; gap: 3rem; margin-top: 2rem; }
+        .hero-stat { text-align: center; }
+        .hero-stat-number { font-size: 2rem; font-weight: 800; color: #FF9900; }
+        .hero-stat-label { font-size: 0.8rem; opacity: 0.7; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* Meta banner */
+        .approval-message {
+            background: linear-gradient(135deg, #e8f5e8 0%, #f0faf0 100%);
+            border: 1px solid #b8e6b8;
+            border-radius: 12px;
+            padding: 1.2rem 2rem;
+            margin: 2.5rem 0;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,166,81,0.08);
+        }
+        .approval-message strong { color: #00A651; font-size: 1.1rem; }
+        .approval-message p:last-child { color: #555; margin-top: 0.3rem; }
+
+        /* Section divider */
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #232F3E;
+            margin: 2.5rem 0 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .section-title.completed { border-bottom-color: #00A651; }
+        .section-title.wip { border-bottom-color: #F57C00; }
+
+        /* Grid */
+        .certification-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 1.8rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Cards */
+        .cert-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+            border-top: 5px solid;
+            position: relative;
+            overflow: hidden;
+        }
+        .cert-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            opacity: 0.03;
+            pointer-events: none;
+        }
+        .cert-card:hover { transform: translateY(-6px); box-shadow: 0 12px 32px rgba(0,0,0,0.12); }
         .cert-card.clf { border-top-color: #00A651; }
+        .cert-card.clf::after { background: linear-gradient(180deg, #00A651, transparent); }
         .cert-card.dva { border-top-color: #FF9900; }
+        .cert-card.dva::after { background: linear-gradient(180deg, #FF9900, transparent); }
         .cert-card.saa { border-top-color: #007EB9; }
+        .cert-card.saa::after { background: linear-gradient(180deg, #007EB9, transparent); }
         .cert-card.dop { border-top-color: #8B5CF6; }
+        .cert-card.dop::after { background: linear-gradient(180deg, #8B5CF6, transparent); }
         .cert-card.aif { border-top-color: #06B6D4; }
-        .cert-icon { font-size: 3rem; margin-bottom: 1rem; }
+        .cert-card.aif::after { background: linear-gradient(180deg, #06B6D4, transparent); }
+
+        .cert-card.is-wip { opacity: 0.75; }
+        .cert-card.is-wip:hover { opacity: 1; }
+
+        .cert-icon { font-size: 2.8rem; margin-bottom: 1rem; }
         .cert-card.clf .cert-icon { color: #00A651; }
         .cert-card.dva .cert-icon { color: #FF9900; }
         .cert-card.saa .cert-icon { color: #007EB9; }
         .cert-card.dop .cert-icon { color: #8B5CF6; }
         .cert-card.aif .cert-icon { color: #06B6D4; }
-        .cert-badge-status { display: inline-block; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; margin-bottom: 0.5rem; }
-        .badge-ready { background: #e8f5e8; color: #00A651; }
-        .badge-wip { background: #FFF3E0; color: #F57C00; }
-        .cert-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; color: #232F3E; }
-        .cert-subtitle { color: #666; margin-bottom: 1.5rem; }
-        .cert-stats { display: flex; justify-content: space-around; margin: 1.5rem 0; padding: 1rem; background: #f8f9fa; border-radius: 8px; }
+
+        /* Badges */
+        .cert-badge-status {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.8rem;
+        }
+        .badge-ready { background: #00A651; color: white; box-shadow: 0 2px 8px rgba(0,166,81,0.3); }
+        .badge-wip { background: #FFF3E0; color: #F57C00; border: 1px solid #FFE0B2; }
+
+        .cert-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.4rem; color: #232F3E; }
+        .cert-subtitle { color: #888; margin-bottom: 1.2rem; font-size: 0.9rem; }
+
+        .cert-stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 1.2rem 0;
+            padding: 0.8rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
         .stat { text-align: center; }
-        .stat-number { font-size: 1.2rem; font-weight: 700; color: #232F3E; }
-        .stat-label { font-size: 0.8rem; color: #666; }
-        .cert-btn { background: linear-gradient(135deg, #232F3E 0%, #3a4a5d 100%); color: white; border: none; padding: 1rem 2rem; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; width: 100%; }
-        .cert-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(35, 47, 62, 0.3); }
-        .hero { text-align: center; padding: 4rem 0; background: linear-gradient(135deg, #232F3E 0%, #3a4a5d 100%); color: white; margin-bottom: 3rem; }
-        .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
-        .hero p { font-size: 1.2rem; opacity: 0.9; }
-        .approval-message { background: #e8f5e8; border: 1px solid #00A651; border-radius: 8px; padding: 1rem; margin: 2rem 0; text-align: center; }
-        .approval-message strong { color: #00A651; }
-        @media (max-width: 768px) { .hero h1 { font-size: 2rem; } .certification-grid { grid-template-columns: 1fr; gap: 1.5rem; } .cert-card { padding: 1.5rem; } }
+        .stat-number { font-size: 1.1rem; font-weight: 700; color: #232F3E; }
+        .stat-label { font-size: 0.75rem; color: #888; }
+
+        /* Botões com cor da certificação */
+        .cert-btn {
+            color: white;
+            border: none;
+            padding: 0.9rem 2rem;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        .cert-btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
+        .cert-card.dva .cert-btn { background: linear-gradient(135deg, #FF9900, #e68a00); box-shadow: 0 4px 12px rgba(255,153,0,0.3); }
+        .cert-card.saa .cert-btn { background: linear-gradient(135deg, #007EB9, #005f8a); box-shadow: 0 4px 12px rgba(0,126,185,0.3); }
+        .cert-card.aif .cert-btn { background: linear-gradient(135deg, #06B6D4, #0891b2); box-shadow: 0 4px 12px rgba(6,182,212,0.3); }
+        .cert-card.clf .cert-btn { background: linear-gradient(135deg, #6b7280, #4b5563); box-shadow: 0 4px 12px rgba(107,114,128,0.3); }
+        .cert-card.dop .cert-btn { background: linear-gradient(135deg, #6b7280, #4b5563); box-shadow: 0 4px 12px rgba(107,114,128,0.3); }
+
+        /* Footer */
+        .footer { text-align: center; padding: 2rem; color: #999; font-size: 0.85rem; margin-top: 2rem; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .hero-stats { gap: 1.5rem; }
+            .certification-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+            .cert-card { padding: 1.5rem; }
+            .container { padding: 0 1rem; }
+        }
     </style>
 </head>
 <body>
     <div class="hero">
-        <div class="container">
-            <h1><i class="fas fa-cloud" style="color: #FF9900;"></i> AWS Certification Platform</h1>
-            <p>Prepare-se para as certificações AWS com simulados completos e material de estudo</p>
+        <div class="hero-content container">
+            <h1><i class="fas fa-cloud"></i> AWS Certification Platform</h1>
+            <p>Simulados completos com material de estudo integrado. Nossa meta de 80% garante que você esteja realmente preparado.</p>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="hero-stat-number">5</div>
+                    <div class="hero-stat-label">Certificações</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-number">825+</div>
+                    <div class="hero-stat-label">Questões</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-number">100%</div>
+                    <div class="hero-stat-label">Gratuito</div>
+                </div>
+            </div>
         </div>
     </div>
 
     <main class="container">
         <div class="approval-message">
-            <p><strong>🎯 Nossa Meta: 80% de Aprovação</strong></p>
-            <p>Recomendamos atingir 80% ou mais nos nossos simulados antes de agendar o exame oficial. Isso garante que você esteja REALMENTE preparado!</p>
+            <p><strong>🎯 Nossa Meta: 80% nos Simulados</strong></p>
+            <p>Acima do score oficial da AWS — isso garante confiança total no dia da prova.</p>
         </div>
 
+        <div class="section-title completed"><i class="fas fa-check-circle" style="color:#00A651;"></i> Prontos para Estudar</div>
         <div class="certification-grid">
             <!-- DVA-C02 -->
             <div class="cert-card dva">
                 <div class="cert-icon"><i class="fas fa-code"></i></div>
                 <span class="cert-badge-status badge-ready">Completo</span>
                 <h2 class="cert-title">Developer Associate</h2>
-                <p class="cert-subtitle">DVA-C02 - Desenvolvimento AWS</p>
+                <p class="cert-subtitle">DVA-C02 — 200 questões com cenários reais</p>
                 <div class="cert-stats">
                     <div class="stat"><div class="stat-number">200</div><div class="stat-label">Questões</div></div>
                     <div class="stat"><div class="stat-number">130min</div><div class="stat-label">Duração</div></div>
@@ -79,7 +231,7 @@
                 <div class="cert-icon"><i class="fas fa-sitemap"></i></div>
                 <span class="cert-badge-status badge-ready">Completo</span>
                 <h2 class="cert-title">Solutions Architect</h2>
-                <p class="cert-subtitle">SAA-C03 - Arquitetura de Soluções</p>
+                <p class="cert-subtitle">SAA-C03 — 225 questões de arquitetura</p>
                 <div class="cert-stats">
                     <div class="stat"><div class="stat-number">225</div><div class="stat-label">Questões</div></div>
                     <div class="stat"><div class="stat-number">130min</div><div class="stat-label">Duração</div></div>
@@ -93,7 +245,7 @@
                 <div class="cert-icon"><i class="fas fa-brain"></i></div>
                 <span class="cert-badge-status badge-ready">Completo</span>
                 <h2 class="cert-title">AI Practitioner</h2>
-                <p class="cert-subtitle">AIF-C01 - Inteligência Artificial</p>
+                <p class="cert-subtitle">AIF-C01 — 400 questões + material 80/20</p>
                 <div class="cert-stats">
                     <div class="stat"><div class="stat-number">400</div><div class="stat-label">Questões</div></div>
                     <div class="stat"><div class="stat-number">90min</div><div class="stat-label">Duração</div></div>
@@ -101,35 +253,42 @@
                 </div>
                 <button class="cert-btn" onclick="window.location.href='aif-c01/index.html'">Iniciar Estudos</button>
             </div>
+        </div>
 
+        <div class="section-title wip"><i class="fas fa-hammer" style="color:#F57C00;"></i> Em Desenvolvimento</div>
+        <div class="certification-grid">
             <!-- CLF-C02 -->
-            <div class="cert-card clf">
+            <div class="cert-card clf is-wip">
                 <div class="cert-icon"><i class="fas fa-cloud"></i></div>
-                <span class="cert-badge-status badge-wip">Em Desenvolvimento</span>
+                <span class="cert-badge-status badge-wip">Em Breve</span>
                 <h2 class="cert-title">Cloud Practitioner</h2>
-                <p class="cert-subtitle">CLF-C02 - Fundamentos AWS</p>
+                <p class="cert-subtitle">CLF-C02 — Fundamentos AWS</p>
                 <div class="cert-stats">
                     <div class="stat"><div class="stat-number">200</div><div class="stat-label">Questões</div></div>
                     <div class="stat"><div class="stat-number">90min</div><div class="stat-label">Duração</div></div>
                     <div class="stat"><div class="stat-number">70%</div><div class="stat-label">Aprovação</div></div>
                 </div>
-                <button class="cert-btn" onclick="window.location.href='clf-c02/index.html'">Ver Detalhes</button>
+                <button class="cert-btn" onclick="window.location.href='clf-c02/index.html'">Ver Prévia</button>
             </div>
 
             <!-- DOP-C02 -->
-            <div class="cert-card dop">
+            <div class="cert-card dop is-wip">
                 <div class="cert-icon"><i class="fas fa-cogs"></i></div>
-                <span class="cert-badge-status badge-wip">Em Desenvolvimento</span>
+                <span class="cert-badge-status badge-wip">Em Breve</span>
                 <h2 class="cert-title">DevOps Engineer</h2>
-                <p class="cert-subtitle">DOP-C02 - DevOps Professional</p>
+                <p class="cert-subtitle">DOP-C02 — DevOps Professional</p>
                 <div class="cert-stats">
-                    <div class="stat"><div class="stat-number">75</div><div class="stat-label">Questões</div></div>
+                    <div class="stat"><div class="stat-number">225</div><div class="stat-label">Questões</div></div>
                     <div class="stat"><div class="stat-number">180min</div><div class="stat-label">Duração</div></div>
                     <div class="stat"><div class="stat-number">75%</div><div class="stat-label">Aprovação</div></div>
                 </div>
-                <button class="cert-btn" onclick="window.location.href='dop-c02/index.html'">Ver Detalhes</button>
+                <button class="cert-btn" onclick="window.location.href='dop-c02/index.html'">Ver Prévia</button>
             </div>
         </div>
     </main>
+
+    <div class="footer">
+        <p>AWS Certification Platform — Projeto educacional open-source | 100% gratuito e em português</p>
+    </div>
 </body>
 </html>
