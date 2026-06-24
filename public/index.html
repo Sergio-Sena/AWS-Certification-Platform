@@ -1,341 +1,135 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AWS Certification Platform</title>
-    <!-- Base CSS inline -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>ðŸŒ</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>&#x1F680;</text></svg>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* Base styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: #f8f9fa;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-        
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 1rem;
-            }
-        }
-        .certification-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-        
-        .cert-card {
-            background: white;
-            border-radius: 12px;
-            padding: 2rem;
-            text-align: center;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            border-top: 4px solid;
-        }
-        
-        .cert-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
-        }
-        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.6; color: #333; background: #f8f9fa; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        @media (max-width: 768px) { .container { padding: 0 1rem; } }
+        .certification-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin: 3rem 0; }
+        .cert-card { background: white; border-radius: 12px; padding: 2rem; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.1); transition: all 0.3s ease; border-top: 4px solid; }
+        .cert-card:hover { transform: translateY(-8px); box-shadow: 0 8px 30px rgba(0,0,0,0.15); }
         .cert-card.clf { border-top-color: #00A651; }
         .cert-card.dva { border-top-color: #FF9900; }
         .cert-card.saa { border-top-color: #007EB9; }
         .cert-card.dop { border-top-color: #8B5CF6; }
         .cert-card.aif { border-top-color: #06B6D4; }
-        
-        .cert-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-        
+        .cert-icon { font-size: 3rem; margin-bottom: 1rem; }
         .cert-card.clf .cert-icon { color: #00A651; }
         .cert-card.dva .cert-icon { color: #FF9900; }
         .cert-card.saa .cert-icon { color: #007EB9; }
         .cert-card.dop .cert-icon { color: #8B5CF6; }
         .cert-card.aif .cert-icon { color: #06B6D4; }
-        
-        .cert-badge-status {
-            display: inline-block;
-            padding: 0.2rem 0.6rem;
-            border-radius: 4px;
-            font-size: 0.7rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-bottom: 0.5rem;
-        }
+        .cert-badge-status { display: inline-block; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; margin-bottom: 0.5rem; }
         .badge-ready { background: #e8f5e8; color: #00A651; }
         .badge-wip { background: #FFF3E0; color: #F57C00; }
-        
-        .cert-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: #232F3E;
-        }
-        
-        .cert-subtitle {
-            color: #666;
-            margin-bottom: 1.5rem;
-        }
-        
-        .cert-stats {
-            display: flex;
-            justify-content: space-around;
-            margin: 1.5rem 0;
-            padding: 1rem;
-            background: #f8f9fa;
-            border-radius: 8px;
-        }
-        
-        .stat {
-            text-align: center;
-        }
-        
-        .stat-number {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #232F3E;
-        }
-        
-        .stat-label {
-            font-size: 0.8rem;
-            color: #666;
-        }
-        
-        .cert-btn {
-            background: linear-gradient(135deg, #232F3E 0%, #3a4a5d 100%);
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-        }
-        
-        .cert-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(35, 47, 62, 0.3);
-        }
-        
-        .hero {
-            text-align: center;
-            padding: 4rem 0;
-            background: linear-gradient(135deg, #232F3E 0%, #3a4a5d 100%);
-            color: white;
-            margin-bottom: 3rem;
-        }
-        
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-        
-        .approval-message {
-            background: #e8f5e8;
-            border: 1px solid #00A651;
-            border-radius: 8px;
-            padding: 1rem;
-            margin: 2rem 0;
-            text-align: center;
-        }
-        
-        .approval-message strong {
-            color: #00A651;
-        }
-        
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .certification-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-            
-            .cert-card {
-                padding: 1.5rem;
-            }
-        }
+        .cert-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; color: #232F3E; }
+        .cert-subtitle { color: #666; margin-bottom: 1.5rem; }
+        .cert-stats { display: flex; justify-content: space-around; margin: 1.5rem 0; padding: 1rem; background: #f8f9fa; border-radius: 8px; }
+        .stat { text-align: center; }
+        .stat-number { font-size: 1.2rem; font-weight: 700; color: #232F3E; }
+        .stat-label { font-size: 0.8rem; color: #666; }
+        .cert-btn { background: linear-gradient(135deg, #232F3E 0%, #3a4a5d 100%); color: white; border: none; padding: 1rem 2rem; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; width: 100%; }
+        .cert-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(35, 47, 62, 0.3); }
+        .hero { text-align: center; padding: 4rem 0; background: linear-gradient(135deg, #232F3E 0%, #3a4a5d 100%); color: white; margin-bottom: 3rem; }
+        .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
+        .hero p { font-size: 1.2rem; opacity: 0.9; }
+        .approval-message { background: #e8f5e8; border: 1px solid #00A651; border-radius: 8px; padding: 1rem; margin: 2rem 0; text-align: center; }
+        .approval-message strong { color: #00A651; }
+        @media (max-width: 768px) { .hero h1 { font-size: 2rem; } .certification-grid { grid-template-columns: 1fr; gap: 1.5rem; } .cert-card { padding: 1.5rem; } }
     </style>
 </head>
 <body>
     <div class="hero">
         <div class="container">
             <h1><i class="fas fa-cloud" style="color: #FF9900;"></i> AWS Certification Platform</h1>
-            <p>Prepare-se para as certificaÃ§Ãµes AWS com simulados completos e material de estudo</p>
+            <p>Prepare-se para as certificações AWS com simulados completos e material de estudo</p>
         </div>
     </div>
 
     <main class="container">
         <div class="approval-message">
-            <p><strong>ðŸŽ¯ Nossa Meta: 80% de AprovaÃ§Ã£o</strong></p>
-            <p>Recomendamos atingir 80% ou mais nos nossos simulados antes de agendar o exame oficial. Isso garante que vocÃª esteja REALMENTE preparado!</p>
+            <p><strong>🎯 Nossa Meta: 80% de Aprovação</strong></p>
+            <p>Recomendamos atingir 80% ou mais nos nossos simulados antes de agendar o exame oficial. Isso garante que você esteja REALMENTE preparado!</p>
         </div>
 
         <div class="certification-grid">
             <!-- CLF-C02 -->
             <div class="cert-card clf">
-                <div class="cert-icon">
-                    <i class="fas fa-cloud"></i>
-                </div>
+                <div class="cert-icon"><i class="fas fa-cloud"></i></div>
+                <span class="cert-badge-status badge-wip">Em Desenvolvimento</span>
                 <h2 class="cert-title">Cloud Practitioner</h2>
                 <p class="cert-subtitle">CLF-C02 - Fundamentos AWS</p>
                 <div class="cert-stats">
-                    <div class="stat">
-                        <div class="stat-number">200</div>
-                        <div class="stat-label">QuestÃµes</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">90min</div>
-                        <div class="stat-label">DuraÃ§Ã£o</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">70%</div>
-                        <div class="stat-label">AprovaÃ§Ã£o</div>
-                    </div>
+                    <div class="stat"><div class="stat-number">200</div><div class="stat-label">Questões</div></div>
+                    <div class="stat"><div class="stat-number">90min</div><div class="stat-label">Duração</div></div>
+                    <div class="stat"><div class="stat-number">70%</div><div class="stat-label">Aprovação</div></div>
                 </div>
-                <button class="cert-btn" onclick="window.location.href='clf-c02/index.html'">
-                    Iniciar Estudos
-                </button>
+                <button class="cert-btn" onclick="window.location.href='clf-c02/index.html'">Iniciar Estudos</button>
             </div>
 
             <!-- DVA-C02 -->
             <div class="cert-card dva">
-                <div class="cert-icon">
-                    <i class="fas fa-code"></i>
-                </div>
+                <div class="cert-icon"><i class="fas fa-code"></i></div>
+                <span class="cert-badge-status badge-ready">Completo</span>
                 <h2 class="cert-title">Developer Associate</h2>
                 <p class="cert-subtitle">DVA-C02 - Desenvolvimento AWS</p>
                 <div class="cert-stats">
-                    <div class="stat">
-                        <div class="stat-number">200</div>
-                        <div class="stat-label">QuestÃµes</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">130min</div>
-                        <div class="stat-label">DuraÃ§Ã£o</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">72%</div>
-                        <div class="stat-label">AprovaÃ§Ã£o</div>
-                    </div>
+                    <div class="stat"><div class="stat-number">200</div><div class="stat-label">Questões</div></div>
+                    <div class="stat"><div class="stat-number">130min</div><div class="stat-label">Duração</div></div>
+                    <div class="stat"><div class="stat-number">72%</div><div class="stat-label">Aprovação</div></div>
                 </div>
-                <button class="cert-btn" onclick="window.location.href='dva-c02/index.html'">
-                    Iniciar Estudos
-                </button>
+                <button class="cert-btn" onclick="window.location.href='dva-c02/index.html'">Iniciar Estudos</button>
             </div>
 
             <!-- SAA-C03 -->
             <div class="cert-card saa">
-                <div class="cert-icon">
-                    <i class="fas fa-sitemap"></i>
-                </div>
+                <div class="cert-icon"><i class="fas fa-sitemap"></i></div>
+                <span class="cert-badge-status badge-ready">Completo</span>
                 <h2 class="cert-title">Solutions Architect</h2>
-                <p class="cert-subtitle">SAA-C03 - Arquitetura de SoluÃ§Ãµes</p>
+                <p class="cert-subtitle">SAA-C03 - Arquitetura de Soluções</p>
                 <div class="cert-stats">
-                    <div class="stat">
-                        <div class="stat-number">200</div>
-                        <div class="stat-label">QuestÃµes</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">130min</div>
-                        <div class="stat-label">DuraÃ§Ã£o</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">72%</div>
-                        <div class="stat-label">AprovaÃ§Ã£o</div>
-                    </div>
+                    <div class="stat"><div class="stat-number">225</div><div class="stat-label">Questões</div></div>
+                    <div class="stat"><div class="stat-number">130min</div><div class="stat-label">Duração</div></div>
+                    <div class="stat"><div class="stat-number">72%</div><div class="stat-label">Aprovação</div></div>
                 </div>
-                <button class="cert-btn" onclick="window.location.href='saa-c03/index.html'">
-                    Iniciar Estudos
-                </button>
+                <button class="cert-btn" onclick="window.location.href='saa-c03/index.html'">Iniciar Estudos</button>
             </div>
 
             <!-- DOP-C02 -->
             <div class="cert-card dop">
-                <div class="cert-icon">
-                    <i class="fas fa-cogs"></i>
-                </div>
+                <div class="cert-icon"><i class="fas fa-cogs"></i></div>
                 <span class="cert-badge-status badge-wip">Em Desenvolvimento</span>
                 <h2 class="cert-title">DevOps Engineer</h2>
                 <p class="cert-subtitle">DOP-C02 - DevOps Professional</p>
                 <div class="cert-stats">
-                    <div class="stat">
-                        <div class="stat-number">75</div>
-                        <div class="stat-label">QuestÃµes</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">180min</div>
-                        <div class="stat-label">DuraÃ§Ã£o</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">75%</div>
-                        <div class="stat-label">AprovaÃ§Ã£o</div>
-                    </div>
+                    <div class="stat"><div class="stat-number">75</div><div class="stat-label">Questões</div></div>
+                    <div class="stat"><div class="stat-number">180min</div><div class="stat-label">Duração</div></div>
+                    <div class="stat"><div class="stat-number">75%</div><div class="stat-label">Aprovação</div></div>
                 </div>
-                <button class="cert-btn" onclick="window.location.href='dop-c02/index.html'">
-                    Ver Detalhes
-                </button>
+                <button class="cert-btn" onclick="window.location.href='dop-c02/index.html'">Ver Detalhes</button>
             </div>
 
             <!-- AIF-C01 -->
             <div class="cert-card aif">
-                <div class="cert-icon">
-                    <i class="fas fa-brain"></i>
-                </div>
+                <div class="cert-icon"><i class="fas fa-brain"></i></div>
                 <span class="cert-badge-status badge-ready">Completo</span>
                 <h2 class="cert-title">AI Practitioner</h2>
-                <p class="cert-subtitle">AIF-C01 - InteligÃªncia Artificial</p>
+                <p class="cert-subtitle">AIF-C01 - Inteligência Artificial</p>
                 <div class="cert-stats">
-                    <div class="stat">
-                        <div class="stat-number">85</div>
-                        <div class="stat-label">QuestÃµes</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">120min</div>
-                        <div class="stat-label">DuraÃ§Ã£o</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">70%</div>
-                        <div class="stat-label">AprovaÃ§Ã£o</div>
-                    </div>
+                    <div class="stat"><div class="stat-number">400</div><div class="stat-label">Questões</div></div>
+                    <div class="stat"><div class="stat-number">90min</div><div class="stat-label">Duração</div></div>
+                    <div class="stat"><div class="stat-number">70%</div><div class="stat-label">Aprovação</div></div>
                 </div>
-                <button class="cert-btn" onclick="window.location.href='aif-c01/index.html'">
-                    Ver Detalhes
-                </button>
+                <button class="cert-btn" onclick="window.location.href='aif-c01/index.html'">Iniciar Estudos</button>
             </div>
         </div>
     </main>
-
-    <script>
-        console.log('AWS Certification Platform carregado com sucesso!');
-    </script>
 </body>
 </html>
