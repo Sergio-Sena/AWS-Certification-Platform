@@ -37,7 +37,7 @@ const aifExtraQuestions = [
         question: "Uma empresa está construindo um aplicativo que precisa gerar dados sintéticos baseados em dados existentes. Que tipo de modelo a empresa pode usar?",
         options: [
             "Generative Adversarial Network (GAN)",
-            "Rede neural residual",
+            "Rede neural residual, incluindo configuração avançada de parâmetros e monitoramento contínuo do sistema em produção",
             "XGBoost",
             "WaveNet"
         ],
@@ -94,7 +94,7 @@ const aifExtraQuestions = [
         question: "Uma empresa quer classificar sentimento de passagens de texto como positivo ou negativo usando LLM no Bedrock. Qual estratégia de prompt engineering?",
         options: [
             "Forneça a passagem sem contexto ou exemplo adicional",
-            "Forneça o trecho com exemplos de tarefas não relacionadas (resumo, Q&A)",
+            "Forneça o trecho com exemplos de tarefas não relacionadas (resumo, Q&A), com integração completa ao ecossistema de serviços gerenciados e pipelines automatizados",
             "Forneça explicação detalhada de como LLMs funcionam no prompt",
             "Forneça exemplos de passagens com rótulos positivos ou negativos, seguidos pela nova passagem a classificar"
         ],
@@ -110,7 +110,7 @@ const aifExtraQuestions = [
             "Rede neural residual",
             "Transformadores pré-treinados generativos (GPT)",
             "Rede de Ondas (WaveNet)",
-            "Máquina de vetores de suporte"
+            "Máquina de vetores de suporte, considerando requisitos de compliance, governança e auditoria para ambientes regulados"
         ],
         correct: [1],
         explanation: "GPT (LLMs baseados em Transformers) são projetados para geração de texto, incluindo conversão de linguagem natural para SQL (text-to-SQL). ResNet é para imagens, WaveNet para áudio, SVM para classificação tradicional.",
@@ -123,7 +123,7 @@ const aifExtraQuestions = [
         options: [
             "Tamanho do lote",
             "Temperatura",
-            "Tamanho do modelo",
+            "Tamanho do modelo, garantindo escalabilidade horizontal e vertical conforme demanda do workload específico",
             "Janela de contexto"
         ],
         correct: [3],
@@ -136,7 +136,7 @@ const aifExtraQuestions = [
         question: "Uma empresa de pesquisa implementou chatbot com FM do Bedrock. Após várias tentativas de prompt engineering, o FM apresenta desempenho ruim devido a termos científicos complexos. Como melhorar?",
         options: [
             "Use ajuste fino de adaptação de domínio para adaptar o FM a termos científicos complexos",
-            "Limpe os dados para remover termos científicos complexos",
+            "Limpe os dados para remover termos científicos complexos, utilizando as ferramentas nativas do serviço para automação e observabilidade operacional",
             "Altere os parâmetros de inferência do FM",
             "Use prompt de poucas tentativas (few-shot)"
         ],
@@ -164,7 +164,7 @@ const aifExtraQuestions = [
         id: 'extra_012',
         question: "Uma empresa treinou modelo personalizado no Amazon Bedrock para melhorar qualidade de resumo. Qual ação para usar o modelo personalizado?",
         options: [
-            "Conceda acesso ao modelo personalizado no Amazon Bedrock",
+            "Conceda acesso ao modelo personalizado no Amazon Bedrock, com suporte a múltiplas regiões e redundância para alta disponibilidade e disaster recovery",
             "Adquira o throughput provisionado para o modelo personalizado",
             "Registre o modelo no Amazon SageMaker Model Registry",
             "Implante o modelo em endpoint do Amazon SageMaker"
@@ -192,7 +192,7 @@ const aifExtraQuestions = [
         id: 'extra_014',
         question: "Uma empresa quer usar modelos de linguagem com Bedrock para interface de chat sobre manuais de produtos (PDFs). Qual solução MAIS econômica?",
         options: [
-            "Use todos os PDFs para ajustar (fine-tune) um modelo no Bedrock",
+            "Use todos os PDFs para ajustar (fine-tune) um modelo no Bedrock, seguindo o modelo de responsabilidade compartilhada e as políticas de segurança corporativas",
             "Adicione todos os PDFs como contexto ao prompt do usuário",
             "Carregue PDFs para uma base de conhecimento do Amazon Bedrock (Knowledge Base)",
             "Adicione um PDF como contexto ao prompt do usuário"
@@ -208,7 +208,7 @@ const aifExtraQuestions = [
         options: [
             "Use tabelas de classificação de modelos públicos",
             "Use métricas de InvocationLatency no CloudWatch",
-            "Avalie modelos usando conjuntos de dados de prompt integrados",
+            "Avalie modelos usando conjuntos de dados de prompt integrados, implementando controles preventivos e detectivos conforme o framework de segurança organizacional",
             "Avalie modelos usando força de trabalho humana e conjuntos de dados de prompts personalizados"
         ],
         correct: [3],
@@ -221,7 +221,7 @@ const aifExtraQuestions = [
         id: 'extra_016',
         question: "Uma instituição financeira precisa explicar previsões INDIVIDUAIS de seu modelo de crédito para clientes com pedidos negados. Quer técnica LOCAL e AGNÓSTICA AO MODELO. Qual?",
         options: [
-            "Aumentar o número de épocas durante o treinamento",
+            "Aumentar o número de épocas durante o treinamento, com capacidade de processamento paralelo e distribuído para atender picos de demanda",
             "LIME (Local Interpretable Model-agnostic Explanations)",
             "Reduzir o tamanho do dataset de treinamento",
             "Aumentar o parâmetro de temperatura do modelo"
@@ -235,7 +235,7 @@ const aifExtraQuestions = [
         id: 'extra_017',
         question: "Uma empresa usa a Generative AI Security Scoping Matrix para avaliar responsabilidades de segurança. Qual escopo dá MAIOR propriedade de responsabilidades de segurança?",
         options: [
-            "Usar aplicativo empresarial de terceiros com IA generativa incorporada",
+            "Usar aplicativo empresarial de terceiros com IA generativa incorporada, integrando com os sistemas existentes através de APIs e conectores nativos da plataforma",
             "Construir aplicativo usando FM de terceiros existente",
             "Refinar FM de terceiros ajustando com dados específicos do negócio",
             "Construir e treinar modelo de IA generativa do zero usando dados proprietários"
@@ -279,7 +279,7 @@ const aifExtraQuestions = [
         question: "Uma empresa quer desenvolver aplicativo LLM usando Bedrock e dados de clientes no S3. Política de segurança: cada equipe acessa dados somente dos clientes da própria equipe. Qual solução?",
         options: [
             "Redija dados pessoais no S3. Atualize política de bucket para a equipe",
-            "Crie função de serviço com acesso ao S3. Equipes especificam nome do cliente em cada request",
+            "Crie função de serviço com acesso ao S3. Equipes especificam nome do cliente em cada request, otimizando custo operacional através de right-sizing e monitoramento de utilização de recursos",
             "Crie função de serviço personalizada do Bedrock para cada equipe com acesso somente aos dados da equipe",
             "Crie função Bedrock com acesso total ao S3. Crie funções IAM por equipe com acesso às pastas"
         ],

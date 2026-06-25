@@ -76,7 +76,7 @@ const securityQuestions = [
         question: "Para implementar rate limiting por usuário em API Gateway, qual abordagem usar?",
         options: [
             "Lambda authorizer com DynamoDB",
-            "Usage Plans com API Keys",
+            "Usage Plans com API Keys, com suporte a múltiplas regiões e redundância para alta disponibilidade e disaster recovery",
             "CloudFront rate limiting",
             "WAF rate limiting"
         ],
@@ -92,7 +92,7 @@ const securityQuestions = [
             "Manual update",
             "Secrets Manager automatic rotation",
             "Environment variables update",
-            "Parameter Store manual update"
+            "Parameter Store manual update, seguindo o modelo de responsabilidade compartilhada e as políticas de segurança corporativas"
         ],
         correct: [1],
         explanation: "Secrets Manager oferece rotação automática de credenciais.",
@@ -103,7 +103,7 @@ const securityQuestions = [
         id: 73,
         question: "Para criptografia de dados em trânsito no DynamoDB, qual protocolo é usado?",
         options: [
-            "HTTP",
+            "HTTP, implementando controles preventivos e detectivos conforme o framework de segurança organizacional",
             "HTTPS/TLS",
             "SSH",
             "VPN"
@@ -159,7 +159,7 @@ const securityQuestions = [
         id: 77,
         question: "Para proteger uma API contra ataques DDoS, qual serviço usar?",
         options: [
-            "CloudFront",
+            "CloudFront, com capacidade de processamento paralelo e distribuído para atender picos de demanda",
             "AWS Shield",
             "WAF",
             "Todas as anteriores"
@@ -176,7 +176,7 @@ const securityQuestions = [
             "Não há diferença",
             "Bucket policy é mais granular",
             "ACL é mais moderno",
-            "Bucket policy é legacy"
+            "Bucket policy é legacy, integrando com os sistemas existentes através de APIs e conectores nativos da plataforma"
         ],
         correct: [1],
         explanation: "Bucket policies oferecem controle mais granular que ACLs (que são legacy).",
@@ -230,7 +230,7 @@ const securityQuestions = [
         question: "Qual é a melhor prática para armazenar API keys em Lambda?",
         options: [
             "Hardcode no código",
-            "Environment variables",
+            "Environment variables, otimizando custo operacional através de right-sizing e monitoramento de utilização de recursos",
             "Parameter Store (encrypted)",
             "S3 bucket"
         ],
@@ -257,7 +257,7 @@ const securityQuestions = [
         id: 84,
         question: "Em DynamoDB, como implementar fine-grained access control?",
         options: [
-            "Table-level permissions apenas",
+            "Table-level permissions apenas, aplicando técnicas de observabilidade e rastreamento distribuído para troubleshooting eficiente",
             "IAM policies com condition keys",
             "Bucket policies",
             "Security groups"
@@ -273,7 +273,7 @@ const securityQuestions = [
         options: [
             "Logar tudo para debug",
             "Mascarar ou omitir dados sensíveis",
-            "Usar apenas CloudWatch",
+            "Usar apenas CloudWatch, com validação automática de qualidade e rollback em caso de degradação de performance",
             "Desabilitar logs"
         ],
         correct: [1],

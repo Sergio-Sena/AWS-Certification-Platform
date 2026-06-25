@@ -1,307 +1,147 @@
-// AIF-C01 AI & ML Fundamentals - Lote 3 (aiml_061 a aiml_080)
-// Foco: NLP, Computer Vision, serviços AWS específicos, deployment patterns, edge cases
+// AIF-C01 AI & ML Fundamentals - Lote 3 (aiml_051 a aiml_060)
+// REESCRITO: Distratores equilibrados + Formato ✅❌📌 + Bias < 30%
 
-const aiMlQuestions5 = [
+const aiMlLote3 = [
     {
-        id: 'aiml_061',
-        question: "Uma empresa quer converter áudio de chamadas de suporte em texto para análise. Qual serviço AWS?",
+        id: 'aiml_051',
+        question: "O que é 'cross-validation' e por que é importante?",
         options: [
-            "Amazon Polly",
-            "Amazon Transcribe — speech-to-text com suporte a múltiplos idiomas, speaker identification e custom vocabularies",
-            "Amazon Translate",
-            "Amazon Comprehend"
+            "Dividir dados em K partes, treinar K vezes alternando teste — estimativa robusta de performance",
+            "Validar modelo em múltiplos servidores de produção para garantir consistência de resultados entre regiões AWS e ambientes",
+            "Comparar performance de diferentes algoritmos usando métricas idênticas sobre os mesmos splits de dados para selecionar o melhor",
+            "Validar resultados com equipe externa de auditores independentes para atender compliance regulatório do modelo"
         ],
-        correct: [1],
-        explanation: "Transcribe: áudio→texto. Polly: texto→áudio (inverso). Transcribe features: speaker identification (quem falou o quê), custom vocabulary (termos técnicos), auto-punctuation, redaction de PII em áudio.",
-        topic: "aws-services",
-        domain: "ai-ml",
-        difficulty: "easy"
+        correct: [0],
+        explanation: "✅ K-fold: divide dados em K folds, cada um serve como teste uma vez. Média dos K resultados = estimativa confiável.\n❌ Validação em servidores = deployment testing, não cross-validation.\n❌ Comparar algoritmos = model selection (pode USAR cross-validation, mas não É).\n❌ Validação por auditores = review humano, não técnica estatística.\n📌 Cross-validation = K splits rotativos. Padrão: K=5 ou K=10.",
+        topic: "concepts",
+        domain: "ai-ml"
     },
     {
-        id: 'aiml_062',
-        question: "Uma empresa quer criar um sistema de recomendação de produtos personalizado sem expertise em ML. Qual serviço AWS?",
+        id: 'aiml_052',
+        question: "Uma empresa quer usar ML para prever churn (cancelamento) de clientes. Tem dados históricos com features de uso e label (cancelou/não cancelou). Qual tipo de problema?",
         options: [
-            "Amazon SageMaker (requer ML expertise)",
-            "Amazon Personalize — serviço gerenciado de recomendação que treina modelos automaticamente a partir de dados de interação",
-            "Amazon Comprehend",
-            "Amazon Forecast"
+            "Clustering não supervisionado para agrupar clientes por perfil de risco sem usar labels históricas de cancelamento",
+            "Regressão linear multivariada para prever o valor monetário estimado da perda financeira por cada cliente cancelado",
+            "Detecção de anomalias para identificar comportamentos estatisticamente atípicos que precedem o cancelamento",
+            "Classificação binária supervisionada com dados rotulados (churn/não-churn)"
         ],
-        correct: [1],
-        explanation: "Personalize: importa dados de interação (cliques, compras, views), treina modelos de recomendação automaticamente, serve recomendações via API em real-time. Sem necessidade de expertise ML. Usa mesma tecnologia do Amazon.com.",
-        topic: "aws-services",
-        domain: "ai-ml",
-        difficulty: "easy"
-    },
-    {
-        id: 'aiml_063',
-        question: "Uma empresa quer prever demanda de produtos para os próximos 3 meses baseado em dados históricos de vendas. Qual serviço AWS?",
-        options: [
-            "Amazon Personalize",
-            "Amazon Forecast — serviço de previsão de séries temporais que automaticamente seleciona algoritmo e treina modelo",
-            "Amazon Rekognition",
-            "Amazon Lex"
-        ],
-        correct: [1],
-        explanation: "Forecast: forecasting de séries temporais gerenciado. Importa dados históricos + metadados, testa múltiplos algoritmos (DeepAR+, ARIMA, Prophet), gera previsões com intervalos de confiança. Casos: demanda, inventário, recursos.",
-        topic: "aws-services",
-        domain: "ai-ml",
-        difficulty: "easy"
-    },
-    {
-        id: 'aiml_064',
-        question: "O que é 'transfer learning' e por que é fundamental para foundation models?",
-        options: [
-            "Transferir dados entre servidores",
-            "Reaproveitar conhecimento aprendido em uma tarefa para outra — foundation models são pré-treinados em dados massivos e depois adaptados para tarefas específicas",
-            "Mover modelo para outra região",
-            "Copiar parâmetros entre modelos"
-        ],
-        correct: [1],
-        explanation: "Transfer learning: modelo pré-treinado (ex: bilhões de textos) tem conhecimento geral. Adaptar para tarefa específica (fine-tuning) requer muito menos dados/compute que treinar do zero. É o princípio fundamental dos foundation models.",
+        correct: [3],
+        explanation: "✅ Classificação binária supervisionada: labels + features → modelo prevê probabilidade de churn.\n❌ Clustering: sem labels, descobre grupos — complementa, mas não é o tipo principal.\n❌ Regressão: prevê VALOR numérico, não categoria.\n❌ Anomalia: detecta outliers sem labels — supervisionado é superior quando há labels.\n📌 Prever SIM/NÃO com dados rotulados = Classificação Binária Supervisionada.",
         topic: "ml-types",
-        domain: "ai-ml",
-        difficulty: "medium"
+        domain: "ai-ml"
     },
     {
-        id: 'aiml_065',
-        question: "Uma empresa quer detectar objetos específicos em imagens de câmeras de segurança (capacetes, coletes). Qual serviço AWS permite treinar detecção customizada?",
+        id: 'aiml_053',
+        question: "O que é Amazon SageMaker Autopilot e quando usar?",
         options: [
-            "Amazon Comprehend",
-            "Amazon Rekognition Custom Labels — treina detector de objetos customizado com suas imagens sem expertise em ML",
-            "Amazon Textract",
-            "Amazon Translate"
+            "Pipeline de CI/CD automatizado para modelos que orquestra re-treinamento periódico quando data drift é detectado pelo Model Monitor",
+            "Serviço de monitoramento contínuo que detecta automaticamente degradação de performance e bias em endpoints de ML em produção",
+            "AutoML que explora algoritmos, features e hiperparâmetros retornando o melhor modelo",
+            "Serviço de deploy automático com canary deployments e rollback que provisiona endpoints sem configuração manual avançada"
         ],
-        correct: [1],
-        explanation: "Rekognition Custom Labels: upload imagens rotuladas (com bounding boxes), treina modelo de detecção automaticamente. Sem código ML. Casos: detectar EPI, defeitos em produção, objetos específicos do negócio.",
+        correct: [2],
+        explanation: "✅ Autopilot: input = dados + target column. Output = leaderboard + notebooks explicativos.\n❌ CI/CD = SageMaker Pipelines.\n❌ Monitoramento = Model Monitor.\n❌ Deploy automático = funcionalidade de endpoints.\n📌 Autopilot = 'dê os dados, eu encontro o melhor modelo'.",
         topic: "aws-services",
-        domain: "ai-ml",
-        difficulty: "medium"
+        domain: "ai-ml"
     },
     {
-        id: 'aiml_066',
-        question: "Qual é a diferença entre 'labeled data' e 'unlabeled data'?",
+        id: 'aiml_054',
+        question: "Qual é a diferença entre 'batch inference' e 'real-time inference' no SageMaker?",
         options: [
-            "Labeled tem nome de arquivo, unlabeled não",
-            "Labeled tem resposta correta associada (ex: email + tag 'spam'). Unlabeled é dado bruto sem resposta — aprendizado supervisionado requer labeled",
-            "Não há diferença prática",
-            "Unlabeled é mais valioso"
+            "Real-time mantém instâncias GPU dedicadas 24/7 enquanto batch utiliza apenas CPUs spot baratas para processamento econômico",
+            "Batch processa em paralelo com throughput superior enquanto real-time processa requests sequencialmente um por vez de forma síncrona",
+            "Real-time cobra apenas por request individual enquanto batch cobra por hora de instância durante todo o período de processamento",
+            "Batch processa datasets inteiros offline sem endpoint; real-time responde em ms com endpoint ativo"
         ],
-        correct: [1],
-        explanation: "Labeled: dado + resposta (imagem + 'gato', transação + 'fraude'). Unlabeled: apenas dado sem anotação. Supervisionado precisa de labeled. Não-supervisionado usa unlabeled. Semi-supervisionado combina ambos. Rotular é caro (SageMaker Ground Truth ajuda).",
-        topic: "concepts",
-        domain: "ai-ml",
-        difficulty: "easy"
+        correct: [3],
+        explanation: "✅ Batch: dataset inteiro, sem endpoint 24/7, paga só durante job. Real-time: endpoint ativo, ms.\n❌ Ambos podem usar GPUs ou CPUs.\n❌ Real-time é rápido POR REQUEST. Batch é eficiente para VOLUME.\n❌ Invertido: real-time paga por hora de endpoint.\n📌 Urgente = Real-time. Volume sem pressa = Batch. Meio-termo = Assíncrono.",
+        topic: "inference-types",
+        domain: "ai-ml"
     },
     {
-        id: 'aiml_067',
-        question: "O que são 'epochs' no treinamento de modelos?",
+        id: 'aiml_055',
+        question: "Uma empresa precisa garantir que seu modelo de crédito não discrimine por gênero ou raça. Qual métrica de fairness usar?",
         options: [
-            "Tempo total de treinamento",
-            "Uma epoch = uma passagem completa por todos os dados de treino. Mais epochs = mais aprendizado, mas risco de overfitting",
-            "Número de features",
-            "Tamanho do batch"
+            "Demographic parity e equalized odds — taxas similares entre grupos protegidos",
+            "Velocidade de inferência segmentada por grupo demográfico para garantir que nenhum subgrupo espere mais que outro por resposta",
+            "Número total de features demográficas incluídas como variáveis de entrada no modelo como indicador de representatividade",
+            "Acurácia geral do modelo medida uniformemente sobre todo o dataset completo sem segmentação por nenhum grupo específico"
         ],
-        correct: [1],
-        explanation: "Epoch: 1 passagem completa pelo dataset. 10 epochs = modelo viu cada exemplo 10 vezes. Poucas epochs: underfitting. Muitas: overfitting. Early stopping: para quando performance no validation set para de melhorar.",
-        topic: "concepts",
-        domain: "ai-ml",
-        difficulty: "easy"
+        correct: [0],
+        explanation: "✅ Demographic parity: mesma taxa positiva por grupo. Equalized odds: mesma taxa TP/FP por grupo.\n❌ Velocidade não é fairness.\n❌ Incluir features demográficas pode CAUSAR bias.\n❌ Acurácia geral esconde disparidades entre subgrupos.\n📌 Fairness ≠ acurácia. SageMaker Clarify calcula fairness metrics.",
+        topic: "bias",
+        domain: "ai-ml"
     },
     {
-        id: 'aiml_068',
-        question: "O que é 'learning rate' e por que é o hiperparâmetro mais importante?",
+        id: 'aiml_056',
+        question: "O que é Amazon SageMaker Feature Store e qual problema resolve?",
         options: [
-            "Velocidade do computador",
-            "Tamanho do passo de atualização dos pesos — muito alto: não converge (oscila). Muito baixo: converge lentamente ou fica preso em mínimo local",
-            "Quantidade de dados",
-            "Número de camadas"
+            "Catálogo de datasets públicos e privados organizados por domínio e tipo para facilitar busca e compartilhamento entre equipes de dados",
+            "Armazenamento versionado de artefatos de modelo (pesos, configurações, métricas) com capacidade de rollback rápido para versão anterior",
+            "Marketplace completo de modelos pré-treinados disponíveis para download, fine-tuning e uso imediato em endpoints de produção",
+            "Repositório centralizado de features reutilizáveis — evita re-cálculo e garante consistência treino/inferência"
         ],
-        correct: [1],
-        explanation: "Learning rate: quanto os pesos mudam a cada step. Alto (0.1): passos grandes, pode não convergir. Baixo (0.0001): passos pequenos, lento mas estável. Geralmente: começar com 0.001, usar scheduler para reduzir ao longo do treino.",
-        topic: "concepts",
-        domain: "ai-ml",
-        difficulty: "medium"
+        correct: [3],
+        explanation: "✅ Feature Store: features transformadas (online + offline). Resolve: re-computação, training-serving skew.\n❌ Catálogo de datasets = Glue Data Catalog / Data Exchange.\n❌ Armazenamento de modelos = Model Registry.\n❌ Marketplace de modelos = JumpStart / Bedrock.\n📌 Feature Store = features PRONTAS. Model Registry = modelos PRONTOS.",
+        topic: "aws-services",
+        domain: "ai-ml"
     },
     {
-        id: 'aiml_069',
-        question: "Uma empresa quer usar ML para detectar anomalias em logs de servidores (padrões incomuns) sem ter exemplos rotulados de anomalias. Qual abordagem?",
+        id: 'aiml_057',
+        question: "Uma empresa quer treinar modelo com dados sensíveis (saúde) sem centralizar os dados. Qual técnica preserva privacidade?",
         options: [
-            "Classificação supervisionada",
-            "Detecção de anomalias não-supervisionada — algoritmos como Isolation Forest, Random Cut Forest (SageMaker) aprendem o 'normal' e identificam desvios",
-            "Regressão linear",
-            "Clustering K-Means"
+            "Differential privacy com adição de ruído calibrado aos dados antes de enviá-los ao servidor central para treinamento agregado",
+            "Federated Learning — treina localmente em cada instituição, compartilha apenas gradientes",
+            "Homomorphic encryption para realizar operações matemáticas diretamente sobre dados criptografados sem necessidade de decriptar",
+            "Anonimização K-anonymity com generalização e supressão antes de centralizar num data lake S3 criptografado com KMS"
         ],
         correct: [1],
-        explanation: "Anomaly detection não-supervisionada: aprende padrão 'normal' dos dados e flagra desvios. SageMaker Random Cut Forest: algoritmo built-in otimizado para anomalias em streaming. Não precisa de exemplos rotulados de anomalia.",
+        explanation: "✅ Federated: modelo vai aos dados. Treina local, envia só updates. Dados nunca saem.\n❌ Differential privacy: dados ruidosos ainda precisam ser centralizados.\n❌ Homomorphic encryption: teoricamente correto mas impraticável (extremamente lento).\n❌ Anonimização + centralização: regulações podem proibir qualquer saída.\n📌 Dados NÃO SAEM + modelo treinado = Federated Learning.",
         topic: "ml-types",
-        domain: "ai-ml",
-        difficulty: "medium"
+        domain: "ai-ml"
     },
     {
-        id: 'aiml_070',
-        question: "O que é 'data augmentation' e quando usar?",
+        id: 'aiml_058',
+        question: "O que é 'hyperparameter tuning' e como o SageMaker automatiza?",
         options: [
-            "Coletar mais dados reais",
-            "Criar variações artificiais dos dados existentes (rotação, flip, crop em imagens; sinônimos em texto) para aumentar dataset e reduzir overfitting",
-            "Comprimir dados",
-            "Remover dados duplicados"
+            "Selecionar automaticamente features mais relevantes descartando variáveis com baixa importância usando mutual information ou correlação",
+            "Aumentar volume de dados de treinamento progressivamente adicionando augmentation e synthetic data até performance estabilizar",
+            "Ajustar pesos internos do modelo via backpropagation e gradient descent para minimizar loss durante cada época de treinamento",
+            "Encontrar configs externas ótimas (learning rate, batch size) via múltiplos treinos automáticos paralelos"
         ],
-        correct: [1],
-        explanation: "Data augmentation: gera variantes dos dados existentes. Imagens: rotação, zoom, flip, cor. Texto: sinônimos, paráfrase, back-translation. Benefício: mais dados sem coletar novamente, reduz overfitting, melhora generalização.",
-        topic: "pipeline",
-        domain: "ai-ml",
-        difficulty: "medium"
-    },
-    {
-        id: 'aiml_071',
-        question: "O que é SageMaker Pipelines e qual problema resolve?",
-        options: [
-            "Pipelines de dados ETL",
-            "MLOps — orquestra workflow completo de ML (prep dados → treino → avaliação → deploy) de forma automatizada, reproduzível e auditável",
-            "Pipelines de CI/CD para código",
-            "Streaming de dados"
-        ],
-        correct: [1],
-        explanation: "SageMaker Pipelines: define workflow ML como código (DAG). Cada step é rastreável e reproduzível. Automatiza: retreinamento periódico, avaliação automática, deploy condicional (se métricas atendem threshold). Base de MLOps na AWS.",
+        correct: [3],
+        explanation: "✅ Hiperparâmetros: definidos ANTES do treino. SageMaker Tuning: ranges → N treinos → melhor combo.\n❌ Feature selection = etapa de feature engineering, não tuning.\n❌ Aumentar dados = data augmentation, etapa diferente.\n❌ Ajustar pesos = treinamento normal, não hyperparameter tuning.\n📌 Hiperparâmetros = EXTERNOS (você define). Pesos = INTERNOS (modelo aprende).",
         topic: "aws-services",
-        domain: "ai-ml",
-        difficulty: "medium"
+        domain: "ai-ml"
     },
     {
-        id: 'aiml_072',
-        question: "O que é 'A/B testing' no contexto de deployment de modelos ML?",
+        id: 'aiml_059',
+        question: "Qual é a diferença entre 'precision' e 'recall' em classificação?",
         options: [
-            "Testar modelo em 2 datasets",
-            "Rotear parte do tráfego para modelo novo e parte para modelo atual — comparar performance em produção antes de migrar 100% para o novo",
-            "Treinar 2 modelos simultaneamente",
-            "Comparar 2 algoritmos no treino"
+            "Precision mede velocidade de previsão em milissegundos por request; recall mede percentual de uso de memória durante inferência",
+            "São métricas idênticas com nomes diferentes calculadas por fórmulas equivalentes para validação cruzada e holdout testing final",
+            "Precision: dos positivos previstos, quantos corretos. Recall: dos reais positivos, quantos encontrados",
+            "Precision é métrica exclusiva de regressão para medir acurácia numérica; recall aplica-se apenas a classificação com múltiplas classes"
         ],
-        correct: [1],
-        explanation: "A/B testing de modelos: production variant no SageMaker. Ex: 90% tráfego → modelo atual, 10% → modelo novo. Comparar métricas de negócio (conversão, satisfação). Se novo é melhor, migrar gradualmente. Reduz risco de deploy.",
-        topic: "inference-types",
-        domain: "ai-ml",
-        difficulty: "medium"
-    },
-    {
-        id: 'aiml_073',
-        question: "Qual é a diferença entre SageMaker Serverless Inference e Real-time Inference?",
-        options: [
-            "São a mesma coisa",
-            "Serverless: escala para zero quando não há tráfego (paga apenas por uso). Real-time: endpoint sempre ativo (paga por hora). Serverless para tráfego esporádico",
-            "Serverless é mais rápido",
-            "Real-time é mais barato"
-        ],
-        correct: [1],
-        explanation: "Serverless Inference: cold start (alguns segundos) mas $0 quando idle. Real-time: sempre pronto (ms latência) mas paga por hora 24/7. Serverless ideal para: dev/test, tráfego imprevisível, baixo volume. Real-time para: produção com SLA.",
-        topic: "inference-types",
-        domain: "ai-ml",
-        difficulty: "medium"
-    },
-    {
-        id: 'aiml_074',
-        question: "Uma empresa tem dados tabulares (CSV com features numéricas e categóricas) e quer classificação. Qual algoritmo geralmente funciona melhor?",
-        options: [
-            "Deep Learning (redes neurais profundas)",
-            "Gradient Boosting (XGBoost, LightGBM) — superior para dados tabulares na maioria dos casos práticos",
-            "Regressão Linear",
-            "K-Means"
-        ],
-        correct: [1],
-        explanation: "Para dados tabulares, Gradient Boosting (XGBoost) supera deep learning na maioria dos benchmarks. Deep Learning brilha em: imagens (CNN), texto (Transformers), áudio, vídeo. Para tabelas: XGBoost/LightGBM é padrão da indústria.",
-        topic: "algorithms",
-        domain: "ai-ml",
-        difficulty: "medium"
-    },
-    {
-        id: 'aiml_075',
-        question: "O que é 'Amazon SageMaker Data Wrangler' e para quem é destinado?",
-        options: [
-            "Ferramenta de visualização de dados",
-            "Interface visual para preparação de dados ML — importar, transformar, visualizar e exportar dados para treino sem escrever código",
-            "Ferramenta de deploy",
-            "Monitoramento de modelos"
-        ],
-        correct: [1],
-        explanation: "Data Wrangler: interface visual para data prep. Importa de múltiplas fontes (S3, Redshift, Athena), 300+ transformações built-in (encoding, scaling, imputation), visualizações, exporta para treino. Para data scientists e analistas.",
-        topic: "aws-services",
-        domain: "ai-ml",
-        difficulty: "easy"
-    },
-    {
-        id: 'aiml_076',
-        question: "O que é 'ensemble learning' e por que geralmente melhora performance?",
-        options: [
-            "Treinar um único modelo grande",
-            "Combinar previsões de múltiplos modelos — reduz variância e viés. Tipos: bagging (Random Forest), boosting (XGBoost), stacking",
-            "Treinar com múltiplos datasets",
-            "Usar múltiplas GPUs"
-        ],
-        correct: [1],
-        explanation: "Ensemble: combinar modelos fracos em modelo forte. Bagging: treina em paralelo, média das previsões (Random Forest). Boosting: treina sequencialmente, cada modelo corrige erros do anterior (XGBoost). Stacking: modelo aprende a combinar outputs de outros.",
-        topic: "algorithms",
-        domain: "ai-ml",
-        difficulty: "hard"
-    },
-    {
-        id: 'aiml_077',
-        question: "Uma empresa quer entender automaticamente o sentimento de reviews de produtos (positivo, negativo, neutro, misto). Qual serviço AWS mais simples?",
-        options: [
-            "Treinar modelo custom no SageMaker",
-            "Amazon Comprehend — sentiment analysis built-in, sem treino necessário, funciona em múltiplos idiomas nativamente",
-            "Amazon Lex",
-            "Amazon Polly"
-        ],
-        correct: [1],
-        explanation: "Comprehend Sentiment Analysis: API simples, sem treino, detecta sentimento (Positive, Negative, Neutral, Mixed) com confidence scores. Suporta múltiplos idiomas. Para classificação customizada (além de sentimento): Comprehend Custom Classification.",
-        topic: "aws-services",
-        domain: "ai-ml",
-        difficulty: "easy"
-    },
-    {
-        id: 'aiml_078',
-        question: "O que é 'regularization' em Machine Learning e por que usar?",
-        options: [
-            "Organizar dados em tabelas regulares",
-            "Técnica para prevenir overfitting adicionando penalidade por complexidade do modelo — força modelo a ser mais simples e generalizar melhor",
-            "Regular frequência de treinamento",
-            "Normalizar outputs"
-        ],
-        correct: [1],
-        explanation: "Regularization: penaliza pesos grandes (L1: soma absoluta, L2: soma quadrática). Modelo é incentivado a usar features realmente importantes e ignorar ruído. L1 pode zerar features (feature selection). Dropout em deep learning também é regularização.",
+        correct: [2],
+        explanation: "✅ Precision = TP/(TP+FP). Recall = TP/(TP+FN). Trade-off entre ambos.\n❌ Não medem velocidade ou memória.\n❌ São métricas DIFERENTES com fórmulas distintas.\n❌ Ambas são para classificação, não regressão.\n📌 Spam: alta Precision. Câncer: alto Recall. F1 = harmônica dos dois.",
         topic: "concepts",
-        domain: "ai-ml",
-        difficulty: "hard"
+        domain: "ai-ml"
     },
     {
-        id: 'aiml_079',
-        question: "Uma empresa quer usar SageMaker mas não quer gerenciar infraestrutura de treino. Qual opção simplifica?",
+        id: 'aiml_060',
+        question: "Uma empresa quer entender POR QUE seu modelo de ML tomou uma decisão específica. Qual técnica de explicabilidade usar?",
         options: [
-            "EC2 com scripts manuais",
-            "SageMaker Training Jobs — gerencia infraestrutura automaticamente: provisiona instâncias, executa treino, salva modelo no S3, desliga instâncias",
-            "Lambda para treinar modelos",
-            "Fargate com containers ML"
+            "Verificar acurácia geral do modelo como proxy para confiabilidade e usar threshold como indicador de certeza em cada predição",
+            "SHAP values mostrando contribuição (+/-) de cada feature para cada previsão individual",
+            "Contar frequência de cada feature no dataset de treino para determinar relevância estatística e importância relativa",
+            "Analisar pesos brutos das conexões entre camadas da rede neural para inferir quais neurônios dominam a decisão final"
         ],
         correct: [1],
-        explanation: "SageMaker Training Jobs: define script + instância type + dados. SageMaker provisiona, configura, executa, salva artefatos, e desliga. Paga apenas pelo tempo de treino. Suporta distributed training, spot instances para economia.",
-        topic: "aws-services",
-        domain: "ai-ml",
-        difficulty: "easy"
-    },
-    {
-        id: 'aiml_080',
-        question: "O que é 'MLOps' e por que é importante?",
-        options: [
-            "Operações de marketing",
-            "Práticas de DevOps aplicadas a ML — automatizar pipeline completo (dados→treino→deploy→monitor→retrain) para entregar modelos de forma confiável e reproduzível",
-            "Apenas monitoramento",
-            "Apenas deploy"
-        ],
-        correct: [1],
-        explanation: "MLOps = DevOps + ML. Inclui: versionamento de dados/modelos, pipelines automatizados, CI/CD para modelos, monitoramento em produção, retraining automático. SageMaker Pipelines + Model Registry + Model Monitor = stack MLOps completa na AWS.",
-        topic: "pipeline",
-        domain: "ai-ml",
-        difficulty: "medium"
+        explanation: "✅ SHAP: para CADA previsão, mostra contribuição de cada feature. SageMaker Clarify calcula.\n❌ Acurácia geral não explica decisões individuais.\n❌ Frequência ≠ importância para o modelo.\n❌ Pesos brutos não são interpretáveis em redes profundas.\n📌 Individual = SHAP/LIME. Global = Feature Importance, PDPs.",
+        topic: "concepts",
+        domain: "ai-ml"
     }
 ];
 
-aiMlQuestions.push(...aiMlQuestions5);
+aiMlQuestions.push(...aiMlLote3);

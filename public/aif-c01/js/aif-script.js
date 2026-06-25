@@ -120,14 +120,26 @@ function startTimer() {
 
 function showQuestion() {
     const q = examState.questions[examState.currentQuestion];
+    
+    // Shuffle de opções para eliminar bias de posição/tamanho
+    if (!q._shuffleMap) {
+        const indices = q.options.map((_, i) => i);
+        for (let i = indices.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [indices[i], indices[j]] = [indices[j], indices[i]];
+        }
+        q._shuffleMap = indices;
+    }
+    const sm = q._shuffleMap;
+    
     document.getElementById('current-q').textContent = examState.currentQuestion + 1;
     document.getElementById('total-q').textContent = examState.questions.length;
     document.getElementById('question-text').innerHTML = `<strong>Questão ${examState.currentQuestion + 1}</strong><br><br>${q.question}`;
 
     const container = document.getElementById('options-container');
-    container.innerHTML = q.options.map((opt, i) => {
-        const selected = examState.answers[q.id] === i ? 'selected' : '';
-        return `<div class="option ${selected}" onclick="selectOption(${i})">${String.fromCharCode(65+i)}. ${opt}</div>`;
+    container.innerHTML = sm.map((origIdx, visIdx) => {
+        const selected = examState.answers[q.id] === origIdx ? 'selected' : '';
+        return `<div class="option ${selected}" onclick="selectOption(${origIdx})">${String.fromCharCode(65+visIdx)}. ${q.options[origIdx]}</div>`;
     }).join('');
 
     document.getElementById('prev-btn').disabled = examState.currentQuestion === 0;
@@ -348,7 +360,7 @@ function renderReviewQuestion(item, domainNames, domainMaterialMap) {
     const userIdx = item.userAnswer;
     const domainName = domainNames[q.domain] || q.domain;
     const materialKey = domainMaterialMap[q.domain] || '';
-
+    // Usar ordem original na revisão para clareza
     return `
         <div class="review-item ${item.isCorrect ? 'review-correct-item' : 'review-wrong-item'}">
             <div class="review-header">
@@ -366,7 +378,7 @@ function renderReviewQuestion(item, domainNames, domainMaterialMap) {
                 }).join('')}
             </div>
             <div class="review-explanation">
-                <strong>💡 Explicação:</strong> ${q.explanation}
+                <strong>💡 Explicação:</strong><br>${q.explanation.replace(/\n/g, '<br>')}
             </div>
         </div>
     `;

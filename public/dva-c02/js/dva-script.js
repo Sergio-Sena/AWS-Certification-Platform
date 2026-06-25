@@ -244,6 +244,17 @@ function showQuestion() {
     const question = examState.questions[examState.currentQuestion];
     const isMultipleChoice = question.correct.length > 1;
     
+    // Shuffle de opções para eliminar bias de posição/tamanho
+    if (!question._shuffleMap) {
+        const indices = question.options.map((_, i) => i);
+        for (let i = indices.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [indices[i], indices[j]] = [indices[j], indices[i]];
+        }
+        question._shuffleMap = indices;
+    }
+    const shuffleMap = question._shuffleMap;
+    
     // Atualizar header
     document.getElementById('current-q').textContent = examState.currentQuestion + 1;
     document.getElementById('total-q').textContent = examState.questions.length;
@@ -255,24 +266,25 @@ function showQuestion() {
         ${isMultipleChoice ? '<br><br><em>Selecione todas as opções corretas:</em>' : ''}
     `;
     
-    // Mostrar opções
+    // Mostrar opções embaralhadas
     const optionsContainer = document.getElementById('options-container');
     optionsContainer.innerHTML = '';
     
-    question.options.forEach((option, index) => {
+    shuffleMap.forEach((originalIdx, visualIdx) => {
+        const option = question.options[originalIdx];
         const optionDiv = document.createElement('div');
         optionDiv.className = 'option';
-        optionDiv.onclick = () => selectOption(index, isMultipleChoice);
+        optionDiv.onclick = () => selectOption(originalIdx, isMultipleChoice);
         
         const inputType = isMultipleChoice ? 'checkbox' : 'radio';
-        const inputName = isMultipleChoice ? `q${question.id}_${index}` : `q${question.id}`;
+        const inputName = isMultipleChoice ? `q${question.id}_${visualIdx}` : `q${question.id}`;
         
         optionDiv.innerHTML = `
-            <input type="${inputType}" name="${inputName}" id="opt_${index}" ${isSelected(index) ? 'checked' : ''}>
-            <label for="opt_${index}">${String.fromCharCode(65 + index)}. ${option}</label>
+            <input type="${inputType}" name="${inputName}" id="opt_${visualIdx}" ${isSelected(originalIdx) ? 'checked' : ''}>
+            <label for="opt_${visualIdx}">${String.fromCharCode(65 + visualIdx)}. ${option}</label>
         `;
         
-        if (isSelected(index)) {
+        if (isSelected(originalIdx)) {
             optionDiv.classList.add('selected');
         }
         
@@ -332,16 +344,18 @@ function selectOption(optionIndex, isMultipleChoice) {
 
 function updateOptionVisuals() {
     const options = document.querySelectorAll('.option');
-    const questionId = examState.questions[examState.currentQuestion].id;
-    const answer = examState.answers[questionId];
+    const question = examState.questions[examState.currentQuestion];
+    const answer = examState.answers[question.id];
+    const shuffleMap = question._shuffleMap || question.options.map((_, i) => i);
     
-    options.forEach((option, index) => {
+    options.forEach((option, visualIdx) => {
+        const originalIdx = shuffleMap[visualIdx];
         const input = option.querySelector('input');
-        const isSelected = Array.isArray(answer) ? 
-            answer.includes(index) : answer === index;
+        const selected = Array.isArray(answer) ? 
+            answer.includes(originalIdx) : answer === originalIdx;
         
-        input.checked = isSelected;
-        option.classList.toggle('selected', isSelected);
+        input.checked = selected;
+        option.classList.toggle('selected', selected);
     });
 }
 
@@ -594,7 +608,7 @@ function reviewAnswers() {
                 
                 <div style="background: #f8f9fa; padding: 1rem; border-radius: 5px; border-left: 3px solid #667eea;">
                     <strong>💡 Explicação:</strong><br>
-                    ${question.explanation}
+                    ${(question.explanation||'').replace(/\\n/g,'<br>')}
                 </div>
                 
                 <div style="margin-top: 0.5rem; font-size: 0.9rem; color: #6c757d;">

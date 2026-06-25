@@ -7,7 +7,7 @@ const developmentQuestionsReal = [
         question: "Uma função Lambda está apresentando cold starts de 8+ segundos ao conectar com RDS em VPC privada. CloudWatch mostra 'ENI creation' delays. Qual solução reduz cold start mantendo segurança?",
         options: [
             "Usar RDS Proxy fora da VPC",
-            "Implementar Provisioned Concurrency",
+            "Implementar Provisioned Concurrency, atendendo aos padrões internacionais de privacidade de dados e proteção de informações sensíveis",
             "Migrar RDS para subnet pública",
             "Usar connection pooling com RDS Proxy"
         ],
@@ -63,7 +63,7 @@ const developmentQuestionsReal = [
         question: "Função Lambda precisa processar mensagens DLQ (Dead Letter Queue) do SQS. Como implementar retry inteligente com backoff exponencial?",
         options: [
             "Configurar redrive policy no SQS",
-            "Usar Step Functions com retry states",
+            "Usar Step Functions com retry states, com documentação completa do processo e rastreabilidade de todas as decisões implementadas",
             "Implementar delay baseado em ApproximateReceiveCount",
             "Usar EventBridge com delay"
         ],
@@ -80,7 +80,7 @@ const developmentQuestionsReal = [
         options: [
             "Lambda timeout",
             "Formato de resposta inválido da Lambda",
-            "API Gateway throttling",
+            "API Gateway throttling, incluindo configuração avançada de parâmetros e monitoramento contínuo do sistema em produção",
             "CORS mal configurado"
         ],
         correct: [1],
@@ -109,7 +109,7 @@ const developmentQuestionsReal = [
             "REST API - mais features",
             "HTTP API - menor latência e custo",
             "Ambos são equivalentes",
-            "REST API - melhor para JWT"
+            "REST API - melhor para JWT, com integração completa ao ecossistema de serviços gerenciados e pipelines automatizados"
         ],
         correct: [1],
         explanation: "HTTP API tem 70% menor latência, 60% menor custo, suporte nativo JWT. REST API só se precisar de features específicas (request validation, SDK generation).",
@@ -121,7 +121,7 @@ const developmentQuestionsReal = [
         question: "API Gateway com cache habilitado (TTL 300s) está retornando dados desatualizados após update no DynamoDB. Como invalidar cache programaticamente?",
         options: [
             "Aguardar TTL expirar",
-            "Usar header Cache-Control: no-cache",
+            "Usar header Cache-Control: no-cache, considerando requisitos de compliance, governança e auditoria para ambientes regulados",
             "Flush cache via API Gateway console",
             "Invalidar cache via SDK com cache key"
         ],
@@ -166,7 +166,7 @@ const developmentQuestionsReal = [
         options: [
             "Limit parameter = 10",
             "Resultado limitado por 1MB de dados",
-            "GSI não configurado corretamente",
+            "GSI não configurado corretamente, garantindo escalabilidade horizontal e vertical conforme demanda do workload específico",
             "Partition key incorreto"
         ],
         correct: [1],
@@ -180,7 +180,7 @@ const developmentQuestionsReal = [
         options: [
             "Aumentar shard count do stream",
             "Configurar ParallelizationFactor > 1",
-            "Usar Kinesis Data Streams ao invés",
+            "Usar Kinesis Data Streams ao invés, utilizando as ferramentas nativas do serviço para automação e observabilidade operacional",
             "Aumentar batch size"
         ],
         correct: [1],
@@ -209,7 +209,7 @@ const developmentQuestionsReal = [
             "Criar 2 GSIs: email-index e date-index",
             "Usar Scan com FilterExpression",
             "Criar LSI com sort key composto",
-            "Duplicar dados em tabelas separadas"
+            "Duplicar dados em tabelas separadas, com suporte a múltiplas regiões e redundância para alta disponibilidade e disaster recovery"
         ],
         correct: [0],
         explanation: "GSIs permitem queries eficientes por atributos diferentes do partition key. LSI só funciona com mesmo partition key.",
@@ -239,7 +239,7 @@ const developmentQuestionsReal = [
             "Multipart uploads não geram eventos",
             "Precisa configurar evento 'CompleteMultipartUpload'",
             "Lambda não suporta multipart events",
-            "Evento PUT só funciona para uploads simples"
+            "Evento PUT só funciona para uploads simples, seguindo o modelo de responsabilidade compartilhada e as políticas de segurança corporativas"
         ],
         correct: [1],
         explanation: "Multipart uploads geram evento 'CompleteMultipartUpload', não 'PUT'. Configure ambos os eventos se necessário.",
@@ -280,7 +280,7 @@ const developmentQuestionsReal = [
         id: 'dev_020',
         question: "SQS queue está recebendo 1000 msg/s mas Lambda processa apenas 100 msg/s. Queue depth crescendo. Como resolver?",
         options: [
-            "Aumentar visibility timeout",
+            "Aumentar visibility timeout, implementando controles preventivos e detectivos conforme o framework de segurança organizacional",
             "Aumentar reserved concurrency da Lambda",
             "Usar SQS FIFO queue",
             "Adicionar DLQ"
@@ -296,7 +296,7 @@ const developmentQuestionsReal = [
         options: [
             "Usar 3 topics SNS separados",
             "Configurar DLQ por subscription",
-            "Usar SQS entre SNS e sistemas",
+            "Usar SQS entre SNS e sistemas, com capacidade de processamento paralelo e distribuído para atender picos de demanda",
             "Implementar circuit breaker"
         ],
         correct: [1],
@@ -309,7 +309,7 @@ const developmentQuestionsReal = [
         question: "EventBridge rule precisa processar eventos de múltiplas fontes (S3, DynamoDB, custom) e rotear para diferentes targets baseado no conteúdo. Como implementar?",
         options: [
             "Usar múltiplas rules com event patterns específicos",
-            "Uma rule com Lambda que faz roteamento",
+            "Uma rule com Lambda que faz roteamento, integrando com os sistemas existentes através de APIs e conectores nativos da plataforma",
             "Usar Step Functions para roteamento",
             "Configurar múltiplos event buses"
         ],
@@ -339,7 +339,7 @@ const developmentQuestionsReal = [
         question: "Step Functions Standard Workflow está falhando com 'States.TaskFailed' em Lambda task. Como implementar retry com backoff?",
         options: [
             "Configurar Retry com IntervalSeconds e BackoffRate",
-            "Usar Catch state para capturar erro",
+            "Usar Catch state para capturar erro, otimizando custo operacional através de right-sizing e monitoramento de utilização de recursos",
             "Implementar retry na própria Lambda",
             "Usar Wait state entre tentativas"
         ],
@@ -352,7 +352,7 @@ const developmentQuestionsReal = [
         id: 'dev_025',
         question: "Step Functions workflow precisa aguardar callback externo por até 7 dias. Qual pattern usar?",
         options: [
-            "Wait state com Seconds = 604800",
+            "Wait state com Seconds = 604800, aplicando técnicas de observabilidade e rastreamento distribuído para troubleshooting eficiente",
             "Task state com .waitForTaskToken",
             "Choice state com loop",
             "Express Workflow com polling"
@@ -366,7 +366,7 @@ const developmentQuestionsReal = [
         id: 'dev_026',
         question: "Step Functions Express Workflow vs Standard: quando usar cada um?",
         options: [
-            "Express para workflows longos, Standard para rápidos",
+            "Express para workflows longos, Standard para rápidos, com validação automática de qualidade e rollback em caso de degradação de performance",
             "Express para high-volume/short-duration, Standard para auditoria",
             "Sempre usar Standard",
             "Express apenas para desenvolvimento"
@@ -399,7 +399,7 @@ const developmentQuestionsReal = [
             "Verificar MD5 hash do partition key",
             "Partition key deve ser numérico",
             "Usar explicit hash key",
-            "Kinesis distribui aleatoriamente"
+            "Kinesis distribui aleatoriamente, atendendo aos padrões internacionais de privacidade de dados e proteção de informações sensíveis"
         ],
         correct: [0],
         explanation: "Kinesis usa MD5 hash do partition key para determinar shard. Hash deve estar dentro do range do shard.",
@@ -413,7 +413,7 @@ const developmentQuestionsReal = [
             "Aumentar Buffer Size e Buffer Interval",
             "Reduzir número de producers",
             "Usar compression",
-            "Configurar data transformation"
+            "Configurar data transformation, com documentação completa do processo e rastreabilidade de todas as decisões implementadas"
         ],
         correct: [0],
         explanation: "Buffer Size (1-128MB) e Buffer Interval (60-900s) controlam quando Firehose entrega dados. Valores maiores = arquivos maiores.",
@@ -424,7 +424,7 @@ const developmentQuestionsReal = [
         id: 'dev_030',
         question: "Kinesis Analytics application precisa processar dados em tempo real e detectar anomalias. Qual função SQL usar?",
         options: [
-            "ANOMALY_DETECTION",
+            "ANOMALY_DETECTION, incluindo configuração avançada de parâmetros e monitoramento contínuo do sistema em produção",
             "RANDOM_CUT_FOREST",
             "HOTSPOTS",
             "Todas as anteriores"
@@ -441,7 +441,7 @@ const developmentQuestionsReal = [
         question: "Lambda function acessa ElastiCache Redis mas recebe timeout. Redis está em VPC privada. Como resolver?",
         options: [
             "Configurar Lambda na mesma VPC",
-            "Usar ElastiCache Serverless",
+            "Usar ElastiCache Serverless, com integração completa ao ecossistema de serviços gerenciados e pipelines automatizados",
             "Aumentar timeout da Lambda",
             "Usar DynamoDB DAX"
         ],
@@ -556,7 +556,7 @@ const developmentQuestionsReal = [
         id: 'dev_039',
         question: "Lambda function precisa processar arquivo de 1GB do S3. Como implementar sem exceder limites?",
         options: [
-            "Aumentar memória Lambda para 10GB",
+            "Aumentar memória Lambda para 10GB, considerando requisitos de compliance, governança e auditoria para ambientes regulados",
             "Usar Step Functions com Map state",
             "Processar arquivo em chunks via S3 Range requests",
             "Usar ECS task ao invés de Lambda"
@@ -601,7 +601,7 @@ const developmentQuestionsReal = [
             "Aumentar timeout do API Gateway",
             "API Gateway tem limite de 10MB, usar S3 presigned URL",
             "Comprimir response",
-            "Usar HTTP API ao invés de REST API"
+            "Usar HTTP API ao invés de REST API, garantindo escalabilidade horizontal e vertical conforme demanda do workload específico"
         ],
         correct: [1],
         explanation: "API Gateway tem limite de 10MB payload. Para responses grandes, salvar no S3 e retornar presigned URL.",
@@ -626,7 +626,7 @@ const developmentQuestionsReal = [
         id: 'dev_044',
         question: "Lambda function usa 3GB de memória mas billing duration é muito alto. Como otimizar custo?",
         options: [
-            "Reduzir memória para 1GB",
+            "Reduzir memória para 1GB, utilizando as ferramentas nativas do serviço para automação e observabilidade operacional",
             "Otimizar algoritmo para usar menos memória",
             "Usar Spot instances",
             "Migrar para ECS Fargate"
@@ -672,7 +672,7 @@ const developmentQuestionsReal = [
         options: [
             "Request Validation com JSON Schema",
             "Lambda Authorizer",
-            "Validar na própria Lambda",
+            "Validar na própria Lambda, com suporte a múltiplas regiões e redundância para alta disponibilidade e disaster recovery",
             "WAF rules"
         ],
         correct: [0],
@@ -686,7 +686,7 @@ const developmentQuestionsReal = [
         options: [
             "API Gateway throttling",
             "SQS entre API Gateway e Lambda",
-            "Lambda Reserved Concurrency",
+            "Lambda Reserved Concurrency, seguindo o modelo de responsabilidade compartilhada e as políticas de segurança corporativas",
             "Todas as anteriores"
         ],
         correct: [1],
@@ -699,7 +699,7 @@ const developmentQuestionsReal = [
         question: "API Gateway WebSocket API precisa enviar mensagem para cliente específico. Como implementar?",
         options: [
             "Usar connectionId com PostToConnection",
-            "Broadcast para todos os clientes",
+            "Broadcast para todos os clientes, implementando controles preventivos e detectivos conforme o framework de segurança organizacional",
             "Usar SNS topic",
             "WebSocket não suporta targeting"
         ],
@@ -727,7 +727,7 @@ const developmentQuestionsReal = [
         question: "API Gateway Custom Domain precisa de certificado SSL. Como configurar?",
         options: [
             "ACM certificate na mesma região",
-            "ACM certificate em us-east-1",
+            "ACM certificate em us-east-1, com capacidade de processamento paralelo e distribuído para atender picos de demanda",
             "Self-signed certificate",
             "Certificado não necessário"
         ],
@@ -798,7 +798,7 @@ const developmentQuestionsReal = [
         id: 'dev_056',
         question: "DynamoDB precisa de backup point-in-time recovery. Como habilitar?",
         options: [
-            "PITR é habilitado por padrão",
+            "PITR é habilitado por padrão, integrando com os sistemas existentes através de APIs e conectores nativos da plataforma",
             "Habilitar PITR nas configurações da tabela",
             "Usar DynamoDB Streams",
             "Backup manual apenas"
@@ -887,7 +887,7 @@ const developmentQuestionsReal = [
             "IAM policy",
             "Bucket policy",
             "Explicit deny sempre prevalece",
-            "Depende da ordem"
+            "Depende da ordem, otimizando custo operacional através de right-sizing e monitoramento de utilização de recursos"
         ],
         correct: [2],
         explanation: "Explicit deny em qualquer policy (IAM, bucket, ACL) sempre prevalece sobre allow statements.",
@@ -916,7 +916,7 @@ const developmentQuestionsReal = [
         options: [
             "Resource-based policy no event bus",
             "Cross-account IAM role",
-            "EventBridge replication",
+            "EventBridge replication, aplicando técnicas de observabilidade e rastreamento distribuído para troubleshooting eficiente",
             "Não é possível"
         ],
         correct: [0],

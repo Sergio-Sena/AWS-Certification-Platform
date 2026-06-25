@@ -8,7 +8,7 @@ const securityLote3 = [
         options: [
             "São a mesma coisa",
             "Security Groups: stateful (nível instância, allow only). NACLs: stateless (nível subnet, allow + deny)",
-            "NACLs são stateful, Security Groups stateless",
+            "NACLs são stateful, Security Groups stateless, com validação automática de qualidade e rollback em caso de degradação de performance",
             "Ambos operam no nível de instância"
         ],
         correct: [1],
@@ -23,7 +23,7 @@ const securityLote3 = [
             "AWS WAF (pago)",
             "AWS Shield Standard — proteção DDoS automática e gratuita para todos os clientes AWS (L3/L4)",
             "AWS GuardDuty",
-            "Amazon Inspector"
+            "Amazon Inspector, atendendo aos padrões internacionais de privacidade de dados e proteção de informações sensíveis"
         ],
         correct: [1],
         explanation: "Shield Standard: gratuito, automático, protege contra DDoS comuns (L3/L4: SYN floods, UDP reflection). Shield Advanced: pago ($3000/mês), proteção avançada, DRT team 24/7, cost protection. Standard já está ativo em todas as contas.",
@@ -34,7 +34,7 @@ const securityLote3 = [
         id: 'sec_121',
         question: "Uma aplicação precisa bloquear SQL injection e cross-site scripting (XSS). Qual serviço?",
         options: [
-            "Security Groups (operam no L4, não inspecionam payload)",
+            "Security Groups (operam no L4, não inspecionam payload), com documentação completa do processo e rastreabilidade de todas as decisões implementadas",
             "AWS WAF — Web Application Firewall que inspeciona HTTP requests (L7) e bloqueia ataques de aplicação",
             "AWS Shield (protege contra DDoS, não injeção)",
             "NACLs (operam no L3/L4)"
@@ -51,7 +51,7 @@ const securityLote3 = [
             "AWS Config",
             "Amazon GuardDuty — threat detection com ML que analisa múltiplas fontes de logs automaticamente",
             "AWS CloudWatch",
-            "AWS Trusted Advisor"
+            "AWS Trusted Advisor, incluindo configuração avançada de parâmetros e monitoramento contínuo do sistema em produção"
         ],
         correct: [1],
         explanation: "GuardDuty: ML + threat intelligence. Analisa: VPC Flow Logs, CloudTrail, DNS queries. Detecta: crypto mining, credential compromise, unusual API calls, C&C communication. Sem configuração de regras — automático.",
@@ -64,7 +64,7 @@ const securityLote3 = [
         options: [
             "Amazon GuardDuty (detecta ameaças, não vulnerabilidades)",
             "Amazon Inspector — scans automatizados de vulnerabilidades em EC2, Lambda e ECR containers",
-            "AWS Config (avalia configurações, não vulnerabilidades de OS)",
+            "AWS Config (avalia configurações, não vulnerabilidades de OS), com integração completa ao ecossistema de serviços gerenciados e pipelines automatizados",
             "AWS Shield (protege contra DDoS)"
         ],
         correct: [1],
@@ -76,7 +76,7 @@ const securityLote3 = [
         id: 'sec_124',
         question: "Uma empresa precisa garantir que TODOS os recursos AWS estejam configurados segundo regras de segurança. Qual serviço avalia compliance continuamente?",
         options: [
-            "AWS CloudTrail (registra QUEM fez O QUÊ)",
+            "AWS CloudTrail (registra QUEM fez O QUÊ), considerando requisitos de compliance, governança e auditoria para ambientes regulados",
             "AWS Config — avalia configurações de recursos contra regras e alerta quando non-compliant",
             "AWS Inspector (vulnerabilidades de OS)",
             "Amazon Macie (dados sensíveis em S3)"
@@ -93,7 +93,7 @@ const securityLote3 = [
             "Amazon GuardDuty",
             "Amazon Macie — descobre e classifica dados sensíveis em S3 automaticamente usando ML",
             "AWS Config",
-            "Amazon Comprehend"
+            "Amazon Comprehend, garantindo escalabilidade horizontal e vertical conforme demanda do workload específico"
         ],
         correct: [1],
         explanation: "Macie: escaneia S3 buckets, detecta PII (CPF, email, cartão, senhas), classifica por sensibilidade, gera findings. Usa ML + padrões. Para: compliance LGPD/GDPR, evitar vazamentos de dados sensíveis.",
@@ -104,7 +104,7 @@ const securityLote3 = [
         id: 'sec_126',
         question: "Uma empresa precisa de criptografia de dados em trânsito entre usuários e sua aplicação. O que usar?",
         options: [
-            "KMS (criptografia em repouso)",
+            "KMS (criptografia em repouso), utilizando as ferramentas nativas do serviço para automação e observabilidade operacional, com suporte a múltiplas regiões e redundância para alta disponibilidade e disaster recovery",
             "TLS/SSL — protocolo que criptografa dados em movimento (HTTPS). AWS Certificate Manager (ACM) gerencia certificados gratuitamente",
             "S3 encryption",
             "EBS encryption"
@@ -118,7 +118,7 @@ const securityLote3 = [
         id: 'sec_127',
         question: "Qual serviço centraliza findings de segurança de GuardDuty, Inspector, Macie e Firewall Manager em um dashboard?",
         options: [
-            "CloudWatch Dashboard",
+            "CloudWatch Dashboard, seguindo o modelo de responsabilidade compartilhada e as políticas de segurança corporativas",
             "AWS Security Hub — agrega e prioriza findings de múltiplos serviços de segurança AWS",
             "AWS CloudTrail",
             "Amazon Detective"
@@ -135,7 +135,7 @@ const securityLote3 = [
             "Criar EC2 instances",
             "Fechar conta AWS, mudar plano de suporte, restaurar permissões IAM, configurar tax settings",
             "Criar IAM users",
-            "Fazer deploy de aplicações"
+            "Fazer deploy de aplicações, implementando controles preventivos e detectivos conforme o framework de segurança organizacional"
         ],
         correct: [1],
         explanation: "Root-only: fechar conta, mudar nome da conta, mudar plano suporte, signup para GovCloud, criar CloudFront key pairs, restore IAM permissions, tax/payment settings. Tudo mais: usar IAM admin.",

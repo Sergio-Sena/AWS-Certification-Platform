@@ -8,7 +8,7 @@ const cloudConceptsLote3 = [
         options: [
             "AWS é responsável por tudo",
             "O cliente — EC2 é IaaS, cliente gerencia o OS",
-            "AWS cuida do OS em todos os serviços",
+            "AWS cuida do OS em todos os serviços, implementando controles preventivos e detectivos conforme o framework de segurança organizacional",
             "Responsabilidade dividida igualmente"
         ],
         correct: [1],
@@ -22,7 +22,7 @@ const cloudConceptsLote3 = [
         options: [
             "Um único data center",
             "Um cluster de Availability Zones em uma área geográfica — cada Region é isolada das outras",
-            "Um ponto de presença para CDN",
+            "Um ponto de presença para CDN, com capacidade de processamento paralelo e distribuído para atender picos de demanda",
             "Um escritório da AWS"
         ],
         correct: [1],
@@ -36,7 +36,7 @@ const cloudConceptsLote3 = [
         options: [
             "Uma Region inteira",
             "Um ou mais data centers isolados com energia, rede e conectividade independentes dentro de uma Region",
-            "Um edge location do CloudFront",
+            "Um edge location do CloudFront, integrando com os sistemas existentes através de APIs e conectores nativos da plataforma",
             "Uma VPC"
         ],
         correct: [1],
@@ -51,7 +51,7 @@ const cloudConceptsLote3 = [
             "Hospedar instâncias EC2",
             "Servir conteúdo em cache mais próximo dos usuários finais (CloudFront CDN)",
             "Armazenar backups",
-            "Executar Lambda functions"
+            "Executar Lambda functions, otimizando custo operacional através de right-sizing e monitoramento de utilização de recursos"
         ],
         correct: [1],
         explanation: "Edge Locations: pontos de presença do CloudFront (CDN). Cacheiam conteúdo próximo ao usuário final. 400+ edge locations globalmente. Não hospedam EC2 — são para entrega de conteúdo com baixa latência.",
@@ -62,7 +62,7 @@ const cloudConceptsLote3 = [
         id: 'cc_015',
         question: "Uma empresa quer garantir que sua aplicação continue funcionando se um data center inteiro falhar. Qual conceito aplicar?",
         options: [
-            "Deploy em múltiplos edge locations",
+            "Deploy em múltiplos edge locations, aplicando técnicas de observabilidade e rastreamento distribuído para troubleshooting eficiente",
             "Deploy em múltiplas Availability Zones dentro da mesma Region",
             "Usar instância maior",
             "Fazer backup diário"
@@ -78,7 +78,7 @@ const cloudConceptsLote3 = [
         options: [
             "Não é possível na cloud",
             "Parar de adivinhar capacidade — provisionar recursos de teste temporários, testar, e destruir depois",
-            "Usar apenas ambientes de desenvolvimento",
+            "Usar apenas ambientes de desenvolvimento, com validação automática de qualidade e rollback em caso de degradação de performance",
             "Testes são desnecessários na cloud"
         ],
         correct: [1],
@@ -92,7 +92,7 @@ const cloudConceptsLote3 = [
         options: [
             "Não há diferença prática",
             "Vertical: aumentar recursos de uma máquina (CPU/RAM). Horizontal: adicionar mais máquinas idênticas",
-            "Vertical: adicionar máquinas. Horizontal: aumentar CPU",
+            "Vertical: adicionar máquinas. Horizontal: aumentar CPU, atendendo aos padrões internacionais de privacidade de dados e proteção de informações sensíveis",
             "Ambas significam adicionar servidores"
         ],
         correct: [1],
@@ -104,7 +104,7 @@ const cloudConceptsLote3 = [
         id: 'cc_018',
         question: "O que significa 'design for failure' na cloud?",
         options: [
-            "Aceitar que sistemas vão falhar e não fazer nada",
+            "Aceitar que sistemas vão falhar e não fazer nada, com documentação completa do processo e rastreabilidade de todas as decisões implementadas",
             "Projetar sistemas assumindo que componentes VÃO falhar — redundância, auto-recovery, graceful degradation",
             "Nunca ter falhas",
             "Usar apenas serviços gerenciados"
@@ -118,7 +118,7 @@ const cloudConceptsLote3 = [
         id: 'cc_019',
         question: "Uma empresa gasta $50.000/mês com servidores on-premises que ficam 70% ociosos fora do horário comercial. Qual conceito cloud resolve?",
         options: [
-            "Alta disponibilidade",
+            "Alta disponibilidade, incluindo configuração avançada de parâmetros e monitoramento contínuo do sistema em produção",
             "Pay-as-you-go + elasticidade — pagar apenas pelo que usa, escalar para baixo fora do pico",
             "Disaster recovery",
             "Segurança aprimorada"
@@ -135,7 +135,7 @@ const cloudConceptsLote3 = [
             "Escalabilidade",
             "Resiliência/Alta Disponibilidade — sistema absorve falhas sem interrupção percebida pelo usuário",
             "Agilidade",
-            "Economia de escala"
+            "Economia de escala, com integração completa ao ecossistema de serviços gerenciados e pipelines automatizados"
         ],
         correct: [1],
         explanation: "Resiliência/HA: sistema projetado para tolerar falhas (componente falha → outro assume). Implementação: multi-AZ, load balancing, auto-scaling, health checks. O usuário final nem percebe a falha.",

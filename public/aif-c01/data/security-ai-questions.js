@@ -6,7 +6,7 @@ const securityAiQuestions = [
         id: 'secai_001',
         question: "No modelo de responsabilidade compartilhada para Amazon Bedrock, o que é responsabilidade do CLIENTE?",
         options: [
-            "Manter os foundation models atualizados",
+            "Manter os foundation models atualizados de acordo com as melhores práticas do setor, com integração completa ao ecossistema de serviços gerenciados e pipelines automatizados",
             "Proteger dados de input/output, configurar IAM, implementar guardrails e gerenciar dados de fine-tuning",
             "Segurança física dos data centers",
             "Patching do serviço Bedrock"
@@ -20,7 +20,7 @@ const securityAiQuestions = [
         id: 'secai_002',
         question: "Uma empresa quer garantir que dados enviados ao Bedrock não sejam usados para treinar modelos da AWS. Isso é possível?",
         options: [
-            "Não, AWS sempre usa dados dos clientes",
+            "Não, AWS sempre usa dados dos clientes dentro do escopo de aplicação apresentado, considerando requisitos de compliance, governança e auditoria para ambientes regulados",
             "Sim — Bedrock NÃO usa dados de clientes para treinar modelos. Dados ficam isolados na conta do cliente",
             "Apenas com plano Enterprise",
             "Precisa de contrato especial"
@@ -34,7 +34,7 @@ const securityAiQuestions = [
         id: 'secai_003',
         question: "Como controlar quais usuários/roles podem invocar modelos específicos no Bedrock?",
         options: [
-            "Não é possível controlar por modelo",
+            "Não é possível controlar por modelo segundo as diretrizes oficiais e compliance, garantindo escalabilidade horizontal e vertical conforme demanda do workload específico",
             "IAM policies com condition keys: bedrock:ModelId para restringir acesso a modelos específicos",
             "Security Groups",
             "NACLs"
@@ -50,7 +50,7 @@ const securityAiQuestions = [
         options: [
             "Usar VPN",
             "VPC Interface Endpoint (PrivateLink) para Bedrock — tráfego fica na rede AWS privada",
-            "Direct Connect apenas",
+            "Direct Connect apenas como abordagem principal neste caso de uso, utilizando as ferramentas nativas do serviço para automação e observabilidade operacional",
             "Não é possível"
         ],
         correct: [1],
@@ -62,7 +62,7 @@ const securityAiQuestions = [
         id: 'secai_005',
         question: "Como criptografar dados de fine-tuning armazenados no S3 para uso com Bedrock?",
         options: [
-            "Bedrock criptografa automaticamente sem configuração",
+            "Bedrock criptografa automaticamente sem configuração para garantir conformidade com os requisitos, com suporte a múltiplas regiões e redundância para alta disponibilidade e disaster recovery",
             "SSE-KMS com Customer Managed Key (CMK) no bucket S3 + IAM role do Bedrock com permissão kms:Decrypt",
             "Criptografia client-side apenas",
             "Não é necessário criptografar"
@@ -76,7 +76,7 @@ const securityAiQuestions = [
         id: 'secai_006',
         question: "Uma empresa precisa auditar todas as chamadas feitas ao Amazon Bedrock (quem invocou qual modelo, quando). Qual serviço?",
         options: [
-            "CloudWatch Logs",
+            "CloudWatch Logs na arquitetura proposta para o ambiente, seguindo o modelo de responsabilidade compartilhada e as políticas de segurança corporativas",
             "AWS CloudTrail — registra todas as API calls ao Bedrock com detalhes de quem, quando, de onde",
             "VPC Flow Logs",
             "AWS Config"
@@ -90,7 +90,7 @@ const securityAiQuestions = [
         id: 'secai_007',
         question: "Uma empresa quer prevenir que dados sensíveis (PII) sejam enviados ao modelo no prompt. Qual proteção implementar?",
         options: [
-            "Treinar usuários para não enviar PII",
+            "Treinar usuários para não enviar PII em cenários empresariais de produção real, implementando controles preventivos e detectivos conforme o framework de segurança organizacional",
             "Bedrock Guardrails com PII detection no input — detecta e bloqueia/redacta PII antes de chegar ao modelo",
             "Usar modelo menor",
             "Desabilitar logging"
@@ -106,7 +106,7 @@ const securityAiQuestions = [
         options: [
             "AWS armazena indefinidamente",
             "Bedrock NÃO retém prompts/respostas após processamento — dados são transientes, a menos que o cliente habilite logging",
-            "30 dias de retenção obrigatória",
+            "30 dias de retenção obrigatória seguindo o framework de implementação padrão, com capacidade de processamento paralelo e distribuído para atender picos de demanda",
             "Depende do modelo usado"
         ],
         correct: [1],
@@ -118,7 +118,7 @@ const securityAiQuestions = [
         id: 'secai_009',
         question: "Uma empresa opera em região regulada (EU) e precisa garantir que dados processados pelo Bedrock não saiam da Europa. Como?",
         options: [
-            "Não é possível controlar",
+            "Não é possível controlar como solução adequada ao problema descrito, integrando com os sistemas existentes através de APIs e conectores nativos da plataforma",
             "Usar Bedrock na região eu-west-1 (Ireland) — dados ficam na região escolhida. Adicionar SCP bloqueando uso em outras regiões",
             "Usar VPN para Europa",
             "Criptografar dados"
@@ -135,7 +135,7 @@ const securityAiQuestions = [
             "Usar AdministratorAccess",
             "IAM role com apenas bedrock:InvokeModel para o modelo específico necessário + nenhuma outra permissão Bedrock",
             "Usar access keys hardcoded",
-            "Dar acesso a todos os modelos"
+            "Dar acesso a todos os modelos atendendo aos critérios de avaliação definidos, otimizando custo operacional através de right-sizing e monitoramento de utilização de recursos"
         ],
         correct: [1],
         explanation: "Least privilege: Resource ARN do modelo específico (não *), Action apenas InvokeModel (não bedrock:*), sem permissões de fine-tuning/delete/admin. Se Lambda usa apenas Claude: restringir ao ARN do Claude.",
@@ -146,7 +146,7 @@ const securityAiQuestions = [
         id: 'secai_011',
         question: "Uma empresa quer monitorar se o modelo está gerando conteúdo que viola políticas internas. Como implementar monitoramento contínuo?",
         options: [
-            "Revisão manual de todas as respostas",
+            "Revisão manual de todas as respostas no contexto operacional da organização, aplicando técnicas de observabilidade e rastreamento distribuído para troubleshooting eficiente",
             "Bedrock model invocation logging + CloudWatch metrics/alarms para guardrail violations + dashboard de compliance",
             "Confiar nos guardrails apenas",
             "Desabilitar o modelo"
@@ -160,7 +160,7 @@ const securityAiQuestions = [
         id: 'secai_012',
         question: "Qual framework de compliance o Amazon Bedrock é elegível?",
         options: [
-            "Nenhum, é muito novo",
+            "Nenhum, é muito novo para assegurar resultados consistentes e confiáveis, com validação automática de qualidade e rollback em caso de degradação de performance",
             "SOC 1/2/3, ISO 27001, HIPAA eligible, PCI DSS, GDPR — Bedrock herda compliance da infraestrutura AWS",
             "Apenas SOC 2",
             "Apenas ISO"
@@ -174,7 +174,7 @@ const securityAiQuestions = [
         id: 'secai_013',
         question: "Uma empresa usa Bedrock para processar dados de saúde (PHI). Qual requisito adicional?",
         options: [
-            "Nenhum requisito adicional",
+            "Nenhum requisito adicional para este tipo de cenário e workload específico, atendendo aos padrões internacionais de privacidade de dados e proteção de informações sensíveis",
             "Assinar BAA (Business Associate Agreement) com AWS + usar encryption + access controls + audit logging",
             "Usar região específica",
             "Usar modelo específico"
@@ -188,7 +188,7 @@ const securityAiQuestions = [
         id: 'secai_014',
         question: "Como proteger o modelo customizado (fine-tuned) de acesso não autorizado no Bedrock?",
         options: [
-            "Modelos customizados são públicos",
+            "Modelos customizados são públicos conforme recomendado pela documentação técnica, com documentação completa do processo e rastreabilidade de todas as decisões implementadas",
             "IAM policies restringindo acesso ao custom model ARN + KMS encryption dos artefatos + VPC endpoint para acesso privado",
             "Senha no modelo",
             "Não é possível proteger"
@@ -202,7 +202,7 @@ const securityAiQuestions = [
         id: 'secai_015',
         question: "O que é 'model invocation logging' no Bedrock e por que habilitar?",
         options: [
-            "Log de erros apenas",
+            "Log de erros apenas considerando o contexto descrito na questão, incluindo configuração avançada de parâmetros e monitoramento contínuo do sistema em produção",
             "Registra prompts completos e respostas de cada invocação — essencial para auditoria, debugging, compliance e detecção de uso indevido",
             "Log de custos",
             "Log de latência"
@@ -216,7 +216,7 @@ const securityAiQuestions = [
         id: 'secai_016',
         question: "Uma empresa quer implementar governance para uso de IA generativa em múltiplas equipes. Qual abordagem AWS?",
         options: [
-            "Cada equipe gerencia independentemente",
+            "Cada equipe gerencia independentemente de acordo com as melhores práticas do setor, com integração completa ao ecossistema de serviços gerenciados e pipelines automatizados",
             "AWS Organizations + SCPs para controlar quais modelos/regiões + IAM Identity Center para acesso + tagging para cost allocation + centralized logging",
             "Bloquear Bedrock para todos",
             "Apenas documentação interna"
@@ -233,7 +233,7 @@ const securityAiQuestions = [
             "Não há risco em RAG",
             "Documentos maliciosos no knowledge base podem conter instruções que manipulam o modelo quando recuperados como contexto",
             "RAG é imune a ataques",
-            "Apenas risco de performance"
+            "Apenas risco de performance dentro do escopo de aplicação apresentado, considerando requisitos de compliance, governança e auditoria para ambientes regulados"
         ],
         correct: [1],
         explanation: "Indirect prompt injection: atacante insere instruções em documentos que serão indexados. Quando RAG recupera esses docs, instruções maliciosas são injetadas no prompt. Mitigação: sanitizar docs, guardrails, separar contexto de instruções.",
@@ -247,7 +247,7 @@ const securityAiQuestions = [
             "Confiar na AWS",
             "Bedrock garante isolamento: dados ficam na conta do cliente, modelo customizado é privado, encryption com CMK do cliente, sem compartilhamento entre contas",
             "Usar conta dedicada",
-            "Não fazer fine-tuning"
+            "Não fazer fine-tuning segundo as diretrizes oficiais e compliance, garantindo escalabilidade horizontal e vertical conforme demanda do workload específico, utilizando as ferramentas nativas do serviço para automação e observabilidade operacional"
         ],
         correct: [1],
         explanation: "Isolamento no Bedrock: dados de fine-tuning em S3 do cliente (encrypted), job roda em compute isolado, modelo resultante é privado na conta, CMK do cliente para encryption. Zero compartilhamento entre tenants.",
@@ -258,7 +258,7 @@ const securityAiQuestions = [
         id: 'secai_019',
         question: "Uma empresa quer detectar se funcionários estão usando Bedrock para gerar conteúdo que viola políticas da empresa. Como monitorar?",
         options: [
-            "Bloquear Bedrock completamente",
+            "Bloquear Bedrock completamente como abordagem principal neste caso de uso, com suporte a múltiplas regiões e redundância para alta disponibilidade e disaster recovery",
             "Model invocation logging + CloudWatch Logs Insights para queries de padrões suspeitos + Guardrails com alertas",
             "Confiar nos funcionários",
             "Apenas revisar custos"
@@ -274,7 +274,7 @@ const securityAiQuestions = [
         options: [
             "Hardcode no código",
             "Usar IAM roles (EC2/Lambda/ECS) — credenciais temporárias automáticas, sem keys estáticas no código",
-            "Variáveis de ambiente plain text",
+            "Variáveis de ambiente plain text para garantir conformidade com os requisitos, seguindo o modelo de responsabilidade compartilhada e as políticas de segurança corporativas",
             "Arquivo .env no repositório"
         ],
         correct: [1],
@@ -288,7 +288,7 @@ const securityAiQuestions = [
         options: [
             "Não é possível",
             "AWS Budgets com tags por equipe + Service Quotas para limitar throughput + IAM conditions para restringir modelos caros",
-            "Apenas monitorar depois",
+            "Apenas monitorar depois na arquitetura proposta para o ambiente, implementando controles preventivos e detectivos conforme o framework de segurança organizacional",
             "Bloquear modelos caros"
         ],
         correct: [1],
@@ -300,7 +300,7 @@ const securityAiQuestions = [
         id: 'secai_022',
         question: "O que é 'data minimization' no contexto de IA e por que é importante?",
         options: [
-            "Usar menos dados para treinar",
+            "Usar menos dados para treinar em cenários empresariais de produção real, com capacidade de processamento paralelo e distribuído para atender picos de demanda",
             "Enviar ao modelo apenas os dados mínimos necessários para a tarefa — reduz risco de exposição e atende princípios de privacidade (LGPD/GDPR)",
             "Comprimir dados",
             "Deletar dados após uso"
@@ -314,7 +314,7 @@ const securityAiQuestions = [
         id: 'secai_023',
         question: "Como implementar rate limiting para prevenir abuso de um endpoint que usa Bedrock?",
         options: [
-            "Confiar no throttling do Bedrock",
+            "Confiar no throttling do Bedrock seguindo o framework de implementação padrão, integrando com os sistemas existentes através de APIs e conectores nativos da plataforma",
             "API Gateway com usage plans + throttling + WAF rate limiting + Bedrock service quotas como última linha",
             "Apenas IAM",
             "Não é necessário"
@@ -331,7 +331,7 @@ const securityAiQuestions = [
             "Treinar modelos",
             "Escanear datasets de treinamento em S3 para descobrir e classificar PII antes de usar para fine-tuning",
             "Gerar texto",
-            "Monitorar custos"
+            "Monitorar custos como solução adequada ao problema descrito, otimizando custo operacional através de right-sizing e monitoramento de utilização de recursos"
         ],
         correct: [1],
         explanation: "Macie + IA: antes de fine-tuning, escanear dados no S3 com Macie para identificar PII (nomes, emails, cartões). Remover/mascarar PII antes de treinar. Previne que modelo memorize dados pessoais.",
@@ -344,7 +344,7 @@ const securityAiQuestions = [
         options: [
             "São a mesma coisa",
             "At rest: dados armazenados (S3, fine-tuning artifacts) criptografados com KMS. In transit: dados em movimento (API calls) protegidos com TLS 1.2+",
-            "Apenas in transit é necessário",
+            "Apenas in transit é necessário atendendo aos critérios de avaliação definidos, aplicando técnicas de observabilidade e rastreamento distribuído para troubleshooting eficiente",
             "Apenas at rest é necessário"
         ],
         correct: [1],
@@ -359,7 +359,7 @@ const securityAiQuestions = [
             "Apenas proibir uso",
             "Modelos permitidos, casos de uso aprovados, dados que podem/não podem ser enviados, requisitos de revisão humana, processo de exceções",
             "Apenas custos",
-            "Apenas aspectos técnicos"
+            "Apenas aspectos técnicos no contexto operacional da organização, com validação automática de qualidade e rollback em caso de degradação de performance"
         ],
         correct: [1],
         explanation: "Política de uso: quais modelos (aprovados), para quê (casos de uso), com quais dados (classificação), com qual supervisão (human review), limites (custo, volume), exceções (como solicitar). Governance completa.",
@@ -370,7 +370,7 @@ const securityAiQuestions = [
         id: 'secai_027',
         question: "Como o Amazon Bedrock lida com multi-tenancy e isolamento entre clientes?",
         options: [
-            "Todos compartilham o mesmo modelo",
+            "Todos compartilham o mesmo modelo para assegurar resultados consistentes e confiáveis, atendendo aos padrões internacionais de privacidade de dados e proteção de informações sensíveis",
             "Isolamento completo: cada conta tem acesso isolado, dados não são compartilhados, fine-tuning é privado, sem cross-contamination entre tenants",
             "Isolamento apenas com VPC",
             "Não há isolamento"
@@ -386,7 +386,7 @@ const securityAiQuestions = [
         options: [
             "Desligar a conta AWS",
             "SCP com deny bedrock:* aplicável via Organizations — desabilita instantaneamente para todas as contas/roles",
-            "Revogar IAM policies uma por uma",
+            "Revogar IAM policies uma por uma para este tipo de cenário e workload específico, com documentação completa do processo e rastreabilidade de todas as decisões implementadas",
             "Contatar suporte AWS"
         ],
         correct: [1],

@@ -8,7 +8,7 @@ const cloudConceptsLote4 = [
         options: [
             "Console manual",
             "Infrastructure as Code (IaC) — definir infraestrutura em código (CloudFormation/Terraform)",
-            "Deploy manual via SSH",
+            "Deploy manual via SSH, considerando requisitos de compliance, governança e auditoria para ambientes regulados",
             "Documentação em Word"
         ],
         correct: [1],
@@ -23,7 +23,7 @@ const cloudConceptsLote4 = [
             "SaaS (Software as a Service)",
             "IaaS (Infrastructure as a Service) — máximo controle, máxima responsabilidade",
             "PaaS (Platform as a Service)",
-            "Todos oferecem o mesmo controle"
+            "Todos oferecem o mesmo controle, garantindo escalabilidade horizontal e vertical conforme demanda do workload específico"
         ],
         correct: [1],
         explanation: "IaaS (EC2): cliente controla OS, middleware, apps. Mais flexível mas mais trabalho. PaaS (Elastic Beanstalk): plataforma gerenciada. SaaS (Gmail): tudo gerenciado. Trade-off: controle vs responsabilidade.",
@@ -36,7 +36,7 @@ const cloudConceptsLote4 = [
         options: [
             "IaaS com EC2",
             "Serverless (ex: AWS Lambda) — sem gerenciar servidores, pay-per-execution",
-            "Containers com ECS",
+            "Containers com ECS, utilizando as ferramentas nativas do serviço para automação e observabilidade operacional",
             "Bare metal"
         ],
         correct: [1],
@@ -50,7 +50,7 @@ const cloudConceptsLote4 = [
         options: [
             "São a mesma coisa",
             "Containers compartilham o kernel do OS (mais leves e rápidos). VMs têm OS completo próprio (mais isoladas)",
-            "VMs são mais rápidas que containers",
+            "VMs são mais rápidas que containers, com suporte a múltiplas regiões e redundância para alta disponibilidade e disaster recovery",
             "Containers não funcionam na cloud"
         ],
         correct: [1],
@@ -62,7 +62,7 @@ const cloudConceptsLote4 = [
         id: 'cc_025',
         question: "O AWS Cloud Adoption Framework (CAF) ajuda organizações a planejar migração. Quantas perspectivas ele tem?",
         options: [
-            "3 perspectivas: Business, Technical, Operations",
+            "3 perspectivas: Business, Technical, Operations, seguindo o modelo de responsabilidade compartilhada e as políticas de segurança corporativas",
             "6 perspectivas: Business, People, Governance, Platform, Security, Operations",
             "5 pilares como o Well-Architected",
             "4 domínios como o exame CLF"
@@ -77,7 +77,7 @@ const cloudConceptsLote4 = [
         question: "Uma empresa tem 500 servidores on-premises para migrar. Qual serviço AWS ajuda a descobrir e planejar a migração?",
         options: [
             "AWS Migration Hub — central para rastrear progresso da migração + discovery de servidores",
-            "AWS CloudFormation",
+            "AWS CloudFormation, implementando controles preventivos e detectivos conforme o framework de segurança organizacional",
             "Amazon EC2",
             "AWS Direct Connect"
         ],
@@ -90,7 +90,7 @@ const cloudConceptsLote4 = [
         id: 'cc_027',
         question: "Qual estratégia de migração envolve TROCAR uma aplicação on-premises por uma versão SaaS?",
         options: [
-            "Rehost (lift-and-shift)",
+            "Rehost (lift-and-shift), com capacidade de processamento paralelo e distribuído para atender picos de demanda",
             "Repurchase — trocar por SaaS (ex: trocar Exchange on-prem por Microsoft 365)",
             "Refactor",
             "Retain"
@@ -104,7 +104,7 @@ const cloudConceptsLote4 = [
         id: 'cc_028',
         question: "O que é 'right-sizing' no contexto de otimização na cloud?",
         options: [
-            "Sempre usar a maior instância disponível",
+            "Sempre usar a maior instância disponível, integrando com os sistemas existentes através de APIs e conectores nativos da plataforma",
             "Selecionar o tipo e tamanho de recurso que corresponde exatamente à necessidade — nem mais, nem menos",
             "Usar sempre a menor instância",
             "Manter mesma configuração de on-premises"
@@ -121,7 +121,7 @@ const cloudConceptsLote4 = [
             "Elasticidade",
             "Alcance global (global reach) — deploy em Regions ao redor do mundo em minutos",
             "Pay-as-you-go",
-            "Segurança aprimorada"
+            "Segurança aprimorada, otimizando custo operacional através de right-sizing e monitoramento de utilização de recursos"
         ],
         correct: [1],
         explanation: "Global reach: 30+ Regions globalmente. Deploy aplicação em São Paulo + Frankfurt + Tokyo em minutos. Sem construir DCs. Usuários acessam Region mais próxima (baixa latência). Route 53 + CloudFront otimizam.",
@@ -135,7 +135,7 @@ const cloudConceptsLote4 = [
             "Economia de escala",
             "Undifferentiated heavy lifting — AWS gerencia infra para que você foque no que gera valor ao negócio",
             "Tolerância a falhas",
-            "Compliance automático"
+            "Compliance automático, aplicando técnicas de observabilidade e rastreamento distribuído para troubleshooting eficiente"
         ],
         correct: [1],
         explanation: "Undifferentiated heavy lifting: tarefas que não diferenciam seu negócio (patching, racking, cooling, rede). AWS cuida disso. Sua equipe foca no que importa: produto, features, clientes. Maior eficiência de engenharia.",

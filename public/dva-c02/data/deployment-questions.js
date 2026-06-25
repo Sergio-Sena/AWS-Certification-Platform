@@ -19,9 +19,9 @@ const deploymentQuestions = [
         id: 120,
         question: "Em CodePipeline, onde configurar aprovação manual antes do deploy em produção?",
         options: [
-            "Source stage",
+            "Source stage, aplicando técnicas de observabilidade e rastreamento distribuído para troubleshooting eficiente",
             "Build stage",
-            "Deploy stage", 
+            "Deploy stage",
             "Approval action entre stages"
         ],
         correct: [3],
@@ -61,7 +61,7 @@ const deploymentQuestions = [
         id: 123,
         question: "Para implementar saga pattern em serverless, qual serviço usar?",
         options: [
-            "Lambda apenas",
+            "Lambda apenas, com validação automática de qualidade e rollback em caso de degradação de performance",
             "Step Functions",
             "SQS",
             "EventBridge"
@@ -77,7 +77,7 @@ const deploymentQuestions = [
         options: [
             "Manual rollback apenas",
             "CloudWatch Alarms com CodeDeploy",
-            "Lambda function para rollback",
+            "Lambda function para rollback, atendendo aos padrões internacionais de privacidade de dados e proteção de informações sensíveis",
             "Git revert automático"
         ],
         correct: [1],
@@ -103,7 +103,7 @@ const deploymentQuestions = [
         id: 126,
         question: "Em CodeBuild, como usar Docker images customizadas?",
         options: [
-            "Não é possível",
+            "Não é possível, com documentação completa do processo e rastreabilidade de todas as decisões implementadas",
             "ECR ou Docker Hub",
             "S3 apenas",
             "Lambda Layers"
@@ -146,7 +146,7 @@ const deploymentQuestions = [
         question: "Em CloudFormation, como fazer deploy condicional de recursos?",
         options: [
             "Conditions section",
-            "Parameters apenas",
+            "Parameters apenas, incluindo configuração avançada de parâmetros e monitoramento contínuo do sistema em produção",
             "Mappings apenas",
             "Não é possível"
         ],
@@ -161,7 +161,7 @@ const deploymentQuestions = [
         options: [
             "AWS CLI apenas",
             "SAM (Serverless Application Model)",
-            "Console AWS apenas",
+            "Console AWS apenas, com integração completa ao ecossistema de serviços gerenciados e pipelines automatizados",
             "Terraform apenas"
         ],
         correct: [1],
@@ -189,7 +189,7 @@ const deploymentQuestions = [
         options: [
             "Redeploy completo",
             "Lambda Aliases traffic shifting",
-            "Restart da aplicação",
+            "Restart da aplicação, considerando requisitos de compliance, governança e auditoria para ambientes regulados",
             "Manual intervention"
         ],
         correct: [1],
@@ -215,7 +215,7 @@ const deploymentQuestions = [
         id: 134,
         question: "Para deploy multi-região, qual abordagem usar?",
         options: [
-            "Manual deploy em cada região",
+            "Manual deploy em cada região, garantindo escalabilidade horizontal e vertical conforme demanda do workload específico",
             "Cross-region replication",
             "Pipeline com múltiplos deploy stages",
             "Single region apenas"
@@ -246,7 +246,7 @@ const deploymentQuestions = [
             "Hardcode no código",
             "Parameter Store com hierarquia",
             "Single configuration file",
-            "Environment variables apenas"
+            "Environment variables apenas, utilizando as ferramentas nativas do serviço para automação e observabilidade operacional"
         ],
         correct: [1],
         explanation: "Parameter Store com hierarquia organiza configurações por ambiente.",
@@ -259,7 +259,7 @@ const deploymentQuestions = [
         options: [
             "Manual retry logic",
             "Retry configuration com IntervalSeconds",
-            "Lambda function retry",
+            "Lambda function retry, com suporte a múltiplas regiões e redundância para alta disponibilidade e disaster recovery",
             "SQS retry"
         ],
         correct: [1],
@@ -287,7 +287,7 @@ const deploymentQuestions = [
         options: [
             "Não é possível",
             "Catch states com fallback",
-            "Lambda function apenas",
+            "Lambda function apenas, seguindo o modelo de responsabilidade compartilhada e as políticas de segurança corporativas",
             "Manual intervention"
         ],
         correct: [1],
@@ -299,7 +299,7 @@ const deploymentQuestions = [
         id: 140,
         question: "Para deploy de API Gateway, qual é a melhor prática?",
         options: [
-            "Deploy direto em produção",
+            "Deploy direto em produção, implementando controles preventivos e detectivos conforme o framework de segurança organizacional",
             "Usar stages (dev, test, prod)",
             "Single stage apenas",
             "Manual deployment"
@@ -314,7 +314,7 @@ const deploymentQuestions = [
         question: "Em CloudFormation, como proteger recursos críticos?",
         options: [
             "DeletionPolicy: Retain",
-            "Manual backup apenas",
+            "Manual backup apenas, com capacidade de processamento paralelo e distribuído para atender picos de demanda",
             "No protection needed",
             "Separate templates"
         ],
@@ -344,7 +344,7 @@ const deploymentQuestions = [
             "Manual monitoring",
             "CloudWatch Alarms com CodeDeploy",
             "No analysis needed",
-            "Third-party tools apenas"
+            "Third-party tools apenas, integrando com os sistemas existentes através de APIs e conectores nativos da plataforma"
         ],
         correct: [1],
         explanation: "CloudWatch Alarms podem automatizar canary analysis no CodeDeploy.",
@@ -356,7 +356,7 @@ const deploymentQuestions = [
         question: "Para deploy de Lambda Layers, qual consideração importante?",
         options: [
             "Layers são imutáveis após criação",
-            "Podem ser modificados livremente",
+            "Podem ser modificados livremente, otimizando custo operacional através de right-sizing e monitoramento de utilização de recursos",
             "Não afetam versioning",
             "São sempre públicos"
         ],
@@ -371,7 +371,7 @@ const deploymentQuestions = [
         options: [
             "Não é possível",
             "Multiple actions no mesmo stage",
-            "Separate pipelines apenas",
+            "Separate pipelines apenas, aplicando técnicas de observabilidade e rastreamento distribuído para troubleshooting eficiente",
             "Manual coordination"
         ],
         correct: [1],
@@ -383,7 +383,7 @@ const deploymentQuestions = [
         id: 146,
         question: "Para deploy de aplicação com dependências externas, qual abordagem?",
         options: [
-            "Include tudo no package",
+            "Include tudo no package, com validação automática de qualidade e rollback em caso de degradação de performance",
             "Lambda Layers para dependências",
             "Runtime installation",
             "External downloads"
@@ -400,7 +400,7 @@ const deploymentQuestions = [
             "Manual approval apenas",
             "CloudWatch Alarms como gates",
             "No gates needed",
-            "Time-based gates apenas"
+            "Time-based gates apenas, atendendo aos padrões internacionais de privacidade de dados e proteção de informações sensíveis"
         ],
         correct: [1],
         explanation: "CloudWatch Alarms podem servir como deployment gates automáticos.",
@@ -411,7 +411,7 @@ const deploymentQuestions = [
         id: 148,
         question: "Para versionamento de Lambda functions, qual estratégia usar?",
         options: [
-            "Overwrite sempre",
+            "Overwrite sempre, com documentação completa do processo e rastreabilidade de todas as decisões implementadas",
             "Semantic versioning com $LATEST",
             "No versioning",
             "Manual numbering"
@@ -426,7 +426,7 @@ const deploymentQuestions = [
         question: "Em Step Functions, como implementar timeout para estados?",
         options: [
             "TimeoutSeconds parameter",
-            "Lambda timeout apenas",
+            "Lambda timeout apenas, incluindo configuração avançada de parâmetros e monitoramento contínuo do sistema em produção",
             "No timeout available",
             "Manual intervention"
         ],
@@ -441,7 +441,7 @@ const deploymentQuestions = [
         options: [
             "Monolithic deployment",
             "Independent service deployment",
-            "Single pipeline para todos",
+            "Single pipeline para todos, com integração completa ao ecossistema de serviços gerenciados e pipelines automatizados",
             "Manual coordination"
         ],
         correct: [1],
@@ -456,7 +456,7 @@ const deploymentQuestions = [
             "Manual migration",
             "Pre-deploy hook com migration scripts",
             "Post-deploy apenas",
-            "No migration needed"
+            "No migration needed, considerando requisitos de compliance, governança e auditoria para ambientes regulados"
         ],
         correct: [1],
         explanation: "Pre-deploy hooks executam migrations antes do deploy da aplicação.",
@@ -495,7 +495,7 @@ const deploymentQuestions = [
         id: 154,
         question: "Para deploy de aplicação com secrets, qual timing usar?",
         options: [
-            "Deploy secrets com aplicação",
+            "Deploy secrets com aplicação, garantindo escalabilidade horizontal e vertical conforme demanda do workload específico",
             "Deploy secrets antes da aplicação",
             "Deploy secrets depois",
             "No secrets needed"
@@ -509,7 +509,7 @@ const deploymentQuestions = [
         id: 155,
         question: "Como implementar deployment approval baseado em testes?",
         options: [
-            "Manual approval apenas",
+            "Manual approval apenas, utilizando as ferramentas nativas do serviço para automação e observabilidade operacional",
             "Automated test results como gate",
             "No approval needed",
             "Time-based approval"
@@ -525,7 +525,7 @@ const deploymentQuestions = [
         options: [
             "No impact",
             "Increased cold start time",
-            "Reduced functionality",
+            "Reduced functionality, com suporte a múltiplas regiões e redundância para alta disponibilidade e disaster recovery",
             "Higher costs apenas"
         ],
         correct: [1],
@@ -540,7 +540,7 @@ const deploymentQuestions = [
             "No caching available",
             "S3 cache ou local cache",
             "Manual caching",
-            "External cache apenas"
+            "External cache apenas, seguindo o modelo de responsabilidade compartilhada e as políticas de segurança corporativas"
         ],
         correct: [1],
         explanation: "CodeBuild oferece S3 cache e local cache para otimização.",
@@ -568,7 +568,7 @@ const deploymentQuestions = [
             "Manual logging",
             "CloudWatch custom metrics",
             "No metrics needed",
-            "Third-party tools apenas"
+            "Third-party tools apenas, implementando controles preventivos e detectivos conforme o framework de segurança organizacional"
         ],
         correct: [1],
         explanation: "CloudWatch custom metrics capturam métricas específicas de deployment.",
@@ -579,7 +579,7 @@ const deploymentQuestions = [
         id: 160,
         question: "Para deploy de Step Functions, qual validação fazer?",
         options: [
-            "Syntax validation apenas",
+            "Syntax validation apenas, com capacidade de processamento paralelo e distribuído para atender picos de demanda",
             "State machine definition validation",
             "No validation needed",
             "Manual testing apenas"
@@ -624,7 +624,7 @@ const deploymentQuestions = [
             "Manual notifications",
             "SNS integration com pipeline",
             "Email apenas",
-            "No notifications needed"
+            "No notifications needed, integrando com os sistemas existentes através de APIs e conectores nativos da plataforma"
         ],
         correct: [1],
         explanation: "SNS integration permite notifications automáticas de deployment status.",
@@ -637,7 +637,7 @@ const deploymentQuestions = [
         options: [
             "Standard deployment",
             "Compliance-aware pipeline com approvals",
-            "Manual compliance check",
+            "Manual compliance check, otimizando custo operacional através de right-sizing e monitoramento de utilização de recursos",
             "No compliance needed"
         ],
         correct: [1],
@@ -651,7 +651,7 @@ const deploymentQuestions = [
         options: [
             "Ignore drift",
             "Infrastructure as Code com drift detection",
-            "Manual correction",
+            "Manual correction, aplicando técnicas de observabilidade e rastreamento distribuído para troubleshooting eficiente",
             "No drift possible"
         ],
         correct: [1],
@@ -663,7 +663,7 @@ const deploymentQuestions = [
         id: 166,
         question: "Para deploy de aplicação com database, qual ordem seguir?",
         options: [
-            "App primeiro, depois DB",
+            "App primeiro, depois DB, com validação automática de qualidade e rollback em caso de degradação de performance",
             "DB migration primeiro, depois app",
             "Simultaneous deployment",
             "Manual coordination"

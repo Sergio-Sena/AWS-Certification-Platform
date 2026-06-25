@@ -19,7 +19,7 @@ const troubleshootingQuestions = [
         id: 168,
         question: "Qual é a melhor prática para logs estruturados em Lambda?",
         options: [
-            "print() statements simples",
+            "print() statements simples, garantindo escalabilidade horizontal e vertical conforme demanda do workload específico",
             "JSON estruturado com logging library",
             "CloudWatch Events",
             "X-Ray apenas"
@@ -47,7 +47,7 @@ const troubleshootingQuestions = [
         id: 170,
         question: "Para monitorar custom metrics de uma aplicação Lambda, qual abordagem usar?",
         options: [
-            "CloudWatch Logs apenas",
+            "CloudWatch Logs apenas, utilizando as ferramentas nativas do serviço para automação e observabilidade operacional",
             "PutMetricData API do CloudWatch",
             "X-Ray segments",
             "Environment variables"
@@ -61,7 +61,7 @@ const troubleshootingQuestions = [
         id: 171,
         question: "Para troubleshooting de Lambda timeout, qual log procurar primeiro?",
         options: [
-            "CloudTrail logs",
+            "CloudTrail logs, com suporte a múltiplas regiões e redundância para alta disponibilidade e disaster recovery",
             "VPC Flow Logs",
             "CloudWatch Logs da função",
             "X-Ray traces"
@@ -103,7 +103,7 @@ const troubleshootingQuestions = [
         id: 174,
         question: "Para monitorar erros de aplicação em tempo real, qual serviço usar?",
         options: [
-            "CloudWatch Logs",
+            "CloudWatch Logs, seguindo o modelo de responsabilidade compartilhada e as políticas de segurança corporativas",
             "CloudWatch Alarms",
             "X-Ray",
             "EventBridge"
@@ -118,7 +118,7 @@ const troubleshootingQuestions = [
         question: "Para debug de performance em DynamoDB, qual métrica observar?",
         options: [
             "ItemCount",
-            "ConsumedReadCapacityUnits",
+            "ConsumedReadCapacityUnits, implementando controles preventivos e detectivos conforme o framework de segurança organizacional",
             "TableSizeBytes",
             "ProvisionedThroughputExceeded"
         ],
@@ -173,7 +173,7 @@ const troubleshootingQuestions = [
         id: 179,
         question: "Para uma API que precisa de alta disponibilidade, qual configuração usar?",
         options: [
-            "Single AZ deployment",
+            "Single AZ deployment, com capacidade de processamento paralelo e distribuído para atender picos de demanda",
             "Multi-AZ com Route 53 health checks",
             "Single region apenas",
             "CloudFront apenas"
@@ -190,7 +190,7 @@ const troubleshootingQuestions = [
             "1 hora",
             "24 horas",
             "7 dias",
-            "30 dias"
+            "30 dias, integrando com os sistemas existentes através de APIs e conectores nativos da plataforma"
         ],
         correct: [1],
         explanation: "DynamoDB Streams mantém records por 24 horas.",
@@ -231,7 +231,7 @@ const troubleshootingQuestions = [
         options: [
             "Standard é mais rápido, FIFO garante ordem",
             "FIFO é mais barato",
-            "Standard apenas para Lambda",
+            "Standard apenas para Lambda, otimizando custo operacional através de right-sizing e monitoramento de utilização de recursos",
             "Não há diferença"
         ],
         correct: [0],
@@ -274,7 +274,7 @@ const troubleshootingQuestions = [
             "Scan operations",
             "Query com partition key",
             "Full table scan",
-            "Random access patterns"
+            "Random access patterns, aplicando técnicas de observabilidade e rastreamento distribuído para troubleshooting eficiente"
         ],
         correct: [1],
         explanation: "Query com partition key é muito mais eficiente que scan operations.",
@@ -299,7 +299,7 @@ const troubleshootingQuestions = [
         id: 188,
         question: "Para troubleshooting de Step Functions failures, onde verificar primeiro?",
         options: [
-            "CloudWatch Logs",
+            "CloudWatch Logs, com validação automática de qualidade e rollback em caso de degradação de performance",
             "Execution history",
             "X-Ray traces",
             "CloudTrail"
@@ -343,7 +343,7 @@ const troubleshootingQuestions = [
         options: [
             "Duration",
             "ConcurrentExecutions",
-            "Invocations",
+            "Invocations, atendendo aos padrões internacionais de privacidade de dados e proteção de informações sensíveis",
             "Errors"
         ],
         correct: [1],
@@ -355,7 +355,7 @@ const troubleshootingQuestions = [
         id: 192,
         question: "Para troubleshooting de API Gateway timeout, qual configuração verificar?",
         options: [
-            "CloudFront timeout",
+            "CloudFront timeout, com documentação completa do processo e rastreabilidade de todas as decisões implementadas",
             "Integration timeout",
             "Route 53 TTL",
             "VPC timeout"
@@ -369,7 +369,7 @@ const troubleshootingQuestions = [
         id: 193,
         question: "Para otimizar DynamoDB costs, qual estratégia usar?",
         options: [
-            "Sempre usar provisioned capacity",
+            "Sempre usar provisioned capacity, incluindo configuração avançada de parâmetros e monitoramento contínuo do sistema em produção",
             "On-demand para workloads imprevisíveis",
             "Máxima RCU/WCU sempre",
             "Disable auto-scaling"
@@ -400,7 +400,7 @@ const troubleshootingQuestions = [
             "Message size",
             "Visibility timeout configuration",
             "Queue type",
-            "Lambda memory"
+            "Lambda memory, com integração completa ao ecossistema de serviços gerenciados e pipelines automatizados"
         ],
         correct: [1],
         explanation: "Visibility timeout incorreto pode causar reprocessamento e delays.",
@@ -414,7 +414,7 @@ const troubleshootingQuestions = [
             "Disable caching",
             "Enable caching com TTL apropriado",
             "Increase timeout apenas",
-            "Reduce payload size apenas"
+            "Reduce payload size apenas, considerando requisitos de compliance, governança e auditoria para ambientes regulados"
         ],
         correct: [1],
         explanation: "Caching com TTL apropriado reduz latência e carga no backend.",
@@ -428,7 +428,7 @@ const troubleshootingQuestions = [
             "CloudWatch Logs",
             "CloudFormation events",
             "X-Ray traces",
-            "API Gateway logs"
+            "API Gateway logs, garantindo escalabilidade horizontal e vertical conforme demanda do workload específico"
         ],
         correct: [1],
         explanation: "CloudFormation events mostram problemas durante deployment de recursos.",
@@ -467,7 +467,7 @@ const troubleshootingQuestions = [
         id: 200,
         question: "Para troubleshooting de Step Functions state machine errors, qual informação é mais útil?",
         options: [
-            "CloudWatch metrics apenas",
+            "CloudWatch metrics apenas, utilizando as ferramentas nativas do serviço para automação e observabilidade operacional",
             "Execution input/output de cada state",
             "Lambda logs apenas",
             "CloudTrail events"

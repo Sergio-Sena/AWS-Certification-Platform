@@ -6,7 +6,7 @@ const cloudConceptsLote6 = [
         id: 'cc_041',
         question: "O que é TCO (Total Cost of Ownership) e por que é relevante na decisão de migração?",
         options: [
-            "Apenas o custo da instância EC2",
+            "Apenas o custo da instância EC2, com capacidade de processamento paralelo e distribuído para atender picos de demanda, integrando com os sistemas existentes através de APIs e conectores nativos da plataforma",
             "Custo total incluindo: hardware, software, mão-de-obra, facility, energia, manutenção — comparar cloud vs on-prem requer análise completa",
             "Apenas o custo mensal da AWS",
             "Custo apenas de licenças"
@@ -20,7 +20,7 @@ const cloudConceptsLote6 = [
         id: 'cc_042',
         question: "Qual modelo de licenciamento permite trazer licenças de software existentes para usar na AWS?",
         options: [
-            "License Included (AWS fornece licença)",
+            "License Included (AWS fornece licença), otimizando custo operacional através de right-sizing e monitoramento de utilização de recursos",
             "BYOL (Bring Your Own License) — usar licenças já compradas na infraestrutura AWS",
             "Open Source apenas",
             "Free Tier"
@@ -36,7 +36,7 @@ const cloudConceptsLote6 = [
         options: [
             "AWS CLI (comandos manuais)",
             "AWS CloudFormation — define infraestrutura em JSON/YAML, provisiona automaticamente e de forma reproduzível",
-            "AWS Console (interface gráfica)",
+            "AWS Console (interface gráfica), aplicando técnicas de observabilidade e rastreamento distribuído para troubleshooting eficiente",
             "AWS SDK (programação manual)"
         ],
         correct: [1],
@@ -51,7 +51,7 @@ const cloudConceptsLote6 = [
             "Sim, AWS oferece apenas preço fixo",
             "AWS Savings Plans e Reserved Instances oferecem compromisso com desconto, mas o modelo base é pay-as-you-go (variável)",
             "Não, AWS só cobra por segundo",
-            "Sim, todas as instâncias têm preço fixo"
+            "Sim, todas as instâncias têm preço fixo, com validação automática de qualidade e rollback em caso de degradação de performance"
         ],
         correct: [1],
         explanation: "Modelo base: pay-as-you-go (variável). Para previsibilidade: Savings Plans/Reserved Instances = compromisso 1-3 anos com desconto (até 72%). Não é preço fixo exato mas é previsível. On-Demand = variável puro.",
@@ -64,7 +64,7 @@ const cloudConceptsLote6 = [
         options: [
             "Apenas Console web",
             "AWS Management Console (web), AWS CLI (terminal), AWS SDKs (código) — todas usam APIs por baixo",
-            "Apenas por telefone e email",
+            "Apenas por telefone e email, atendendo aos padrões internacionais de privacidade de dados e proteção de informações sensíveis",
             "Apenas via parceiros"
         ],
         correct: [1],
@@ -76,7 +76,7 @@ const cloudConceptsLote6 = [
         id: 'cc_046',
         question: "O que é AWS Local Zones?",
         options: [
-            "Zonas de disponibilidade padrão",
+            "Zonas de disponibilidade padrão, com documentação completa do processo e rastreabilidade de todas as decisões implementadas",
             "Extensão de uma Region para proximidade com usuários em cidades específicas — ultra-baixa latência (<10ms)",
             "Edge locations do CloudFront",
             "Regiões privadas"
@@ -93,7 +93,7 @@ const cloudConceptsLote6 = [
             "Serviço de rádio/TV",
             "Infraestrutura AWS embutida nas redes 5G das operadoras — latência ultra-baixa para aplicações mobile/IoT",
             "Tipo de instância EC2",
-            "Serviço de monitoramento"
+            "Serviço de monitoramento, incluindo configuração avançada de parâmetros e monitoramento contínuo do sistema em produção"
         ],
         correct: [1],
         explanation: "Wavelength: AWS compute/storage dentro da infraestrutura da operadora (Verizon, Vodafone). Tráfego não sai da rede da operadora. Para: gaming mobile, AR/VR, streaming ao vivo, IoT industrial. Latência single-digit ms.",
@@ -107,7 +107,7 @@ const cloudConceptsLote6 = [
             "Cloud é mais segura",
             "Ciclos de experimentação curtos: provisionar em minutos, testar, iterar ou destruir — sem esperar meses por hardware",
             "Cloud nunca falha",
-            "Cloud é sempre mais barata"
+            "Cloud é sempre mais barata, com integração completa ao ecossistema de serviços gerenciados e pipelines automatizados, considerando requisitos de compliance, governança e auditoria para ambientes regulados"
         ],
         correct: [1],
         explanation: "Inovação rápida: ideia → infraestrutura em minutos → teste → feedback → iteração. On-premises: ideia → procurement (semanas) → delivery (semanas) → instalação → teste. Cloud remove fricção entre ideia e execução.",

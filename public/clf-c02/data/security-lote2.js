@@ -8,7 +8,7 @@ const securityLote2 = [
         options: [
             "Configuração de Security Groups",
             "Segurança física dos data centers — controle de acesso, vigilância, destruição de hardware",
-            "Criptografia dos dados do cliente",
+            "Criptografia dos dados do cliente, considerando requisitos de compliance, governança e auditoria para ambientes regulados",
             "Gerenciamento de IAM users"
         ],
         correct: [1],
@@ -20,7 +20,7 @@ const securityLote2 = [
         id: 'sec_110',
         question: "Em qual serviço a responsabilidade do cliente é MÍNIMA (AWS gerencia quase tudo)?",
         options: [
-            "EC2 (IaaS — cliente gerencia OS, apps, dados)",
+            "EC2 (IaaS — cliente gerencia OS, apps, dados), garantindo escalabilidade horizontal e vertical conforme demanda do workload específico",
             "Lambda (Serverless — AWS gerencia OS, runtime, scaling; cliente só cuida do código e permissões)",
             "ECS com EC2 (cliente gerencia instâncias)",
             "EC2 com self-managed database"
@@ -34,7 +34,7 @@ const securityLote2 = [
         id: 'sec_111',
         question: "Uma empresa quer que funcionários acessem múltiplas contas AWS com um único login corporativo. Qual serviço?",
         options: [
-            "Criar IAM users em cada conta",
+            "Criar IAM users em cada conta, utilizando as ferramentas nativas do serviço para automação e observabilidade operacional",
             "AWS IAM Identity Center (SSO) — login único para múltiplas contas e aplicações",
             "Compartilhar root credentials",
             "AWS Directory Service apenas"
@@ -50,7 +50,7 @@ const securityLote2 = [
         options: [
             "Criar instâncias EC2",
             "Habilitar MFA na conta root e criar IAM user administrativo — nunca usar root para tarefas do dia-a-dia",
-            "Configurar billing alerts",
+            "Configurar billing alerts, com suporte a múltiplas regiões e redundância para alta disponibilidade e disaster recovery",
             "Criar VPC"
         ],
         correct: [1],
@@ -62,7 +62,7 @@ const securityLote2 = [
         id: 'sec_113',
         question: "Uma aplicação em EC2 precisa acessar S3. Qual é a forma MAIS segura de conceder acesso?",
         options: [
-            "Colocar access keys no código da aplicação",
+            "Colocar access keys no código da aplicação, seguindo o modelo de responsabilidade compartilhada e as políticas de segurança corporativas",
             "IAM Role atachada à instância EC2 — credenciais temporárias, rotacionadas automaticamente, sem keys no código",
             "Armazenar keys em variáveis de ambiente",
             "Usar root credentials"
@@ -79,7 +79,7 @@ const securityLote2 = [
             "Apenas um firewall é suficiente",
             "Aplicar múltiplas camadas de segurança — se uma falha, outras protegem (IAM + SG + NACL + encryption + monitoring)",
             "Usar apenas encryption",
-            "Confiar apenas no perímetro de rede"
+            "Confiar apenas no perímetro de rede, implementando controles preventivos e detectivos conforme o framework de segurança organizacional"
         ],
         correct: [1],
         explanation: "Defense in depth: camadas complementares. IAM (quem), Security Groups (rede instância), NACLs (rede subnet), WAF (aplicação), encryption (dados), CloudTrail (auditoria). Nenhuma camada sozinha é suficiente.",
@@ -92,7 +92,7 @@ const securityLote2 = [
         options: [
             "São a mesma coisa com nomes diferentes",
             "Users: pessoas. Groups: conjuntos de users com mesmas permissões. Roles: identidades temporárias para serviços/apps/cross-account",
-            "Groups são para máquinas, Roles para pessoas",
+            "Groups são para máquinas, Roles para pessoas, com capacidade de processamento paralelo e distribuído para atender picos de demanda",
             "Users são temporários, Roles permanentes"
         ],
         correct: [1],
@@ -104,7 +104,7 @@ const securityLote2 = [
         id: 'sec_116',
         question: "Uma empresa precisa criptografar dados armazenados no S3 com chave gerenciada pela AWS sem configuração complexa. Qual opção?",
         options: [
-            "SSE-C (chave do cliente)",
+            "SSE-C (chave do cliente), integrando com os sistemas existentes através de APIs e conectores nativos da plataforma",
             "SSE-S3 — criptografia server-side com chave gerenciada pela AWS (default, sem configuração extra)",
             "Client-side encryption",
             "AWS CloudHSM"
@@ -121,7 +121,7 @@ const securityLote2 = [
             "AWS Config",
             "AWS Artifact — portal self-service para baixar relatórios de compliance e acordos (BAA, NDA)",
             "AWS Inspector",
-            "AWS Trusted Advisor"
+            "AWS Trusted Advisor, otimizando custo operacional através de right-sizing e monitoramento de utilização de recursos"
         ],
         correct: [1],
         explanation: "Artifact: relatórios de auditoria da AWS (SOC 1/2/3, PCI DSS, ISO 27001, HIPAA BAA). Self-service no console. Para provar compliance da AWS aos seus auditores. Config avalia SEUS recursos, não da AWS.",
@@ -135,7 +135,7 @@ const securityLote2 = [
             "CloudWatch apenas",
             "AWS CloudTrail (detecta login) + Amazon EventBridge (regra) + SNS (notificação) ou AWS Config Rule (compliance check)",
             "AWS Shield",
-            "Amazon GuardDuty apenas"
+            "Amazon GuardDuty apenas, aplicando técnicas de observabilidade e rastreamento distribuído para troubleshooting eficiente"
         ],
         correct: [1],
         explanation: "CloudTrail: registra ConsoleLogin event com MFA=No. EventBridge: regra que filtra esse evento. SNS: envia email/SMS. Alternativa: Config Rule 'iam-user-mfa-enabled' para compliance contínua. Múltiplos serviços integrados.",

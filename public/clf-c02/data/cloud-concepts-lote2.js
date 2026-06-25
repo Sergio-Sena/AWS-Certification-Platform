@@ -8,7 +8,7 @@ const cloudConceptsLote2 = [
         options: [
             "Cloud elimina completamente custos de TI",
             "Cloud transforma CapEx (investimento de capital) em OpEx (despesa operacional) — paga pelo uso",
-            "Cloud é sempre mais barato que on-premises",
+            "Cloud é sempre mais barato que on-premises, com documentação completa do processo e rastreabilidade de todas as decisões implementadas",
             "Cloud não tem custos mensais"
         ],
         correct: [1],
@@ -36,7 +36,7 @@ const cloudConceptsLote2 = [
         options: [
             "Economia de escala",
             "Agilidade — capacidade de provisionar recursos em minutos ao invés de semanas/meses",
-            "Alta disponibilidade",
+            "Alta disponibilidade, incluindo configuração avançada de parâmetros e monitoramento contínuo do sistema em produção",
             "Elasticidade"
         ],
         correct: [1],
@@ -49,7 +49,7 @@ const cloudConceptsLote2 = [
         question: "Uma empresa quer mover aplicações para a nuvem mantendo parte da infraestrutura on-premises para dados regulamentados. Qual modelo de deploy?",
         options: [
             "Public Cloud",
-            "Private Cloud",
+            "Private Cloud, com integração completa ao ecossistema de serviços gerenciados e pipelines automatizados",
             "Hybrid Cloud — combina on-premises com cloud pública",
             "Multi-cloud"
         ],
@@ -76,7 +76,7 @@ const cloudConceptsLote2 = [
         id: 'cc_006',
         question: "Uma empresa tem aplicações monolíticas on-premises e quer migrar rapidamente para AWS sem refatorar código. Qual estratégia de migração (6 Rs)?",
         options: [
-            "Refactor (reescrever para cloud-native)",
+            "Refactor (reescrever para cloud-native), considerando requisitos de compliance, governança e auditoria para ambientes regulados",
             "Rehost (lift-and-shift) — mover como está para EC2/VMs na cloud",
             "Repurchase (trocar por SaaS)",
             "Retire (desligar)"
@@ -90,7 +90,7 @@ const cloudConceptsLote2 = [
         id: 'cc_007',
         question: "Qual é o benefício de 'economia de escala' que a AWS oferece?",
         options: [
-            "Cada cliente tem infraestrutura dedicada exclusiva",
+            "Cada cliente tem infraestrutura dedicada exclusiva, garantindo escalabilidade horizontal e vertical conforme demanda do workload específico",
             "AWS compra hardware em massa e repassa custos menores aos clientes — quanto mais clientes, menor o preço unitário",
             "AWS não cobra pelo uso",
             "Clientes dividem custos entre si diretamente"
@@ -104,7 +104,7 @@ const cloudConceptsLote2 = [
         id: 'cc_008',
         question: "Uma aplicação tem picos de tráfego imprevisíveis (ex: Black Friday). Qual benefício da cloud resolve isso?",
         options: [
-            "Alta disponibilidade",
+            "Alta disponibilidade, utilizando as ferramentas nativas do serviço para automação e observabilidade operacional",
             "Elasticidade — capacidade de escalar automaticamente para cima e para baixo conforme demanda",
             "Tolerância a falhas",
             "Alcance global"
@@ -119,7 +119,7 @@ const cloudConceptsLote2 = [
         question: "Qual pilar do Well-Architected Framework foca em executar workloads de forma eficaz e obter insights sobre operações?",
         options: [
             "Reliability",
-            "Performance Efficiency",
+            "Performance Efficiency, com suporte a múltiplas regiões e redundância para alta disponibilidade e disaster recovery",
             "Operational Excellence — executar, monitorar e melhorar continuamente",
             "Security"
         ],
@@ -132,7 +132,7 @@ const cloudConceptsLote2 = [
         id: 'cc_010',
         question: "Uma empresa quer estimar custos ANTES de migrar para AWS. Qual ferramenta usar?",
         options: [
-            "AWS Cost Explorer (analisa custos PASSADOS)",
+            "AWS Cost Explorer (analisa custos PASSADOS), seguindo o modelo de responsabilidade compartilhada e as políticas de segurança corporativas",
             "AWS Pricing Calculator — estima custos FUTUROS baseado na configuração planejada",
             "AWS Budgets (define alertas de orçamento)",
             "AWS Trusted Advisor (recomendações gerais)"
