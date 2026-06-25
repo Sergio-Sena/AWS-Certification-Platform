@@ -134,6 +134,17 @@ function showQuestion() {
     const question = examState.questions[examState.currentQuestion];
     const isMultipleChoice = question.correct.length > 1;
     
+    // Shuffle de opções para eliminar bias de posição
+    if (!question._shuffleMap) {
+        const indices = question.options.map((_, i) => i);
+        for (let i = indices.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [indices[i], indices[j]] = [indices[j], indices[i]];
+        }
+        question._shuffleMap = indices;
+    }
+    const shuffleMap = question._shuffleMap;
+    
     document.getElementById('current-q').textContent = examState.currentQuestion + 1;
     document.getElementById('total-q').textContent = examState.questions.length;
     
@@ -146,17 +157,18 @@ function showQuestion() {
     const optionsContainer = document.getElementById('options-container');
     optionsContainer.innerHTML = '';
     
-    question.options.forEach((option, index) => {
+    shuffleMap.forEach((origIdx, visIdx) => {
+        const option = question.options[origIdx];
         const optionDiv = document.createElement('div');
         optionDiv.className = 'option';
-        optionDiv.onclick = () => selectOption(index, isMultipleChoice);
+        optionDiv.onclick = () => selectOption(origIdx, isMultipleChoice);
         
         const inputType = isMultipleChoice ? 'checkbox' : 'radio';
-        const inputName = isMultipleChoice ? `q${question.id}_${index}` : `q${question.id}`;
+        const inputName = isMultipleChoice ? `q${question.id}_${origIdx}` : `q${question.id}`;
         
         optionDiv.innerHTML = `
-            <input type="${inputType}" name="${inputName}" id="opt_${index}" ${isSelected(index) ? 'checked' : ''}>
-            <label for="opt_${index}">${String.fromCharCode(65 + index)}. ${option}</label>
+            <input type="${inputType}" name="${inputName}" id="opt_${origIdx}" ${isSelected(origIdx) ? 'checked' : ''}>
+            <label for="opt_${origIdx}">${String.fromCharCode(65 + visIdx)}. ${option}</label>
         `;
         
         if (isSelected(index)) {

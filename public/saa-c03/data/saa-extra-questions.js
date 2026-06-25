@@ -7,13 +7,13 @@ const saaExtraQuestions = [
         id: 'extra_res_001',
         question: "Uma aplicação web precisa continuar disponível durante falha de uma zona de disponibilidade. O tráfego deve ser distribuído automaticamente entre instâncias saudáveis. Qual abordagem é mais aderente?",
         options: [
-            "Uma instância EC2 única com snapshot diário",
             "Auto Scaling Group em múltiplas AZs atrás de um Application Load Balancer",
+            "Uma instância EC2 única com snapshot diário",
             "Uma instância EC2 maior em uma subnet pública",
             "Backup manual da AMI antes de cada deploy"
         ],
-        correct: [1],
-        explanation: "ASG multi-AZ com ALB distribui tráfego para destinos saudáveis e mantém capacidade mesmo com falha em uma AZ. Snapshot ajuda recuperação, mas não entrega alta disponibilidade durante a falha.",
+        correct: [0],
+        explanation: "✅ ASG multi-AZ com ALB distribui tráfego para destinos saudáveis e mantém capacidade mesmo com falha em uma AZ. Snapshot ajuda recuperação, mas não entrega alta disponibilidade durante a falha.",
         topic: "high-availability",
         domain: "resilient"
     },
@@ -22,12 +22,12 @@ const saaExtraQuestions = [
         question: "Um cenário exige failover automático entre zonas com mínimo downtime para um banco relacional transacional. Qual recurso atende melhor?",
         options: [
             "Instância única maior",
-            "RDS Multi-AZ com monitoramento e failover nativo",
             "Backup semanal manual",
+            "RDS Multi-AZ com monitoramento e failover nativo",
             "Escala vertical apenas"
         ],
-        correct: [1],
-        explanation: "RDS Multi-AZ oferece alta disponibilidade com failover gerenciado e troca automática para o standby com menor indisponibilidade.",
+        correct: [2],
+        explanation: "✅ RDS Multi-AZ oferece alta disponibilidade com failover gerenciado e troca automática para o standby com menor indisponibilidade.",
         topic: "database",
         domain: "resilient"
     },
@@ -35,13 +35,13 @@ const saaExtraQuestions = [
         id: 'extra_res_003',
         question: "Uma aplicação com pico imprevisível precisa absorver carga sem perder requisições, aceitando processamento assíncrono. Qual serviço reduz melhor o risco operacional?",
         options: [
-            "Fila desacoplada (SQS) com consumidores elásticos",
+            "Bloquear requisições extras",
             "Processamento síncrono fixo",
             "Retry manual no cliente",
-            "Bloquear requisições extras"
+            "Fila desacoplada (SQS) com consumidores elásticos",
         ],
-        correct: [0],
-        explanation: "SQS absorve picos, desacopla componentes e permite escalar consumidores conforme backlog. Processamento síncrono fixo não lida com picos imprevisíveis.",
+        correct: [3],
+        explanation: "✅ SQS absorve picos, desacopla componentes e permite escalar consumidores conforme backlog. Processamento síncrono fixo não lida com picos imprevisíveis.",
         topic: "decoupling",
         domain: "resilient"
     },
@@ -55,7 +55,7 @@ const saaExtraQuestions = [
             "Apenas snapshots locais"
         ],
         correct: [1],
-        explanation: "Pilot Light mantém recursos core mínimos rodando (ex: DB replicado) na região DR, equilibrando custo com recuperação mais rápida que backup puro.",
+        explanation: "✅ Pilot Light mantém recursos core mínimos rodando (ex: DB replicado) na região DR, equilibrando custo com recuperação mais rápida que backup puro.",
         topic: "disaster-recovery",
         domain: "resilient"
     },
@@ -69,7 +69,7 @@ const saaExtraQuestions = [
             "EC2 com banco instalado manualmente"
         ],
         correct: [0],
-        explanation: "RDS Multi-AZ oferece alta disponibilidade com failover gerenciado para o banco principal. Read Replica ajuda leitura e DR, mas não substitui Multi-AZ para failover síncrono.",
+        explanation: "✅ RDS Multi-AZ oferece alta disponibilidade com failover gerenciado para o banco principal. Read Replica ajuda leitura e DR, mas não substitui Multi-AZ para failover síncrono.",
         topic: "database",
         domain: "resilient"
     },
@@ -78,13 +78,13 @@ const saaExtraQuestions = [
         id: 'extra_perf_001',
         question: "Uma aplicação precisa distribuir conteúdo estático globalmente com baixa latência. Qual serviço é mais adequado?",
         options: [
-            "CloudFront com origin S3",
-            "EC2 em região única",
             "NAT Gateway",
+            "EC2 em região única",
+            "CloudFront com origin S3",
             "Amazon SQS"
         ],
-        correct: [0],
-        explanation: "CloudFront entrega conteúdo no edge e reduz latência por proximidade geográfica com o usuário final.",
+        correct: [2],
+        explanation: "✅ CloudFront entrega conteúdo no edge e reduz latência por proximidade geográfica com o usuário final.",
         topic: "cdn",
         domain: "performance"
     },
@@ -92,13 +92,13 @@ const saaExtraQuestions = [
         id: 'extra_perf_002',
         question: "Uma API com throughput variável precisa de baixa operação e escala automática. Qual abordagem é mais adequada?",
         options: [
-            "Serverless com Lambda e API Gateway",
+            "Monolito sem balanceador",
             "EC2 fixa sem auto scaling",
             "Processo cron agendado",
-            "Monolito sem balanceador"
+            "Serverless com Lambda e API Gateway",
         ],
-        correct: [0],
-        explanation: "Serverless ajusta capacidade por demanda sem gerenciamento de servidor, ideal para throughput variável com baixa operação.",
+        correct: [3],
+        explanation: "✅ Serverless ajusta capacidade por demanda sem gerenciamento de servidor, ideal para throughput variável com baixa operação.",
         topic: "serverless",
         domain: "performance"
     },
@@ -106,13 +106,13 @@ const saaExtraQuestions = [
         id: 'extra_perf_003',
         question: "Uma aplicação tem leitura massiva e repetitiva em dados quentes de sessão. A latência precisa ser sub-milissegundo. Qual solução?",
         options: [
-            "Cache gerenciado (ElastiCache)",
             "Snapshot diário do banco",
+            "Cache gerenciado (ElastiCache)",
             "Log manual de sessões",
             "Auto Scaling Group sem cache"
         ],
-        correct: [0],
-        explanation: "Cache in-memory (ElastiCache Redis/Memcached) reduz latência para sub-milissegundo e alivia o banco de dados em leituras repetitivas.",
+        correct: [1],
+        explanation: "✅ Cache in-memory (ElastiCache Redis/Memcached) reduz latência para sub-milissegundo e alivia o banco de dados em leituras repetitivas.",
         topic: "caching",
         domain: "performance"
     },
@@ -126,7 +126,7 @@ const saaExtraQuestions = [
             "Arquivo CSV em S3"
         ],
         correct: [0],
-        explanation: "On-demand absorve variação automaticamente e evita throttling por subprovisionamento. Paga apenas pelo que consome.",
+        explanation: "✅ On-demand absorve variação automaticamente e evita throttling por subprovisionamento. Paga apenas pelo que consome.",
         topic: "database",
         domain: "performance"
     },
@@ -134,13 +134,13 @@ const saaExtraQuestions = [
         id: 'extra_perf_005',
         question: "Uma equipe precisa executar consultas analíticas sobre dados em S3 sem provisionar cluster dedicado. Qual serviço atende?",
         options: [
-            "Amazon Athena",
-            "NAT Gateway",
             "IAM Identity Center",
+            "NAT Gateway",
+            "Amazon Athena",
             "Route 53"
         ],
-        correct: [0],
-        explanation: "Athena executa SQL direto no S3 sem infraestrutura para gerenciar. Paga por query. Ideal para análise ad-hoc sem cluster.",
+        correct: [2],
+        explanation: "✅ Athena executa SQL direto no S3 sem infraestrutura para gerenciar. Paga por query. Ideal para análise ad-hoc sem cluster.",
         topic: "analytics",
         domain: "performance"
     },
@@ -150,11 +150,11 @@ const saaExtraQuestions = [
         options: [
             "NAT Gateway para todo acesso ao S3",
             "Internet Gateway associado à subnet privada",
+            "Elastic IP em cada instância privada",
             "VPC Gateway Endpoint para S3",
-            "Elastic IP em cada instância privada"
         ],
-        correct: [2],
-        explanation: "Gateway Endpoint para S3 mantém o tráfego na rede AWS, é gratuito e reduz dependência de NAT Gateway para esse acesso.",
+        correct: [3],
+        explanation: "✅ Gateway Endpoint para S3 mantém o tráfego na rede AWS, é gratuito e reduz dependência de NAT Gateway para esse acesso.",
         topic: "networking",
         domain: "performance"
     },
@@ -163,13 +163,13 @@ const saaExtraQuestions = [
         id: 'extra_sec_001',
         question: "Uma aplicação precisa armazenar credenciais com rotação automática sem causar downtime. Qual serviço gerencia isso nativamente?",
         options: [
-            "Secrets Manager com rotação automática via Lambda",
             "Arquivo texto em EC2",
+            "Secrets Manager com rotação automática via Lambda",
             "Variável fixa em pipeline",
             "KMS sozinho"
         ],
-        correct: [0],
-        explanation: "Secrets Manager gerencia armazenamento, acesso e rotação automática de segredos. Integração nativa com RDS para rotação sem downtime.",
+        correct: [1],
+        explanation: "✅ Secrets Manager gerencia armazenamento, acesso e rotação automática de segredos. Integração nativa com RDS para rotação sem downtime.",
         topic: "secrets",
         domain: "secure"
     },
@@ -183,7 +183,7 @@ const saaExtraQuestions = [
             "AWS Snowball"
         ],
         correct: [0],
-        explanation: "CloudTrail registra chamadas de API para investigação e compliance. Log file validation garante integridade dos registros.",
+        explanation: "✅ CloudTrail registra chamadas de API para investigação e compliance. Log file validation garante integridade dos registros.",
         topic: "audit",
         domain: "secure"
     },
@@ -191,13 +191,13 @@ const saaExtraQuestions = [
         id: 'extra_sec_003',
         question: "Uma empresa precisa criptografar dados em repouso com chave controlada pelo cliente e auditoria de uso. Qual solução?",
         options: [
-            "KMS com Customer Managed Key (CMK) e rotação automática",
-            "Security Group inbound",
             "Auto Scaling policy",
+            "Security Group inbound",
+            "KMS com Customer Managed Key (CMK) e rotação automática",
             "IAM group"
         ],
-        correct: [0],
-        explanation: "KMS com CMK oferece governança de chave, rotação automática anual e auditoria de uso via CloudTrail.",
+        correct: [2],
+        explanation: "✅ KMS com CMK oferece governança de chave, rotação automática anual e auditoria de uso via CloudTrail.",
         topic: "encryption",
         domain: "secure"
     },
@@ -205,13 +205,13 @@ const saaExtraQuestions = [
         id: 'extra_sec_004',
         question: "Uma empresa precisa segmentar tráfego entre camadas na VPC (web, app, DB) para reduzir blast radius. Qual abordagem?",
         options: [
-            "Security Groups e NACLs por camada com regras restritivas",
+            "Um único Security Group amplo para todos",
             "Tudo em subnet pública",
             "Porta 0.0.0.0/0 aberta",
-            "Um único Security Group amplo para todos"
+            "Security Groups e NACLs por camada com regras restritivas",
         ],
-        correct: [0],
-        explanation: "Segmentação por camada com SGs referenciando outros SGs diminui blast radius e risco de movimentação lateral.",
+        correct: [3],
+        explanation: "✅ Segmentação por camada com SGs referenciando outros SGs diminui blast radius e risco de movimentação lateral.",
         topic: "networking",
         domain: "secure"
     },
@@ -225,7 +225,7 @@ const saaExtraQuestions = [
             "Config Rules"
         ],
         correct: [1],
-        explanation: "SCPs são guardrails que limitam permissões máximas. Deny explícito em SCP não pode ser overridden por nenhuma IAM policy na conta — nem pelo root da conta membro.",
+        explanation: "✅ SCPs são guardrails que limitam permissões máximas. Deny explícito em SCP não pode ser overridden por nenhuma IAM policy na conta — nem pelo root da conta membro.",
         topic: "organizations",
         domain: "secure"
     },
@@ -240,7 +240,7 @@ const saaExtraQuestions = [
             "Replicar para múltiplas regiões sem necessidade"
         ],
         correct: [0],
-        explanation: "Glacier Deep Archive oferece o menor custo de armazenamento para dados de acesso raro com retenção longa.",
+        explanation: "✅ Glacier Deep Archive oferece o menor custo de armazenamento para dados de acesso raro com retenção longa.",
         topic: "storage",
         domain: "cost"
     },
@@ -248,13 +248,13 @@ const saaExtraQuestions = [
         id: 'extra_cost_002',
         question: "Uma carga EC2 previsível roda 24x7 há meses sem variação. Como reduzir custos significativamente?",
         options: [
-            "Compromisso de uso (Savings Plans ou Reserved Instances)",
-            "Spot Instances para banco crítico único",
             "On-Demand sem análise",
+            "Spot Instances para banco crítico único",
+            "Compromisso de uso (Savings Plans ou Reserved Instances)",
             "Escala manual diária"
         ],
-        correct: [0],
-        explanation: "Consumo estável e previsível se beneficia de desconto por compromisso (até 72% vs On-Demand).",
+        correct: [2],
+        explanation: "✅ Consumo estável e previsível se beneficia de desconto por compromisso (até 72% vs On-Demand).",
         topic: "compute",
         domain: "cost"
     },
@@ -262,13 +262,13 @@ const saaExtraQuestions = [
         id: 'extra_cost_003',
         question: "Uma função Lambda com execução curta e esporádica processa eventos de forma eventual. Qual vantagem de custo sobre containers permanentes?",
         options: [
-            "Pagar por invocação evita custo fixo ocioso",
+            "Banco de dados como fila é mais eficiente",
             "ECS permanente é obrigatório para eventos",
             "Cluster dedicado fixo é mais barato",
-            "Banco de dados como fila é mais eficiente"
+            "Pagar por invocação evita custo fixo ocioso",
         ],
-        correct: [0],
-        explanation: "Lambda cobra por invocação e duração. Para carga eventual, evita custo de containers ociosos esperando eventos.",
+        correct: [3],
+        explanation: "✅ Lambda cobra por invocação e duração. Para carga eventual, evita custo de containers ociosos esperando eventos.",
         topic: "serverless",
         domain: "cost"
     },
@@ -276,13 +276,13 @@ const saaExtraQuestions = [
         id: 'extra_cost_004',
         question: "Uma empresa quer evitar custo de transferência de dados desnecessário ao acessar S3 de dentro da VPC. Qual solução?",
         options: [
-            "VPC Gateway Endpoint para S3 (gratuito, sem NAT)",
             "NAT Gateway para tudo",
+            "VPC Gateway Endpoint para S3 (gratuito, sem NAT)",
             "Tunnel manual",
             "S3 bucket público"
         ],
-        correct: [0],
-        explanation: "Gateway Endpoint é gratuito e elimina custo de processamento do NAT Gateway para tráfego S3.",
+        correct: [1],
+        explanation: "✅ Gateway Endpoint é gratuito e elimina custo de processamento do NAT Gateway para tráfego S3.",
         topic: "networking",
         domain: "cost"
     },
@@ -296,7 +296,7 @@ const saaExtraQuestions = [
             "Sem ownership definido por equipe"
         ],
         correct: [0],
-        explanation: "Budgets com alertas detectam desvios cedo. Cost Explorer identifica tendências. Tags permitem atribuição por equipe/projeto. Governance proativa evita surpresas.",
+        explanation: "✅ Budgets com alertas detectam desvios cedo. Cost Explorer identifica tendências. Tags permitem atribuição por equipe/projeto. Governance proativa evita surpresas.",
         topic: "governance",
         domain: "cost"
     }

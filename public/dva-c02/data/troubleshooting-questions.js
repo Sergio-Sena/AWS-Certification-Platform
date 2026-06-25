@@ -5,13 +5,13 @@ const troubleshootingQuestions = [
         id: 167,
         question: "Para debuggar uma Lambda com alta latência, qual ferramenta usar primeiro?",
         options: [
-            "CloudWatch Logs",
             "AWS X-Ray",
+            "CloudWatch Logs",
             "CloudTrail",
             "VPC Flow Logs"
         ],
-        correct: [1],
-        explanation: "X-Ray fornece distributed tracing mostrando onde está o gargalo.",
+        correct: [0],
+        explanation: "✅ X-Ray fornece distributed tracing mostrando onde está o gargalo.",
         topic: "monitoring",
         domain: "troubleshooting"
     },
@@ -19,13 +19,13 @@ const troubleshootingQuestions = [
         id: 168,
         question: "Qual é a melhor prática para logs estruturados em Lambda?",
         options: [
-            "print() statements simples, garantindo escalabilidade horizontal e vertical conforme demanda do workload específico",
-            "JSON estruturado com logging library",
+            "print() statements simples",
             "CloudWatch Events",
+            "JSON estruturado com logging library",
             "X-Ray apenas"
         ],
-        correct: [1],
-        explanation: "JSON estruturado permite queries eficientes no CloudWatch Insights.",
+        correct: [2],
+        explanation: "✅ JSON estruturado permite queries eficientes no CloudWatch Insights.",
         topic: "monitoring",
         domain: "troubleshooting"
     },
@@ -34,12 +34,12 @@ const troubleshootingQuestions = [
         question: "Para monitorar APIs em tempo real, qual métrica do CloudWatch é mais importante?",
         options: [
             "4XXError",
-            "5XXError",
+            "Count",
             "Latency",
-            "Count"
+            "5XXError",
         ],
-        correct: [1],
-        explanation: "5XXError indica problemas no servidor/backend que precisam atenção imediata.",
+        correct: [3],
+        explanation: "✅ 5XXError indica problemas no servidor/backend que precisam atenção imediata.",
         topic: "monitoring",
         domain: "troubleshooting"
     },
@@ -47,13 +47,13 @@ const troubleshootingQuestions = [
         id: 170,
         question: "Para monitorar custom metrics de uma aplicação Lambda, qual abordagem usar?",
         options: [
-            "CloudWatch Logs apenas, utilizando as ferramentas nativas do serviço para automação e observabilidade operacional",
+            "CloudWatch Logs apenas",
             "PutMetricData API do CloudWatch",
             "X-Ray segments",
             "Environment variables"
         ],
         correct: [1],
-        explanation: "PutMetricData API permite enviar métricas customizadas para CloudWatch.",
+        explanation: "✅ PutMetricData API permite enviar métricas customizadas para CloudWatch.",
         topic: "monitoring",
         domain: "troubleshooting"
     },
@@ -61,13 +61,13 @@ const troubleshootingQuestions = [
         id: 171,
         question: "Para troubleshooting de Lambda timeout, qual log procurar primeiro?",
         options: [
-            "CloudTrail logs, com suporte a múltiplas regiões e redundância para alta disponibilidade e disaster recovery",
-            "VPC Flow Logs",
             "CloudWatch Logs da função",
+            "VPC Flow Logs",
+            "CloudTrail logs",
             "X-Ray traces"
         ],
-        correct: [2],
-        explanation: "CloudWatch Logs da função mostram exatamente onde a execução está travando.",
+        correct: [0],
+        explanation: "✅ CloudWatch Logs da função mostram exatamente onde a execução está travando.",
         topic: "monitoring",
         domain: "troubleshooting"
     },
@@ -76,12 +76,12 @@ const troubleshootingQuestions = [
         question: "Para debug de cold start em Lambda, qual métrica analisar?",
         options: [
             "Duration",
-            "Init Duration",
             "Billed Duration",
+            "Init Duration",
             "Memory Utilization"
         ],
-        correct: [1],
-        explanation: "Init Duration mostra especificamente o tempo de cold start da função.",
+        correct: [2],
+        explanation: "✅ Init Duration mostra especificamente o tempo de cold start da função.",
         topic: "monitoring",
         domain: "troubleshooting"
     },
@@ -90,12 +90,12 @@ const troubleshootingQuestions = [
         question: "Para debugging de performance em Lambda, qual métrica CloudWatch observar primeiro?",
         options: [
             "Invocations",
-            "Duration",
+            "Throttles",
             "Errors",
-            "Throttles"
+            "Duration",
         ],
-        correct: [1],
-        explanation: "Duration mostra o tempo de execução e ajuda identificar gargalos de performance.",
+        correct: [3],
+        explanation: "✅ Duration mostra o tempo de execução e ajuda identificar gargalos de performance.",
         topic: "monitoring",
         domain: "troubleshooting"
     },
@@ -103,13 +103,13 @@ const troubleshootingQuestions = [
         id: 174,
         question: "Para monitorar erros de aplicação em tempo real, qual serviço usar?",
         options: [
-            "CloudWatch Logs, seguindo o modelo de responsabilidade compartilhada e as políticas de segurança corporativas",
+            "CloudWatch Logs",
             "CloudWatch Alarms",
             "X-Ray",
             "EventBridge"
         ],
         correct: [1],
-        explanation: "CloudWatch Alarms podem notificar em tempo real baseado em métricas de erro.",
+        explanation: "✅ CloudWatch Alarms podem notificar em tempo real baseado em métricas de erro.",
         topic: "monitoring",
         domain: "troubleshooting"
     },
@@ -117,13 +117,13 @@ const troubleshootingQuestions = [
         id: 175,
         question: "Para debug de performance em DynamoDB, qual métrica observar?",
         options: [
-            "ItemCount",
-            "ConsumedReadCapacityUnits, implementando controles preventivos e detectivos conforme o framework de segurança organizacional",
+            "ProvisionedThroughputExceeded",
+            "ConsumedReadCapacityUnits",
             "TableSizeBytes",
-            "ProvisionedThroughputExceeded"
+            "ItemCount",
         ],
-        correct: [3],
-        explanation: "ProvisionedThroughputExceeded indica throttling que afeta performance.",
+        correct: [0],
+        explanation: "✅ ProvisionedThroughputExceeded indica throttling que afeta performance.",
         topic: "monitoring",
         domain: "troubleshooting"
     },
@@ -132,12 +132,12 @@ const troubleshootingQuestions = [
         question: "Para otimizar custos de Lambda, qual estratégia usar?",
         options: [
             "Sempre usar máxima memória",
-            "Otimizar memory/duration ratio",
             "Usar apenas timeout mínimo",
+            "Otimizar memory/duration ratio",
             "Provisioned Concurrency sempre"
         ],
-        correct: [1],
-        explanation: "Otimizar a relação memória/duração encontra o sweet spot de custo-performance.",
+        correct: [2],
+        explanation: "✅ Otimizar a relação memória/duração encontra o sweet spot de custo-performance.",
         topic: "lambda",
         domain: "troubleshooting"
     },
@@ -147,11 +147,11 @@ const troubleshootingQuestions = [
         options: [
             "Criar conexão a cada invocação",
             "Conexão global fora do handler",
+            "Connection pooling não é necessário",
             "Usar RDS Proxy",
-            "Connection pooling não é necessário"
         ],
-        correct: [2],
-        explanation: "RDS Proxy gerencia connection pooling automaticamente para Lambda.",
+        correct: [3],
+        explanation: "✅ RDS Proxy gerencia connection pooling automaticamente para Lambda.",
         topic: "lambda",
         domain: "troubleshooting"
     },
@@ -165,7 +165,7 @@ const troubleshootingQuestions = [
             "S3 configuration file"
         ],
         correct: [1],
-        explanation: "Parameter Store permite mudanças dinâmicas de configuração sem redeploy.",
+        explanation: "✅ Parameter Store permite mudanças dinâmicas de configuração sem redeploy.",
         topic: "lambda",
         domain: "troubleshooting"
     },
@@ -173,13 +173,13 @@ const troubleshootingQuestions = [
         id: 179,
         question: "Para uma API que precisa de alta disponibilidade, qual configuração usar?",
         options: [
-            "Single AZ deployment, com capacidade de processamento paralelo e distribuído para atender picos de demanda",
             "Multi-AZ com Route 53 health checks",
+            "Single AZ deployment",
             "Single region apenas",
             "CloudFront apenas"
         ],
-        correct: [1],
-        explanation: "Multi-AZ com health checks garante failover automático em caso de falha.",
+        correct: [0],
+        explanation: "✅ Multi-AZ com health checks garante failover automático em caso de falha.",
         topic: "apigateway",
         domain: "troubleshooting"
     },
@@ -188,12 +188,12 @@ const troubleshootingQuestions = [
         question: "Em DynamoDB Streams, qual é o período de retenção dos records?",
         options: [
             "1 hora",
-            "24 horas",
             "7 dias",
-            "30 dias, integrando com os sistemas existentes através de APIs e conectores nativos da plataforma"
+            "24 horas",
+            "30 dias"
         ],
-        correct: [1],
-        explanation: "DynamoDB Streams mantém records por 24 horas.",
+        correct: [2],
+        explanation: "✅ DynamoDB Streams mantém records por 24 horas.",
         topic: "dynamodb",
         domain: "troubleshooting"
     },
@@ -203,11 +203,11 @@ const troubleshootingQuestions = [
         options: [
             "512 MB",
             "1 GB",
+            "Sem limite",
             "10 GB",
-            "Sem limite"
         ],
-        correct: [2],
-        explanation: "Lambda oferece até 10 GB de storage temporário em /tmp.",
+        correct: [3],
+        explanation: "✅ Lambda oferece até 10 GB de storage temporário em /tmp.",
         topic: "lambda",
         domain: "troubleshooting"
     },
@@ -221,7 +221,7 @@ const troubleshootingQuestions = [
             "ElastiCache"
         ],
         correct: [1],
-        explanation: "API Gateway tem cache integrado configurável por método.",
+        explanation: "✅ API Gateway tem cache integrado configurável por método.",
         topic: "apigateway",
         domain: "troubleshooting"
     },
@@ -231,11 +231,11 @@ const troubleshootingQuestions = [
         options: [
             "Standard é mais rápido, FIFO garante ordem",
             "FIFO é mais barato",
-            "Standard apenas para Lambda, otimizando custo operacional através de right-sizing e monitoramento de utilização de recursos",
+            "Standard apenas para Lambda",
             "Não há diferença"
         ],
         correct: [0],
-        explanation: "SQS Standard oferece maior throughput, FIFO garante ordem e exactly-once delivery.",
+        explanation: "✅ SQS Standard oferece maior throughput, FIFO garante ordem e exactly-once delivery.",
         topic: "lambda",
         domain: "troubleshooting"
     },
@@ -243,13 +243,13 @@ const troubleshootingQuestions = [
         id: 184,
         question: "Para uma aplicação que precisa de transações ACID, qual solução usar?",
         options: [
-            "DynamoDB Transactions",
-            "RDS com Lambda",
             "Multiple Lambda functions",
+            "RDS com Lambda",
+            "DynamoDB Transactions",
             "Step Functions"
         ],
-        correct: [0],
-        explanation: "DynamoDB Transactions oferece ACID compliance para operações relacionadas.",
+        correct: [2],
+        explanation: "✅ DynamoDB Transactions oferece ACID compliance para operações relacionadas.",
         topic: "dynamodb",
         domain: "troubleshooting"
     },
@@ -258,12 +258,12 @@ const troubleshootingQuestions = [
         question: "Para troubleshooting de API Gateway 502 errors, onde investigar primeiro?",
         options: [
             "CloudFront logs",
-            "Lambda function logs",
+            "VPC configuration",
             "Route 53 health checks",
-            "VPC configuration"
+            "Lambda function logs",
         ],
-        correct: [1],
-        explanation: "502 errors geralmente indicam problemas na função Lambda backend.",
+        correct: [3],
+        explanation: "✅ 502 errors geralmente indicam problemas na função Lambda backend.",
         topic: "apigateway",
         domain: "troubleshooting"
     },
@@ -274,10 +274,10 @@ const troubleshootingQuestions = [
             "Scan operations",
             "Query com partition key",
             "Full table scan",
-            "Random access patterns, aplicando técnicas de observabilidade e rastreamento distribuído para troubleshooting eficiente"
+            "Random access patterns"
         ],
         correct: [1],
-        explanation: "Query com partition key é muito mais eficiente que scan operations.",
+        explanation: "✅ Query com partition key é muito mais eficiente que scan operations.",
         topic: "dynamodb",
         domain: "troubleshooting"
     },
@@ -285,13 +285,13 @@ const troubleshootingQuestions = [
         id: 187,
         question: "Para debugging de Lambda memory issues, qual métrica observar?",
         options: [
-            "Duration apenas",
             "Max Memory Used",
+            "Duration apenas",
             "Invocations",
             "Errors"
         ],
-        correct: [1],
-        explanation: "Max Memory Used mostra se a função está próxima do limite de memória.",
+        correct: [0],
+        explanation: "✅ Max Memory Used mostra se a função está próxima do limite de memória.",
         topic: "lambda",
         domain: "troubleshooting"
     },
@@ -299,13 +299,13 @@ const troubleshootingQuestions = [
         id: 188,
         question: "Para troubleshooting de Step Functions failures, onde verificar primeiro?",
         options: [
-            "CloudWatch Logs, com validação automática de qualidade e rollback em caso de degradação de performance",
-            "Execution history",
+            "CloudWatch Logs",
             "X-Ray traces",
+            "Execution history",
             "CloudTrail"
         ],
-        correct: [1],
-        explanation: "Execution history mostra exatamente onde e por que a execução falhou.",
+        correct: [2],
+        explanation: "✅ Execution history mostra exatamente onde e por que a execução falhou.",
         topic: "monitoring",
         domain: "troubleshooting"
     },
@@ -314,12 +314,12 @@ const troubleshootingQuestions = [
         question: "Para otimizar Lambda cold starts, qual configuração ajustar primeiro?",
         options: [
             "Timeout",
-            "Memory allocation",
+            "VPC configuration",
             "Environment variables",
-            "VPC configuration"
+            "Memory allocation",
         ],
-        correct: [1],
-        explanation: "Memory allocation afeta diretamente CPU disponível e cold start performance.",
+        correct: [3],
+        explanation: "✅ Memory allocation afeta diretamente CPU disponível e cold start performance.",
         topic: "lambda",
         domain: "troubleshooting"
     },
@@ -327,13 +327,13 @@ const troubleshootingQuestions = [
         id: 190,
         question: "Para debugging de DynamoDB throttling, qual causa investigar?",
         options: [
-            "Hot partitions",
             "Network issues",
+            "Hot partitions",
             "Lambda timeout",
             "API Gateway limits"
         ],
-        correct: [0],
-        explanation: "Hot partitions são a causa mais comum de throttling no DynamoDB.",
+        correct: [1],
+        explanation: "✅ Hot partitions são a causa mais comum de throttling no DynamoDB.",
         topic: "dynamodb",
         domain: "troubleshooting"
     },
@@ -341,13 +341,13 @@ const troubleshootingQuestions = [
         id: 191,
         question: "Para monitorar Lambda concurrency issues, qual métrica usar?",
         options: [
-            "Duration",
             "ConcurrentExecutions",
-            "Invocations, atendendo aos padrões internacionais de privacidade de dados e proteção de informações sensíveis",
+            "Duration",
+            "Invocations",
             "Errors"
         ],
-        correct: [1],
-        explanation: "ConcurrentExecutions mostra se está próximo dos limites de concorrência.",
+        correct: [0],
+        explanation: "✅ ConcurrentExecutions mostra se está próximo dos limites de concorrência.",
         topic: "lambda",
         domain: "troubleshooting"
     },
@@ -355,13 +355,13 @@ const troubleshootingQuestions = [
         id: 192,
         question: "Para troubleshooting de API Gateway timeout, qual configuração verificar?",
         options: [
-            "CloudFront timeout, com documentação completa do processo e rastreabilidade de todas as decisões implementadas",
-            "Integration timeout",
+            "CloudFront timeout",
             "Route 53 TTL",
+            "Integration timeout",
             "VPC timeout"
         ],
-        correct: [1],
-        explanation: "Integration timeout controla quanto tempo API Gateway espera pelo backend.",
+        correct: [2],
+        explanation: "✅ Integration timeout controla quanto tempo API Gateway espera pelo backend.",
         topic: "apigateway",
         domain: "troubleshooting"
     },
@@ -369,13 +369,13 @@ const troubleshootingQuestions = [
         id: 193,
         question: "Para otimizar DynamoDB costs, qual estratégia usar?",
         options: [
-            "Sempre usar provisioned capacity, incluindo configuração avançada de parâmetros e monitoramento contínuo do sistema em produção",
-            "On-demand para workloads imprevisíveis",
+            "Sempre usar provisioned capacity",
+            "Disable auto-scaling",
             "Máxima RCU/WCU sempre",
-            "Disable auto-scaling"
+            "On-demand para workloads imprevisíveis",
         ],
-        correct: [1],
-        explanation: "On-demand é mais econômico para workloads com tráfego imprevisível.",
+        correct: [3],
+        explanation: "✅ On-demand é mais econômico para workloads com tráfego imprevisível.",
         topic: "dynamodb",
         domain: "troubleshooting"
     },
@@ -389,7 +389,7 @@ const troubleshootingQuestions = [
             "CloudTrail"
         ],
         correct: [1],
-        explanation: "VPC Flow Logs mostram tráfego de rede e problemas de conectividade.",
+        explanation: "✅ VPC Flow Logs mostram tráfego de rede e problemas de conectividade.",
         topic: "lambda",
         domain: "troubleshooting"
     },
@@ -397,13 +397,13 @@ const troubleshootingQuestions = [
         id: 195,
         question: "Para troubleshooting de SQS message processing delays, qual causa investigar?",
         options: [
-            "Message size",
             "Visibility timeout configuration",
+            "Message size",
             "Queue type",
-            "Lambda memory, com integração completa ao ecossistema de serviços gerenciados e pipelines automatizados"
+            "Lambda memory"
         ],
-        correct: [1],
-        explanation: "Visibility timeout incorreto pode causar reprocessamento e delays.",
+        correct: [0],
+        explanation: "✅ Visibility timeout incorreto pode causar reprocessamento e delays.",
         topic: "lambda",
         domain: "troubleshooting"
     },
@@ -412,12 +412,12 @@ const troubleshootingQuestions = [
         question: "Para otimizar API Gateway performance, qual configuração usar?",
         options: [
             "Disable caching",
-            "Enable caching com TTL apropriado",
             "Increase timeout apenas",
-            "Reduce payload size apenas, considerando requisitos de compliance, governança e auditoria para ambientes regulados"
+            "Enable caching com TTL apropriado",
+            "Reduce payload size apenas"
         ],
-        correct: [1],
-        explanation: "Caching com TTL apropriado reduz latência e carga no backend.",
+        correct: [2],
+        explanation: "✅ Caching com TTL apropriado reduz latência e carga no backend.",
         topic: "apigateway",
         domain: "troubleshooting"
     },
@@ -426,12 +426,12 @@ const troubleshootingQuestions = [
         question: "Para debugging de Lambda deployment issues, onde verificar primeiro?",
         options: [
             "CloudWatch Logs",
-            "CloudFormation events",
+            "API Gateway logs",
             "X-Ray traces",
-            "API Gateway logs, garantindo escalabilidade horizontal e vertical conforme demanda do workload específico"
+            "CloudFormation events",
         ],
-        correct: [1],
-        explanation: "CloudFormation events mostram problemas durante deployment de recursos.",
+        correct: [3],
+        explanation: "✅ CloudFormation events mostram problemas durante deployment de recursos.",
         topic: "monitoring",
         domain: "troubleshooting"
     },
@@ -445,7 +445,7 @@ const troubleshootingQuestions = [
             "Change partition key"
         ],
         correct: [1],
-        explanation: "GSI tem sua própria capacidade que deve ser ajustada independentemente.",
+        explanation: "✅ GSI tem sua própria capacidade que deve ser ajustada independentemente.",
         topic: "dynamodb",
         domain: "troubleshooting"
     },
@@ -453,13 +453,13 @@ const troubleshootingQuestions = [
         id: 199,
         question: "Para otimizar Lambda function startup time, qual abordagem usar?",
         options: [
-            "Minimize deployment package size",
+            "Todas as anteriores",
             "Increase memory allocation",
             "Use Provisioned Concurrency",
-            "Todas as anteriores"
+            "Minimize deployment package size",
         ],
-        correct: [3],
-        explanation: "Todas as estratégias contribuem para reduzir startup time.",
+        correct: [0],
+        explanation: "✅ Todas as estratégias contribuem para reduzir startup time.",
         topic: "lambda",
         domain: "troubleshooting"
     },
@@ -467,13 +467,13 @@ const troubleshootingQuestions = [
         id: 200,
         question: "Para troubleshooting de Step Functions state machine errors, qual informação é mais útil?",
         options: [
-            "CloudWatch metrics apenas, utilizando as ferramentas nativas do serviço para automação e observabilidade operacional",
+            "CloudWatch metrics apenas",
             "Execution input/output de cada state",
             "Lambda logs apenas",
             "CloudTrail events"
         ],
         correct: [1],
-        explanation: "Input/output de cada state mostra exatamente onde e como o erro ocorreu.",
+        explanation: "✅ Input/output de cada state mostra exatamente onde e como o erro ocorreu.",
         topic: "monitoring",
         domain: "troubleshooting"
     }

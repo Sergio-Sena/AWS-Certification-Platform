@@ -6,13 +6,13 @@ const foundationModelsQuestions = [
         id: 'fm_001',
         question: "Uma empresa quer que seu LLM responda perguntas sobre documentos internos atualizados semanalmente. O modelo não foi treinado com esses dados. Qual técnica usar?",
         options: [
-            "Fine-tuning semanal do modelo",
             "RAG (Retrieval-Augmented Generation) com Bedrock Knowledge Bases",
+            "Fine-tuning semanal do modelo",
             "Treinar modelo do zero com dados internos para garantir conformidade",
             "Aumentar janela de contexto"
         ],
-        correct: [1],
-        explanation: "RAG busca documentos relevantes em tempo real e injeta no prompt. Knowledge Bases do Bedrock automatiza: ingere docs do S3, cria embeddings, busca e responde. Sem retreinar o modelo.",
+        correct: [0],
+        explanation: "✅ RAG busca documentos relevantes em tempo real e injeta no prompt. Knowledge Bases do Bedrock automatiza: ingere docs do S3, cria embeddings, busca e responde. Sem retreinar o modelo.",
         topic: "rag",
         domain: "foundation-models"
     },
@@ -21,12 +21,12 @@ const foundationModelsQuestions = [
         question: "Qual é a ordem correta das etapas em um pipeline RAG?",
         options: [
             "Pergunta → Modelo → Busca → Resposta",
+            "Treinar modelo → Fazer pergunta → Resposta para este tipo de cenário e workload específico",
             "Documentos em chunks → Embeddings → Armazenar em banco vetorial → Pergunta vira embedding → Busca similares → Injeta no prompt → Modelo responde",
-            "Treinar modelo → Fazer pergunta → Resposta para este tipo de cenário e workload específico, incluindo configuração avançada de parâmetros e monitoramento contínuo do sistema em produção",
             "Pergunta → Fine-tuning → Resposta"
         ],
-        correct: [1],
-        explanation: "Pipeline RAG: 1) Docs divididos em chunks, 2) Chunks viram embeddings, 3) Armazenados em vector DB, 4) Query vira embedding, 5) Busca chunks similares, 6) Chunks injetados no prompt, 7) LLM responde com contexto.",
+        correct: [2],
+        explanation: "✅ Pipeline RAG: 1) Docs divididos em chunks, 2) Chunks viram embeddings, 3) Armazenados em vector DB, 4) Query vira embedding, 5) Busca chunks similares, 6) Chunks injetados no prompt, 7) LLM responde com contexto.",
         topic: "rag",
         domain: "foundation-models"
     },
@@ -36,11 +36,11 @@ const foundationModelsQuestions = [
         options: [
             "Modelo de embedding de texto considerando o contexto descrito",
             "Modelo de geração multimodal",
+            "Modelo de geração de imagens",
             "Modelo de embedding multimodal",
-            "Modelo de geração de imagens"
         ],
-        correct: [2],
-        explanation: "Embedding multimodal coloca texto e imagem no mesmo espaço vetorial. Permite comparar descrição textual com imagem do produto para recomendações cross-modal. Geração multimodal CRIA conteúdo, embedding COMPARA.",
+        correct: [3],
+        explanation: "✅ Embedding multimodal coloca texto e imagem no mesmo espaço vetorial. Permite comparar descrição textual com imagem do produto para recomendações cross-modal. Geração multimodal CRIA conteúdo, embedding COMPARA.",
         topic: "embeddings",
         domain: "foundation-models"
     },
@@ -48,13 +48,13 @@ const foundationModelsQuestions = [
         id: 'fm_004',
         question: "Quando usar fine-tuning ao invés de RAG para customizar um foundation model?",
         options: [
-            "Sempre que possível, fine-tuning é melhor conforme recomendado pela documentação técnica, com integração completa ao ecossistema de serviços gerenciados e pipelines automatizados",
+            "Sempre que possível, fine-tuning é melhor conforme recomendado pela documentação técnica",
             "Quando precisa mudar o estilo/tom/formato do modelo ou ensinar conhecimento de domínio muito específico que RAG não resolve",
             "Fine-tuning é sempre mais barato",
             "RAG e fine-tuning são a mesma coisa"
         ],
         correct: [1],
-        explanation: "Fine-tuning: muda comportamento/estilo do modelo (ex: responder como médico, gerar código em padrão específico). RAG: adiciona conhecimento factual. Hierarquia: prompt engineering → RAG → fine-tuning → pre-training.",
+        explanation: "✅ Fine-tuning: muda comportamento/estilo do modelo (ex: responder como médico, gerar código em padrão específico). RAG: adiciona conhecimento factual. Hierarquia: prompt engineering → RAG → fine-tuning → pre-training.",
         topic: "fine-tuning",
         domain: "foundation-models"
     },
@@ -62,13 +62,13 @@ const foundationModelsQuestions = [
         id: 'fm_005',
         question: "O que são Bedrock Agents e qual problema resolvem?",
         options: [
-            "Modelos de ML para classificação",
             "Permitem que foundation models executem ações (chamar APIs, consultar bancos, executar workflows) além de apenas gerar texto",
-            "Agentes humanos que revisam outputs considerando o contexto descrito na questão, considerando requisitos de compliance, governança e auditoria para ambientes regulados",
+            "Modelos de ML para classificação",
+            "Agentes humanos que revisam outputs considerando o contexto descrito na questão",
             "Ferramentas de monitoramento"
         ],
-        correct: [1],
-        explanation: "Bedrock Agents: LLM + capacidade de ação. O modelo decide quais ferramentas usar (APIs, Lambda, DBs) para completar tarefas. Ex: 'reserve um voo' → agent chama API de reservas. Vai além de gerar texto.",
+        correct: [0],
+        explanation: "✅ Bedrock Agents: LLM + capacidade de ação. O modelo decide quais ferramentas usar (APIs, Lambda, DBs) para completar tarefas. Ex: 'reserve um voo' → agent chama API de reservas. Vai além de gerar texto.",
         topic: "agents",
         domain: "foundation-models"
     },
@@ -77,12 +77,12 @@ const foundationModelsQuestions = [
         question: "Qual serviço AWS armazena embeddings para busca vetorial em um pipeline RAG?",
         options: [
             "Amazon DynamoDB",
-            "Amazon OpenSearch Serverless (com vector engine) ou Aurora PostgreSQL com pgvector",
             "Amazon S3",
-            "Amazon RDS MySQL de acordo com as melhores práticas do setor, garantindo escalabilidade horizontal e vertical conforme demanda do workload específico"
+            "Amazon OpenSearch Serverless (com vector engine) ou Aurora PostgreSQL com pgvector",
+            "Amazon RDS MySQL de acordo com as melhores práticas do setor"
         ],
-        correct: [1],
-        explanation: "Vector stores para RAG: OpenSearch Serverless (vector engine), Aurora PostgreSQL + pgvector, ou Pinecone. Armazenam embeddings e fazem busca por similaridade (nearest neighbor). S3 armazena docs originais.",
+        correct: [2],
+        explanation: "✅ Vector stores para RAG: OpenSearch Serverless (vector engine), Aurora PostgreSQL + pgvector, ou Pinecone. Armazenam embeddings e fazem busca por similaridade (nearest neighbor). S3 armazena docs originais.",
         topic: "rag",
         domain: "foundation-models"
     },
@@ -91,12 +91,12 @@ const foundationModelsQuestions = [
         question: "Uma empresa quer que o LLM acesse dados em tempo real (preços de ações, clima). RAG com documentos estáticos não resolve. Qual solução?",
         options: [
             "Fine-tuning diário",
+            "Usar modelo mais recente",
+            "Aumentar janela de contexto dentro do escopo de aplicação apresentado",
             "Bedrock Agents com action groups que chamam APIs externas em tempo real",
-            "Aumentar janela de contexto dentro do escopo de aplicação apresentado, utilizando as ferramentas nativas do serviço para automação e observabilidade operacional",
-            "Usar modelo mais recente"
         ],
-        correct: [1],
-        explanation: "Agents com action groups: o modelo decide quando precisa de dados em tempo real e chama APIs (Lambda functions) para obter informações atuais. Combina raciocínio do LLM com dados live.",
+        correct: [3],
+        explanation: "✅ Agents com action groups: o modelo decide quando precisa de dados em tempo real e chama APIs (Lambda functions) para obter informações atuais. Combina raciocínio do LLM com dados live.",
         topic: "agents",
         domain: "foundation-models"
     },
@@ -107,10 +107,10 @@ const foundationModelsQuestions = [
             "São a mesma coisa",
             "Embedding COMPARA/representa conteúdo como vetores; geração multimodal CRIA conteúdo novo de um tipo a partir de outro",
             "Embedding gera imagens",
-            "Geração multimodal apenas classifica segundo as diretrizes oficiais e compliance, com suporte a múltiplas regiões e redundância para alta disponibilidade e disaster recovery"
+            "Geração multimodal apenas classifica segundo as diretrizes oficiais e compliance"
         ],
         correct: [1],
-        explanation: "Embedding: converte conteúdo em vetor para comparação/busca (não gera nada novo). Geração multimodal: cria conteúdo (texto→imagem, imagem→descrição). Embedding = representar. Geração = criar.",
+        explanation: "✅ Embedding: converte conteúdo em vetor para comparação/busca (não gera nada novo). Geração multimodal: cria conteúdo (texto→imagem, imagem→descrição). Embedding = representar. Geração = criar.",
         topic: "embeddings",
         domain: "foundation-models"
     },
@@ -118,13 +118,13 @@ const foundationModelsQuestions = [
         id: 'fm_009',
         question: "Uma empresa configurou RAG mas as respostas ainda contêm informações incorretas. O que pode estar errado?",
         options: [
-            "O modelo é muito grande",
             "Chunks muito grandes/pequenos, embeddings de baixa qualidade, ou documentos fonte desatualizados/incorretos",
+            "O modelo é muito grande",
             "Temperatura muito baixa",
-            "Janela de contexto muito grande como abordagem principal neste caso de uso, seguindo o modelo de responsabilidade compartilhada e as políticas de segurança corporativas"
+            "Janela de contexto muito grande como abordagem principal neste caso de uso"
         ],
-        correct: [1],
-        explanation: "Problemas comuns em RAG: chunks mal dimensionados (muito grandes perdem relevância, muito pequenos perdem contexto), modelo de embedding inadequado, docs fonte com erros, ou retrieval trazendo chunks irrelevantes.",
+        correct: [0],
+        explanation: "✅ Problemas comuns em RAG: chunks mal dimensionados (muito grandes perdem relevância, muito pequenos perdem contexto), modelo de embedding inadequado, docs fonte com erros, ou retrieval trazendo chunks irrelevantes.",
         topic: "rag",
         domain: "foundation-models"
     },
@@ -133,12 +133,12 @@ const foundationModelsQuestions = [
         question: "O que é 'chunking' no contexto de RAG e por que é importante?",
         options: [
             "Comprimir documentos",
+            "Criptografar documentos para garantir conformidade com os requisitos",
             "Dividir documentos em pedaços menores (chunks) para que cada pedaço caiba na janela de contexto e seja indexável separadamente",
-            "Criptografar documentos para garantir conformidade com os requisitos, implementando controles preventivos e detectivos conforme o framework de segurança organizacional",
             "Traduzir documentos"
         ],
-        correct: [1],
-        explanation: "Chunking: dividir docs em pedaços (300-1000 tokens). Cada chunk vira um embedding independente. Na busca, apenas chunks relevantes são recuperados (não o doc inteiro). Tamanho do chunk afeta qualidade do RAG.",
+        correct: [2],
+        explanation: "✅ Chunking: dividir docs em pedaços (300-1000 tokens). Cada chunk vira um embedding independente. Na busca, apenas chunks relevantes são recuperados (não o doc inteiro). Tamanho do chunk afeta qualidade do RAG.",
         topic: "rag",
         domain: "foundation-models"
     },
@@ -147,12 +147,12 @@ const foundationModelsQuestions = [
         question: "Qual é a hierarquia correta de customização de foundation models (do mais simples ao mais complexo)?",
         options: [
             "Fine-tuning → RAG → Prompt Engineering → Pre-training no contexto empresarial",
-            "Prompt Engineering → RAG → Fine-tuning → Pre-training (continued)",
+            "Todos são equivalentes",
             "Pre-training → Fine-tuning → RAG → Prompt Engineering",
-            "Todos são equivalentes"
+            "Prompt Engineering → RAG → Fine-tuning → Pre-training (continued)",
         ],
-        correct: [1],
-        explanation: "Sempre começar pelo mais simples: 1) Prompt Engineering (zero custo extra), 2) RAG (adiciona conhecimento), 3) Fine-tuning (muda comportamento), 4) Pre-training (treinar do zero — raramente necessário).",
+        correct: [3],
+        explanation: "✅ Sempre começar pelo mais simples: 1) Prompt Engineering (zero custo extra), 2) RAG (adiciona conhecimento), 3) Fine-tuning (muda comportamento), 4) Pre-training (treinar do zero — raramente necessário).",
         topic: "fine-tuning",
         domain: "foundation-models"
     },
@@ -162,11 +162,11 @@ const foundationModelsQuestions = [
         options: [
             "Lambda + Comprehend",
             "Bedrock Knowledge Bases (S3 com PDFs → embeddings automáticos → vector store → RAG com foundation model)",
-            "SageMaker training job na arquitetura proposta para o ambiente, com capacidade de processamento paralelo e distribuído para atender picos de demanda",
+            "SageMaker training job na arquitetura proposta para o ambiente",
             "Amazon Kendra apenas"
         ],
         correct: [1],
-        explanation: "Bedrock Knowledge Bases: end-to-end gerenciado. Upload PDFs no S3 → chunking automático → embeddings → armazena em OpenSearch/Aurora → RAG automático quando usuário pergunta. Zero código para pipeline.",
+        explanation: "✅ Bedrock Knowledge Bases: end-to-end gerenciado. Upload PDFs no S3 → chunking automático → embeddings → armazena em OpenSearch/Aurora → RAG automático quando usuário pergunta. Zero código para pipeline.",
         topic: "rag",
         domain: "foundation-models"
     },
@@ -174,13 +174,13 @@ const foundationModelsQuestions = [
         id: 'fm_013',
         question: "O que é Amazon Kendra e como se relaciona com RAG?",
         options: [
-            "Modelo de linguagem",
             "Serviço de enterprise search inteligente que pode ser usado como retriever em pipelines RAG",
+            "Modelo de linguagem",
             "Banco de dados vetorial",
-            "Ferramenta de fine-tuning em cenários empresariais de produção real, integrando com os sistemas existentes através de APIs e conectores nativos da plataforma"
+            "Ferramenta de fine-tuning em cenários empresariais de produção real"
         ],
-        correct: [1],
-        explanation: "Kendra: busca empresarial inteligente com NLU. Indexa documentos de múltiplas fontes (S3, SharePoint, DBs). Pode ser usado como retriever em RAG — busca docs relevantes que são passados ao LLM.",
+        correct: [0],
+        explanation: "✅ Kendra: busca empresarial inteligente com NLU. Indexa documentos de múltiplas fontes (S3, SharePoint, DBs). Pode ser usado como retriever em RAG — busca docs relevantes que são passados ao LLM.",
         topic: "rag",
         domain: "foundation-models"
     },
@@ -189,12 +189,12 @@ const foundationModelsQuestions = [
         question: "Uma empresa fez fine-tuning de um modelo no Bedrock. O modelo agora responde bem para o domínio específico mas perdeu capacidades gerais. O que aconteceu?",
         options: [
             "Bug no Bedrock",
-            "Catastrophic forgetting — fine-tuning excessivo fez o modelo 'esquecer' conhecimento geral",
             "Modelo muito pequeno",
-            "Dados de fine-tuning corrompidos seguindo o framework de implementação padrão, otimizando custo operacional através de right-sizing e monitoramento de utilização de recursos"
+            "Catastrophic forgetting — fine-tuning excessivo fez o modelo 'esquecer' conhecimento geral",
+            "Dados de fine-tuning corrompidos seguindo o framework de implementação padrão"
         ],
-        correct: [1],
-        explanation: "Catastrophic forgetting: fine-tuning agressivo sobrescreve conhecimento geral. Mitigação: usar poucos epochs, learning rate baixo, ou técnicas como LoRA (Low-Rank Adaptation) que ajustam apenas parte dos pesos.",
+        correct: [2],
+        explanation: "✅ Catastrophic forgetting: fine-tuning agressivo sobrescreve conhecimento geral. Mitigação: usar poucos epochs, learning rate baixo, ou técnicas como LoRA (Low-Rank Adaptation) que ajustam apenas parte dos pesos.",
         topic: "fine-tuning",
         domain: "foundation-models"
     },
@@ -203,12 +203,12 @@ const foundationModelsQuestions = [
         question: "Qual é a diferença entre Bedrock Knowledge Bases e Bedrock Agents?",
         options: [
             "São a mesma coisa",
+            "Agents não usam LLMs",
+            "Knowledge Bases são mais caras como solução adequada ao problema descrito",
             "Knowledge Bases = RAG (busca em documentos). Agents = execução de ações (chamam APIs, fazem tarefas). Agents podem USAR Knowledge Bases como uma de suas ferramentas",
-            "Knowledge Bases são mais caras como solução adequada ao problema descrito, aplicando técnicas de observabilidade e rastreamento distribuído para troubleshooting eficiente",
-            "Agents não usam LLMs"
         ],
-        correct: [1],
-        explanation: "Knowledge Bases: RAG gerenciado (pergunta → busca docs → responde). Agents: orquestração de ações (pergunta → decide ação → chama API/KB/Lambda → responde). Agent pode usar KB como uma tool.",
+        correct: [3],
+        explanation: "✅ Knowledge Bases: RAG gerenciado (pergunta → busca docs → responde). Agents: orquestração de ações (pergunta → decide ação → chama API/KB/Lambda → responde). Agent pode usar KB como uma tool.",
         topic: "agents",
         domain: "foundation-models"
     },
@@ -219,10 +219,10 @@ const foundationModelsQuestions = [
             "Apenas prompt engineering",
             "RAG com base de conhecimento jurídico + prompt com instruções de precisão + guardrails para validação",
             "Fine-tuning apenas",
-            "Usar modelo genérico sem customização atendendo aos critérios de avaliação definidos, com validação automática de qualidade e rollback em caso de degradação de performance"
+            "Usar modelo genérico sem customização atendendo aos critérios de avaliação definidos"
         ],
         correct: [1],
-        explanation: "Combinação: RAG traz contexto jurídico relevante, prompt instrui precisão e formato, guardrails validam output. Para domínios críticos (legal, médico), múltiplas camadas de controle são necessárias.",
+        explanation: "✅ Combinação: RAG traz contexto jurídico relevante, prompt instrui precisão e formato, guardrails validam output. Para domínios críticos (legal, médico), múltiplas camadas de controle são necessárias.",
         topic: "rag",
         domain: "foundation-models"
     },
@@ -230,13 +230,13 @@ const foundationModelsQuestions = [
         id: 'fm_017',
         question: "O que é 'semantic search' e como difere de keyword search?",
         options: [
-            "São a mesma coisa",
             "Keyword busca por palavras exatas; semantic search usa embeddings para encontrar conteúdo com significado similar mesmo com palavras diferentes",
+            "São a mesma coisa",
             "Semantic search é mais lenta",
-            "Keyword search é mais precisa no contexto operacional da organização, atendendo aos padrões internacionais de privacidade de dados e proteção de informações sensíveis"
+            "Keyword search é mais precisa no contexto operacional da organização"
         ],
-        correct: [1],
-        explanation: "Keyword: 'carro veloz' só encontra docs com essas palavras. Semantic: encontra docs sobre 'automóvel rápido', 'veículo de alta performance' — entende significado via embeddings. Base do RAG moderno.",
+        correct: [0],
+        explanation: "✅ Keyword: 'carro veloz' só encontra docs com essas palavras. Semantic: encontra docs sobre 'automóvel rápido', 'veículo de alta performance' — entende significado via embeddings. Base do RAG moderno.",
         topic: "embeddings",
         domain: "foundation-models"
     },
@@ -245,12 +245,12 @@ const foundationModelsQuestions = [
         question: "Qual técnica de fine-tuning é mais eficiente em termos de custo e preserva melhor o conhecimento original do modelo?",
         options: [
             "Full fine-tuning (todos os parâmetros) para assegurar resultados consistentes e confiáveis",
-            "LoRA (Low-Rank Adaptation) — ajusta apenas uma pequena fração dos parâmetros",
             "Treinar do zero",
+            "LoRA (Low-Rank Adaptation) — ajusta apenas uma pequena fração dos parâmetros",
             "Aumentar dados de treinamento 10x"
         ],
-        correct: [1],
-        explanation: "LoRA: adiciona pequenas matrizes treináveis ao modelo sem modificar pesos originais. Muito mais barato (menos compute), mais rápido, e preserva conhecimento geral. Padrão para fine-tuning eficiente.",
+        correct: [2],
+        explanation: "✅ LoRA: adiciona pequenas matrizes treináveis ao modelo sem modificar pesos originais. Muito mais barato (menos compute), mais rápido, e preserva conhecimento geral. Padrão para fine-tuning eficiente.",
         topic: "fine-tuning",
         domain: "foundation-models"
     },
@@ -259,12 +259,12 @@ const foundationModelsQuestions = [
         question: "Uma empresa quer que o LLM execute um workflow: verificar estoque → calcular preço → criar pedido. Qual feature do Bedrock?",
         options: [
             "Knowledge Bases",
-            "Bedrock Agents com action groups (cada ação = Lambda function)",
+            "Model evaluation para este tipo de cenário e workload específico",
             "Guardrails",
-            "Model evaluation para este tipo de cenário e workload específico"
+            "Bedrock Agents com action groups (cada ação = Lambda function)",
         ],
-        correct: [1],
-        explanation: "Agents com action groups: cada ação (verificar estoque, calcular preço, criar pedido) é uma Lambda function. O Agent decide a sequência, chama as funções e orquestra o workflow automaticamente.",
+        correct: [3],
+        explanation: "✅ Agents com action groups: cada ação (verificar estoque, calcular preço, criar pedido) é uma Lambda function. O Agent decide a sequência, chama as funções e orquestra o workflow automaticamente.",
         topic: "agents",
         domain: "foundation-models"
     },
@@ -275,10 +275,10 @@ const foundationModelsQuestions = [
             "Velocidade de geração",
             "Relevância dos chunks recuperados (retrieval accuracy) + fidelidade da resposta aos chunks (faithfulness)",
             "Tamanho do modelo",
-            "Número de documentos indexados conforme recomendado pela documentação técnica, com documentação completa do processo e rastreabilidade de todas as decisões implementadas"
+            "Número de documentos indexados conforme recomendado pela documentação técnica"
         ],
         correct: [1],
-        explanation: "RAG quality = retrieval quality + generation quality. Retrieval: chunks recuperados são relevantes? Faithfulness: resposta é fiel aos chunks (não alucina)? Métricas: precision@k, recall, RAGAS framework.",
+        explanation: "✅ RAG quality = retrieval quality + generation quality. Retrieval: chunks recuperados são relevantes? Faithfulness: resposta é fiel aos chunks (não alucina)? Métricas: precision@k, recall, RAGAS framework.",
         topic: "rag",
         domain: "foundation-models"
     }
@@ -293,13 +293,13 @@ const foundationModelsQuestions2 = [
         id: 'fm_021',
         question: "Uma empresa quer implementar RAG mas seus documentos estão em múltiplos formatos (PDF, Word, HTML, Confluence). Como ingerir tudo no Bedrock Knowledge Bases?",
         options: [
-            "Converter tudo para texto manualmente",
             "Knowledge Bases suporta múltiplos formatos nativamente — basta colocar no S3 e o serviço processa automaticamente",
+            "Converter tudo para texto manualmente",
             "Usar apenas PDFs",
-            "Precisa de ETL customizado para cada formato considerando o contexto descrito na questão, incluindo configuração avançada de parâmetros e monitoramento contínuo do sistema em produção"
+            "Precisa de ETL customizado para cada formato considerando o contexto descrito na questão"
         ],
-        correct: [1],
-        explanation: "Bedrock Knowledge Bases processa automaticamente: PDF, Word, HTML, Markdown, CSV, texto. Também integra com data sources como Confluence, SharePoint, Salesforce. Chunking e embedding automáticos.",
+        correct: [0],
+        explanation: "✅ Bedrock Knowledge Bases processa automaticamente: PDF, Word, HTML, Markdown, CSV, texto. Também integra com data sources como Confluence, SharePoint, Salesforce. Chunking e embedding automáticos.",
         topic: "rag",
         domain: "foundation-models"
     },
@@ -307,13 +307,13 @@ const foundationModelsQuestions2 = [
         id: 'fm_022',
         question: "O que é 'hybrid search' no contexto de RAG e por que é melhor que apenas busca vetorial?",
         options: [
-            "Busca em múltiplos bancos de dados de acordo com as melhores práticas do setor, com integração completa ao ecossistema de serviços gerenciados e pipelines automatizados",
-            "Combina busca semântica (embeddings) com busca por keywords (BM25) para melhor recall e precisão",
+            "Busca em múltiplos bancos de dados de acordo com as melhores práticas do setor",
             "Busca em múltiplas regiões AWS",
+            "Combina busca semântica (embeddings) com busca por keywords (BM25) para melhor recall e precisão",
             "Busca com múltiplos modelos"
         ],
-        correct: [1],
-        explanation: "Hybrid search: semântica captura significado (sinônimos, contexto) + keywords captura termos exatos (nomes, códigos). Combinadas têm melhor recall que qualquer uma sozinha. OpenSearch suporta nativamente.",
+        correct: [2],
+        explanation: "✅ Hybrid search: semântica captura significado (sinônimos, contexto) + keywords captura termos exatos (nomes, códigos). Combinadas têm melhor recall que qualquer uma sozinha. OpenSearch suporta nativamente.",
         topic: "rag",
         domain: "foundation-models"
     },
@@ -322,12 +322,12 @@ const foundationModelsQuestions2 = [
         question: "Uma empresa quer usar IA generativa para gerar código SQL a partir de perguntas em linguagem natural sobre seu banco de dados. Qual abordagem?",
         options: [
             "Fine-tuning com exemplos SQL",
+            "Treinar modelo do zero",
+            "Usar modelo genérico sem contexto dentro do escopo de aplicação apresentado",
             "RAG com schema do banco + few-shot examples de queries + prompt com instruções SQL",
-            "Usar modelo genérico sem contexto dentro do escopo de aplicação apresentado, considerando requisitos de compliance, governança e auditoria para ambientes regulados",
-            "Treinar modelo do zero"
         ],
-        correct: [1],
-        explanation: "Text-to-SQL: RAG injeta schema das tabelas no prompt. Few-shot examples mostram padrão pergunta→SQL. Prompt instrui formato. O modelo gera SQL baseado no schema real do banco.",
+        correct: [3],
+        explanation: "✅ Text-to-SQL: RAG injeta schema das tabelas no prompt. Few-shot examples mostram padrão pergunta→SQL. Prompt instrui formato. O modelo gera SQL baseado no schema real do banco.",
         topic: "rag",
         domain: "foundation-models"
     },
@@ -337,11 +337,11 @@ const foundationModelsQuestions2 = [
         options: [
             "Reordenar documentos no S3",
             "Após retrieval inicial, reordenar chunks por relevância usando modelo mais preciso antes de passar ao LLM",
-            "Reorganizar a resposta do LLM segundo as diretrizes oficiais e compliance, garantindo escalabilidade horizontal e vertical conforme demanda do workload específico",
+            "Reorganizar a resposta do LLM segundo as diretrizes oficiais e compliance",
             "Reindexar embeddings"
         ],
         correct: [1],
-        explanation: "Reranking: retrieval inicial traz top-K chunks (rápido mas impreciso). Reranker (modelo cross-encoder) reordena por relevância real. Melhora qualidade dos chunks passados ao LLM. Custo extra mas melhor precisão.",
+        explanation: "✅ Reranking: retrieval inicial traz top-K chunks (rápido mas impreciso). Reranker (modelo cross-encoder) reordena por relevância real. Melhora qualidade dos chunks passados ao LLM. Custo extra mas melhor precisão.",
         topic: "rag",
         domain: "foundation-models"
     },
@@ -349,13 +349,13 @@ const foundationModelsQuestions2 = [
         id: 'fm_025',
         question: "Uma empresa quer que o modelo gere respostas APENAS baseadas nos documentos fornecidos, sem usar conhecimento pré-treinado. Como instruir?",
         options: [
-            "Usar temperatura 0",
             "Prompt: 'Responda APENAS com base no contexto fornecido. Se a informação não estiver no contexto, diga que não sabe'",
-            "Fine-tuning para esquecer conhecimento geral como abordagem principal neste caso de uso, utilizando as ferramentas nativas do serviço para automação e observabilidade operacional",
+            "Usar temperatura 0",
+            "Fine-tuning para esquecer conhecimento geral como abordagem principal neste caso de uso",
             "Usar modelo menor"
         ],
-        correct: [1],
-        explanation: "Instrução explícita no prompt para responder apenas do contexto + instrução para admitir quando não sabe. Reduz alucinações. Guardrails podem reforçar. Técnica chamada 'grounded generation'.",
+        correct: [0],
+        explanation: "✅ Instrução explícita no prompt para responder apenas do contexto + instrução para admitir quando não sabe. Reduz alucinações. Guardrails podem reforçar. Técnica chamada 'grounded generation'.",
         topic: "rag",
         domain: "foundation-models"
     },
@@ -364,12 +364,12 @@ const foundationModelsQuestions2 = [
         question: "O que são 'action groups' no Bedrock Agents?",
         options: [
             "Grupos de usuários IAM",
-            "Conjuntos de ações que o Agent pode executar — cada ação é definida por API schema (OpenAPI) e implementada por Lambda",
             "Grupos de modelos",
-            "Configurações de segurança para garantir conformidade com os requisitos, com suporte a múltiplas regiões e redundância para alta disponibilidade e disaster recovery"
+            "Conjuntos de ações que o Agent pode executar — cada ação é definida por API schema (OpenAPI) e implementada por Lambda",
+            "Configurações de segurança para garantir conformidade com os requisitos"
         ],
-        correct: [1],
-        explanation: "Action groups: definem o que o Agent pode FAZER. Cada grupo tem API schema (OpenAPI spec) descrevendo ações disponíveis. Lambda implementa a lógica. Agent decide quando/qual ação chamar baseado na conversa.",
+        correct: [2],
+        explanation: "✅ Action groups: definem o que o Agent pode FAZER. Cada grupo tem API schema (OpenAPI spec) descrevendo ações disponíveis. Lambda implementa a lógica. Agent decide quando/qual ação chamar baseado na conversa.",
         topic: "agents",
         domain: "foundation-models"
     },
@@ -377,13 +377,13 @@ const foundationModelsQuestions2 = [
         id: 'fm_027',
         question: "Uma empresa quer usar IA para classificar tickets de suporte automaticamente em categorias. Qual abordagem com foundation models?",
         options: [
-            "Treinar CNN do zero na arquitetura proposta para o ambiente, seguindo o modelo de responsabilidade compartilhada e as políticas de segurança corporativas",
-            "Zero-shot classification com prompt descrevendo categorias OU fine-tuning com exemplos rotulados de tickets",
+            "Treinar CNN do zero na arquitetura proposta para o ambiente",
+            "Amazon Rekognition",
             "Usar apenas regex",
-            "Amazon Rekognition"
+            "Zero-shot classification com prompt descrevendo categorias OU fine-tuning com exemplos rotulados de tickets",
         ],
-        correct: [1],
-        explanation: "Zero-shot: prompt lista categorias e pede classificação (funciona para categorias claras). Fine-tuning: se zero-shot não é preciso o suficiente, treinar com exemplos rotulados melhora significativamente.",
+        correct: [3],
+        explanation: "✅ Zero-shot: prompt lista categorias e pede classificação (funciona para categorias claras). Fine-tuning: se zero-shot não é preciso o suficiente, treinar com exemplos rotulados melhora significativamente.",
         topic: "fine-tuning",
         domain: "foundation-models"
     },
@@ -391,13 +391,13 @@ const foundationModelsQuestions2 = [
         id: 'fm_028',
         question: "Qual é a vantagem de usar Amazon Titan Embeddings vs embeddings de terceiros no Bedrock?",
         options: [
-            "Titan é sempre melhor em cenários empresariais de produção real, implementando controles preventivos e detectivos conforme o framework de segurança organizacional",
+            "Titan é sempre melhor em cenários empresariais de produção real",
             "Titan é nativo AWS (menor latência, integração direta com Knowledge Bases, sem dados saindo da AWS)",
             "Titan é gratuito",
             "Não há diferença"
         ],
         correct: [1],
-        explanation: "Titan Embeddings: nativo AWS, integração seamless com Knowledge Bases, dados não saem da infra AWS (compliance), boa qualidade para múltiplos idiomas. Alternativas (Cohere) podem ser melhores para casos específicos.",
+        explanation: "✅ Titan Embeddings: nativo AWS, integração seamless com Knowledge Bases, dados não saem da infra AWS (compliance), boa qualidade para múltiplos idiomas. Alternativas (Cohere) podem ser melhores para casos específicos.",
         topic: "embeddings",
         domain: "foundation-models"
     },
@@ -405,13 +405,13 @@ const foundationModelsQuestions2 = [
         id: 'fm_029',
         question: "Uma empresa implementou RAG mas o modelo às vezes ignora o contexto recuperado e responde com conhecimento próprio. Como forçar uso do contexto?",
         options: [
-            "Aumentar temperatura seguindo o framework de implementação padrão, com capacidade de processamento paralelo e distribuído para atender picos de demanda",
             "Prompt engineering: instrução explícita + separadores claros entre contexto e pergunta + pedir citação de fontes",
+            "Aumentar temperatura seguindo o framework de implementação padrão",
             "Usar modelo menor",
             "Remover o contexto"
         ],
-        correct: [1],
-        explanation: "Técnicas: 1) Instrução clara: 'use APENAS o contexto abaixo', 2) Separadores: <context>...</context>, 3) Pedir citações: 'cite o trecho usado', 4) Temperatura baixa. Se persistir, avaliar qualidade do retrieval.",
+        correct: [0],
+        explanation: "✅ Técnicas: 1) Instrução clara: 'use APENAS o contexto abaixo', 2) Separadores: <context>...</context>, 3) Pedir citações: 'cite o trecho usado', 4) Temperatura baixa. Se persistir, avaliar qualidade do retrieval.",
         topic: "rag",
         domain: "foundation-models"
     },
@@ -420,12 +420,12 @@ const foundationModelsQuestions2 = [
         question: "O que é 'continued pre-training' no Bedrock e quando usar?",
         options: [
             "Treinar modelo do zero",
+            "Fine-tuning com poucos exemplos como solução adequada ao problema descrito",
             "Continuar o pré-treinamento do foundation model com dados de domínio específico para que 'absorva' vocabulário e conhecimento do setor",
-            "Fine-tuning com poucos exemplos como solução adequada ao problema descrito, integrando com os sistemas existentes através de APIs e conectores nativos da plataforma",
             "RAG com mais documentos"
         ],
-        correct: [1],
-        explanation: "Continued pre-training: alimenta o modelo com grandes volumes de texto do domínio (papers médicos, código, documentos legais). Modelo 'absorve' vocabulário e padrões do setor. Mais profundo que fine-tuning, menos que treinar do zero.",
+        correct: [2],
+        explanation: "✅ Continued pre-training: alimenta o modelo com grandes volumes de texto do domínio (papers médicos, código, documentos legais). Modelo 'absorve' vocabulário e padrões do setor. Mais profundo que fine-tuning, menos que treinar do zero.",
         topic: "fine-tuning",
         domain: "foundation-models"
     },
@@ -434,12 +434,12 @@ const foundationModelsQuestions2 = [
         question: "Uma empresa quer automatizar atendimento ao cliente: responder perguntas, verificar status de pedido e processar devoluções. Qual arquitetura?",
         options: [
             "Apenas chatbot com respostas fixas",
+            "Amazon Lex apenas",
+            "Fine-tuning com histórico de atendimento atendendo aos critérios de avaliação definidos",
             "Bedrock Agent com: Knowledge Base (FAQ/docs) + action groups (API de pedidos, API de devoluções)",
-            "Fine-tuning com histórico de atendimento atendendo aos critérios de avaliação definidos, otimizando custo operacional através de right-sizing e monitoramento de utilização de recursos",
-            "Amazon Lex apenas"
         ],
-        correct: [1],
-        explanation: "Agent combina: KB para perguntas informativas (FAQ, políticas) + action groups para ações transacionais (consultar pedido via API, processar devolução via Lambda). Orquestra automaticamente baseado na intenção.",
+        correct: [3],
+        explanation: "✅ Agent combina: KB para perguntas informativas (FAQ, políticas) + action groups para ações transacionais (consultar pedido via API, processar devolução via Lambda). Orquestra automaticamente baseado na intenção.",
         topic: "agents",
         domain: "foundation-models"
     },
@@ -450,10 +450,10 @@ const foundationModelsQuestions2 = [
             "Tamanho não importa",
             "Chunks pequenos: mais precisos na busca mas menos contexto. Chunks grandes: mais contexto mas podem trazer informação irrelevante",
             "Sempre usar chunks grandes",
-            "Sempre usar chunks de 1 palavra no contexto operacional da organização, aplicando técnicas de observabilidade e rastreamento distribuído para troubleshooting eficiente"
+            "Sempre usar chunks de 1 palavra no contexto operacional da organização"
         ],
         correct: [1],
-        explanation: "Trade-off: chunks pequenos (100-200 tokens) = busca precisa, pouco contexto. Chunks grandes (1000+ tokens) = mais contexto, busca menos precisa. Ideal: 300-500 tokens com overlap entre chunks.",
+        explanation: "✅ Trade-off: chunks pequenos (100-200 tokens) = busca precisa, pouco contexto. Chunks grandes (1000+ tokens) = mais contexto, busca menos precisa. Ideal: 300-500 tokens com overlap entre chunks.",
         topic: "rag",
         domain: "foundation-models"
     },
@@ -461,13 +461,13 @@ const foundationModelsQuestions2 = [
         id: 'fm_033',
         question: "O que é 'overlap' entre chunks e por que é importante?",
         options: [
-            "Duplicação desnecessária de dados para assegurar resultados consistentes e confiáveis, com validação automática de qualidade e rollback em caso de degradação de performance",
             "Sobreposição de texto entre chunks adjacentes para preservar contexto nas bordas e evitar perda de informação",
+            "Duplicação desnecessária de dados para assegurar resultados consistentes e confiáveis",
             "Erro de processamento",
             "Compressão de dados"
         ],
-        correct: [1],
-        explanation: "Overlap (ex: 10-20% do chunk): garante que informação nas bordas não seja cortada. Se uma frase importante está entre dois chunks, o overlap garante que pelo menos um chunk a contenha completa.",
+        correct: [0],
+        explanation: "✅ Overlap (ex: 10-20% do chunk): garante que informação nas bordas não seja cortada. Se uma frase importante está entre dois chunks, o overlap garante que pelo menos um chunk a contenha completa.",
         topic: "rag",
         domain: "foundation-models"
     },
@@ -476,12 +476,12 @@ const foundationModelsQuestions2 = [
         question: "Uma empresa quer usar IA generativa para gerar relatórios financeiros a partir de dados estruturados (tabelas). Qual abordagem?",
         options: [
             "Apenas RAG com documentos",
+            "Fine-tuning com relatórios antigos apenas para este tipo de cenário e workload específico",
             "Converter dados em texto descritivo no prompt + instruções de formato + few-shot examples de relatórios",
-            "Fine-tuning com relatórios antigos apenas para este tipo de cenário e workload específico, atendendo aos padrões internacionais de privacidade de dados e proteção de informações sensíveis",
             "Usar Amazon QuickSight"
         ],
-        correct: [1],
-        explanation: "Data-to-text: dados estruturados são formatados como texto/tabela no prompt. Few-shot examples mostram formato desejado do relatório. LLM gera narrativa a partir dos dados. Pode combinar com RAG para contexto adicional.",
+        correct: [2],
+        explanation: "✅ Data-to-text: dados estruturados são formatados como texto/tabela no prompt. Few-shot examples mostram formato desejado do relatório. LLM gera narrativa a partir dos dados. Pode combinar com RAG para contexto adicional.",
         topic: "rag",
         domain: "foundation-models"
     },
@@ -490,12 +490,12 @@ const foundationModelsQuestions2 = [
         question: "Qual é a diferença entre Bedrock Guardrails aplicados no input vs output?",
         options: [
             "Não há diferença",
+            "Guardrails só funcionam no input",
+            "Guardrails só funcionam no output conforme recomendado pela documentação técnica",
             "Input guardrails filtram/bloqueiam prompts do usuário antes de chegar ao modelo. Output guardrails filtram/bloqueiam respostas do modelo antes de chegar ao usuário",
-            "Guardrails só funcionam no output conforme recomendado pela documentação técnica, com documentação completa do processo e rastreabilidade de todas as decisões implementadas",
-            "Guardrails só funcionam no input"
         ],
-        correct: [1],
-        explanation: "Input: bloqueia prompts maliciosos, PII, tópicos proibidos ANTES do modelo processar (economia de tokens). Output: filtra respostas inadequadas, redacta PII, bloqueia conteúdo tóxico ANTES de entregar ao usuário.",
+        correct: [3],
+        explanation: "✅ Input: bloqueia prompts maliciosos, PII, tópicos proibidos ANTES do modelo processar (economia de tokens). Output: filtra respostas inadequadas, redacta PII, bloqueia conteúdo tóxico ANTES de entregar ao usuário.",
         topic: "agents",
         domain: "foundation-models"
     },
@@ -505,11 +505,11 @@ const foundationModelsQuestions2 = [
         options: [
             "SQL LIKE queries",
             "Gerar embeddings de cada produto (título+descrição) → armazenar em vector DB → query do usuário vira embedding → busca nearest neighbors",
-            "Elasticsearch com keywords apenas considerando o contexto descrito na questão, incluindo configuração avançada de parâmetros e monitoramento contínuo do sistema em produção",
+            "Elasticsearch com keywords apenas considerando o contexto descrito na questão",
             "DynamoDB Scan"
         ],
         correct: [1],
-        explanation: "Semantic search pipeline: 1) Embedding model processa cada produto, 2) Vetores armazenados em OpenSearch/pgvector, 3) Query do usuário vira embedding, 4) Busca vetores mais próximos (cosine similarity). Encontra produtos por significado.",
+        explanation: "✅ Semantic search pipeline: 1) Embedding model processa cada produto, 2) Vetores armazenados em OpenSearch/pgvector, 3) Query do usuário vira embedding, 4) Busca vetores mais próximos (cosine similarity). Encontra produtos por significado.",
         topic: "embeddings",
         domain: "foundation-models"
     },
@@ -517,13 +517,13 @@ const foundationModelsQuestions2 = [
         id: 'fm_037',
         question: "O que é 'model customization' no Bedrock e quais opções existem?",
         options: [
-            "Apenas prompt engineering de acordo com as melhores práticas do setor, com integração completa ao ecossistema de serviços gerenciados e pipelines automatizados",
             "Fine-tuning (ajustar com exemplos) e Continued Pre-training (absorver conhecimento de domínio) — ambos criam modelo customizado privado",
+            "Apenas prompt engineering de acordo com as melhores práticas do setor",
             "Apenas RAG",
             "Alterar código do modelo"
         ],
-        correct: [1],
-        explanation: "Bedrock Model Customization: Fine-tuning (exemplos input→output para ajustar comportamento) e Continued Pre-training (grandes volumes de texto para absorver domínio). Resultado: modelo privado na sua conta.",
+        correct: [0],
+        explanation: "✅ Bedrock Model Customization: Fine-tuning (exemplos input→output para ajustar comportamento) e Continued Pre-training (grandes volumes de texto para absorver domínio). Resultado: modelo privado na sua conta.",
         topic: "fine-tuning",
         domain: "foundation-models"
     },
@@ -531,13 +531,13 @@ const foundationModelsQuestions2 = [
         id: 'fm_038',
         question: "Uma empresa quer que o Agent do Bedrock consulte um banco de dados PostgreSQL para responder perguntas sobre inventário. Como configurar?",
         options: [
-            "Conectar Bedrock diretamente ao PostgreSQL dentro do escopo de aplicação apresentado, considerando requisitos de compliance, governança e auditoria para ambientes regulados",
-            "Action group com Lambda function que executa queries no PostgreSQL e retorna resultados ao Agent",
+            "Conectar Bedrock diretamente ao PostgreSQL dentro do escopo de aplicação apresentado",
             "Migrar dados para DynamoDB",
+            "Action group com Lambda function que executa queries no PostgreSQL e retorna resultados ao Agent",
             "Usar Knowledge Base com dump do banco"
         ],
-        correct: [1],
-        explanation: "Agent → Action Group → Lambda → PostgreSQL. Lambda recebe parâmetros do Agent (ex: product_id), executa query, retorna resultado. Agent incorpora na resposta. Separação de responsabilidades.",
+        correct: [2],
+        explanation: "✅ Agent → Action Group → Lambda → PostgreSQL. Lambda recebe parâmetros do Agent (ex: product_id), executa query, retorna resultado. Agent incorpora na resposta. Separação de responsabilidades.",
         topic: "agents",
         domain: "foundation-models"
     },
@@ -545,13 +545,13 @@ const foundationModelsQuestions2 = [
         id: 'fm_039',
         question: "Qual é a vantagem de usar 'metadata filtering' em busca vetorial para RAG?",
         options: [
-            "Não há vantagem segundo as diretrizes oficiais e compliance, garantindo escalabilidade horizontal e vertical conforme demanda do workload específico",
-            "Filtrar chunks por metadados (data, departamento, tipo) ANTES da busca vetorial — reduz espaço de busca e melhora relevância",
+            "Não há vantagem segundo as diretrizes oficiais e compliance",
+            "Reduz qualidade",
             "Aumenta custo",
-            "Reduz qualidade"
+            "Filtrar chunks por metadados (data, departamento, tipo) ANTES da busca vetorial — reduz espaço de busca e melhora relevância",
         ],
-        correct: [1],
-        explanation: "Metadata filtering: 'busque apenas em documentos do departamento financeiro de 2024'. Reduz candidatos antes da busca vetorial. Melhora precisão e performance. Bedrock Knowledge Bases suporta nativamente.",
+        correct: [3],
+        explanation: "✅ Metadata filtering: 'busque apenas em documentos do departamento financeiro de 2024'. Reduz candidatos antes da busca vetorial. Melhora precisão e performance. Bedrock Knowledge Bases suporta nativamente.",
         topic: "rag",
         domain: "foundation-models"
     },
@@ -559,13 +559,13 @@ const foundationModelsQuestions2 = [
         id: 'fm_040',
         question: "Uma empresa quer usar IA para resumir reuniões gravadas. Qual pipeline AWS?",
         options: [
-            "Apenas Amazon Comprehend como abordagem principal neste caso de uso, utilizando as ferramentas nativas do serviço para automação e observabilidade operacional",
+            "Apenas Amazon Comprehend como abordagem principal neste caso de uso",
             "Amazon Transcribe (áudio→texto) → Bedrock foundation model (texto→resumo) com prompt de sumarização",
             "Amazon Polly",
             "Amazon Rekognition"
         ],
         correct: [1],
-        explanation: "Pipeline: Transcribe converte áudio em texto (transcrição). Bedrock LLM recebe transcrição e gera resumo estruturado (pontos-chave, ações, decisões). Pode adicionar RAG com contexto de projetos.",
+        explanation: "✅ Pipeline: Transcribe converte áudio em texto (transcrição). Bedrock LLM recebe transcrição e gera resumo estruturado (pontos-chave, ações, decisões). Pode adicionar RAG com contexto de projetos.",
         topic: "rag",
         domain: "foundation-models"
     },
@@ -573,13 +573,13 @@ const foundationModelsQuestions2 = [
         id: 'fm_041',
         question: "O que é 'instruction tuning' e como se relaciona com fine-tuning?",
         options: [
-            "São a mesma coisa",
             "Instruction tuning é um tipo de fine-tuning onde o modelo aprende a seguir instruções — treinado com pares (instrução, resposta esperada)",
-            "Instruction tuning não usa dados para garantir conformidade com os requisitos, com suporte a múltiplas regiões e redundância para alta disponibilidade e disaster recovery",
+            "São a mesma coisa",
+            "Instruction tuning não usa dados para garantir conformidade com os requisitos",
             "É mais caro que pre-training"
         ],
-        correct: [1],
-        explanation: "Instruction tuning: fine-tuning específico com formato (instrução→resposta). Ensina o modelo a seguir comandos. É o que torna modelos 'chat-ready'. Diferente de fine-tuning genérico que pode ser para qualquer tarefa.",
+        correct: [0],
+        explanation: "✅ Instruction tuning: fine-tuning específico com formato (instrução→resposta). Ensina o modelo a seguir comandos. É o que torna modelos 'chat-ready'. Diferente de fine-tuning genérico que pode ser para qualquer tarefa.",
         topic: "fine-tuning",
         domain: "foundation-models"
     },
@@ -588,12 +588,12 @@ const foundationModelsQuestions2 = [
         question: "Uma empresa quer implementar um sistema de Q&A sobre regulamentações que muda frequentemente. Fine-tuning ou RAG?",
         options: [
             "Fine-tuning (mais preciso)",
+            "Ambos são equivalentes para dados dinâmicos na arquitetura proposta para o ambiente",
             "RAG — dados mudam frequentemente, RAG reflete mudanças imediatamente ao atualizar documentos sem retreinar",
-            "Ambos são equivalentes para dados dinâmicos na arquitetura proposta para o ambiente, seguindo o modelo de responsabilidade compartilhada e as políticas de segurança corporativas",
             "Nenhum dos dois"
         ],
-        correct: [1],
-        explanation: "RAG para dados dinâmicos: atualizar documento no S3 = respostas atualizadas imediatamente. Fine-tuning requer retreinar (caro, demorado) a cada mudança. RAG = conhecimento dinâmico. Fine-tuning = comportamento estático.",
+        correct: [2],
+        explanation: "✅ RAG para dados dinâmicos: atualizar documento no S3 = respostas atualizadas imediatamente. Fine-tuning requer retreinar (caro, demorado) a cada mudança. RAG = conhecimento dinâmico. Fine-tuning = comportamento estático.",
         topic: "rag",
         domain: "foundation-models"
     },
@@ -601,13 +601,13 @@ const foundationModelsQuestions2 = [
         id: 'fm_043',
         question: "Qual é o papel do 'orchestration' em Bedrock Agents?",
         options: [
-            "Gerenciar infraestrutura em cenários empresariais de produção real, implementando controles preventivos e detectivos conforme o framework de segurança organizacional",
-            "O Agent decide automaticamente: qual ferramenta usar, em qual ordem, quando pedir mais informação ao usuário, e quando entregar resposta final",
+            "Gerenciar infraestrutura em cenários empresariais de produção real",
+            "Balancear carga",
             "Agendar tarefas",
-            "Balancear carga"
+            "O Agent decide automaticamente: qual ferramenta usar, em qual ordem, quando pedir mais informação ao usuário, e quando entregar resposta final",
         ],
-        correct: [1],
-        explanation: "Orchestration: o LLM do Agent raciocina sobre a pergunta, decide se precisa de KB, API, ou pode responder direto. Planeja sequência de ações. Executa. Avalia resultado. Itera se necessário. Tudo automático.",
+        correct: [3],
+        explanation: "✅ Orchestration: o LLM do Agent raciocina sobre a pergunta, decide se precisa de KB, API, ou pode responder direto. Planeja sequência de ações. Executa. Avalia resultado. Itera se necessário. Tudo automático.",
         topic: "agents",
         domain: "foundation-models"
     },
@@ -618,10 +618,10 @@ const foundationModelsQuestions2 = [
             "Comparar texto exato",
             "Gerar embedding de cada ticket → calcular similaridade coseno entre pares → tickets com similaridade > threshold são duplicatas",
             "Usar regex",
-            "Contar palavras em comum seguindo o framework de implementação padrão, com capacidade de processamento paralelo e distribuído para atender picos de demanda"
+            "Contar palavras em comum seguindo o framework de implementação padrão"
         ],
         correct: [1],
-        explanation: "Embeddings capturam significado. Tickets com mesmo problema mas palavras diferentes terão embeddings similares. Cosine similarity > 0.9 indica provável duplicata. Mais eficaz que comparação textual.",
+        explanation: "✅ Embeddings capturam significado. Tickets com mesmo problema mas palavras diferentes terão embeddings similares. Cosine similarity > 0.9 indica provável duplicata. Mais eficaz que comparação textual.",
         topic: "embeddings",
         domain: "foundation-models"
     },
@@ -629,13 +629,13 @@ const foundationModelsQuestions2 = [
         id: 'fm_045',
         question: "O que é 'prompt caching' no Bedrock e qual o benefício?",
         options: [
-            "Cachear respostas do modelo como solução adequada ao problema descrito, integrando com os sistemas existentes através de APIs e conectores nativos da plataforma",
             "Reutilizar prefixos de prompt já processados para reduzir latência e custo em requests com contexto compartilhado",
+            "Cachear respostas do modelo como solução adequada ao problema descrito",
             "Armazenar prompts no S3",
             "Cache de embeddings"
         ],
-        correct: [1],
-        explanation: "Prompt caching: se múltiplos requests compartilham mesmo prefixo (system prompt + contexto RAG), o processamento do prefixo é cacheado. Requests subsequentes pagam apenas pelos tokens novos. Reduz custo e latência.",
+        correct: [0],
+        explanation: "✅ Prompt caching: se múltiplos requests compartilham mesmo prefixo (system prompt + contexto RAG), o processamento do prefixo é cacheado. Requests subsequentes pagam apenas pelos tokens novos. Reduz custo e latência.",
         topic: "rag",
         domain: "foundation-models"
     },
@@ -643,13 +643,13 @@ const foundationModelsQuestions2 = [
         id: 'fm_046',
         question: "Uma empresa quer usar IA para gerar descrições de produtos a partir de especificações técnicas. Qual abordagem mais custo-eficiente?",
         options: [
-            "Fine-tuning de modelo grande atendendo aos critérios de avaliação definidos, otimizando custo operacional através de right-sizing e monitoramento de utilização de recursos",
-            "Prompt engineering com few-shot examples (especificação→descrição) usando modelo adequado no Bedrock",
+            "Fine-tuning de modelo grande atendendo aos critérios de avaliação definidos",
             "Treinar modelo do zero",
+            "Prompt engineering com few-shot examples (especificação→descrição) usando modelo adequado no Bedrock",
             "Contratar redatores"
         ],
-        correct: [1],
-        explanation: "Para geração de texto com formato definido, few-shot prompting geralmente é suficiente. Exemplos no prompt mostram o padrão especificação→descrição. Sem custo de fine-tuning. Escalar para fine-tuning apenas se qualidade insuficiente.",
+        correct: [2],
+        explanation: "✅ Para geração de texto com formato definido, few-shot prompting geralmente é suficiente. Exemplos no prompt mostram o padrão especificação→descrição. Sem custo de fine-tuning. Escalar para fine-tuning apenas se qualidade insuficiente.",
         topic: "fine-tuning",
         domain: "foundation-models"
     },
@@ -658,12 +658,12 @@ const foundationModelsQuestions2 = [
         question: "Qual é a diferença entre 'retrieval' e 'generation' em RAG?",
         options: [
             "São a mesma etapa",
-            "Retrieval = buscar chunks relevantes no vector store. Generation = LLM gerar resposta usando os chunks como contexto",
+            "Generation acontece primeiro no contexto operacional da organização",
             "Retrieval é mais importante",
-            "Generation acontece primeiro no contexto operacional da organização, aplicando técnicas de observabilidade e rastreamento distribuído para troubleshooting eficiente"
+            "Retrieval = buscar chunks relevantes no vector store. Generation = LLM gerar resposta usando os chunks como contexto",
         ],
-        correct: [1],
-        explanation: "RAG tem 2 fases distintas: Retrieval (busca — qualidade depende de embeddings e chunking) e Generation (resposta — qualidade depende do LLM e prompt). Problemas em qualquer fase afetam o resultado final.",
+        correct: [3],
+        explanation: "✅ RAG tem 2 fases distintas: Retrieval (busca — qualidade depende de embeddings e chunking) e Generation (resposta — qualidade depende do LLM e prompt). Problemas em qualquer fase afetam o resultado final.",
         topic: "rag",
         domain: "foundation-models"
     },
@@ -671,13 +671,13 @@ const foundationModelsQuestions2 = [
         id: 'fm_048',
         question: "Uma empresa quer que o modelo gere emails de marketing personalizados para diferentes segmentos de clientes. Qual abordagem?",
         options: [
-            "Um email genérico para todos para assegurar resultados consistentes e confiáveis, com validação automática de qualidade e rollback em caso de degradação de performance",
+            "Um email genérico para todos para assegurar resultados consistentes e confiáveis",
             "Prompt com variáveis de personalização (nome, segmento, histórico) + few-shot examples por segmento + temperatura moderada para variação",
             "Fine-tuning por segmento",
             "Usar templates fixos"
         ],
         correct: [1],
-        explanation: "Prompt dinâmico: injeta dados do cliente (variáveis) + exemplos do tom por segmento. Temperatura 0.7 gera variação natural. Escala para milhões de emails personalizados sem fine-tuning por segmento.",
+        explanation: "✅ Prompt dinâmico: injeta dados do cliente (variáveis) + exemplos do tom por segmento. Temperatura 0.7 gera variação natural. Escala para milhões de emails personalizados sem fine-tuning por segmento.",
         topic: "rag",
         domain: "foundation-models"
     },
@@ -685,13 +685,13 @@ const foundationModelsQuestions2 = [
         id: 'fm_049',
         question: "O que é 'guardrail' no contexto de Bedrock e quais tipos existem?",
         options: [
-            "Firewall de rede",
             "Filtros configuráveis que controlam input/output do modelo: content filters, denied topics, word filters, PII redaction, contextual grounding",
+            "Firewall de rede",
             "Limites de custo",
-            "Controle de acesso IAM para este tipo de cenário e workload específico, atendendo aos padrões internacionais de privacidade de dados e proteção de informações sensíveis"
+            "Controle de acesso IAM para este tipo de cenário e workload específico"
         ],
-        correct: [1],
-        explanation: "Bedrock Guardrails: content filters (toxicidade, violência), denied topics (temas proibidos), word filters (palavras bloqueadas), PII redaction (mascarar dados pessoais), contextual grounding (verificar fidelidade ao contexto).",
+        correct: [0],
+        explanation: "✅ Bedrock Guardrails: content filters (toxicidade, violência), denied topics (temas proibidos), word filters (palavras bloqueadas), PII redaction (mascarar dados pessoais), contextual grounding (verificar fidelidade ao contexto).",
         topic: "agents",
         domain: "foundation-models"
     },
@@ -700,12 +700,12 @@ const foundationModelsQuestions2 = [
         question: "Uma empresa quer avaliar se RAG ou fine-tuning é melhor para seu caso. Qual critério principal de decisão?",
         options: [
             "Custo apenas",
-            "Se o problema é de CONHECIMENTO (dados factuais/atualizados) → RAG. Se é de COMPORTAMENTO (estilo/formato/tom) → fine-tuning",
             "Sempre RAG",
-            "Sempre fine-tuning conforme recomendado pela documentação técnica, com documentação completa do processo e rastreabilidade de todas as decisões implementadas"
+            "Se o problema é de CONHECIMENTO (dados factuais/atualizados) → RAG. Se é de COMPORTAMENTO (estilo/formato/tom) → fine-tuning",
+            "Sempre fine-tuning conforme recomendado pela documentação técnica"
         ],
-        correct: [1],
-        explanation: "Regra de ouro: RAG = adicionar/atualizar conhecimento factual. Fine-tuning = mudar como o modelo se comporta (estilo, formato, tom, domínio). Muitas vezes combina-se ambos: fine-tuning para comportamento + RAG para conhecimento.",
+        correct: [2],
+        explanation: "✅ Regra de ouro: RAG = adicionar/atualizar conhecimento factual. Fine-tuning = mudar como o modelo se comporta (estilo, formato, tom, domínio). Muitas vezes combina-se ambos: fine-tuning para comportamento + RAG para conhecimento.",
         topic: "fine-tuning",
         domain: "foundation-models"
     },
@@ -714,12 +714,12 @@ const foundationModelsQuestions2 = [
         question: "O que é 'contextual grounding check' nos Bedrock Guardrails?",
         options: [
             "Verificar gramática",
+            "Verificar custo",
+            "Verificar ortografia considerando o contexto descrito na questão",
             "Verificar se a resposta do modelo é fiel ao contexto fornecido (RAG) — detecta quando o modelo alucina além do contexto",
-            "Verificar ortografia considerando o contexto descrito na questão, incluindo configuração avançada de parâmetros e monitoramento contínuo do sistema em produção",
-            "Verificar custo"
         ],
-        correct: [1],
-        explanation: "Contextual grounding: compara resposta do modelo com o contexto RAG fornecido. Se a resposta contém informação que NÃO está no contexto (alucinação), o guardrail pode bloquear ou alertar. Essencial para RAG confiável.",
+        correct: [3],
+        explanation: "✅ Contextual grounding: compara resposta do modelo com o contexto RAG fornecido. Se a resposta contém informação que NÃO está no contexto (alucinação), o guardrail pode bloquear ou alertar. Essencial para RAG confiável.",
         topic: "agents",
         domain: "foundation-models"
     },
@@ -729,11 +729,11 @@ const foundationModelsQuestions2 = [
         options: [
             "Treinar modelo por idioma",
             "Amazon Comprehend (detecta sentimento nativamente em múltiplos idiomas) ou Bedrock com prompt multilíngue",
-            "Traduzir tudo para inglês primeiro de acordo com as melhores práticas do setor, com integração completa ao ecossistema de serviços gerenciados e pipelines automatizados",
+            "Traduzir tudo para inglês primeiro de acordo com as melhores práticas do setor",
             "Usar regex por idioma"
         ],
         correct: [1],
-        explanation: "Comprehend: sentiment analysis nativo em múltiplos idiomas (sem treinar). Alternativa: Bedrock LLM com prompt 'analise o sentimento deste texto' — modelos modernos são multilíngues. Comprehend é mais simples para este caso.",
+        explanation: "✅ Comprehend: sentiment analysis nativo em múltiplos idiomas (sem treinar). Alternativa: Bedrock LLM com prompt 'analise o sentimento deste texto' — modelos modernos são multilíngues. Comprehend é mais simples para este caso.",
         topic: "embeddings",
         domain: "foundation-models"
     },
@@ -741,13 +741,13 @@ const foundationModelsQuestions2 = [
         id: 'fm_053',
         question: "Qual é o benefício de usar 'multi-modal embeddings' em um sistema de busca de produtos?",
         options: [
-            "Apenas reduz custo",
             "Permite buscar produtos por texto OU imagem — 'encontre produtos parecidos com esta foto' ou 'encontre a imagem que combina com esta descrição'",
+            "Apenas reduz custo",
             "Melhora velocidade apenas",
-            "Não há benefício vs text-only dentro do escopo de aplicação apresentado, considerando requisitos de compliance, governança e auditoria para ambientes regulados"
+            "Não há benefício vs text-only dentro do escopo de aplicação apresentado"
         ],
-        correct: [1],
-        explanation: "Multi-modal embeddings: texto e imagem no mesmo espaço vetorial. Busca cross-modal: foto de sapato → encontra sapatos similares. Descrição 'vestido vermelho' → encontra imagens correspondentes. Amazon Titan Multimodal Embeddings.",
+        correct: [0],
+        explanation: "✅ Multi-modal embeddings: texto e imagem no mesmo espaço vetorial. Busca cross-modal: foto de sapato → encontra sapatos similares. Descrição 'vestido vermelho' → encontra imagens correspondentes. Amazon Titan Multimodal Embeddings.",
         topic: "embeddings",
         domain: "foundation-models"
     },
@@ -756,12 +756,12 @@ const foundationModelsQuestions2 = [
         question: "Uma empresa implementou Bedrock Agent mas ele às vezes chama a ação errada. Como melhorar?",
         options: [
             "Usar modelo maior",
+            "Remover action groups segundo as diretrizes oficiais e compliance",
             "Melhorar descrições das action groups (API descriptions claras) + adicionar exemplos no prompt do Agent + refinar instruções do Agent",
-            "Remover action groups segundo as diretrizes oficiais e compliance, garantindo escalabilidade horizontal e vertical conforme demanda do workload específico",
             "Aumentar temperatura"
         ],
-        correct: [1],
-        explanation: "Agent decide ações baseado nas descrições. Descrições vagas = decisões erradas. Solução: API descriptions detalhadas e claras, exemplos de quando usar cada ação, instruções explícitas no Agent prompt sobre critérios de decisão.",
+        correct: [2],
+        explanation: "✅ Agent decide ações baseado nas descrições. Descrições vagas = decisões erradas. Solução: API descriptions detalhadas e claras, exemplos de quando usar cada ação, instruções explícitas no Agent prompt sobre critérios de decisão.",
         topic: "agents",
         domain: "foundation-models"
     }
@@ -782,7 +782,7 @@ const foundationModelsQuestions3 = [
             "Amazon Rekognition com DetectText, para extrair texto de IMAGENS de cenas naturais"
         ],
         correct: [3],
-        explanation: "Rekognition DetectText extrai texto de imagens de cenas naturais (placas, letreiros, sinalizações). Textract é para documentos digitalizados (formulários, tabelas). Polly converte texto em fala. Comprehend analisa texto já existente.",
+        explanation: "✅ Rekognition DetectText extrai texto de imagens de cenas naturais (placas, letreiros, sinalizações). Textract é para documentos digitalizados (formulários, tabelas). Polly converte texto em fala. Comprehend analisa texto já existente.",
         topic: "agents",
         domain: "foundation-models"
     },
@@ -791,12 +791,12 @@ const foundationModelsQuestions3 = [
         question: "Uma empresa farmacêutica usa Amazon Polly para narrar treinamentos internos. Os textos contêm muitos NOMES TÉCNICOS de medicamentos que o Polly pronuncia INCORRETAMENTE por padrão. A empresa precisa garantir a pronúncia adequada SEM alterar o texto-fonte. Qual recurso atende a esse requisito?",
         options: [
             "Mudar a voz do Polly para uma voz neural diferente",
-            "Migrar para o Amazon Transcribe para realizar a transcrição",
+            "Configurar um Lexicon (léxico de pronúncia)",
             "Aumentar a velocidade de fala (rate) do Polly globalmente",
-            "Configurar um Lexicon (léxico de pronúncia)"
+            "Migrar para o Amazon Transcribe para realizar a transcrição",
         ],
-        correct: [3],
-        explanation: "Polly Lexicon mapeia termos para pronúncias customizadas (formato PLS) sem alterar o texto-fonte. Mudar a voz altera timbre, não pronúncia. Transcribe faz fala→texto (inverso). Velocidade não corrige pronúncia.",
+        correct: [1],
+        explanation: "✅ Polly Lexicon mapeia termos para pronúncias customizadas (formato PLS) sem alterar o texto-fonte. Mudar a voz altera timbre, não pronúncia. Transcribe faz fala→texto (inverso). Velocidade não corrige pronúncia.",
         topic: "agents",
         domain: "foundation-models"
     },
@@ -810,7 +810,7 @@ const foundationModelsQuestions3 = [
             "Amazon Translate, que traduz texto entre idiomas"
         ],
         correct: [0],
-        explanation: "Comprehend Topic Modeling descobre tópicos latentes usando LDA (não supervisionado), sem rótulos prévios. Sentiment Analysis detecta emoção. Custom Classification exige categorias rotuladas. Translate apenas traduz idiomas.",
+        explanation: "✅ Comprehend Topic Modeling descobre tópicos latentes usando LDA (não supervisionado), sem rótulos prévios. Sentiment Analysis detecta emoção. Custom Classification exige categorias rotuladas. Translate apenas traduz idiomas.",
         topic: "agents",
         domain: "foundation-models"
     },
@@ -818,13 +818,13 @@ const foundationModelsQuestions3 = [
         id: 'fm_058',
         question: "Uma empresa processa milhares de contratos digitalizados e precisa extrair CAMPOS ESPECÍFICOS de cada documento usando perguntas em linguagem natural, como 'Qual é a data de assinatura?' e 'Qual é o valor total do contrato?', sem treinar um modelo customizado. Qual recurso atende a esse requisito?",
         options: [
-            "Amazon Textract — Queries, que extrai informações respondendo a perguntas em linguagem natural sobre o documento",
-            "Amazon Comprehend Custom Entity Recognition, treinando um modelo customizado para cada campo na arquitetura proposta",
             "Amazon Rekognition Custom Labels, para identificar logos no documento",
+            "Amazon Comprehend Custom Entity Recognition, treinando um modelo customizado para cada campo na arquitetura proposta",
+            "Amazon Textract — Queries, que extrai informações respondendo a perguntas em linguagem natural sobre o documento",
             "Amazon Translate, para traduzir o contrato antes da análise"
         ],
-        correct: [0],
-        explanation: "Textract Queries extrai campos respondendo a perguntas em linguagem natural sobre documentos, sem treino de modelo customizado. Comprehend Custom Entity exige rotular dataset. Rekognition Custom Labels é para imagens. Translate apenas traduz.",
+        correct: [2],
+        explanation: "✅ Textract Queries extrai campos respondendo a perguntas em linguagem natural sobre documentos, sem treino de modelo customizado. Comprehend Custom Entity exige rotular dataset. Rekognition Custom Labels é para imagens. Translate apenas traduz.",
         topic: "agents",
         domain: "foundation-models"
     },
@@ -833,12 +833,12 @@ const foundationModelsQuestions3 = [
         question: "Uma empresa de tecnologia traduz documentação técnica do inglês para o português usando Amazon Translate e precisa garantir que TERMOS ESPECÍFICOS do produto (nomes de funcionalidades, jargões internos) sejam traduzidos de forma CONSISTENTE em todos os documentos. Qual recurso atende a esse requisito?",
         options: [
             "Utilizar o Active Custom Translation (ACT) para adaptar o modelo ao estilo técnico como abordagem principal neste caso de uso",
-            "Implementar Custom Terminology, fornecendo um arquivo de glossário (CSV ou TMX) aplicado durante a inferência",
+            "Criar dicionário usando Amazon Transcribe Custom Vocabulary",
             "Configurar Amazon Comprehend Custom Entities para isolar jargões antes da tradução",
-            "Criar dicionário usando Amazon Transcribe Custom Vocabulary"
+            "Implementar Custom Terminology, fornecendo um arquivo de glossário (CSV ou TMX) aplicado durante a inferência",
         ],
-        correct: [1],
-        explanation: "Amazon Translate Custom Terminology aplica um glossário (CSV/TMX) durante a tradução para garantir consistência de termos específicos. ACT adapta estilo, não termos exatos. Comprehend e Transcribe são serviços diferentes com propósitos distintos.",
+        correct: [3],
+        explanation: "✅ Amazon Translate Custom Terminology aplica um glossário (CSV/TMX) durante a tradução para garantir consistência de termos específicos. ACT adapta estilo, não termos exatos. Comprehend e Transcribe são serviços diferentes com propósitos distintos.",
         topic: "agents",
         domain: "foundation-models"
     },
@@ -846,13 +846,13 @@ const foundationModelsQuestions3 = [
         id: 'fm_060',
         question: "Uma empresa usa o Amazon Connect como central de atendimento e quer oferecer aos AGENTES, EM TEMPO REAL durante as chamadas, respostas sugeridas e trechos relevantes da base de conhecimento interna. Qual serviço da AWS atende a esse requisito?",
         options: [
-            "Amazon Q in Connect, que sugere respostas e ações em tempo real para agentes de call center",
             "Amazon Q Developer, focado em geração e revisão de código para desenvolvedores em ambientes de produção",
+            "Amazon Q in Connect, que sugere respostas e ações em tempo real para agentes de call center",
             "Amazon Q Business, para consultas a dados corporativos a partir de uma interface web",
             "Amazon Polly, para gerar áudios de mensagens automáticas"
         ],
-        correct: [0],
-        explanation: "Amazon Q in Connect (antigo Amazon Connect Wisdom) sugere respostas e ações em tempo real aos agentes durante chamadas, buscando na base de conhecimento interna. Q Developer é para código. Q Business é consulta web. Polly gera áudio.",
+        correct: [1],
+        explanation: "✅ Amazon Q in Connect (antigo Amazon Connect Wisdom) sugere respostas e ações em tempo real aos agentes durante chamadas, buscando na base de conhecimento interna. Q Developer é para código. Q Business é consulta web. Polly gera áudio.",
         topic: "agents",
         domain: "foundation-models"
     }

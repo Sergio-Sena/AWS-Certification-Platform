@@ -5,13 +5,13 @@ const deploymentQuestions = [
         id: 119,
         question: "Qual deployment strategy é mais adequado para uma função Lambda crítica em produção?",
         options: [
-            "All-at-once deployment",
-            "Rolling deployment", 
             "Canary deployment",
+            "Rolling deployment", 
+            "All-at-once deployment",
             "Blue/green deployment"
         ],
-        correct: [2],
-        explanation: "Canary deployment permite testar com pequeno percentual de tráfego antes do rollout completo.",
+        correct: [0],
+        explanation: "✅ Canary deployment permite testar com pequeno percentual de tráfego antes do rollout completo.",
         topic: "deployment",
         domain: "deployment"
     },
@@ -19,13 +19,13 @@ const deploymentQuestions = [
         id: 120,
         question: "Em CodePipeline, onde configurar aprovação manual antes do deploy em produção?",
         options: [
-            "Source stage, aplicando técnicas de observabilidade e rastreamento distribuído para troubleshooting eficiente",
+            "Source stage",
             "Build stage",
+            "Approval action entre stages",
             "Deploy stage",
-            "Approval action entre stages"
         ],
-        correct: [3],
-        explanation: "Approval actions são inseridas entre stages para gates manuais.",
+        correct: [2],
+        explanation: "✅ Approval actions são inseridas entre stages para gates manuais.",
         topic: "deployment",
         domain: "deployment"
     },
@@ -33,13 +33,13 @@ const deploymentQuestions = [
         id: 121,
         question: "Em CodeBuild, onde definir os comandos de build?",
         options: [
-            "buildspec.yml",
+            "requirements.txt",
             "Dockerfile",
             "package.json",
-            "requirements.txt"
+            "buildspec.yml",
         ],
-        correct: [0],
-        explanation: "buildspec.yml define as fases e comandos do processo de build no CodeBuild.",
+        correct: [3],
+        explanation: "✅ buildspec.yml define as fases e comandos do processo de build no CodeBuild.",
         topic: "deployment",
         domain: "deployment"
     },
@@ -48,12 +48,12 @@ const deploymentQuestions = [
         question: "Para deploy de Lambda com zero downtime, qual estratégia CodeDeploy usar?",
         options: [
             "AllAtOnce",
-            "Linear10PercentEvery1Minute",
             "Canary10Percent5Minutes",
+            "Linear10PercentEvery1Minute",
             "AllAtOnceBlueGreen"
         ],
-        correct: [2],
-        explanation: "Canary deployment testa com pequeno percentual antes do rollout completo.",
+        correct: [1],
+        explanation: "✅ Canary deployment testa com pequeno percentual antes do rollout completo.",
         topic: "deployment",
         domain: "deployment"
     },
@@ -61,13 +61,13 @@ const deploymentQuestions = [
         id: 123,
         question: "Para implementar saga pattern em serverless, qual serviço usar?",
         options: [
-            "Lambda apenas, com validação automática de qualidade e rollback em caso de degradação de performance",
             "Step Functions",
+            "Lambda apenas",
             "SQS",
             "EventBridge"
         ],
-        correct: [1],
-        explanation: "Step Functions é ideal para implementar saga pattern com compensating actions.",
+        correct: [0],
+        explanation: "✅ Step Functions é ideal para implementar saga pattern com compensating actions.",
         topic: "deployment",
         domain: "deployment"
     },
@@ -76,12 +76,12 @@ const deploymentQuestions = [
         question: "Em CodePipeline, como fazer rollback automático em caso de falha?",
         options: [
             "Manual rollback apenas",
+            "Lambda function para rollback",
             "CloudWatch Alarms com CodeDeploy",
-            "Lambda function para rollback, atendendo aos padrões internacionais de privacidade de dados e proteção de informações sensíveis",
             "Git revert automático"
         ],
-        correct: [1],
-        explanation: "CloudWatch Alarms podem triggerar rollback automático no CodeDeploy.",
+        correct: [2],
+        explanation: "✅ CloudWatch Alarms podem triggerar rollback automático no CodeDeploy.",
         topic: "deployment",
         domain: "deployment"
     },
@@ -90,12 +90,12 @@ const deploymentQuestions = [
         question: "Para implementar blue/green deployment em Lambda, qual recurso usar?",
         options: [
             "Lambda Versions",
-            "Lambda Aliases",
+            "Multiple functions",
             "Environment variables",
-            "Multiple functions"
+            "Lambda Aliases",
         ],
-        correct: [1],
-        explanation: "Lambda Aliases permitem traffic shifting entre versões para blue/green deployment.",
+        correct: [3],
+        explanation: "✅ Lambda Aliases permitem traffic shifting entre versões para blue/green deployment.",
         topic: "deployment",
         domain: "deployment"
     },
@@ -103,13 +103,13 @@ const deploymentQuestions = [
         id: 126,
         question: "Em CodeBuild, como usar Docker images customizadas?",
         options: [
-            "Não é possível, com documentação completa do processo e rastreabilidade de todas as decisões implementadas",
+            "Não é possível",
             "ECR ou Docker Hub",
             "S3 apenas",
             "Lambda Layers"
         ],
         correct: [1],
-        explanation: "CodeBuild pode usar images customizadas do ECR ou Docker Hub.",
+        explanation: "✅ CodeBuild pode usar images customizadas do ECR ou Docker Hub.",
         topic: "deployment",
         domain: "deployment"
     },
@@ -117,13 +117,13 @@ const deploymentQuestions = [
         id: 127,
         question: "Qual é a melhor prática para error handling em Step Functions?",
         options: [
-            "Try/catch em cada estado",
             "Retry e Catch configurations",
+            "Try/catch em cada estado",
             "Lambda error handling apenas",
             "Manual error checking"
         ],
-        correct: [1],
-        explanation: "Step Functions oferece Retry e Catch configurations nativas para error handling.",
+        correct: [0],
+        explanation: "✅ Step Functions oferece Retry e Catch configurations nativas para error handling.",
         topic: "deployment",
         domain: "deployment"
     },
@@ -133,11 +133,11 @@ const deploymentQuestions = [
         options: [
             "Query parameters",
             "Headers",
+            "Todas as anteriores",
             "Path-based versioning",
-            "Todas as anteriores"
         ],
-        correct: [3],
-        explanation: "API Gateway suporta versionamento via query, headers e path.",
+        correct: [2],
+        explanation: "✅ API Gateway suporta versionamento via query, headers e path.",
         topic: "deployment",
         domain: "deployment"
     },
@@ -145,13 +145,13 @@ const deploymentQuestions = [
         id: 129,
         question: "Em CloudFormation, como fazer deploy condicional de recursos?",
         options: [
-            "Conditions section",
-            "Parameters apenas, incluindo configuração avançada de parâmetros e monitoramento contínuo do sistema em produção",
+            "Não é possível",
+            "Parameters apenas",
             "Mappings apenas",
-            "Não é possível"
+            "Conditions section",
         ],
-        correct: [0],
-        explanation: "Conditions section permite deploy condicional baseado em parâmetros.",
+        correct: [3],
+        explanation: "✅ Conditions section permite deploy condicional baseado em parâmetros.",
         topic: "deployment",
         domain: "deployment"
     },
@@ -161,11 +161,11 @@ const deploymentQuestions = [
         options: [
             "AWS CLI apenas",
             "SAM (Serverless Application Model)",
-            "Console AWS apenas, com integração completa ao ecossistema de serviços gerenciados e pipelines automatizados",
+            "Console AWS apenas",
             "Terraform apenas"
         ],
         correct: [1],
-        explanation: "SAM simplifica deploy de aplicações serverless com templates.",
+        explanation: "✅ SAM simplifica deploy de aplicações serverless com templates.",
         topic: "deployment",
         domain: "deployment"
     },
@@ -173,13 +173,13 @@ const deploymentQuestions = [
         id: 131,
         question: "Como implementar feature flags em deployment serverless?",
         options: [
-            "Environment variables",
+            "Todas as anteriores",
             "Parameter Store",
             "Lambda Aliases com weights",
-            "Todas as anteriores"
+            "Environment variables",
         ],
-        correct: [3],
-        explanation: "Múltiplas abordagens podem implementar feature flags em serverless.",
+        correct: [0],
+        explanation: "✅ Múltiplas abordagens podem implementar feature flags em serverless.",
         topic: "deployment",
         domain: "deployment"
     },
@@ -188,12 +188,12 @@ const deploymentQuestions = [
         question: "Para rollback rápido em caso de problemas, qual estratégia usar?",
         options: [
             "Redeploy completo",
+            "Restart da aplicação",
             "Lambda Aliases traffic shifting",
-            "Restart da aplicação, considerando requisitos de compliance, governança e auditoria para ambientes regulados",
             "Manual intervention"
         ],
-        correct: [1],
-        explanation: "Lambda Aliases permitem rollback instantâneo via traffic shifting.",
+        correct: [2],
+        explanation: "✅ Lambda Aliases permitem rollback instantâneo via traffic shifting.",
         topic: "deployment",
         domain: "deployment"
     },
@@ -202,12 +202,12 @@ const deploymentQuestions = [
         question: "Em CodeCommit, como triggerar pipeline automaticamente?",
         options: [
             "Manual trigger apenas",
-            "CloudWatch Events",
+            "Cron jobs",
             "Lambda polling",
-            "Cron jobs"
+            "CloudWatch Events",
         ],
-        correct: [1],
-        explanation: "CloudWatch Events detecta mudanças no CodeCommit e triggera pipelines.",
+        correct: [3],
+        explanation: "✅ CloudWatch Events detecta mudanças no CodeCommit e triggera pipelines.",
         topic: "deployment",
         domain: "deployment"
     },
@@ -215,13 +215,13 @@ const deploymentQuestions = [
         id: 134,
         question: "Para deploy multi-região, qual abordagem usar?",
         options: [
-            "Manual deploy em cada região, garantindo escalabilidade horizontal e vertical conforme demanda do workload específico",
-            "Cross-region replication",
+            "Manual deploy em cada região",
             "Pipeline com múltiplos deploy stages",
+            "Cross-region replication",
             "Single region apenas"
         ],
-        correct: [2],
-        explanation: "Pipeline com múltiplos stages permite deploy coordenado multi-região.",
+        correct: [1],
+        explanation: "✅ Pipeline com múltiplos stages permite deploy coordenado multi-região.",
         topic: "deployment",
         domain: "deployment"
     },
@@ -229,13 +229,13 @@ const deploymentQuestions = [
         id: 135,
         question: "Como validar deployment antes de produção?",
         options: [
-            "Deploy direto em produção",
             "Smoke tests automatizados",
+            "Deploy direto em produção",
             "Manual testing apenas",
             "Não validar"
         ],
-        correct: [1],
-        explanation: "Smoke tests automatizados validam funcionalidade básica pós-deploy.",
+        correct: [0],
+        explanation: "✅ Smoke tests automatizados validam funcionalidade básica pós-deploy.",
         topic: "deployment",
         domain: "deployment"
     },
@@ -244,12 +244,12 @@ const deploymentQuestions = [
         question: "Para gerenciar configurações por ambiente, qual abordagem usar?",
         options: [
             "Hardcode no código",
-            "Parameter Store com hierarquia",
             "Single configuration file",
-            "Environment variables apenas, utilizando as ferramentas nativas do serviço para automação e observabilidade operacional"
+            "Parameter Store com hierarquia",
+            "Environment variables apenas"
         ],
-        correct: [1],
-        explanation: "Parameter Store com hierarquia organiza configurações por ambiente.",
+        correct: [2],
+        explanation: "✅ Parameter Store com hierarquia organiza configurações por ambiente.",
         topic: "deployment",
         domain: "deployment"
     },
@@ -258,12 +258,12 @@ const deploymentQuestions = [
         question: "Em Step Functions, como implementar retry com backoff?",
         options: [
             "Manual retry logic",
+            "SQS retry",
+            "Lambda function retry",
             "Retry configuration com IntervalSeconds",
-            "Lambda function retry, com suporte a múltiplas regiões e redundância para alta disponibilidade e disaster recovery",
-            "SQS retry"
         ],
-        correct: [1],
-        explanation: "Step Functions oferece retry configuration nativa com backoff.",
+        correct: [3],
+        explanation: "✅ Step Functions oferece retry configuration nativa com backoff.",
         topic: "deployment",
         domain: "deployment"
     },
@@ -272,12 +272,12 @@ const deploymentQuestions = [
         question: "Para deploy de container serverless, qual serviço usar?",
         options: [
             "EC2 apenas",
-            "ECS Fargate",
+            "B e C",
             "Lambda Container Images",
-            "B e C"
+            "ECS Fargate",
         ],
-        correct: [3],
-        explanation: "Tanto ECS Fargate quanto Lambda Container Images são serverless.",
+        correct: [1],
+        explanation: "✅ Tanto ECS Fargate quanto Lambda Container Images são serverless.",
         topic: "deployment",
         domain: "deployment"
     },
@@ -285,13 +285,13 @@ const deploymentQuestions = [
         id: 139,
         question: "Como implementar circuit breaker em Step Functions?",
         options: [
-            "Não é possível",
             "Catch states com fallback",
-            "Lambda function apenas, seguindo o modelo de responsabilidade compartilhada e as políticas de segurança corporativas",
+            "Não é possível",
+            "Lambda function apenas",
             "Manual intervention"
         ],
-        correct: [1],
-        explanation: "Catch states permitem implementar circuit breaker com fallback logic.",
+        correct: [0],
+        explanation: "✅ Catch states permitem implementar circuit breaker com fallback logic.",
         topic: "deployment",
         domain: "deployment"
     },
@@ -299,13 +299,13 @@ const deploymentQuestions = [
         id: 140,
         question: "Para deploy de API Gateway, qual é a melhor prática?",
         options: [
-            "Deploy direto em produção, implementando controles preventivos e detectivos conforme o framework de segurança organizacional",
-            "Usar stages (dev, test, prod)",
+            "Deploy direto em produção",
             "Single stage apenas",
+            "Usar stages (dev, test, prod)",
             "Manual deployment"
         ],
-        correct: [1],
-        explanation: "Stages permitem deploy progressivo e isolamento entre ambientes.",
+        correct: [2],
+        explanation: "✅ Stages permitem deploy progressivo e isolamento entre ambientes.",
         topic: "deployment",
         domain: "deployment"
     },
@@ -313,13 +313,13 @@ const deploymentQuestions = [
         id: 141,
         question: "Em CloudFormation, como proteger recursos críticos?",
         options: [
-            "DeletionPolicy: Retain",
-            "Manual backup apenas, com capacidade de processamento paralelo e distribuído para atender picos de demanda",
+            "Separate templates",
+            "Manual backup apenas",
             "No protection needed",
-            "Separate templates"
+            "DeletionPolicy: Retain",
         ],
-        correct: [0],
-        explanation: "DeletionPolicy: Retain protege recursos contra exclusão acidental.",
+        correct: [3],
+        explanation: "✅ DeletionPolicy: Retain protege recursos contra exclusão acidental.",
         topic: "deployment",
         domain: "deployment"
     },
@@ -333,7 +333,7 @@ const deploymentQuestions = [
             "Network traffic apenas"
         ],
         correct: [1],
-        explanation: "Error rate e latency indicam saúde do deployment.",
+        explanation: "✅ Error rate e latency indicam saúde do deployment.",
         topic: "deployment",
         domain: "deployment"
     },
@@ -341,13 +341,13 @@ const deploymentQuestions = [
         id: 143,
         question: "Como implementar canary analysis automatizada?",
         options: [
-            "Manual monitoring",
             "CloudWatch Alarms com CodeDeploy",
+            "Manual monitoring",
             "No analysis needed",
-            "Third-party tools apenas, integrando com os sistemas existentes através de APIs e conectores nativos da plataforma"
+            "Third-party tools apenas"
         ],
-        correct: [1],
-        explanation: "CloudWatch Alarms podem automatizar canary analysis no CodeDeploy.",
+        correct: [0],
+        explanation: "✅ CloudWatch Alarms podem automatizar canary analysis no CodeDeploy.",
         topic: "deployment",
         domain: "deployment"
     },
@@ -355,13 +355,13 @@ const deploymentQuestions = [
         id: 144,
         question: "Para deploy de Lambda Layers, qual consideração importante?",
         options: [
-            "Layers são imutáveis após criação",
-            "Podem ser modificados livremente, otimizando custo operacional através de right-sizing e monitoramento de utilização de recursos",
             "Não afetam versioning",
+            "Podem ser modificados livremente",
+            "Layers são imutáveis após criação",
             "São sempre públicos"
         ],
-        correct: [0],
-        explanation: "Lambda Layers são imutáveis - mudanças requerem nova versão.",
+        correct: [2],
+        explanation: "✅ Lambda Layers são imutáveis - mudanças requerem nova versão.",
         topic: "deployment",
         domain: "deployment"
     },
@@ -370,12 +370,12 @@ const deploymentQuestions = [
         question: "Em CodePipeline, como implementar parallel execution?",
         options: [
             "Não é possível",
+            "Manual coordination",
+            "Separate pipelines apenas",
             "Multiple actions no mesmo stage",
-            "Separate pipelines apenas, aplicando técnicas de observabilidade e rastreamento distribuído para troubleshooting eficiente",
-            "Manual coordination"
         ],
-        correct: [1],
-        explanation: "Multiple actions no mesmo stage executam em paralelo.",
+        correct: [3],
+        explanation: "✅ Multiple actions no mesmo stage executam em paralelo.",
         topic: "deployment",
         domain: "deployment"
     },
@@ -383,13 +383,13 @@ const deploymentQuestions = [
         id: 146,
         question: "Para deploy de aplicação com dependências externas, qual abordagem?",
         options: [
-            "Include tudo no package, com validação automática de qualidade e rollback em caso de degradação de performance",
+            "Include tudo no package",
             "Lambda Layers para dependências",
             "Runtime installation",
             "External downloads"
         ],
         correct: [1],
-        explanation: "Lambda Layers são ideais para gerenciar dependências compartilhadas.",
+        explanation: "✅ Lambda Layers são ideais para gerenciar dependências compartilhadas.",
         topic: "deployment",
         domain: "deployment"
     },
@@ -397,13 +397,13 @@ const deploymentQuestions = [
         id: 147,
         question: "Como implementar deployment gates baseados em métricas?",
         options: [
-            "Manual approval apenas",
             "CloudWatch Alarms como gates",
+            "Manual approval apenas",
             "No gates needed",
-            "Time-based gates apenas, atendendo aos padrões internacionais de privacidade de dados e proteção de informações sensíveis"
+            "Time-based gates apenas"
         ],
-        correct: [1],
-        explanation: "CloudWatch Alarms podem servir como deployment gates automáticos.",
+        correct: [0],
+        explanation: "✅ CloudWatch Alarms podem servir como deployment gates automáticos.",
         topic: "deployment",
         domain: "deployment"
     },
@@ -411,13 +411,13 @@ const deploymentQuestions = [
         id: 148,
         question: "Para versionamento de Lambda functions, qual estratégia usar?",
         options: [
-            "Overwrite sempre, com documentação completa do processo e rastreabilidade de todas as decisões implementadas",
-            "Semantic versioning com $LATEST",
+            "Overwrite sempre",
             "No versioning",
+            "Semantic versioning com $LATEST",
             "Manual numbering"
         ],
-        correct: [1],
-        explanation: "Semantic versioning com $LATEST oferece controle e rastreabilidade.",
+        correct: [2],
+        explanation: "✅ Semantic versioning com $LATEST oferece controle e rastreabilidade.",
         topic: "deployment",
         domain: "deployment"
     },
@@ -425,13 +425,13 @@ const deploymentQuestions = [
         id: 149,
         question: "Em Step Functions, como implementar timeout para estados?",
         options: [
-            "TimeoutSeconds parameter",
-            "Lambda timeout apenas, incluindo configuração avançada de parâmetros e monitoramento contínuo do sistema em produção",
+            "Manual intervention",
+            "Lambda timeout apenas",
             "No timeout available",
-            "Manual intervention"
+            "TimeoutSeconds parameter",
         ],
-        correct: [0],
-        explanation: "TimeoutSeconds parameter define timeout para estados individuais.",
+        correct: [3],
+        explanation: "✅ TimeoutSeconds parameter define timeout para estados individuais.",
         topic: "deployment",
         domain: "deployment"
     },
@@ -441,11 +441,11 @@ const deploymentQuestions = [
         options: [
             "Monolithic deployment",
             "Independent service deployment",
-            "Single pipeline para todos, com integração completa ao ecossistema de serviços gerenciados e pipelines automatizados",
+            "Single pipeline para todos",
             "Manual coordination"
         ],
         correct: [1],
-        explanation: "Microservices devem ter deployment independente para agilidade.",
+        explanation: "✅ Microservices devem ter deployment independente para agilidade.",
         topic: "deployment",
         domain: "deployment"
     },
@@ -453,13 +453,13 @@ const deploymentQuestions = [
         id: 151,
         question: "Como implementar database migration em pipeline?",
         options: [
-            "Manual migration",
             "Pre-deploy hook com migration scripts",
+            "Manual migration",
             "Post-deploy apenas",
-            "No migration needed, considerando requisitos de compliance, governança e auditoria para ambientes regulados"
+            "No migration needed"
         ],
-        correct: [1],
-        explanation: "Pre-deploy hooks executam migrations antes do deploy da aplicação.",
+        correct: [0],
+        explanation: "✅ Pre-deploy hooks executam migrations antes do deploy da aplicação.",
         topic: "deployment",
         domain: "deployment"
     },
@@ -468,12 +468,12 @@ const deploymentQuestions = [
         question: "Para rollback de API Gateway deployment, qual abordagem?",
         options: [
             "Redeploy anterior version",
-            "Stage rollback",
             "Manual reconfiguration",
+            "Stage rollback",
             "No rollback possible"
         ],
-        correct: [1],
-        explanation: "API Gateway permite rollback via stage management.",
+        correct: [2],
+        explanation: "✅ API Gateway permite rollback via stage management.",
         topic: "deployment",
         domain: "deployment"
     },
@@ -482,12 +482,12 @@ const deploymentQuestions = [
         question: "Em CloudFormation, como implementar cross-stack references?",
         options: [
             "Hardcode values",
-            "Export/Import values",
+            "Separate deployments",
             "Manual coordination",
-            "Separate deployments"
+            "Export/Import values",
         ],
-        correct: [1],
-        explanation: "Export/Import values permitem referências entre stacks.",
+        correct: [3],
+        explanation: "✅ Export/Import values permitem referências entre stacks.",
         topic: "deployment",
         domain: "deployment"
     },
@@ -495,13 +495,13 @@ const deploymentQuestions = [
         id: 154,
         question: "Para deploy de aplicação com secrets, qual timing usar?",
         options: [
-            "Deploy secrets com aplicação, garantindo escalabilidade horizontal e vertical conforme demanda do workload específico",
+            "Deploy secrets com aplicação",
             "Deploy secrets antes da aplicação",
             "Deploy secrets depois",
             "No secrets needed"
         ],
         correct: [1],
-        explanation: "Secrets devem estar disponíveis antes do deploy da aplicação.",
+        explanation: "✅ Secrets devem estar disponíveis antes do deploy da aplicação.",
         topic: "deployment",
         domain: "deployment"
     },
@@ -509,13 +509,13 @@ const deploymentQuestions = [
         id: 155,
         question: "Como implementar deployment approval baseado em testes?",
         options: [
-            "Manual approval apenas, utilizando as ferramentas nativas do serviço para automação e observabilidade operacional",
             "Automated test results como gate",
+            "Manual approval apenas",
             "No approval needed",
             "Time-based approval"
         ],
-        correct: [1],
-        explanation: "Resultados de testes automatizados podem servir como approval gate.",
+        correct: [0],
+        explanation: "✅ Resultados de testes automatizados podem servir como approval gate.",
         topic: "deployment",
         domain: "deployment"
     },
@@ -524,12 +524,12 @@ const deploymentQuestions = [
         question: "Para deploy de Lambda com VPC, qual consideração importante?",
         options: [
             "No impact",
+            "Reduced functionality",
             "Increased cold start time",
-            "Reduced functionality, com suporte a múltiplas regiões e redundância para alta disponibilidade e disaster recovery",
             "Higher costs apenas"
         ],
-        correct: [1],
-        explanation: "VPC configuration aumenta cold start time devido à ENI setup.",
+        correct: [2],
+        explanation: "✅ VPC configuration aumenta cold start time devido à ENI setup.",
         topic: "deployment",
         domain: "deployment"
     },
@@ -538,12 +538,12 @@ const deploymentQuestions = [
         question: "Em CodeBuild, como implementar caching para builds mais rápidos?",
         options: [
             "No caching available",
-            "S3 cache ou local cache",
+            "External cache apenas",
             "Manual caching",
-            "External cache apenas, seguindo o modelo de responsabilidade compartilhada e as políticas de segurança corporativas"
+            "S3 cache ou local cache",
         ],
-        correct: [1],
-        explanation: "CodeBuild oferece S3 cache e local cache para otimização.",
+        correct: [3],
+        explanation: "✅ CodeBuild oferece S3 cache e local cache para otimização.",
         topic: "deployment",
         domain: "deployment"
     },
@@ -557,7 +557,7 @@ const deploymentQuestions = [
             "No multi-tenancy support"
         ],
         correct: [1],
-        explanation: "Tenant-specific deployments oferecem isolamento e flexibilidade.",
+        explanation: "✅ Tenant-specific deployments oferecem isolamento e flexibilidade.",
         topic: "deployment",
         domain: "deployment"
     },
@@ -565,13 +565,13 @@ const deploymentQuestions = [
         id: 159,
         question: "Como implementar deployment metrics collection?",
         options: [
-            "Manual logging",
             "CloudWatch custom metrics",
+            "Manual logging",
             "No metrics needed",
-            "Third-party tools apenas, implementando controles preventivos e detectivos conforme o framework de segurança organizacional"
+            "Third-party tools apenas"
         ],
-        correct: [1],
-        explanation: "CloudWatch custom metrics capturam métricas específicas de deployment.",
+        correct: [0],
+        explanation: "✅ CloudWatch custom metrics capturam métricas específicas de deployment.",
         topic: "deployment",
         domain: "deployment"
     },
@@ -579,13 +579,13 @@ const deploymentQuestions = [
         id: 160,
         question: "Para deploy de Step Functions, qual validação fazer?",
         options: [
-            "Syntax validation apenas, com capacidade de processamento paralelo e distribuído para atender picos de demanda",
-            "State machine definition validation",
+            "Syntax validation apenas",
             "No validation needed",
+            "State machine definition validation",
             "Manual testing apenas"
         ],
-        correct: [1],
-        explanation: "State machine definition deve ser validada antes do deploy.",
+        correct: [2],
+        explanation: "✅ State machine definition deve ser validada antes do deploy.",
         topic: "deployment",
         domain: "deployment"
     },
@@ -594,12 +594,12 @@ const deploymentQuestions = [
         question: "Em pipeline CI/CD, onde implementar security scanning?",
         options: [
             "Apenas em produção",
-            "Build stage",
+            "Post-deployment apenas",
             "Deploy stage apenas",
-            "Post-deployment apenas"
+            "Build stage",
         ],
-        correct: [1],
-        explanation: "Security scanning deve ocorrer no build stage para detectar vulnerabilidades cedo.",
+        correct: [3],
+        explanation: "✅ Security scanning deve ocorrer no build stage para detectar vulnerabilidades cedo.",
         topic: "deployment",
         domain: "deployment"
     },
@@ -613,7 +613,7 @@ const deploymentQuestions = [
             "Manual coordination"
         ],
         correct: [1],
-        explanation: "API availability deve ser verificada antes e durante deployment.",
+        explanation: "✅ API availability deve ser verificada antes e durante deployment.",
         topic: "deployment",
         domain: "deployment"
     },
@@ -621,13 +621,13 @@ const deploymentQuestions = [
         id: 163,
         question: "Como implementar deployment notifications?",
         options: [
-            "Manual notifications",
             "SNS integration com pipeline",
+            "Manual notifications",
             "Email apenas",
-            "No notifications needed, integrando com os sistemas existentes através de APIs e conectores nativos da plataforma"
+            "No notifications needed"
         ],
-        correct: [1],
-        explanation: "SNS integration permite notifications automáticas de deployment status.",
+        correct: [0],
+        explanation: "✅ SNS integration permite notifications automáticas de deployment status.",
         topic: "deployment",
         domain: "deployment"
     },
@@ -636,12 +636,12 @@ const deploymentQuestions = [
         question: "Para deploy de aplicação com compliance requirements, qual abordagem?",
         options: [
             "Standard deployment",
+            "Manual compliance check",
             "Compliance-aware pipeline com approvals",
-            "Manual compliance check, otimizando custo operacional através de right-sizing e monitoramento de utilização de recursos",
             "No compliance needed"
         ],
-        correct: [1],
-        explanation: "Pipeline deve incluir compliance checks e approvals obrigatórios.",
+        correct: [2],
+        explanation: "✅ Pipeline deve incluir compliance checks e approvals obrigatórios.",
         topic: "deployment",
         domain: "deployment"
     },
@@ -650,12 +650,12 @@ const deploymentQuestions = [
         question: "Em deployment automation, como tratar configuration drift?",
         options: [
             "Ignore drift",
+            "No drift possible",
+            "Manual correction",
             "Infrastructure as Code com drift detection",
-            "Manual correction, aplicando técnicas de observabilidade e rastreamento distribuído para troubleshooting eficiente",
-            "No drift possible"
         ],
-        correct: [1],
-        explanation: "IaC com drift detection identifica e corrige configurações divergentes.",
+        correct: [3],
+        explanation: "✅ IaC com drift detection identifica e corrige configurações divergentes.",
         topic: "deployment",
         domain: "deployment"
     },
@@ -663,13 +663,13 @@ const deploymentQuestions = [
         id: 166,
         question: "Para deploy de aplicação com database, qual ordem seguir?",
         options: [
-            "App primeiro, depois DB, com validação automática de qualidade e rollback em caso de degradação de performance",
+            "App primeiro, depois DB",
             "DB migration primeiro, depois app",
             "Simultaneous deployment",
             "Manual coordination"
         ],
         correct: [1],
-        explanation: "Database migrations devem preceder application deployment para compatibilidade.",
+        explanation: "✅ Database migrations devem preceder application deployment para compatibilidade.",
         topic: "deployment",
         domain: "deployment"
     }
