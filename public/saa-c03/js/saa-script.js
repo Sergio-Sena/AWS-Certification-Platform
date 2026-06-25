@@ -318,7 +318,6 @@ function calculateResults() {
 
 function showResults(results) {
     const resultsContent = document.getElementById('results-content');
-    
     const statusText = results.passed ? '✅ APROVADO!' : '❌ REPROVADO';
     
     resultsContent.innerHTML = `
@@ -331,11 +330,93 @@ function showResults(results) {
                 <p style="color: #0c5460; margin: 0;">${results.motivationalMessage}</p>
             </div>
         </div>
-        
         <div style="margin-top: 2rem; text-align: center;">
             <button class="btn-primary" onclick="startNewExam()">Novo Simulado</button>
         </div>
+        <div id="detailed-review" style="margin-top:2rem;"></div>
     `;
+    renderDetailedReview();
+}
+
+// === REVISÃO DETALHADA PÓS-SIMULADO ===
+function renderDetailedReview() {
+    const container = document.getElementById('detailed-review');
+    if (!examState.questions.length) return;
+
+    const wrongQuestions = [];
+    const correctQuestions = [];
+
+    examState.questions.forEach((q, idx) => {
+        const userAnswer = examState.answers[q.id];
+        let isCorrect = false;
+        if (q.correct.length > 1) {
+            isCorrect = Array.isArray(userAnswer) && q.correct.length === userAnswer.length &&
+                q.correct.every(a => userAnswer.includes(a));
+        } else {
+            isCorrect = userAnswer === q.correct[0];
+        }
+        const item = { question: q, userAnswer, index: idx + 1, isCorrect };
+        if (isCorrect) correctQuestions.push(item); else wrongQuestions.push(item);
+    });
+
+    let html = `
+        <div style="background:white;border-radius:12px;padding:2rem;box-shadow:0 2px 10px rgba(0,0,0,0.08);">
+            <h4>📋 Revisão Detalhada — ${examState.questions.length} questões</h4>
+            <p style="margin-bottom:1rem;color:#666;">✅ ${correctQuestions.length} corretas | ❌ ${wrongQuestions.length} erradas</p>
+            <div style="display:flex;gap:0.5rem;margin-bottom:1.5rem;flex-wrap:wrap;">
+                <button class="btn-secondary" onclick="toggleReviewFilter('wrong')" style="font-size:0.85rem;padding:0.5rem 1rem;">❌ Erradas (${wrongQuestions.length})</button>
+                <button class="btn-secondary" onclick="toggleReviewFilter('correct')" style="font-size:0.85rem;padding:0.5rem 1rem;">✅ Corretas (${correctQuestions.length})</button>
+                <button class="btn-secondary" onclick="toggleReviewFilter('all')" style="font-size:0.85rem;padding:0.5rem 1rem;">📋 Todas</button>
+            </div>
+        </div>
+    `;
+
+    html += '<div id="review-wrong">' + (wrongQuestions.length === 0 ? '<p style="text-align:center;padding:2rem;color:#2563eb;">🎉 Nenhuma errada!</p>' : wrongQuestions.map(renderReviewItem).join('')) + '</div>';
+    html += '<div id="review-correct" style="display:none;">' + correctQuestions.map(renderReviewItem).join('') + '</div>';
+    html += '<div id="review-all" style="display:none;">' + examState.questions.map((q, idx) => {
+        const ua = examState.answers[q.id];
+        let ic = q.correct.length > 1 ? (Array.isArray(ua) && q.correct.every(a => ua.includes(a))) : ua === q.correct[0];
+        return renderReviewItem({ question: q, userAnswer: ua, index: idx + 1, isCorrect: ic });
+    }).join('') + '</div>';
+
+    container.innerHTML = html;
+}
+
+function renderReviewItem(item) {
+    const q = item.question;
+    const correctIdx = q.correct[0];
+    const userIdx = item.userAnswer;
+    return `
+        <div style="background:${item.isCorrect?'#f0fff4':'#fff5f5'};border-left:4px solid ${item.isCorrect?'#2563eb':'#e53e3e'};border-radius:8px;padding:1.5rem;margin:1rem 0;">
+            <div style="display:flex;justify-content:space-between;margin-bottom:0.5rem;">
+                <strong>${item.isCorrect?'✅':'❌'} Questão ${item.index}</strong>
+                <span style="color:#666;font-size:0.85rem;">${q.domain || q.topic}</span>
+            </div>
+            <p style="margin:0.5rem 0;font-weight:500;">${q.question}</p>
+            <div style="margin:1rem 0;">
+                ${q.options.map((opt, i) => {
+                    let bg = 'transparent', border = '#ddd', icon = '';
+                    if (i === correctIdx) { bg = '#e6ffed'; border = '#2563eb'; icon = '✅'; }
+                    else if (i === userIdx && !item.isCorrect) { bg = '#ffe6e6'; border = '#e53e3e'; icon = '❌'; }
+                    return `<div style="background:${bg};border:1px solid ${border};border-radius:6px;padding:0.5rem 1rem;margin:0.3rem 0;font-size:0.9rem;">${icon} ${String.fromCharCode(65+i)}. ${opt}</div>`;
+                }).join('')}
+            </div>
+            <div style="background:#f7fafc;border-radius:6px;padding:1rem;font-size:0.9rem;">
+                <strong>💡 Explicação:</strong><br>${(q.explanation||'').replace(/\\n/g,'<br>').replace(/\n/g,'<br>')}
+            </div>
+        </div>
+    `;
+}
+
+function toggleReviewFilter(filter) {
+    const w = document.getElementById('review-wrong');
+    const c = document.getElementById('review-correct');
+    const a = document.getElementById('review-all');
+    if (!w) return;
+    w.style.display = filter === 'wrong' ? 'block' : 'none';
+    c.style.display = filter === 'correct' ? 'block' : 'none';
+    a.style.display = filter === 'all' ? 'block' : 'none';
+    if (filter === 'all') { w.style.display = 'none'; c.style.display = 'none'; }
 }
 
 function startNewExam() {
