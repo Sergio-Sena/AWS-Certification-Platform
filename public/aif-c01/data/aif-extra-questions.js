@@ -14,7 +14,7 @@ const aifExtraQuestions = [
             "Treinar o modelo várias vezes com os mesmos dados de treino e teste"
         ],
         correct: [1],
-        explanation: "K-fold cross-validation divide o dataset em K partes, treina em K-1 e valida em 1, rotacionando. Cada amostra é usada para treino e validação em diferentes rodadas, dando estimativa robusta com poucos dados.",
+        explanation: "✅ K-fold cross-validation divide o dataset em K partes, treina em K-1 e valida em 1, rotacionando. Cada amostra é usada para treino e validação em diferentes rodadas, dando estimativa robusta com poucos dados.",
         topic: "algorithms",
         domain: "ai-ml"
     },
@@ -28,7 +28,7 @@ const aifExtraQuestions = [
             "Reiniciar manualmente o endpoint a cada hora"
         ],
         correct: [0],
-        explanation: "Auto Scaling em endpoints SageMaker adiciona ou remove instâncias automaticamente com base em métricas (invocações/min, CPU), mantendo latência aceitável e reduzindo custo em horários de baixa demanda.",
+        explanation: "✅ Auto Scaling em endpoints SageMaker adiciona ou remove instâncias automaticamente com base em métricas (invocações/min, CPU), mantendo latência aceitável e reduzindo custo em horários de baixa demanda.",
         topic: "inference-types",
         domain: "ai-ml"
     },
@@ -42,7 +42,7 @@ const aifExtraQuestions = [
             "WaveNet"
         ],
         correct: [0],
-        explanation: "GANs são compostas por Gerador (cria dados sintéticos) e Discriminador (julga se é real ou falso). A competição produz dados cada vez mais realistas. Técnica clássica para data augmentation e geração de dados sintéticos.",
+        explanation: "✅ GANs são compostas por Gerador (cria dados sintéticos) e Discriminador (julga se é real ou falso). A competição produz dados cada vez mais realistas. Técnica clássica para data augmentation e geração de dados sintéticos.",
         topic: "neural-networks",
         domain: "ai-ml"
     },
@@ -56,7 +56,7 @@ const aifExtraQuestions = [
             "Aprendizagem não supervisionada para encontrar grupos de consultas semelhantes"
         ],
         correct: [2],
-        explanation: "Aprendizagem por reforço: o chatbot recebe recompensa (feedback positivo) ou penalidade (negativo) e ajusta comportamento para maximizar recompensas. É o paradigma de autoaperfeiçoamento (RLHF).",
+        explanation: "✅ Aprendizagem por reforço: o chatbot recebe recompensa (feedback positivo) ou penalidade (negativo) e ajusta comportamento para maximizar recompensas. É o paradigma de autoaperfeiçoamento (RLHF).",
         topic: "ml-types",
         domain: "ai-ml"
     },
@@ -70,7 +70,7 @@ const aifExtraQuestions = [
             "Aumente o parâmetro de temperatura"
         ],
         correct: [2],
-        explanation: "Aumentar épocas = mais passagens pelos dados = modelo aprende mais padrões = precisão aumenta (até certo ponto antes de overfitting). Temperatura é parâmetro de inferência, não de treinamento.",
+        explanation: "✅ Aumentar épocas = mais passagens pelos dados = modelo aprende mais padrões = precisão aumenta (até certo ponto antes de overfitting). Temperatura é parâmetro de inferência, não de treinamento.",
         topic: "training-inference",
         domain: "ai-ml"
     },
@@ -85,7 +85,7 @@ const aifExtraQuestions = [
             "Aumente o valor da temperatura"
         ],
         correct: [1],
-        explanation: "Temperatura baixa (próxima de 0) → modelo escolhe tokens mais prováveis → respostas consistentes e determinísticas. Temperatura alta → mais aleatoriedade → respostas diferentes a cada vez.",
+        explanation: "✅ Temperatura baixa (próxima de 0) → modelo escolhe tokens mais prováveis → respostas consistentes e determinísticas. Temperatura alta → mais aleatoriedade → respostas diferentes a cada vez.",
         topic: "inference-params",
         domain: "generative-ai"
     },
@@ -99,7 +99,7 @@ const aifExtraQuestions = [
             "Forneça exemplos de passagens com rótulos positivos ou negativos, seguidos pela nova passagem a classificar"
         ],
         correct: [3],
-        explanation: "Few-shot prompting: dar exemplos rotulados no prompt guia o modelo no formato e tarefa. O modelo aprende o padrão dos exemplos e classifica corretamente a nova passagem.",
+        explanation: "✅ Few-shot prompting: dar exemplos rotulados no prompt guia o modelo no formato e tarefa. O modelo aprende o padrão dos exemplos e classifica corretamente a nova passagem.",
         topic: "prompt-engineering",
         domain: "generative-ai"
     },
@@ -113,7 +113,7 @@ const aifExtraQuestions = [
             "Máquina de vetores de suporte, considerando requisitos de compliance, governança e auditoria para ambientes regulados"
         ],
         correct: [1],
-        explanation: "GPT (LLMs baseados em Transformers) são projetados para geração de texto, incluindo conversão de linguagem natural para SQL (text-to-SQL). ResNet é para imagens, WaveNet para áudio, SVM para classificação tradicional.",
+        explanation: "✅ GPT (LLMs baseados em Transformers) são projetados para geração de texto, incluindo conversão de linguagem natural para SQL (text-to-SQL). ResNet é para imagens, WaveNet para áudio, SVM para classificação tradicional.",
         topic: "llm-applications",
         domain: "generative-ai"
     },
@@ -127,7 +127,7 @@ const aifExtraQuestions = [
             "Janela de contexto"
         ],
         correct: [3],
-        explanation: "Janela de contexto define o máximo de tokens que o modelo pode processar (prompt + resposta). Modelos diferentes têm janelas diferentes (4K, 32K, 128K, 200K tokens). Temperatura controla criatividade, não capacidade.",
+        explanation: "✅ Janela de contexto define o máximo de tokens que o modelo pode processar (prompt + resposta). Modelos diferentes têm janelas diferentes (4K, 32K, 128K, 200K tokens). Temperatura controla criatividade, não capacidade.",
         topic: "inference-params",
         domain: "generative-ai"
     },
@@ -141,7 +141,7 @@ const aifExtraQuestions = [
             "Use prompt de poucas tentativas (few-shot)"
         ],
         correct: [0],
-        explanation: "Prompt engineering já foi tentado sem sucesso. Próximo passo: fine-tuning de adaptação de domínio para que o modelo aprenda vocabulário científico. Remover termos destrói o valor. Parâmetros não melhoram compreensão.",
+        explanation: "✅ Prompt engineering já foi tentado sem sucesso. Próximo passo: fine-tuning de adaptação de domínio para que o modelo aprenda vocabulário científico. Remover termos destrói o valor. Parâmetros não melhoram compreensão.",
         topic: "fine-tuning",
         domain: "generative-ai"
     },
@@ -156,7 +156,7 @@ const aifExtraQuestions = [
             "Amazon SageMaker Endpoints"
         ],
         correct: [2],
-        explanation: "SageMaker JumpStart oferece catálogo de FMs pré-treinados (Llama, Falcon, Mistral) que podem ser implantados com poucos cliques dentro do VPC do cliente. PartyRock é playground público. Bedrock não roda no seu VPC.",
+        explanation: "✅ SageMaker JumpStart oferece catálogo de FMs pré-treinados (Llama, Falcon, Mistral) que podem ser implantados com poucos cliques dentro do VPC do cliente. PartyRock é playground público. Bedrock não roda no seu VPC.",
         topic: "aws-ai-services",
         domain: "foundation-models"
     },
@@ -170,7 +170,7 @@ const aifExtraQuestions = [
             "Implante o modelo em endpoint do Amazon SageMaker"
         ],
         correct: [1],
-        explanation: "No Bedrock, modelos customizados (fine-tuned) requerem Provisioned Throughput para inferência. Diferente dos modelos base que funcionam on-demand, modelos personalizados precisam de capacidade dedicada reservada.",
+        explanation: "✅ No Bedrock, modelos customizados (fine-tuned) requerem Provisioned Throughput para inferência. Diferente dos modelos base que funcionam on-demand, modelos personalizados precisam de capacidade dedicada reservada.",
         topic: "bedrock",
         domain: "foundation-models"
     },
@@ -184,7 +184,7 @@ const aifExtraQuestions = [
             "Configure o registro de invocação no Amazon EventBridge"
         ],
         correct: [1],
-        explanation: "Bedrock Model Invocation Logging registra inputs (prompts) e outputs (respostas) de cada chamada. CloudTrail registra quem chamou a API, mas NÃO o conteúdo do prompt/resposta.",
+        explanation: "✅ Bedrock Model Invocation Logging registra inputs (prompts) e outputs (respostas) de cada chamada. CloudTrail registra quem chamou a API, mas NÃO o conteúdo do prompt/resposta.",
         topic: "bedrock",
         domain: "foundation-models"
     },
@@ -198,7 +198,7 @@ const aifExtraQuestions = [
             "Adicione um PDF como contexto ao prompt do usuário"
         ],
         correct: [2],
-        explanation: "Bedrock Knowledge Bases (RAG gerenciado): chunking → embeddings → busca vetorial → só chunks relevantes no prompt. Econômico: sem fine-tuning (caro), sem enviar todos os PDFs (excede janela e custa tokens).",
+        explanation: "✅ Bedrock Knowledge Bases (RAG gerenciado): chunking → embeddings → busca vetorial → só chunks relevantes no prompt. Econômico: sem fine-tuning (caro), sem enviar todos os PDFs (excede janela e custa tokens).",
         topic: "rag",
         domain: "foundation-models"
     },
@@ -212,7 +212,7 @@ const aifExtraQuestions = [
             "Avalie modelos usando força de trabalho humana e conjuntos de dados de prompts personalizados"
         ],
         correct: [3],
-        explanation: "Estilo preferido é subjetivo — não pode ser medido com métricas automáticas. Precisa de humanos da empresa avaliando respostas com prompts relevantes ao contexto real. Rankings públicos são genéricos.",
+        explanation: "✅ Estilo preferido é subjetivo — não pode ser medido com métricas automáticas. Precisa de humanos da empresa avaliando respostas com prompts relevantes ao contexto real. Rankings públicos são genéricos.",
         topic: "bedrock",
         domain: "foundation-models"
     },
@@ -227,7 +227,7 @@ const aifExtraQuestions = [
             "Aumentar o parâmetro de temperatura do modelo"
         ],
         correct: [1],
-        explanation: "LIME é técnica de explicabilidade LOCAL e AGNÓSTICA: aproxima o comportamento na vizinhança de uma predição específica com modelo simples, indicando quais atributos pesaram naquela decisão individual.",
+        explanation: "✅ LIME é técnica de explicabilidade LOCAL e AGNÓSTICA: aproxima o comportamento na vizinhança de uma predição específica com modelo simples, indicando quais atributos pesaram naquela decisão individual.",
         topic: "explainability",
         domain: "responsible-ai"
     },
@@ -241,7 +241,7 @@ const aifExtraQuestions = [
             "Construir e treinar modelo de IA generativa do zero usando dados proprietários"
         ],
         correct: [3],
-        explanation: "Quanto mais você constrói/controla, mais responsabilidade de segurança assume. Treinar do zero = responsável por TUDO (dados, modelo, infra, segurança, bias). App de terceiros = menor responsabilidade.",
+        explanation: "✅ Quanto mais você constrói/controla, mais responsabilidade de segurança assume. Treinar do zero = responsável por TUDO (dados, modelo, infra, segurança, bias). App de terceiros = menor responsabilidade.",
         topic: "responsible-ai-governance",
         domain: "responsible-ai"
     },
@@ -256,7 +256,7 @@ const aifExtraQuestions = [
             "AWS Trusted Advisor"
         ],
         correct: [2],
-        explanation: "CloudTrail registra todas as API calls (quem chamou InvokeModel, quando, se foi permitido ou negado). Mostra tentativas de acesso não autorizado. Audit Manager gera relatórios, não identifica acessos em tempo real.",
+        explanation: "✅ CloudTrail registra todas as API calls (quem chamou InvokeModel, quando, se foi permitido ou negado). Mostra tentativas de acesso não autorizado. Audit Manager gera relatórios, não identifica acessos em tempo real.",
         topic: "iam-security",
         domain: "security-ai"
     },
@@ -270,7 +270,7 @@ const aifExtraQuestions = [
             "AWS Audit Manager"
         ],
         correct: [0],
-        explanation: "AWS Artifact é o portal centralizado para acessar relatórios de conformidade e segurança da AWS e de terceiros. Permite configurar notificações quando novos relatórios ficam disponíveis.",
+        explanation: "✅ AWS Artifact é o portal centralizado para acessar relatórios de conformidade e segurança da AWS e de terceiros. Permite configurar notificações quando novos relatórios ficam disponíveis.",
         topic: "compliance",
         domain: "security-ai"
     },
@@ -284,7 +284,7 @@ const aifExtraQuestions = [
             "Crie função Bedrock com acesso total ao S3. Crie funções IAM por equipe com acesso às pastas"
         ],
         correct: [2],
-        explanation: "Service role separada do Bedrock por equipe, com permissões S3 restritas aos prefixos dos clientes daquela equipe. Princípio do menor privilégio. Confiar no input do usuário (B) é inseguro. Acesso total (D) não isola.",
+        explanation: "✅ Service role separada do Bedrock por equipe, com permissões S3 restritas aos prefixos dos clientes daquela equipe. Princípio do menor privilégio. Confiar no input do usuário (B) é inseguro. Acesso total (D) não isola.",
         topic: "iam-security",
         domain: "security-ai"
     }

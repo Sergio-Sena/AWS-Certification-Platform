@@ -5,13 +5,13 @@ const moreQuestions = [
         id: 81,
         question: "Para uma aplicação Lambda que precisa acessar RDS, qual é a melhor prática de connection pooling?",
         options: [
-            "Criar nova conexão a cada invocação",
             "Usar RDS Proxy",
+            "Criar nova conexão a cada invocação",
             "Connection pooling na Lambda",
             "Usar DynamoDB em vez de RDS"
         ],
-        correct: [1],
-        explanation: "RDS Proxy gerencia connection pooling automaticamente, otimizando conexões para Lambda.",
+        correct: [0],
+        explanation: "✅ RDS Proxy gerencia connection pooling automaticamente, otimizando conexões para Lambda.",
         topic: "lambda"
     },
     {
@@ -21,62 +21,62 @@ const moreQuestions = [
             "Standard",
             "Standard-IA",
             "Glacier Deep Archive",
-            "Intelligent-Tiering, otimizando custo operacional através de right-sizing e monitoramento de utilização de recursos"
+            "Intelligent-Tiering"
         ],
         correct: [2],
-        explanation: "Glacier Deep Archive é a opção mais barata para dados raramente acessados.",
+        explanation: "✅ Glacier Deep Archive é a opção mais barata para dados raramente acessados.",
         topic: "s3"
     },
     {
         id: 83,
         question: "Para processar streams do DynamoDB, qual serviço usar?",
         options: [
-            "Kinesis Data Streams, aplicando técnicas de observabilidade e rastreamento distribuído para troubleshooting eficiente",
-            "Lambda com DynamoDB Streams",
+            "Kinesis Data Streams",
+            "SNS",
             "SQS",
-            "SNS"
+            "Lambda com DynamoDB Streams",
         ],
-        correct: [1],
-        explanation: "Lambda pode processar DynamoDB Streams automaticamente para reagir a mudanças.",
+        correct: [3],
+        explanation: "✅ Lambda pode processar DynamoDB Streams automaticamente para reagir a mudanças.",
         topic: "dynamodb"
     },
     {
         id: 84,
         question: "Em API Gateway, como implementar throttling personalizado?",
         options: [
-            "CloudFront rate limiting, com validação automática de qualidade e rollback em caso de degradação de performance",
+            "CloudFront rate limiting",
             "Usage Plans com diferentes tiers",
             "Lambda authorizer",
             "WAF rules"
         ],
         correct: [1],
-        explanation: "Usage Plans permitem definir diferentes limites de throttling por tier de cliente.",
+        explanation: "✅ Usage Plans permitem definir diferentes limites de throttling por tier de cliente.",
         topic: "apigateway"
     },
     {
         id: 85,
         question: "Para uma aplicação que precisa de processamento em lote, qual serviço usar?",
         options: [
-            "Lambda apenas",
             "AWS Batch",
+            "Lambda apenas",
             "EC2 Spot Instances",
             "ECS Tasks"
         ],
-        correct: [1],
-        explanation: "AWS Batch é otimizado para workloads de processamento em lote.",
+        correct: [0],
+        explanation: "✅ AWS Batch é otimizado para workloads de processamento em lote.",
         topic: "ec2"
     },
     {
         id: 86,
         question: "Em ECS, qual é a diferença entre Task e Service?",
         options: [
-            "Task é temporário, Service mantém estado desejado",
-            "Service é mais barato que Task, atendendo aos padrões internacionais de privacidade de dados e proteção de informações sensíveis",
             "Task apenas para Fargate",
+            "Service é mais barato que Task",
+            "Task é temporário, Service mantém estado desejado",
             "Não há diferença"
         ],
-        correct: [0],
-        explanation: "Service garante que o número desejado de Tasks esteja sempre rodando.",
+        correct: [2],
+        explanation: "✅ Service garante que o número desejado de Tasks esteja sempre rodando.",
         topic: "containers"
     },
     {
@@ -84,38 +84,38 @@ const moreQuestions = [
         question: "Para implementar pub/sub com filtros de mensagem, qual configuração SNS usar?",
         options: [
             "Multiple topics",
+            "SQS filtering",
+            "Lambda function filtering",
             "Message filtering com attributes",
-            "Lambda function filtering, com documentação completa do processo e rastreabilidade de todas as decisões implementadas",
-            "SQS filtering"
         ],
-        correct: [1],
-        explanation: "SNS message filtering permite subscribers receberem apenas mensagens relevantes.",
+        correct: [3],
+        explanation: "✅ SNS message filtering permite subscribers receberem apenas mensagens relevantes.",
         topic: "messaging"
     },
     {
         id: 88,
         question: "Em Cognito, como implementar login customizado com logo da empresa?",
         options: [
-            "Hosted UI customization",
             "Lambda triggers apenas",
+            "Hosted UI customization",
             "API Gateway custom domain",
             "CloudFront customization"
         ],
-        correct: [0],
-        explanation: "Hosted UI permite customizar aparência do login incluindo logo e cores.",
+        correct: [1],
+        explanation: "✅ Hosted UI permite customizar aparência do login incluindo logo e cores.",
         topic: "cognito"
     },
     {
         id: 89,
         question: "Para automação de patches em EC2, qual serviço Systems Manager usar?",
         options: [
-            "Parameter Store",
             "Patch Manager",
+            "Parameter Store",
             "Session Manager",
             "Run Command"
         ],
-        correct: [1],
-        explanation: "Patch Manager automatiza instalação de patches em instâncias EC2.",
+        correct: [0],
+        explanation: "✅ Patch Manager automatiza instalação de patches em instâncias EC2.",
         topic: "systems-manager"
     },
     {
@@ -123,77 +123,77 @@ const moreQuestions = [
         question: "Lambda está retornando erro de memória. Qual é a primeira ação?",
         options: [
             "Aumentar timeout",
-            "Aumentar memória alocada",
             "Usar Provisioned Concurrency",
+            "Aumentar memória alocada",
             "Migrar para EC2"
         ],
-        correct: [1],
-        explanation: "Erro de memória indica necessidade de aumentar memória alocada para a função.",
+        correct: [2],
+        explanation: "✅ Erro de memória indica necessidade de aumentar memória alocada para a função.",
         topic: "lambda"
     },
     {
         id: 91,
         question: "Para backup cross-region de S3, qual recurso usar?",
         options: [
-            "S3 Cross-Region Replication",
-            "Lambda scheduled backup, incluindo configuração avançada de parâmetros e monitoramento contínuo do sistema em produção",
+            "CloudFormation",
+            "Lambda scheduled backup",
             "AWS Backup",
-            "CloudFormation"
+            "S3 Cross-Region Replication",
         ],
-        correct: [0],
-        explanation: "S3 Cross-Region Replication replica objetos automaticamente entre regiões.",
+        correct: [3],
+        explanation: "✅ S3 Cross-Region Replication replica objetos automaticamente entre regiões.",
         topic: "s3"
     },
     {
         id: 92,
         question: "Em DynamoDB, como implementar contadores atômicos?",
         options: [
+            "PutItem com increment",
             "UpdateItem com ADD action",
-            "PutItem com increment, com integração completa ao ecossistema de serviços gerenciados e pipelines automatizados",
             "GetItem + PutItem",
             "Scan + Update"
         ],
-        correct: [0],
-        explanation: "UpdateItem com ADD action incrementa valores atomicamente.",
+        correct: [1],
+        explanation: "✅ UpdateItem com ADD action incrementa valores atomicamente.",
         topic: "dynamodb"
     },
     {
         id: 93,
         question: "Para uma API que precisa de versionamento, qual estratégia usar no API Gateway?",
         options: [
-            "Multiple APIs",
-            "Stage variables",
             "Path-based versioning",
+            "Stage variables",
+            "Multiple APIs",
             "Header-based versioning"
         ],
-        correct: [2],
-        explanation: "Path-based versioning (/v1/, /v2/) é a abordagem mais clara para versionamento.",
+        correct: [0],
+        explanation: "✅ Path-based versioning (/v1/, /v2/) é a abordagem mais clara para versionamento.",
         topic: "apigateway"
     },
     {
         id: 94,
         question: "Para uma aplicação web que precisa servir conteúdo global, qual arquitetura usar?",
         options: [
-            "S3 + CloudFront + Route 53",
-            "EC2 em múltiplas regiões, considerando requisitos de compliance, governança e auditoria para ambientes regulados",
             "Lambda@Edge apenas",
+            "EC2 em múltiplas regiões",
+            "S3 + CloudFront + Route 53",
             "API Gateway global"
         ],
-        correct: [0],
-        explanation: "S3 + CloudFront + Route 53 oferece distribuição global otimizada para conteúdo web.",
+        correct: [2],
+        explanation: "✅ S3 + CloudFront + Route 53 oferece distribuição global otimizada para conteúdo web.",
         topic: "s3"
     },
     {
         id: 95,
         question: "Em EC2, qual é a diferença entre Stop e Terminate?",
         options: [
-            "Stop preserva EBS, Terminate deleta tudo",
+            "Não há diferença",
             "Terminate é mais barato",
-            "Stop apenas para Spot Instances, garantindo escalabilidade horizontal e vertical conforme demanda do workload específico",
-            "Não há diferença"
+            "Stop apenas para Spot Instances",
+            "Stop preserva EBS, Terminate deleta tudo",
         ],
-        correct: [0],
-        explanation: "Stop preserva volumes EBS, Terminate deleta a instância e volumes não-persistentes.",
+        correct: [3],
+        explanation: "✅ Stop preserva volumes EBS, Terminate deleta a instância e volumes não-persistentes.",
         topic: "ec2"
     },
     {
@@ -206,33 +206,33 @@ const moreQuestions = [
             "ConfigMap apenas"
         ],
         correct: [1],
-        explanation: "Secrets Manager com IAM roles permite injeção segura de credenciais em runtime.",
+        explanation: "✅ Secrets Manager com IAM roles permite injeção segura de credenciais em runtime.",
         topic: "containers"
     },
     {
         id: 97,
         question: "Para garantir ordem de processamento em SQS, qual configuração usar?",
         options: [
-            "Standard queue com timestamps",
             "FIFO queue com MessageGroupId",
+            "Standard queue com timestamps",
             "Multiple queues",
             "SNS ordering"
         ],
-        correct: [1],
-        explanation: "FIFO queue com MessageGroupId garante ordem dentro do grupo de mensagens.",
+        correct: [0],
+        explanation: "✅ FIFO queue com MessageGroupId garante ordem dentro do grupo de mensagens.",
         topic: "messaging"
     },
     {
         id: 98,
         question: "Em Cognito User Pools, como implementar password reset customizado?",
         options: [
-            "Lambda triggers (CustomMessage)",
+            "API Gateway custom endpoint",
             "SES templates apenas",
-            "API Gateway custom endpoint, utilizando as ferramentas nativas do serviço para automação e observabilidade operacional",
+            "Lambda triggers (CustomMessage)",
             "SNS notifications"
         ],
-        correct: [0],
-        explanation: "Lambda trigger CustomMessage permite customizar emails de password reset.",
+        correct: [2],
+        explanation: "✅ Lambda trigger CustomMessage permite customizar emails de password reset.",
         topic: "cognito"
     },
     {
@@ -240,12 +240,12 @@ const moreQuestions = [
         question: "Para gerenciar configurações hierárquicas, qual estrutura usar no Parameter Store?",
         options: [
             "Flat structure",
-            "Hierarchical paths (/app/env/config)",
+            "Multiple parameters",
             "Tags apenas",
-            "Multiple parameters, com suporte a múltiplas regiões e redundância para alta disponibilidade e disaster recovery"
+            "Hierarchical paths (/app/env/config)",
         ],
-        correct: [1],
-        explanation: "Paths hierárquicos permitem organização lógica e bulk retrieval de parâmetros.",
+        correct: [3],
+        explanation: "✅ Paths hierárquicos permitem organização lógica e bulk retrieval de parâmetros.",
         topic: "systems-manager"
     },
     {
@@ -254,11 +254,11 @@ const moreQuestions = [
         options: [
             "Timeout muito baixo",
             "Concurrency limit atingido",
-            "Memória insuficiente, seguindo o modelo de responsabilidade compartilhada e as políticas de segurança corporativas",
+            "Memória insuficiente",
             "VPC configuration"
         ],
         correct: [1],
-        explanation: "Throttling ocorre quando o limite de concorrência é atingido.",
+        explanation: "✅ Throttling ocorre quando o limite de concorrência é atingido.",
         topic: "lambda"
     },
 
@@ -268,12 +268,12 @@ const moreQuestions = [
         question: "Para implementar assume role cross-account, qual configuração é necessária?",
         options: [
             "Trust policy no role de destino",
-            "Resource policy apenas, implementando controles preventivos e detectivos conforme o framework de segurança organizacional",
+            "Resource policy apenas",
             "IAM user credentials",
             "API Gateway authorizer"
         ],
         correct: [0],
-        explanation: "Trust policy define quais entidades podem assumir o role.",
+        explanation: "✅ Trust policy define quais entidades podem assumir o role.",
         topic: "security"
     },
     {
@@ -281,12 +281,12 @@ const moreQuestions = [
         question: "Em S3, como implementar encryption in transit?",
         options: [
             "SSE-S3 apenas",
-            "HTTPS/TLS + bucket policy deny HTTP",
             "KMS encryption",
-            "Client-side encryption, com capacidade de processamento paralelo e distribuído para atender picos de demanda"
+            "HTTPS/TLS + bucket policy deny HTTP",
+            "Client-side encryption"
         ],
-        correct: [1],
-        explanation: "HTTPS/TLS com bucket policy negando HTTP garante encryption in transit.",
+        correct: [2],
+        explanation: "✅ HTTPS/TLS com bucket policy negando HTTP garante encryption in transit.",
         topic: "security"
     },
     {
@@ -295,11 +295,11 @@ const moreQuestions = [
         options: [
             "CloudWatch Logs",
             "AWS Config",
+            "X-Ray",
             "CloudTrail",
-            "X-Ray"
         ],
-        correct: [2],
-        explanation: "CloudTrail registra todas as mudanças em IAM policies para auditoria.",
+        correct: [3],
+        explanation: "✅ CloudTrail registra todas as mudanças em IAM policies para auditoria.",
         topic: "security"
     },
     {
@@ -309,23 +309,23 @@ const moreQuestions = [
             "Security groups",
             "Resource policy com aws:SourceIp",
             "Lambda authorizer",
-            "CloudFront restrictions, integrando com os sistemas existentes através de APIs e conectores nativos da plataforma"
+            "CloudFront restrictions"
         ],
         correct: [1],
-        explanation: "Resource policy com condition aws:SourceIp restringe acesso por IP.",
+        explanation: "✅ Resource policy com condition aws:SourceIp restringe acesso por IP.",
         topic: "security"
     },
     {
         id: 105,
         question: "Para criptografia de dados em DynamoDB, qual opção usar?",
         options: [
-            "Client-side encryption apenas",
             "Encryption at rest (KMS)",
+            "Client-side encryption apenas",
             "Application-level encryption",
             "TLS apenas"
         ],
-        correct: [1],
-        explanation: "DynamoDB encryption at rest com KMS criptografa dados automaticamente.",
+        correct: [0],
+        explanation: "✅ DynamoDB encryption at rest com KMS criptografa dados automaticamente.",
         topic: "security"
     },
     {
@@ -334,24 +334,24 @@ const moreQuestions = [
         options: [
             "Environment variables",
             "Secrets Manager SDK call",
-            "Parameter Store GetParameter, otimizando custo operacional através de right-sizing e monitoramento de utilização de recursos",
-            "Todas as anteriores exceto hardcode"
+            "Todas as anteriores exceto hardcode",
+            "Parameter Store GetParameter",
         ],
-        correct: [3],
-        explanation: "Secrets Manager, Parameter Store e env vars são opções válidas, nunca hardcode.",
+        correct: [2],
+        explanation: "✅ Secrets Manager, Parameter Store e env vars são opções válidas, nunca hardcode.",
         topic: "security"
     },
     {
         id: 107,
         question: "Para implementar MFA delete em S3, qual configuração usar?",
         options: [
-            "Bucket policy apenas, aplicando técnicas de observabilidade e rastreamento distribuído para troubleshooting eficiente",
-            "MFA Delete + versioning habilitado",
+            "Bucket policy apenas",
+            "CloudTrail logging",
             "IAM policy condition",
-            "CloudTrail logging"
+            "MFA Delete + versioning habilitado",
         ],
-        correct: [1],
-        explanation: "MFA Delete requer versioning habilitado e só pode ser configurado via CLI/API.",
+        correct: [3],
+        explanation: "✅ MFA Delete requer versioning habilitado e só pode ser configurado via CLI/API.",
         topic: "security"
     },
     {
@@ -360,37 +360,37 @@ const moreQuestions = [
         options: [
             "CloudWatch Events",
             "IAM policy com DateGreaterThan condition",
-            "API Gateway throttling, com validação automática de qualidade e rollback em caso de degradação de performance",
+            "API Gateway throttling",
             "Lambda concurrency = 0"
         ],
         correct: [1],
-        explanation: "IAM conditions com DateGreaterThan/DateLessThan restringem acesso por horário.",
+        explanation: "✅ IAM conditions com DateGreaterThan/DateLessThan restringem acesso por horário.",
         topic: "security"
     },
     {
         id: 109,
         question: "Para implementar least privilege em CodeBuild, qual abordagem usar?",
         options: [
-            "Usar managed policies apenas, atendendo aos padrões internacionais de privacidade de dados e proteção de informações sensíveis",
             "Service role com permissions mínimas necessárias",
+            "Usar managed policies apenas",
             "User credentials",
             "Root access"
         ],
-        correct: [1],
-        explanation: "Service role com apenas as permissions necessárias segue least privilege.",
+        correct: [0],
+        explanation: "✅ Service role com apenas as permissions necessárias segue least privilege.",
         topic: "security"
     },
     {
         id: 110,
         question: "Em Cognito, como implementar custom authentication flow?",
         options: [
-            "Lambda triggers (DefineAuthChallenge)",
-            "API Gateway authorizer, com documentação completa do processo e rastreabilidade de todas as decisões implementadas",
             "IAM policies",
+            "API Gateway authorizer",
+            "Lambda triggers (DefineAuthChallenge)",
             "SRP protocol apenas"
         ],
-        correct: [0],
-        explanation: "Lambda triggers permitem implementar fluxos de autenticação customizados.",
+        correct: [2],
+        explanation: "✅ Lambda triggers permitem implementar fluxos de autenticação customizados.",
         topic: "security"
     },
     {
@@ -398,64 +398,64 @@ const moreQuestions = [
         question: "Para detectar credenciais expostas em código, qual serviço usar?",
         options: [
             "CodeGuru",
+            "Inspector",
+            "GuardDuty",
             "Amazon Macie",
-            "GuardDuty, incluindo configuração avançada de parâmetros e monitoramento contínuo do sistema em produção",
-            "Inspector"
         ],
-        correct: [1],
-        explanation: "Amazon Macie detecta dados sensíveis incluindo credenciais em código e dados.",
+        correct: [3],
+        explanation: "✅ Amazon Macie detecta dados sensíveis incluindo credenciais em código e dados.",
         topic: "security"
     },
     {
         id: 112,
         question: "Como implementar session timeout em Cognito User Pools?",
         options: [
-            "Access token TTL configuration",
             "Lambda triggers",
-            "API Gateway timeout, com integração completa ao ecossistema de serviços gerenciados e pipelines automatizados",
+            "Access token TTL configuration",
+            "API Gateway timeout",
             "CloudWatch Events"
         ],
-        correct: [0],
-        explanation: "Access token TTL define quanto tempo a sessão permanece válida.",
+        correct: [1],
+        explanation: "✅ Access token TTL define quanto tempo a sessão permanece válida.",
         topic: "security"
     },
     {
         id: 113,
         question: "Para criptografia de logs do CloudWatch, qual configuração usar?",
         options: [
-            "S3 encryption",
             "KMS key association",
+            "S3 encryption",
             "Client-side encryption",
             "TLS apenas"
         ],
-        correct: [1],
-        explanation: "CloudWatch Logs pode ser criptografado associando uma KMS key.",
+        correct: [0],
+        explanation: "✅ CloudWatch Logs pode ser criptografado associando uma KMS key.",
         topic: "security"
     },
     {
         id: 114,
         question: "Em API Gateway, como implementar rate limiting por usuário?",
         options: [
-            "Usage Plans com API Keys, considerando requisitos de compliance, governança e auditoria para ambientes regulados",
-            "Lambda authorizer com DynamoDB",
+            "Usage Plans com API Keys",
             "CloudFront rate limiting",
+            "Lambda authorizer com DynamoDB",
             "WAF rate rules"
         ],
-        correct: [1],
-        explanation: "Lambda authorizer com DynamoDB permite rate limiting granular por usuário.",
+        correct: [2],
+        explanation: "✅ Lambda authorizer com DynamoDB permite rate limiting granular por usuário.",
         topic: "security"
     },
     {
         id: 115,
         question: "Para implementar data classification em S3, qual serviço usar?",
         options: [
-            "CloudTrail, garantindo escalabilidade horizontal e vertical conforme demanda do workload específico",
-            "Amazon Macie",
+            "CloudTrail",
+            "Config",
             "GuardDuty",
-            "Config"
+            "Amazon Macie",
         ],
-        correct: [1],
-        explanation: "Amazon Macie classifica e protege dados sensíveis automaticamente em S3.",
+        correct: [3],
+        explanation: "✅ Amazon Macie classifica e protege dados sensíveis automaticamente em S3.",
         topic: "security"
     },
     {
@@ -465,23 +465,23 @@ const moreQuestions = [
             "IAM users",
             "Cognito Identity Pools",
             "API Keys",
-            "Hardcoded credentials, utilizando as ferramentas nativas do serviço para automação e observabilidade operacional"
+            "Hardcoded credentials"
         ],
         correct: [1],
-        explanation: "Cognito Identity Pools fornece temporary AWS credentials para apps mobile.",
+        explanation: "✅ Cognito Identity Pools fornece temporary AWS credentials para apps mobile.",
         topic: "security"
     },
     {
         id: 117,
         question: "Para implementar network segmentation, qual recurso AWS usar?",
         options: [
-            "Security Groups apenas",
             "VPC + Subnets + NACLs",
+            "Security Groups apenas",
             "IAM policies",
             "CloudFront"
         ],
-        correct: [1],
-        explanation: "VPC com subnets e NACLs fornece network segmentation completa.",
+        correct: [0],
+        explanation: "✅ VPC com subnets e NACLs fornece network segmentation completa.",
         topic: "security"
     },
     {
@@ -489,38 +489,38 @@ const moreQuestions = [
         question: "Em Lambda, como implementar secrets rotation sem downtime?",
         options: [
             "Manual update",
+            "Environment variables update",
             "Secrets Manager automatic rotation",
-            "Environment variables update, com suporte a múltiplas regiões e redundância para alta disponibilidade e disaster recovery",
             "Code deployment"
         ],
-        correct: [1],
-        explanation: "Secrets Manager rotation automática não requer downtime da aplicação.",
+        correct: [2],
+        explanation: "✅ Secrets Manager rotation automática não requer downtime da aplicação.",
         topic: "security"
     },
     {
         id: 119,
         question: "Para compliance GDPR, como implementar data deletion em DynamoDB?",
         options: [
-            "TTL (Time To Live)",
+            "Table recreation",
             "Manual deletion",
             "Backup and restore",
-            "Table recreation"
+            "TTL (Time To Live)",
         ],
-        correct: [0],
-        explanation: "TTL permite deletion automática de dados após período especificado.",
+        correct: [3],
+        explanation: "✅ TTL permite deletion automática de dados após período especificado.",
         topic: "security"
     },
     {
         id: 120,
         question: "Como implementar certificate-based authentication em API Gateway?",
         options: [
-            "Client certificates + mutual TLS",
             "JWT tokens apenas",
+            "Client certificates + mutual TLS",
             "API Keys",
-            "IAM authentication, seguindo o modelo de responsabilidade compartilhada e as políticas de segurança corporativas"
+            "IAM authentication"
         ],
-        correct: [0],
-        explanation: "Client certificates com mutual TLS fornece autenticação baseada em certificado.",
+        correct: [1],
+        explanation: "✅ Client certificates com mutual TLS fornece autenticação baseada em certificado.",
         topic: "security"
     },
 
@@ -529,13 +529,13 @@ const moreQuestions = [
         id: 121,
         question: "Em CodePipeline, como implementar parallel execution de stages?",
         options: [
-            "Multiple pipelines",
             "Parallel actions dentro do stage",
-            "Lambda orchestration, implementando controles preventivos e detectivos conforme o framework de segurança organizacional",
+            "Multiple pipelines",
+            "Lambda orchestration",
             "Step Functions"
         ],
-        correct: [1],
-        explanation: "Actions paralelas dentro do mesmo stage executam simultaneamente.",
+        correct: [0],
+        explanation: "✅ Actions paralelas dentro do mesmo stage executam simultaneamente.",
         topic: "deployment"
     },
     {
@@ -544,11 +544,11 @@ const moreQuestions = [
         options: [
             "Zip file com dependencies",
             "Lambda Layers para dependencies",
+            "Todas as anteriores",
             "Container image",
-            "Todas as anteriores"
         ],
-        correct: [3],
-        explanation: "Zip, Layers e Container images são todas opções válidas para dependencies.",
+        correct: [2],
+        explanation: "✅ Zip, Layers e Container images são todas opções válidas para dependencies.",
         topic: "deployment"
     },
     {
@@ -557,11 +557,11 @@ const moreQuestions = [
         options: [
             "S3 cache",
             "Local cache",
-            "Docker layer cache, com capacidade de processamento paralelo e distribuído para atender picos de demanda",
+            "Docker layer cache",
             "Todas as anteriores"
         ],
         correct: [3],
-        explanation: "CodeBuild suporta S3, local e Docker layer caching para otimizar builds.",
+        explanation: "✅ CodeBuild suporta S3, local e Docker layer caching para otimizar builds.",
         topic: "deployment"
     },
     {
@@ -569,38 +569,38 @@ const moreQuestions = [
         question: "Para implementar feature toggles, qual estratégia usar?",
         options: [
             "Environment variables",
-            "Parameter Store + Lambda",
+            "Todas as anteriores",
             "DynamoDB configuration table",
-            "Todas as anteriores"
+            "Parameter Store + Lambda",
         ],
-        correct: [3],
-        explanation: "Parameter Store, DynamoDB e env vars são opções válidas para feature flags.",
+        correct: [1],
+        explanation: "✅ Parameter Store, DynamoDB e env vars são opções válidas para feature flags.",
         topic: "deployment"
     },
     {
         id: 125,
         question: "Em SAM, como definir diferentes configurações por ambiente?",
         options: [
-            "Multiple templates",
             "Parameters + Conditions",
-            "Environment variables, integrando com os sistemas existentes através de APIs e conectores nativos da plataforma",
+            "Multiple templates",
+            "Environment variables",
             "Separate deployments"
         ],
-        correct: [1],
-        explanation: "Parameters e Conditions permitem configurações dinâmicas por ambiente.",
+        correct: [0],
+        explanation: "✅ Parameters e Conditions permitem configurações dinâmicas por ambiente.",
         topic: "deployment"
     },
     {
         id: 126,
         question: "Para rollback automático em CodeDeploy, qual configuração usar?",
         options: [
-            "Manual rollback apenas, otimizando custo operacional através de right-sizing e monitoramento de utilização de recursos",
-            "CloudWatch Alarms + Auto Rollback",
+            "Manual rollback apenas",
             "Lambda function",
+            "CloudWatch Alarms + Auto Rollback",
             "SNS notifications"
         ],
-        correct: [1],
-        explanation: "CloudWatch Alarms podem triggerar rollback automático baseado em métricas.",
+        correct: [2],
+        explanation: "✅ CloudWatch Alarms podem triggerar rollback automático baseado em métricas.",
         topic: "deployment"
     },
     {
@@ -608,12 +608,12 @@ const moreQuestions = [
         question: "Em CloudFormation, como implementar cross-stack references?",
         options: [
             "Hard-coded values",
-            "Outputs + ImportValue",
+            "Environment variables",
             "Parameters apenas",
-            "Environment variables"
+            "Outputs + ImportValue",
         ],
-        correct: [1],
-        explanation: "Outputs com ImportValue permitem referenciar recursos entre stacks.",
+        correct: [3],
+        explanation: "✅ Outputs com ImportValue permitem referenciar recursos entre stacks.",
         topic: "deployment"
     },
     {
@@ -623,23 +623,23 @@ const moreQuestions = [
             "Manual deployment",
             "CodePipeline com multiple regions",
             "Lambda replication",
-            "S3 cross-region replication, aplicando técnicas de observabilidade e rastreamento distribuído para troubleshooting eficiente"
+            "S3 cross-region replication"
         ],
         correct: [1],
-        explanation: "CodePipeline pode orquestrar deployments em múltiplas regiões.",
+        explanation: "✅ CodePipeline pode orquestrar deployments em múltiplas regiões.",
         topic: "deployment"
     },
     {
         id: 129,
         question: "Em CodeCommit, como implementar branch protection?",
         options: [
-            "IAM policies",
             "Branch permissions + approval rules",
+            "IAM policies",
             "Lambda hooks",
-            "Manual review, com validação automática de qualidade e rollback em caso de degradação de performance"
+            "Manual review"
         ],
-        correct: [1],
-        explanation: "Approval rules protegem branches importantes requerendo review.",
+        correct: [0],
+        explanation: "✅ Approval rules protegem branches importantes requerendo review.",
         topic: "deployment"
     },
     {
@@ -649,23 +649,23 @@ const moreQuestions = [
             "CloudTrail",
             "AWS Config",
             "CloudFormation Drift Detection",
-            "Systems Manager, atendendo aos padrões internacionais de privacidade de dados e proteção de informações sensíveis"
+            "Systems Manager"
         ],
         correct: [2],
-        explanation: "CloudFormation Drift Detection identifica mudanças fora do template.",
+        explanation: "✅ CloudFormation Drift Detection identifica mudanças fora do template.",
         topic: "deployment"
     },
     {
         id: 131,
         question: "Em CodeDeploy, qual é a diferença entre in-place e blue/green deployment?",
         options: [
-            "In-place atualiza instâncias existentes, blue/green cria novas",
+            "Não há diferença",
             "Blue/green é mais barato",
-            "In-place apenas para Lambda, com documentação completa do processo e rastreabilidade de todas as decisões implementadas",
-            "Não há diferença"
+            "In-place apenas para Lambda",
+            "In-place atualiza instâncias existentes, blue/green cria novas",
         ],
-        correct: [0],
-        explanation: "In-place atualiza instâncias atuais, blue/green provisiona novas instâncias.",
+        correct: [3],
+        explanation: "✅ In-place atualiza instâncias atuais, blue/green provisiona novas instâncias.",
         topic: "deployment"
     },
     {
@@ -675,23 +675,23 @@ const moreQuestions = [
             "Multiple functions",
             "Lambda Aliases com traffic shifting",
             "API Gateway stages",
-            "CloudFront distributions, incluindo configuração avançada de parâmetros e monitoramento contínuo do sistema em produção"
+            "CloudFront distributions"
         ],
         correct: [1],
-        explanation: "Lambda Aliases permitem traffic shifting gradual entre versões.",
+        explanation: "✅ Lambda Aliases permitem traffic shifting gradual entre versões.",
         topic: "deployment"
     },
     {
         id: 133,
         question: "Em CodePipeline, como implementar conditional deployments?",
         options: [
-            "Lambda function decisions",
             "CloudFormation conditions",
+            "Lambda function decisions",
             "Manual approval gates",
             "Parameter-based conditions"
         ],
-        correct: [1],
-        explanation: "CloudFormation conditions permitem deployments condicionais baseados em parâmetros.",
+        correct: [0],
+        explanation: "✅ CloudFormation conditions permitem deployments condicionais baseados em parâmetros.",
         topic: "deployment"
     },
     {
@@ -699,12 +699,12 @@ const moreQuestions = [
         question: "Para implementar database migrations em CI/CD, qual abordagem usar?",
         options: [
             "Manual scripts",
-            "CodeBuild + migration scripts",
             "Lambda functions",
-            "RDS automated backups, com integração completa ao ecossistema de serviços gerenciados e pipelines automatizados"
+            "CodeBuild + migration scripts",
+            "RDS automated backups"
         ],
-        correct: [1],
-        explanation: "CodeBuild pode executar migration scripts como parte do pipeline.",
+        correct: [2],
+        explanation: "✅ CodeBuild pode executar migration scripts como parte do pipeline.",
         topic: "deployment"
     },
     {
@@ -717,20 +717,20 @@ const moreQuestions = [
             "Todas as anteriores"
         ],
         correct: [3],
-        explanation: "SAM CLI, Docker e LocalStack são opções para testing local.",
+        explanation: "✅ SAM CLI, Docker e LocalStack são opções para testing local.",
         topic: "deployment"
     },
     {
         id: 136,
         question: "Para implementar approval workflows, qual serviço usar?",
         options: [
-            "CodePipeline approval actions",
             "Step Functions",
+            "CodePipeline approval actions",
             "SNS + Lambda",
-            "Manual processes, considerando requisitos de compliance, governança e auditoria para ambientes regulados"
+            "Manual processes"
         ],
-        correct: [0],
-        explanation: "CodePipeline approval actions fornecem workflows de aprovação integrados.",
+        correct: [1],
+        explanation: "✅ CodePipeline approval actions fornecem workflows de aprovação integrados.",
         topic: "deployment"
     },
     {
@@ -739,11 +739,11 @@ const moreQuestions = [
         options: [
             "Lambda-backed custom resources",
             "SNS-backed resources",
-            "API Gateway integration, garantindo escalabilidade horizontal e vertical conforme demanda do workload específico",
+            "API Gateway integration",
             "Manual provisioning"
         ],
         correct: [0],
-        explanation: "Lambda-backed custom resources permitem lógica personalizada no CloudFormation.",
+        explanation: "✅ Lambda-backed custom resources permitem lógica personalizada no CloudFormation.",
         topic: "deployment"
     },
     {
@@ -751,12 +751,12 @@ const moreQuestions = [
         question: "Para implementar environment promotion, qual estratégia usar?",
         options: [
             "Manual copying",
+            "Separate accounts",
             "Parameterized templates + pipeline stages",
-            "Separate accounts, utilizando as ferramentas nativas do serviço para automação e observabilidade operacional",
             "Git branches"
         ],
-        correct: [1],
-        explanation: "Templates parametrizados com pipeline stages automatizam promotion entre ambientes.",
+        correct: [2],
+        explanation: "✅ Templates parametrizados com pipeline stages automatizam promotion entre ambientes.",
         topic: "deployment"
     },
     {
@@ -764,25 +764,25 @@ const moreQuestions = [
         question: "Em CodeArtifact, como implementar package versioning?",
         options: [
             "Manual versioning",
+            "Random versioning",
+            "Timestamp-based versions",
             "Semantic versioning + CI/CD integration",
-            "Timestamp-based versions, com suporte a múltiplas regiões e redundância para alta disponibilidade e disaster recovery",
-            "Random versioning"
         ],
-        correct: [1],
-        explanation: "Semantic versioning integrado ao CI/CD é a melhor prática para packages.",
+        correct: [3],
+        explanation: "✅ Semantic versioning integrado ao CI/CD é a melhor prática para packages.",
         topic: "deployment"
     },
     {
         id: 140,
         question: "Para implementar disaster recovery, qual estratégia de deployment usar?",
         options: [
-            "Single region deployment, seguindo o modelo de responsabilidade compartilhada e as políticas de segurança corporativas",
+            "Single region deployment",
             "Multi-region active-passive",
             "Manual backup/restore",
             "Local backups apenas"
         ],
         correct: [1],
-        explanation: "Multi-region active-passive fornece disaster recovery com RTO/RPO otimizados.",
+        explanation: "✅ Multi-region active-passive fornece disaster recovery com RTO/RPO otimizados.",
         topic: "deployment"
     },
 
@@ -791,13 +791,13 @@ const moreQuestions = [
         id: 141,
         question: "Lambda está retornando 'Task timed out'. Como investigar?",
         options: [
-            "Aumentar timeout imediatamente, implementando controles preventivos e detectivos conforme o framework de segurança organizacional",
             "Verificar CloudWatch Logs + Duration metrics",
+            "Aumentar timeout imediatamente",
             "Adicionar mais memória",
             "Usar Provisioned Concurrency"
         ],
-        correct: [1],
-        explanation: "CloudWatch Logs e Duration metrics mostram onde a função está travando.",
+        correct: [0],
+        explanation: "✅ CloudWatch Logs e Duration metrics mostram onde a função está travando.",
         topic: "monitoring"
     },
     {
@@ -806,11 +806,11 @@ const moreQuestions = [
         options: [
             "Aumentar RCU/WCU",
             "Implementar exponential backoff",
+            "Todas as anteriores",
             "Usar auto-scaling",
-            "Todas as anteriores"
         ],
-        correct: [3],
-        explanation: "Combinação de aumento de capacidade, backoff e auto-scaling resolve throttling.",
+        correct: [2],
+        explanation: "✅ Combinação de aumento de capacidade, backoff e auto-scaling resolve throttling.",
         topic: "monitoring"
     },
     {
@@ -818,12 +818,12 @@ const moreQuestions = [
         question: "API Gateway retornando 504 Gateway Timeout. Qual é a causa?",
         options: [
             "CloudFront timeout",
+            "Route 53 resolution",
+            "DynamoDB throttling",
             "Lambda function timeout (>29s)",
-            "DynamoDB throttling, com capacidade de processamento paralelo e distribuído para atender picos de demanda",
-            "Route 53 resolution"
         ],
-        correct: [1],
-        explanation: "API Gateway tem timeout de 29s, se Lambda demora mais, retorna 504.",
+        correct: [3],
+        explanation: "✅ API Gateway tem timeout de 29s, se Lambda demora mais, retorna 504.",
         topic: "monitoring"
     },
     {
@@ -836,20 +836,20 @@ const moreQuestions = [
             "Memory Utilization"
         ],
         correct: [1],
-        explanation: "Init Duration mostra especificamente o tempo de inicialização (cold start).",
+        explanation: "✅ Init Duration mostra especificamente o tempo de inicialização (cold start).",
         topic: "monitoring"
     },
     {
         id: 145,
         question: "S3 uploads estão falhando intermitentemente. Como investigar?",
         options: [
-            "CloudTrail logs",
             "S3 access logs + CloudWatch metrics",
+            "CloudTrail logs",
             "VPC Flow Logs",
-            "Route 53 query logs, integrando com os sistemas existentes através de APIs e conectores nativos da plataforma"
+            "Route 53 query logs"
         ],
-        correct: [1],
-        explanation: "S3 access logs e CloudWatch metrics mostram padrões de falha em uploads.",
+        correct: [0],
+        explanation: "✅ S3 access logs e CloudWatch metrics mostram padrões de falha em uploads.",
         topic: "monitoring"
     },
     {
@@ -857,12 +857,12 @@ const moreQuestions = [
         question: "Para identificar gargalos em aplicação distribuída, qual ferramenta usar?",
         options: [
             "CloudWatch Logs",
-            "AWS X-Ray",
             "CloudTrail",
+            "AWS X-Ray",
             "VPC Flow Logs"
         ],
-        correct: [1],
-        explanation: "X-Ray fornece distributed tracing mostrando gargalos entre serviços.",
+        correct: [2],
+        explanation: "✅ X-Ray fornece distributed tracing mostrando gargalos entre serviços.",
         topic: "monitoring"
     },
     {
@@ -870,12 +870,12 @@ const moreQuestions = [
         question: "Lambda está consumindo mais memória que esperado. Como otimizar?",
         options: [
             "Reduzir timeout",
+            "Migrar para EC2",
+            "Usar Provisioned Concurrency",
             "Analisar memory utilization + otimizar código",
-            "Usar Provisioned Concurrency, otimizando custo operacional através de right-sizing e monitoramento de utilização de recursos",
-            "Migrar para EC2"
         ],
-        correct: [1],
-        explanation: "Memory utilization metrics ajudam identificar vazamentos e otimizar uso.",
+        correct: [3],
+        explanation: "✅ Memory utilization metrics ajudam identificar vazamentos e otimizar uso.",
         topic: "monitoring"
     },
     {
@@ -884,50 +884,50 @@ const moreQuestions = [
         options: [
             "Aumentar RCU apenas",
             "Analisar query patterns + criar GSI apropriados",
-            "Usar Scan em vez de Query, aplicando técnicas de observabilidade e rastreamento distribuído para troubleshooting eficiente",
+            "Usar Scan em vez de Query",
             "Aumentar item size"
         ],
         correct: [1],
-        explanation: "GSIs otimizados para query patterns específicos melhoram performance.",
+        explanation: "✅ GSIs otimizados para query patterns específicos melhoram performance.",
         topic: "monitoring"
     },
     {
         id: 149,
         question: "Para monitorar custos em tempo real, qual serviço usar?",
         options: [
-            "Cost Explorer",
             "AWS Budgets + CloudWatch",
+            "Cost Explorer",
             "Billing dashboard",
-            "Cost and Usage Reports, com validação automática de qualidade e rollback em caso de degradação de performance"
+            "Cost and Usage Reports"
         ],
-        correct: [1],
-        explanation: "AWS Budgets com CloudWatch Alarms permite monitoramento de custos em tempo real.",
+        correct: [0],
+        explanation: "✅ AWS Budgets com CloudWatch Alarms permite monitoramento de custos em tempo real.",
         topic: "monitoring"
     },
     {
         id: 150,
         question: "API está retornando 403 Forbidden intermitentemente. Como debuggar?",
         options: [
-            "CloudTrail + IAM policy simulator",
-            "CloudWatch Logs apenas, atendendo aos padrões internacionais de privacidade de dados e proteção de informações sensíveis",
             "X-Ray traces",
+            "CloudWatch Logs apenas",
+            "CloudTrail + IAM policy simulator",
             "VPC Flow Logs"
         ],
-        correct: [0],
-        explanation: "CloudTrail mostra chamadas negadas e IAM simulator testa policies.",
+        correct: [2],
+        explanation: "✅ CloudTrail mostra chamadas negadas e IAM simulator testa policies.",
         topic: "monitoring"
     },
     {
         id: 151,
         question: "Para otimizar custos de Lambda, qual métrica analisar?",
         options: [
-            "Invocations apenas, com documentação completa do processo e rastreabilidade de todas as decisões implementadas",
-            "Duration + Memory utilization",
+            "Invocations apenas",
+            "Throttles",
             "Errors apenas",
-            "Throttles"
+            "Duration + Memory utilization",
         ],
-        correct: [1],
-        explanation: "Otimizar relação duration/memory encontra o sweet spot de custo-performance.",
+        correct: [3],
+        explanation: "✅ Otimizar relação duration/memory encontra o sweet spot de custo-performance.",
         topic: "monitoring"
     },
     {
@@ -937,36 +937,36 @@ const moreQuestions = [
             "Desabilitar logs",
             "Log retention + filtering + structured logging",
             "Usar apenas X-Ray",
-            "Logs locais apenas, incluindo configuração avançada de parâmetros e monitoramento contínuo do sistema em produção"
+            "Logs locais apenas"
         ],
         correct: [1],
-        explanation: "Retention policies, filtering e structured logging otimizam volume e custos.",
+        explanation: "✅ Retention policies, filtering e structured logging otimizam volume e custos.",
         topic: "monitoring"
     },
     {
         id: 153,
         question: "Para debug de network connectivity, qual ferramenta usar?",
         options: [
-            "CloudWatch Logs, com integração completa ao ecossistema de serviços gerenciados e pipelines automatizados",
             "VPC Flow Logs + Reachability Analyzer",
+            "CloudWatch Logs",
             "X-Ray apenas",
             "CloudTrail"
         ],
-        correct: [1],
-        explanation: "VPC Flow Logs e Reachability Analyzer diagnosticam problemas de rede.",
+        correct: [0],
+        explanation: "✅ VPC Flow Logs e Reachability Analyzer diagnosticam problemas de rede.",
         topic: "monitoring"
     },
     {
         id: 154,
         question: "Lambda está sendo throttled. Como identificar a causa?",
         options: [
-            "Verificar concurrent executions vs limits",
+            "Adicionar memória",
             "Aumentar timeout",
-            "Adicionar memória, considerando requisitos de compliance, governança e auditoria para ambientes regulados",
+            "Verificar concurrent executions vs limits",
             "Usar VPC"
         ],
-        correct: [0],
-        explanation: "Throttling ocorre quando concurrent executions excedem os limites configurados.",
+        correct: [2],
+        explanation: "✅ Throttling ocorre quando concurrent executions excedem os limites configurados.",
         topic: "monitoring"
     },
     {
@@ -974,38 +974,38 @@ const moreQuestions = [
         question: "Para monitorar health de aplicação, qual estratégia usar?",
         options: [
             "Logs apenas",
-            "Health checks + custom metrics + alarms",
+            "Error counting apenas",
             "Manual monitoring",
-            "Error counting apenas, garantindo escalabilidade horizontal e vertical conforme demanda do workload específico"
+            "Health checks + custom metrics + alarms",
         ],
-        correct: [1],
-        explanation: "Combinação de health checks, métricas customizadas e alarms fornece monitoramento completo.",
+        correct: [3],
+        explanation: "✅ Combinação de health checks, métricas customizadas e alarms fornece monitoramento completo.",
         topic: "monitoring"
     },
     {
         id: 156,
         question: "S3 está retornando 503 SlowDown. Como resolver?",
         options: [
-            "Aumentar bandwidth, utilizando as ferramentas nativas do serviço para automação e observabilidade operacional",
+            "Aumentar bandwidth",
             "Implementar exponential backoff + request rate distribution",
             "Usar CloudFront",
             "Migrar para EBS"
         ],
         correct: [1],
-        explanation: "Exponential backoff e distribuição de requests resolve 503 SlowDown errors.",
+        explanation: "✅ Exponential backoff e distribuição de requests resolve 503 SlowDown errors.",
         topic: "monitoring"
     },
     {
         id: 157,
         question: "Para debug de performance em API Gateway, qual métrica observar?",
         options: [
-            "Count apenas",
             "Latency + IntegrationLatency + 4XX/5XX errors",
-            "CacheHitCount apenas, com suporte a múltiplas regiões e redundância para alta disponibilidade e disaster recovery",
+            "Count apenas",
+            "CacheHitCount apenas",
             "ThrottleCount apenas"
         ],
-        correct: [1],
-        explanation: "Latency, IntegrationLatency e error rates identificam gargalos de performance.",
+        correct: [0],
+        explanation: "✅ Latency, IntegrationLatency e error rates identificam gargalos de performance.",
         topic: "monitoring"
     },
     {
@@ -1013,25 +1013,25 @@ const moreQuestions = [
         question: "Lambda está retornando 'Unable to import module'. Como resolver?",
         options: [
             "Aumentar timeout",
+            "Adicionar memória",
             "Verificar deployment package + dependencies",
-            "Adicionar memória, seguindo o modelo de responsabilidade compartilhada e as políticas de segurança corporativas",
             "Usar VPC"
         ],
-        correct: [1],
-        explanation: "Import errors indicam problemas no deployment package ou dependencies faltando.",
+        correct: [2],
+        explanation: "✅ Import errors indicam problemas no deployment package ou dependencies faltando.",
         topic: "monitoring"
     },
     {
         id: 159,
         question: "Para otimizar queries DynamoDB, qual ferramenta usar?",
         options: [
-            "CloudWatch Insights, implementando controles preventivos e detectivos conforme o framework de segurança organizacional",
-            "DynamoDB Contributor Insights",
+            "CloudWatch Insights",
+            "CloudTrail",
             "X-Ray",
-            "CloudTrail"
+            "DynamoDB Contributor Insights",
         ],
-        correct: [1],
-        explanation: "Contributor Insights identifica hot keys e padrões de acesso problemáticos.",
+        correct: [3],
+        explanation: "✅ Contributor Insights identifica hot keys e padrões de acesso problemáticos.",
         topic: "monitoring"
     },
     {
@@ -1041,23 +1041,23 @@ const moreQuestions = [
             "Delete stack",
             "Continue rollback + fix underlying issues",
             "Create new stack",
-            "Manual resource cleanup, com capacidade de processamento paralelo e distribuído para atender picos de demanda"
+            "Manual resource cleanup"
         ],
         correct: [1],
-        explanation: "Continue rollback após resolver issues subjacentes permite recuperação do stack.",
+        explanation: "✅ Continue rollback após resolver issues subjacentes permite recuperação do stack.",
         topic: "monitoring"
     },
     {
         id: 161,
         question: "Para debug de intermittent failures, qual estratégia usar?",
         options: [
-            "Logs apenas",
             "Distributed tracing + correlation IDs",
-            "Manual testing, integrando com os sistemas existentes através de APIs e conectores nativos da plataforma",
+            "Logs apenas",
+            "Manual testing",
             "Error counting"
         ],
-        correct: [1],
-        explanation: "Distributed tracing com correlation IDs permite rastrear requests através de serviços.",
+        correct: [0],
+        explanation: "✅ Distributed tracing com correlation IDs permite rastrear requests através de serviços.",
         topic: "monitoring"
     },
     {
@@ -1065,12 +1065,12 @@ const moreQuestions = [
         question: "Lambda está retornando memory errors. Como investigar?",
         options: [
             "Aumentar timeout",
+            "Usar Provisioned Concurrency",
             "Memory utilization metrics + profiling",
-            "Usar Provisioned Concurrency, otimizando custo operacional através de right-sizing e monitoramento de utilização de recursos",
             "Migrar para EC2"
         ],
-        correct: [1],
-        explanation: "Memory utilization metrics e profiling identificam vazamentos e otimizações.",
+        correct: [2],
+        explanation: "✅ Memory utilization metrics e profiling identificam vazamentos e otimizações.",
         topic: "monitoring"
     },
     {
@@ -1078,38 +1078,38 @@ const moreQuestions = [
         question: "Para monitorar SLA compliance, qual abordagem usar?",
         options: [
             "Manual checking",
+            "User feedback",
+            "Error logs apenas",
             "Custom metrics + percentile statistics",
-            "Error logs apenas, aplicando técnicas de observabilidade e rastreamento distribuído para troubleshooting eficiente",
-            "User feedback"
         ],
-        correct: [1],
-        explanation: "Custom metrics com percentile statistics (p95, p99) monitoram SLA compliance.",
+        correct: [3],
+        explanation: "✅ Custom metrics com percentile statistics (p95, p99) monitoram SLA compliance.",
         topic: "monitoring"
     },
     {
         id: 164,
         question: "DynamoDB está retornando ValidationException. Como debuggar?",
         options: [
-            "Aumentar RCU/WCU, com validação automática de qualidade e rollback em caso de degradação de performance",
+            "Aumentar RCU/WCU",
             "Verificar item structure + attribute types",
             "Usar DAX",
             "Criar GSI"
         ],
         correct: [1],
-        explanation: "ValidationException indica problemas na estrutura do item ou tipos de atributos.",
+        explanation: "✅ ValidationException indica problemas na estrutura do item ou tipos de atributos.",
         topic: "monitoring"
     },
     {
         id: 165,
         question: "Para otimizar cold starts, qual estratégia usar?",
         options: [
-            "Aumentar memória apenas, atendendo aos padrões internacionais de privacidade de dados e proteção de informações sensíveis",
             "Provisioned Concurrency + otimização de código",
+            "Aumentar memória apenas",
             "Usar VPC",
             "Aumentar timeout"
         ],
-        correct: [1],
-        explanation: "Provisioned Concurrency elimina cold starts, otimização de código reduz init time.",
+        correct: [0],
+        explanation: "✅ Provisioned Concurrency elimina cold starts, otimização de código reduz init time.",
         topic: "monitoring"
     },
     {
@@ -1117,25 +1117,25 @@ const moreQuestions = [
         question: "API Gateway está retornando 429 Too Many Requests. Como resolver?",
         options: [
             "Aumentar timeout",
-            "Ajustar throttling limits + implement backoff",
             "Usar CloudFront",
-            "Adicionar mais APIs, com documentação completa do processo e rastreabilidade de todas as decisões implementadas"
+            "Ajustar throttling limits + implement backoff",
+            "Adicionar mais APIs"
         ],
-        correct: [1],
-        explanation: "Ajustar throttling limits e implementar backoff resolve 429 errors.",
+        correct: [2],
+        explanation: "✅ Ajustar throttling limits e implementar backoff resolve 429 errors.",
         topic: "monitoring"
     },
     {
         id: 167,
         question: "Para debug de data inconsistency, qual ferramenta usar?",
         options: [
-            "CloudWatch Logs, incluindo configuração avançada de parâmetros e monitoramento contínuo do sistema em produção",
-            "AWS Config + CloudTrail",
+            "CloudWatch Logs",
+            "VPC Flow Logs",
             "X-Ray",
-            "VPC Flow Logs"
+            "AWS Config + CloudTrail",
         ],
-        correct: [1],
-        explanation: "Config e CloudTrail rastreiam mudanças e identificam causas de inconsistência.",
+        correct: [3],
+        explanation: "✅ Config e CloudTrail rastreiam mudanças e identificam causas de inconsistência.",
         topic: "monitoring"
     },
     {
@@ -1145,23 +1145,23 @@ const moreQuestions = [
             "Aumentar timeout",
             "Debug application code + error handling",
             "Adicionar memória",
-            "Usar Provisioned Concurrency, com integração completa ao ecossistema de serviços gerenciados e pipelines automatizados"
+            "Usar Provisioned Concurrency"
         ],
         correct: [1],
-        explanation: "Process exit indica crash na aplicação, requer debug do código e error handling.",
+        explanation: "✅ Process exit indica crash na aplicação, requer debug do código e error handling.",
         topic: "monitoring"
     },
     {
         id: 169,
         question: "Para monitorar database connection pool, qual métrica usar?",
         options: [
-            "Lambda duration, considerando requisitos de compliance, governança e auditoria para ambientes regulados",
             "RDS DatabaseConnections + custom metrics",
+            "Lambda duration",
             "CloudWatch Logs",
             "X-Ray segments"
         ],
-        correct: [1],
-        explanation: "RDS DatabaseConnections e custom metrics monitoram connection pool health.",
+        correct: [0],
+        explanation: "✅ RDS DatabaseConnections e custom metrics monitoram connection pool health.",
         topic: "monitoring"
     },
     {
@@ -1169,25 +1169,25 @@ const moreQuestions = [
         question: "S3 uploads estão lentos. Como otimizar?",
         options: [
             "Usar CloudFront",
+            "Aumentar bandwidth",
             "Multipart upload + Transfer Acceleration",
-            "Aumentar bandwidth, garantindo escalabilidade horizontal e vertical conforme demanda do workload específico",
             "Usar EBS"
         ],
-        correct: [1],
-        explanation: "Multipart upload e Transfer Acceleration otimizam uploads grandes e distantes.",
+        correct: [2],
+        explanation: "✅ Multipart upload e Transfer Acceleration otimizam uploads grandes e distantes.",
         topic: "monitoring"
     },
     {
         id: 171,
         question: "Para debug de authorization failures, qual log verificar?",
         options: [
-            "Application logs, utilizando as ferramentas nativas do serviço para automação e observabilidade operacional",
-            "CloudTrail + API Gateway access logs",
+            "Application logs",
+            "X-Ray traces",
             "VPC Flow Logs",
-            "X-Ray traces"
+            "CloudTrail + API Gateway access logs",
         ],
-        correct: [1],
-        explanation: "CloudTrail e API Gateway access logs mostram detalhes de authorization failures.",
+        correct: [3],
+        explanation: "✅ CloudTrail e API Gateway access logs mostram detalhes de authorization failures.",
         topic: "monitoring"
     },
     {
@@ -1196,24 +1196,24 @@ const moreQuestions = [
         options: [
             "Aumentar timeout",
             "Check for race conditions + state management",
-            "Adicionar memória, com suporte a múltiplas regiões e redundância para alta disponibilidade e disaster recovery",
+            "Adicionar memória",
             "Usar VPC"
         ],
         correct: [1],
-        explanation: "Inconsistent results indicam race conditions ou problemas de state management.",
+        explanation: "✅ Inconsistent results indicam race conditions ou problemas de state management.",
         topic: "monitoring"
     },
     {
         id: 173,
         question: "Para otimizar DynamoDB costs, qual estratégia usar?",
         options: [
-            "Aumentar RCU/WCU, seguindo o modelo de responsabilidade compartilhada e as políticas de segurança corporativas",
             "On-demand vs provisioned analysis + data archiving",
+            "Aumentar RCU/WCU",
             "Usar DAX sempre",
             "Criar mais GSIs"
         ],
-        correct: [1],
-        explanation: "Análise de padrões de uso e archiving de dados antigos otimizam custos.",
+        correct: [0],
+        explanation: "✅ Análise de padrões de uso e archiving de dados antigos otimizam custos.",
         topic: "monitoring"
     },
     {
@@ -1221,12 +1221,12 @@ const moreQuestions = [
         question: "API está retornando stale data. Como debuggar?",
         options: [
             "Aumentar timeout",
-            "Check caching layers + TTL settings",
             "Usar mais memória",
-            "Adicionar mais APIs, implementando controles preventivos e detectivos conforme o framework de segurança organizacional"
+            "Check caching layers + TTL settings",
+            "Adicionar mais APIs"
         ],
-        correct: [1],
-        explanation: "Stale data indica problemas em caching layers ou TTL settings inadequados.",
+        correct: [2],
+        explanation: "✅ Stale data indica problemas em caching layers ou TTL settings inadequados.",
         topic: "monitoring"
     },
     {
@@ -1234,12 +1234,12 @@ const moreQuestions = [
         question: "Para monitorar application security, qual abordagem usar?",
         options: [
             "Logs apenas",
-            "GuardDuty + CloudTrail + custom security metrics",
+            "Error counting",
             "Manual review",
-            "Error counting, com capacidade de processamento paralelo e distribuído para atender picos de demanda"
+            "GuardDuty + CloudTrail + custom security metrics",
         ],
-        correct: [1],
-        explanation: "Combinação de GuardDuty, CloudTrail e métricas customizadas monitora security.",
+        correct: [3],
+        explanation: "✅ Combinação de GuardDuty, CloudTrail e métricas customizadas monitora security.",
         topic: "monitoring"
     },
     {
@@ -1248,24 +1248,24 @@ const moreQuestions = [
         options: [
             "Aumentar timeout",
             "Check Lambda service limits + retry logic",
-            "Adicionar memória, integrando com os sistemas existentes através de APIs e conectores nativos da plataforma",
+            "Adicionar memória",
             "Usar VPC"
         ],
         correct: [1],
-        explanation: "RequestId not found indica problemas de service limits ou necessidade de retry logic.",
+        explanation: "✅ RequestId not found indica problemas de service limits ou necessidade de retry logic.",
         topic: "monitoring"
     },
     {
         id: 177,
         question: "Para debug de high latency, qual métrica priorizar?",
         options: [
-            "Error count",
             "P95/P99 latency + distributed tracing",
-            "Invocation count, otimizando custo operacional através de right-sizing e monitoramento de utilização de recursos",
+            "Error count",
+            "Invocation count",
             "Memory usage"
         ],
-        correct: [1],
-        explanation: "P95/P99 latency e distributed tracing identificam causas de high latency.",
+        correct: [0],
+        explanation: "✅ P95/P99 latency e distributed tracing identificam causas de high latency.",
         topic: "monitoring"
     },
     {
@@ -1273,12 +1273,12 @@ const moreQuestions = [
         question: "DynamoDB scans estão custando muito. Como otimizar?",
         options: [
             "Aumentar RCU",
-            "Replace scans with queries + use indexes",
             "Usar DAX",
-            "Aumentar item size, aplicando técnicas de observabilidade e rastreamento distribuído para troubleshooting eficiente"
+            "Replace scans with queries + use indexes",
+            "Aumentar item size"
         ],
-        correct: [1],
-        explanation: "Substituir scans por queries e usar indexes apropriados reduz custos drasticamente.",
+        correct: [2],
+        explanation: "✅ Substituir scans por queries e usar indexes apropriados reduz custos drasticamente.",
         topic: "monitoring"
     },
     {
@@ -1286,12 +1286,12 @@ const moreQuestions = [
         question: "Para debug de deployment failures, qual log verificar?",
         options: [
             "Application logs",
+            "X-Ray traces",
+            "CloudWatch metrics",
             "CloudFormation events + CodeDeploy logs",
-            "CloudWatch metrics, com validação automática de qualidade e rollback em caso de degradação de performance",
-            "X-Ray traces"
         ],
-        correct: [1],
-        explanation: "CloudFormation events e CodeDeploy logs mostram detalhes de deployment failures.",
+        correct: [3],
+        explanation: "✅ CloudFormation events e CodeDeploy logs mostram detalhes de deployment failures.",
         topic: "monitoring"
     },
     {
@@ -1301,75 +1301,75 @@ const moreQuestions = [
             "Aumentar timeout",
             "Verify function name + region + permissions",
             "Adicionar memória",
-            "Usar Provisioned Concurrency, atendendo aos padrões internacionais de privacidade de dados e proteção de informações sensíveis"
+            "Usar Provisioned Concurrency"
         ],
         correct: [1],
-        explanation: "Function not found indica problemas de naming, region ou permissions.",
+        explanation: "✅ Function not found indica problemas de naming, region ou permissions.",
         topic: "monitoring"
     },
     {
         id: 181,
         question: "Para otimizar API Gateway performance, qual estratégia usar?",
         options: [
-            "Aumentar timeout",
             "Enable caching + optimize backend + use CDN",
+            "Aumentar timeout",
             "Adicionar mais APIs",
-            "Usar apenas HTTP APIs, com documentação completa do processo e rastreabilidade de todas as decisões implementadas"
+            "Usar apenas HTTP APIs"
         ],
-        correct: [1],
-        explanation: "Caching, backend optimization e CDN melhoram performance do API Gateway.",
+        correct: [0],
+        explanation: "✅ Caching, backend optimization e CDN melhoram performance do API Gateway.",
         topic: "monitoring"
     },
     {
         id: 182,
         question: "S3 está retornando 403 Access Denied. Como debuggar?",
         options: [
-            "Aumentar timeout, incluindo configuração avançada de parâmetros e monitoramento contínuo do sistema em produção",
-            "Check bucket policy + IAM permissions + ACLs",
+            "Aumentar timeout",
             "Usar CloudFront",
+            "Check bucket policy + IAM permissions + ACLs",
             "Migrar para EBS"
         ],
-        correct: [1],
-        explanation: "403 errors requerem verificação de bucket policies, IAM permissions e ACLs.",
+        correct: [2],
+        explanation: "✅ 403 errors requerem verificação de bucket policies, IAM permissions e ACLs.",
         topic: "monitoring"
     },
     {
         id: 183,
         question: "Para debug de memory leaks, qual ferramenta usar?",
         options: [
-            "CloudWatch Logs, com integração completa ao ecossistema de serviços gerenciados e pipelines automatizados",
-            "Lambda Insights + memory profiling",
+            "CloudWatch Logs",
+            "CloudTrail",
             "X-Ray",
-            "CloudTrail"
+            "Lambda Insights + memory profiling",
         ],
-        correct: [1],
-        explanation: "Lambda Insights e memory profiling identificam e diagnosticam memory leaks.",
+        correct: [3],
+        explanation: "✅ Lambda Insights e memory profiling identificam e diagnosticam memory leaks.",
         topic: "monitoring"
     },
     {
         id: 184,
         question: "DynamoDB está retornando ItemCollectionSizeLimitExceededException. Como resolver?",
         options: [
-            "Aumentar RCU/WCU, considerando requisitos de compliance, governança e auditoria para ambientes regulados",
+            "Aumentar RCU/WCU",
             "Redesign partition key strategy",
             "Usar DAX",
             "Criar mais GSIs"
         ],
         correct: [1],
-        explanation: "Item collection limit requer redesign da partition key strategy.",
+        explanation: "✅ Item collection limit requer redesign da partition key strategy.",
         topic: "monitoring"
     },
     {
         id: 185,
         question: "Para monitorar cross-service dependencies, qual ferramenta usar?",
         options: [
-            "CloudWatch Logs, garantindo escalabilidade horizontal e vertical conforme demanda do workload específico",
             "AWS X-Ray service map",
+            "CloudWatch Logs",
             "CloudTrail",
             "VPC Flow Logs"
         ],
-        correct: [1],
-        explanation: "X-Ray service map visualiza dependencies e performance entre serviços.",
+        correct: [0],
+        explanation: "✅ X-Ray service map visualiza dependencies e performance entre serviços.",
         topic: "monitoring"
     },
     {
@@ -1377,12 +1377,12 @@ const moreQuestions = [
         question: "Lambda está retornando 'Runtime exited with error'. Como debuggar?",
         options: [
             "Aumentar timeout",
+            "Adicionar memória",
             "Check runtime version + dependencies + error logs",
-            "Adicionar memória, utilizando as ferramentas nativas do serviço para automação e observabilidade operacional",
             "Usar VPC"
         ],
-        correct: [1],
-        explanation: "Runtime errors requerem verificação de versão, dependencies e error logs.",
+        correct: [2],
+        explanation: "✅ Runtime errors requerem verificação de versão, dependencies e error logs.",
         topic: "monitoring"
     },
     {
@@ -1390,12 +1390,12 @@ const moreQuestions = [
         question: "Para otimizar CloudWatch costs, qual estratégia usar?",
         options: [
             "Desabilitar logs",
+            "Manual monitoring",
+            "Usar apenas X-Ray",
             "Log retention policies + metric filters + sampling",
-            "Usar apenas X-Ray, com suporte a múltiplas regiões e redundância para alta disponibilidade e disaster recovery",
-            "Manual monitoring"
         ],
-        correct: [1],
-        explanation: "Retention policies, metric filters e sampling otimizam custos do CloudWatch.",
+        correct: [3],
+        explanation: "✅ Retention policies, metric filters e sampling otimizam custos do CloudWatch.",
         topic: "monitoring"
     },
     {
@@ -1405,23 +1405,23 @@ const moreQuestions = [
             "Aumentar timeout",
             "Check backend health + implement circuit breaker",
             "Usar CloudFront",
-            "Adicionar mais APIs, seguindo o modelo de responsabilidade compartilhada e as políticas de segurança corporativas"
+            "Adicionar mais APIs"
         ],
         correct: [1],
-        explanation: "502 intermitente indica problemas de backend health, circuit breaker ajuda.",
+        explanation: "✅ 502 intermitente indica problemas de backend health, circuit breaker ajuda.",
         topic: "monitoring"
     },
     {
         id: 189,
         question: "Para debug de data corruption, qual abordagem usar?",
         options: [
-            "Logs apenas",
             "Data validation + checksums + audit trails",
-            "Manual inspection, implementando controles preventivos e detectivos conforme o framework de segurança organizacional",
+            "Logs apenas",
+            "Manual inspection",
             "Error counting"
         ],
-        correct: [1],
-        explanation: "Data validation, checksums e audit trails identificam e previnem corruption.",
+        correct: [0],
+        explanation: "✅ Data validation, checksums e audit trails identificam e previnem corruption.",
         topic: "monitoring"
     },
     {
@@ -1429,64 +1429,64 @@ const moreQuestions = [
         question: "Lambda está retornando 'KMSAccessDeniedException'. Como resolver?",
         options: [
             "Aumentar timeout",
-            "Check KMS key permissions + IAM policies",
             "Adicionar memória",
-            "Usar Provisioned Concurrency, com capacidade de processamento paralelo e distribuído para atender picos de demanda"
+            "Check KMS key permissions + IAM policies",
+            "Usar Provisioned Concurrency"
         ],
-        correct: [1],
-        explanation: "KMS access denied requer verificação de key permissions e IAM policies.",
+        correct: [2],
+        explanation: "✅ KMS access denied requer verificação de key permissions e IAM policies.",
         topic: "monitoring"
     },
     {
         id: 191,
         question: "Para monitorar application availability, qual métrica usar?",
         options: [
-            "Error count apenas, integrando com os sistemas existentes através de APIs e conectores nativos da plataforma",
-            "Success rate + uptime + response time percentiles",
+            "Error count apenas",
+            "Memory usage",
             "Invocation count",
-            "Memory usage"
+            "Success rate + uptime + response time percentiles",
         ],
-        correct: [1],
-        explanation: "Success rate, uptime e response time percentiles medem availability completa.",
+        correct: [3],
+        explanation: "✅ Success rate, uptime e response time percentiles medem availability completa.",
         topic: "monitoring"
     },
     {
         id: 192,
         question: "S3 está retornando 500 Internal Server Error. Como investigar?",
         options: [
-            "Aumentar timeout, otimizando custo operacional através de right-sizing e monitoramento de utilização de recursos",
+            "Aumentar timeout",
             "Check S3 service health + implement retry logic",
             "Usar CloudFront",
             "Migrar para EBS"
         ],
         correct: [1],
-        explanation: "500 errors requerem verificação de service health e implementação de retry logic.",
+        explanation: "✅ 500 errors requerem verificação de service health e implementação de retry logic.",
         topic: "monitoring"
     },
     {
         id: 193,
         question: "Para debug de concurrency issues, qual estratégia usar?",
         options: [
-            "Aumentar timeout",
             "Analyze concurrent execution patterns + implement locking",
-            "Adicionar memória, aplicando técnicas de observabilidade e rastreamento distribuído para troubleshooting eficiente",
+            "Aumentar timeout",
+            "Adicionar memória",
             "Usar VPC"
         ],
-        correct: [1],
-        explanation: "Análise de concurrent execution patterns e locking resolvem concurrency issues.",
+        correct: [0],
+        explanation: "✅ Análise de concurrent execution patterns e locking resolvem concurrency issues.",
         topic: "monitoring"
     },
     {
         id: 194,
         question: "DynamoDB está retornando ConditionalCheckFailedException. Como debuggar?",
         options: [
-            "Aumentar RCU/WCU, com validação automática de qualidade e rollback em caso de degradação de performance",
-            "Review conditional expressions + implement retry logic",
+            "Aumentar RCU/WCU",
             "Usar DAX",
+            "Review conditional expressions + implement retry logic",
             "Criar GSI"
         ],
-        correct: [1],
-        explanation: "Conditional check failures requerem review de expressions e retry logic.",
+        correct: [2],
+        explanation: "✅ Conditional check failures requerem review de expressions e retry logic.",
         topic: "monitoring"
     },
     {
@@ -1499,7 +1499,7 @@ const moreQuestions = [
             "Todas as anteriores"
         ],
         correct: [3],
-        explanation: "Evitar heavy initialization, imports e connections no handler reduz cold starts.",
+        explanation: "✅ Evitar heavy initialization, imports e connections no handler reduz cold starts.",
         topic: "monitoring"
     },
     {
@@ -1509,23 +1509,23 @@ const moreQuestions = [
             "Aumentar timeout",
             "Analyze traffic patterns + backend performance + caching",
             "Usar mais APIs",
-            "Adicionar memória, atendendo aos padrões internacionais de privacidade de dados e proteção de informações sensíveis"
+            "Adicionar memória"
         ],
         correct: [1],
-        explanation: "Análise de traffic patterns, backend performance e caching identifica inconsistências.",
+        explanation: "✅ Análise de traffic patterns, backend performance e caching identifica inconsistências.",
         topic: "monitoring"
     },
     {
         id: 197,
         question: "Para debug de resource exhaustion, qual métrica observar?",
         options: [
-            "Error count",
             "CPU + Memory + Connection pool utilization",
-            "Invocation count, com documentação completa do processo e rastreabilidade de todas as decisões implementadas",
+            "Error count",
+            "Invocation count",
             "Duration apenas"
         ],
-        correct: [1],
-        explanation: "CPU, Memory e Connection pool utilization identificam resource exhaustion.",
+        correct: [0],
+        explanation: "✅ CPU, Memory e Connection pool utilization identificam resource exhaustion.",
         topic: "monitoring"
     },
     {
@@ -1533,38 +1533,38 @@ const moreQuestions = [
         question: "Lambda está retornando 'ENI limit exceeded'. Como resolver?",
         options: [
             "Aumentar timeout",
-            "Optimize VPC configuration + increase ENI limits",
             "Adicionar memória",
-            "Usar Provisioned Concurrency, incluindo configuração avançada de parâmetros e monitoramento contínuo do sistema em produção"
+            "Optimize VPC configuration + increase ENI limits",
+            "Usar Provisioned Concurrency"
         ],
-        correct: [1],
-        explanation: "ENI limit exceeded requer otimização de VPC config e aumento de limits.",
+        correct: [2],
+        explanation: "✅ ENI limit exceeded requer otimização de VPC config e aumento de limits.",
         topic: "monitoring"
     },
     {
         id: 199,
         question: "Para monitorar business metrics, qual abordagem usar?",
         options: [
-            "Technical metrics apenas, com integração completa ao ecossistema de serviços gerenciados e pipelines automatizados",
-            "Custom CloudWatch metrics + business KPIs",
+            "Technical metrics apenas",
+            "Error counting",
             "Logs apenas",
-            "Error counting"
+            "Custom CloudWatch metrics + business KPIs",
         ],
-        correct: [1],
-        explanation: "Custom CloudWatch metrics permitem monitorar business KPIs junto com métricas técnicas.",
+        correct: [3],
+        explanation: "✅ Custom CloudWatch metrics permitem monitorar business KPIs junto com métricas técnicas.",
         topic: "monitoring"
     },
     {
         id: 200,
         question: "S3 está retornando 'Request has expired'. Como resolver?",
         options: [
-            "Aumentar timeout, considerando requisitos de compliance, governança e auditoria para ambientes regulados",
+            "Aumentar timeout",
             "Check clock synchronization + presigned URL TTL",
             "Usar CloudFront",
             "Migrar para EBS"
         ],
         correct: [1],
-        explanation: "Request expired indica problemas de clock sync ou presigned URL TTL expirado.",
+        explanation: "✅ Request expired indica problemas de clock sync ou presigned URL TTL expirado.",
         topic: "monitoring"
     }
 ];

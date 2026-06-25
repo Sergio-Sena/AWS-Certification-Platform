@@ -6,13 +6,13 @@ const deploymentQuestionsReal = [
         id: 'dep_001',
         question: "CodePipeline está falhando no stage de Deploy com erro 'Insufficient permissions'. Pipeline service role tem AdministratorAccess. Qual pode ser a causa?",
         options: [
-            "CodeDeploy service role sem permissões",
+            "Todas as anteriores",
             "Cross-account deployment sem trust policy",
             "CloudFormation execution role inadequada",
-            "Todas as anteriores"
+            "CodeDeploy service role sem permissões",
         ],
-        correct: [3],
-        explanation: "Pipeline role executa actions, mas cada service (CodeDeploy, CloudFormation) precisa de service role própria com permissões específicas.",
+        correct: [0],
+        explanation: "✅ Pipeline role executa actions, mas cada service (CodeDeploy, CloudFormation) precisa de service role própria com permissões específicas.",
         topic: "codepipeline",
         domain: "deployment"
     },
@@ -21,12 +21,12 @@ const deploymentQuestionsReal = [
         question: "CodePipeline precisa deployar em múltiplas regiões sequencialmente. Como implementar com menor complexidade?",
         options: [
             "Pipeline separada por região",
-            "Usar CloudFormation StackSets no pipeline",
             "Stage paralelo com actions por região",
-            "Lambda function para deploy cross-region, garantindo escalabilidade horizontal e vertical conforme demanda do workload específico"
+            "Usar CloudFormation StackSets no pipeline",
+            "Lambda function para deploy cross-region"
         ],
-        correct: [1],
-        explanation: "CloudFormation StackSets deploy automaticamente em múltiplas regiões/contas. Integra nativamente com CodePipeline.",
+        correct: [2],
+        explanation: "✅ CloudFormation StackSets deploy automaticamente em múltiplas regiões/contas. Integra nativamente com CodePipeline.",
         topic: "codepipeline",
         domain: "deployment"
     },
@@ -40,7 +40,7 @@ const deploymentQuestionsReal = [
             "Todas as anteriores"
         ],
         correct: [3],
-        explanation: "Verificar: branch correto, webhook configurado, CodeStar connection ativa, e permissões do GitHub app.",
+        explanation: "✅ Verificar: branch correto, webhook configurado, CodeStar connection ativa, e permissões do GitHub app.",
         topic: "codepipeline",
         domain: "deployment"
     },
@@ -48,13 +48,13 @@ const deploymentQuestionsReal = [
         id: 'dep_004',
         question: "Pipeline precisa de approval manual apenas para deploy em produção, mas não em staging. Como configurar?",
         options: [
-            "Manual approval action antes do deploy stage",
             "Conditional approval baseado em parameter",
-            "Pipelines separadas para staging e produção, utilizando as ferramentas nativas do serviço para automação e observabilidade operacional",
+            "Manual approval action antes do deploy stage",
+            "Pipelines separadas para staging e produção",
             "Approval action em todos os stages"
         ],
-        correct: [0],
-        explanation: "Manual approval action pode ser adicionada antes de qualquer stage. Configurar apenas antes do production deploy stage.",
+        correct: [1],
+        explanation: "✅ Manual approval action pode ser adicionada antes de qualquer stage. Configurar apenas antes do production deploy stage.",
         topic: "codepipeline",
         domain: "deployment"
     },
@@ -64,13 +64,13 @@ const deploymentQuestionsReal = [
         id: 'dep_005',
         question: "CloudFormation stack está em estado UPDATE_ROLLBACK_FAILED. Tentativa de update falhou e rollback também falhou. Como resolver?",
         options: [
-            "Deletar e recriar stack",
             "Usar continue-update-rollback com skip resources",
-            "Forçar update com --force flag, com suporte a múltiplas regiões e redundância para alta disponibilidade e disaster recovery",
+            "Deletar e recriar stack",
+            "Forçar update com --force flag",
             "Aguardar timeout automático"
         ],
-        correct: [1],
-        explanation: "continue-update-rollback permite pular recursos que causaram falha no rollback. Resolve estado stuck sem perder stack.",
+        correct: [0],
+        explanation: "✅ continue-update-rollback permite pular recursos que causaram falha no rollback. Resolve estado stuck sem perder stack.",
         topic: "cloudformation",
         domain: "deployment"
     },
@@ -78,13 +78,13 @@ const deploymentQuestionsReal = [
         id: 'dep_006',
         question: "CloudFormation template tem parâmetro 'Environment' com valores permitidos [dev, staging, prod]. Como usar para criar recursos condicionalmente?",
         options: [
-            "Usar Conditions com Fn::Equals",
-            "Usar Mappings com Fn::FindInMap",
             "Usar Parameters com AllowedValues",
+            "Usar Mappings com Fn::FindInMap",
+            "Usar Conditions com Fn::Equals",
             "Usar Metadata section"
         ],
-        correct: [0],
-        explanation: "Conditions com Fn::Equals compara parâmetro com valor específico. Usar na propriedade Condition dos recursos.",
+        correct: [2],
+        explanation: "✅ Conditions com Fn::Equals compara parâmetro com valor específico. Usar na propriedade Condition dos recursos.",
         topic: "cloudformation",
         domain: "deployment"
     },
@@ -92,13 +92,13 @@ const deploymentQuestionsReal = [
         id: 'dep_007',
         question: "Nested CloudFormation stack precisa passar output de stack pai como parâmetro. Como implementar?",
         options: [
-            "Usar Fn::GetAtt no nested stack",
+            "Usar cross-stack references",
             "Usar Fn::Ref para referenciar output",
             "Hardcode valor no nested template",
-            "Usar cross-stack references"
+            "Usar Fn::GetAtt no nested stack",
         ],
-        correct: [0],
-        explanation: "Fn::GetAtt pode referenciar outputs de nested stacks: !GetAtt NestedStack.Outputs.OutputName",
+        correct: [3],
+        explanation: "✅ Fn::GetAtt pode referenciar outputs de nested stacks: !GetAtt NestedStack.Outputs.OutputName",
         topic: "cloudformation",
         domain: "deployment"
     },
@@ -107,12 +107,12 @@ const deploymentQuestionsReal = [
         question: "CloudFormation stack precisa criar IAM role que será usado por recursos na mesma stack. Como evitar circular dependency?",
         options: [
             "Criar role em stack separada",
-            "Usar DependsOn attribute",
             "CloudFormation resolve automaticamente",
-            "Usar Fn::GetAtt para role ARN, seguindo o modelo de responsabilidade compartilhada e as políticas de segurança corporativas"
+            "Usar DependsOn attribute",
+            "Usar Fn::GetAtt para role ARN"
         ],
-        correct: [2],
-        explanation: "CloudFormation resolve dependências automaticamente. IAM roles são criados antes de recursos que os referenciam.",
+        correct: [1],
+        explanation: "✅ CloudFormation resolve dependências automaticamente. IAM roles são criados antes de recursos que os referenciam.",
         topic: "cloudformation",
         domain: "deployment"
     },
@@ -128,7 +128,7 @@ const deploymentQuestionsReal = [
             "Configurar timeout maior"
         ],
         correct: [0],
-        explanation: "ApplicationStop é obrigatório mesmo se aplicação não estiver rodando. Criar script que para aplicação gracefully ou retorna exit 0.",
+        explanation: "✅ ApplicationStop é obrigatório mesmo se aplicação não estiver rodando. Criar script que para aplicação gracefully ou retorna exit 0.",
         topic: "codedeploy",
         domain: "deployment"
     },
@@ -137,12 +137,12 @@ const deploymentQuestionsReal = [
         question: "CodeDeploy Blue/Green deployment para Lambda está falhando com 'AliasUpdateFailed'. Alias está configurado corretamente. Qual pode ser a causa?",
         options: [
             "Lambda function não existe",
+            "Concurrent deployment em andamento",
             "Insufficient permissions para UpdateAlias",
-            "Concurrent deployment em andamento, implementando controles preventivos e detectivos conforme o framework de segurança organizacional",
             "Lambda version não publicada"
         ],
-        correct: [1],
-        explanation: "CodeDeploy precisa de lambda:UpdateAlias permission para modificar alias durante Blue/Green deployment.",
+        correct: [2],
+        explanation: "✅ CodeDeploy precisa de lambda:UpdateAlias permission para modificar alias durante Blue/Green deployment.",
         topic: "codedeploy",
         domain: "deployment"
     },
@@ -151,12 +151,12 @@ const deploymentQuestionsReal = [
         question: "CodeDeploy deployment configuration usa 'CodeDeployDefault.Lambda10PercentEvery5Minutes'. Como customizar para 25% a cada 2 minutos?",
         options: [
             "Modificar configuração existente",
-            "Criar custom deployment configuration",
+            "Não é possível customizar",
             "Usar CodeDeployDefault.LambdaLinear25PercentEvery2Minutes",
-            "Não é possível customizar"
+            "Criar custom deployment configuration",
         ],
-        correct: [1],
-        explanation: "Criar custom deployment configuration com linear ou canary traffic shifting personalizado. Configurações default não podem ser modificadas.",
+        correct: [3],
+        explanation: "✅ Criar custom deployment configuration com linear ou canary traffic shifting personalizado. Configurações default não podem ser modificadas.",
         topic: "codedeploy",
         domain: "deployment"
     },
@@ -166,13 +166,13 @@ const deploymentQuestionsReal = [
         id: 'dep_012',
         question: "SAM template tem função Lambda com evento API Gateway, mas após deploy, API não está funcionando. 'sam build' e 'sam deploy' executaram sem erro. O que verificar?",
         options: [
-            "API Gateway stage não foi deployed, com capacidade de processamento paralelo e distribuído para atender picos de demanda",
-            "Lambda function permissions",
+            "API Gateway stage não foi deployed",
             "SAM automaticamente cria API e stage",
+            "Lambda function permissions",
             "CORS configuration"
         ],
-        correct: [2],
-        explanation: "SAM automaticamente cria API Gateway, stage e permissions. Verificar se template está correto e se API endpoint foi outputado.",
+        correct: [1],
+        explanation: "✅ SAM automaticamente cria API Gateway, stage e permissions. Verificar se template está correto e se API endpoint foi outputado.",
         topic: "sam",
         domain: "deployment"
     },
@@ -180,13 +180,13 @@ const deploymentQuestionsReal = [
         id: 'dep_013',
         question: "SAM local testing com 'sam local start-api' não consegue acessar DynamoDB local. Como configurar?",
         options: [
-            "Usar --docker-network para conectar containers",
+            "Todas as anteriores",
             "Configurar AWS_ENDPOINT_URL environment variable",
             "Usar DynamoDB local em container separado",
-            "Todas as anteriores"
+            "Usar --docker-network para conectar containers",
         ],
-        correct: [3],
-        explanation: "Múltiplas opções: docker network para containers, endpoint URL para DynamoDB local, ou usar LocalStack para ambiente completo.",
+        correct: [0],
+        explanation: "✅ Múltiplas opções: docker network para containers, endpoint URL para DynamoDB local, ou usar LocalStack para ambiente completo.",
         topic: "sam",
         domain: "deployment"
     },
@@ -195,12 +195,12 @@ const deploymentQuestionsReal = [
         question: "SAM template precisa deployar em múltiplos ambientes (dev/prod) com diferentes parâmetros. Como implementar?",
         options: [
             "Templates separados por ambiente",
-            "Usar samconfig.toml com environments",
             "Parameters no template com default values",
+            "Usar samconfig.toml com environments",
             "Environment variables no deploy"
         ],
-        correct: [1],
-        explanation: "samconfig.toml suporta múltiplos environments com parâmetros específicos. Deploy com --config-env dev/prod.",
+        correct: [2],
+        explanation: "✅ samconfig.toml suporta múltiplos environments com parâmetros específicos. Deploy com --config-env dev/prod.",
         topic: "sam",
         domain: "deployment"
     },
@@ -210,13 +210,13 @@ const deploymentQuestionsReal = [
         id: 'dep_015',
         question: "CodeBuild project está falhando com 'DOWNLOAD_SOURCE_FAILED' para repositório GitHub privado. Como resolver?",
         options: [
-            "Usar CodeStar connection ao invés de OAuth",
-            "Configurar GitHub personal access token, integrando com os sistemas existentes através de APIs e conectores nativos da plataforma",
+            "Usar S3 source ao invés de GitHub",
+            "Configurar GitHub personal access token",
             "Tornar repositório público",
-            "Usar S3 source ao invés de GitHub"
+            "Usar CodeStar connection ao invés de OAuth",
         ],
-        correct: [0],
-        explanation: "CodeStar connections fornecem acesso mais seguro e confiável a repositórios privados que OAuth tokens.",
+        correct: [3],
+        explanation: "✅ CodeStar connections fornecem acesso mais seguro e confiável a repositórios privados que OAuth tokens.",
         topic: "codebuild",
         domain: "deployment"
     },
@@ -225,12 +225,12 @@ const deploymentQuestionsReal = [
         question: "CodeBuild buildspec.yml precisa instalar dependências que demoram 10 minutos a cada build. Como otimizar?",
         options: [
             "Usar build environment com dependências pré-instaladas",
-            "Cache dependencies no S3",
+            "Todas as anteriores",
             "Usar Docker image customizada",
-            "Todas as anteriores"
+            "Cache dependencies no S3",
         ],
-        correct: [3],
-        explanation: "Múltiplas estratégias: custom Docker image (mais rápido), S3 cache (flexível), ou environment pré-configurado.",
+        correct: [1],
+        explanation: "✅ Múltiplas estratégias: custom Docker image (mais rápido), S3 cache (flexível), ou environment pré-configurado.",
         topic: "codebuild",
         domain: "deployment"
     },
@@ -238,13 +238,13 @@ const deploymentQuestionsReal = [
         id: 'dep_017',
         question: "CodeBuild precisa acessar recursos em VPC privada durante build. Como configurar?",
         options: [
-            "Configurar VPC configuration no CodeBuild project",
+            "Todas as anteriores",
             "Usar NAT Gateway para internet access",
             "VPC endpoints para AWS services",
-            "Todas as anteriores"
+            "Configurar VPC configuration no CodeBuild project",
         ],
-        correct: [3],
-        explanation: "VPC config permite acesso a recursos privados. NAT Gateway para internet. VPC endpoints para AWS services sem internet.",
+        correct: [0],
+        explanation: "✅ VPC config permite acesso a recursos privados. NAT Gateway para internet. VPC endpoints para AWS services sem internet.",
         topic: "codebuild",
         domain: "deployment"
     },
@@ -256,11 +256,11 @@ const deploymentQuestionsReal = [
         options: [
             "Artifact store deve estar na mesma região",
             "Configurar cross-region artifact replication",
+            "Opções A e B",
             "Usar S3 bucket policy cross-region",
-            "Opções A e B"
         ],
-        correct: [3],
-        explanation: "Artifact store deve estar na mesma região ou configurar replicação cross-region para deployments multi-region.",
+        correct: [2],
+        explanation: "✅ Artifact store deve estar na mesma região ou configurar replicação cross-region para deployments multi-region.",
         topic: "codepipeline",
         domain: "deployment"
     },
@@ -274,7 +274,7 @@ const deploymentQuestionsReal = [
             "Opções A e B"
         ],
         correct: [3],
-        explanation: "Manual approval pode ser aprovado via console ou API usando PutApprovalResult para integração externa.",
+        explanation: "✅ Manual approval pode ser aprovado via console ou API usando PutApprovalResult para integração externa.",
         topic: "codepipeline",
         domain: "deployment"
     },
@@ -283,12 +283,12 @@ const deploymentQuestionsReal = [
         question: "CodePipeline precisa deployar apenas se tests passaram. Como implementar gate?",
         options: [
             "Test action com failure behavior 'STOP'",
-            "Lambda function para validar test results",
+            "Todas as anteriores",
             "Manual approval após tests",
-            "Todas as anteriores"
+            "Lambda function para validar test results",
         ],
-        correct: [3],
-        explanation: "Múltiplas opções: test action que para pipeline, Lambda validation, ou manual approval baseado em results.",
+        correct: [1],
+        explanation: "✅ Múltiplas opções: test action que para pipeline, Lambda validation, ou manual approval baseado em results.",
         topic: "codepipeline",
         domain: "deployment"
     },
@@ -296,13 +296,13 @@ const deploymentQuestionsReal = [
         id: 'dep_021',
         question: "Pipeline tem múltiplos environments (dev/staging/prod) em paralelo. Como evitar conflicts?",
         options: [
-            "Usar diferentes artifact stores",
+            "Todas as anteriores",
             "Sequential deployment ao invés de parallel",
             "Environment-specific branches",
-            "Todas as anteriores"
+            "Usar diferentes artifact stores",
         ],
-        correct: [3],
-        explanation: "Evitar conflicts com: artifact stores separados, deployment sequencial, ou branches específicos por environment.",
+        correct: [0],
+        explanation: "✅ Evitar conflicts com: artifact stores separados, deployment sequencial, ou branches específicos por environment.",
         topic: "codepipeline",
         domain: "deployment"
     },
@@ -312,11 +312,11 @@ const deploymentQuestionsReal = [
         options: [
             "Lambda execution role permissions",
             "EventBridge rule target configuration",
+            "Todas as anteriores",
             "Pipeline CloudWatch Events role",
-            "Todas as anteriores"
         ],
-        correct: [3],
-        explanation: "Verificar: Lambda permissions para EventBridge, rule target config, e pipeline service role para CloudWatch Events.",
+        correct: [2],
+        explanation: "✅ Verificar: Lambda permissions para EventBridge, rule target config, e pipeline service role para CloudWatch Events.",
         topic: "codepipeline",
         domain: "deployment"
     },
@@ -330,7 +330,7 @@ const deploymentQuestionsReal = [
             "Todas as anteriores"
         ],
         correct: [3],
-        explanation: "Rollback pode ser implementado via: CodeDeploy config, Lambda custom logic, ou CloudFormation rollback policies.",
+        explanation: "✅ Rollback pode ser implementado via: CodeDeploy config, Lambda custom logic, ou CloudFormation rollback policies.",
         topic: "codepipeline",
         domain: "deployment"
     },
@@ -339,12 +339,12 @@ const deploymentQuestionsReal = [
         question: "Pipeline execution está lenta (30+ minutos). Como otimizar?",
         options: [
             "Parallel actions onde possível",
-            "Otimizar build/test stages",
+            "Todas as anteriores",
             "Cache dependencies",
-            "Todas as anteriores"
+            "Otimizar build/test stages",
         ],
-        correct: [3],
-        explanation: "Otimizações: paralelizar actions, otimizar builds, cache dependencies, e eliminar steps desnecessários.",
+        correct: [1],
+        explanation: "✅ Otimizações: paralelizar actions, otimizar builds, cache dependencies, e eliminar steps desnecessários.",
         topic: "codepipeline",
         domain: "deployment"
     },
@@ -352,13 +352,13 @@ const deploymentQuestionsReal = [
         id: 'dep_025',
         question: "Pipeline precisa notificar equipe sobre failures via Slack. Como implementar?",
         options: [
-            "CloudWatch Events + Lambda + Slack API",
+            "Todas as anteriores",
             "SNS topic + Slack webhook",
             "ChatBot integration",
-            "Todas as anteriores"
+            "CloudWatch Events + Lambda + Slack API",
         ],
-        correct: [3],
-        explanation: "Múltiplas opções: CloudWatch Events + Lambda, SNS integration, ou AWS ChatBot para Slack notifications.",
+        correct: [0],
+        explanation: "✅ Múltiplas opções: CloudWatch Events + Lambda, SNS integration, ou AWS ChatBot para Slack notifications.",
         topic: "codepipeline",
         domain: "deployment"
     },
@@ -370,11 +370,11 @@ const deploymentQuestionsReal = [
         options: [
             "Usar DeletionPolicy: Retain",
             "Import existing resource para stack",
+            "Opções B e C",
             "Usar different logical ID",
-            "Opções B e C"
         ],
-        correct: [3],
-        explanation: "Resolver conflicts com: import de recursos existentes ou usar logical IDs diferentes para novos recursos.",
+        correct: [2],
+        explanation: "✅ Resolver conflicts com: import de recursos existentes ou usar logical IDs diferentes para novos recursos.",
         topic: "cloudformation",
         domain: "deployment"
     },
@@ -388,7 +388,7 @@ const deploymentQuestionsReal = [
             "Opções A e C"
         ],
         correct: [3],
-        explanation: "Mappings com AWS::Region pseudo parameter permite valores específicos por região (AMI IDs, instance types, etc).",
+        explanation: "✅ Mappings com AWS::Region pseudo parameter permite valores específicos por região (AMI IDs, instance types, etc).",
         topic: "cloudformation",
         domain: "deployment"
     },
@@ -396,13 +396,13 @@ const deploymentQuestionsReal = [
         id: 'dep_028',
         question: "CloudFormation custom resource precisa fazer cleanup quando stack é deletado. Como implementar?",
         options: [
-            "Lambda function handle DELETE event",
             "DeletionPolicy: Delete",
-            "Custom resource sempre faz cleanup, otimizando custo operacional através de right-sizing e monitoramento de utilização de recursos",
+            "Lambda function handle DELETE event",
+            "Custom resource sempre faz cleanup",
             "Não é possível fazer cleanup"
         ],
-        correct: [0],
-        explanation: "Custom resource Lambda deve handle DELETE event para fazer cleanup de recursos externos quando stack é deletado.",
+        correct: [1],
+        explanation: "✅ Custom resource Lambda deve handle DELETE event para fazer cleanup de recursos externos quando stack é deletado.",
         topic: "cloudformation",
         domain: "deployment"
     },
@@ -410,13 +410,13 @@ const deploymentQuestionsReal = [
         id: 'dep_029',
         question: "CloudFormation drift detection mostra 'DRIFTED' para recurso. Como resolver?",
         options: [
-            "Update stack para match current state",
+            "Todas as anteriores",
             "Revert manual changes",
             "Import current configuration",
-            "Todas as anteriores"
+            "Update stack para match current state",
         ],
-        correct: [3],
-        explanation: "Resolver drift: update template para match estado atual, reverter mudanças manuais, ou import nova configuração.",
+        correct: [0],
+        explanation: "✅ Resolver drift: update template para match estado atual, reverter mudanças manuais, ou import nova configuração.",
         topic: "cloudformation",
         domain: "deployment"
     },
@@ -426,11 +426,11 @@ const deploymentQuestionsReal = [
         options: [
             "Condition-based IAM policies",
             "Different execution roles",
+            "Todas as anteriores",
             "Parameter-driven permissions",
-            "Todas as anteriores"
         ],
-        correct: [3],
-        explanation: "Permissions por environment: conditions em policies, execution roles diferentes, ou parameters para controlar permissions.",
+        correct: [2],
+        explanation: "✅ Permissions por environment: conditions em policies, execution roles diferentes, ou parameters para controlar permissions.",
         topic: "cloudformation",
         domain: "deployment"
     },
@@ -444,7 +444,7 @@ const deploymentQuestionsReal = [
             "Todas as anteriores"
         ],
         correct: [3],
-        explanation: "StackSets failures: verificar trust policies, permissions por conta, e compatibilidade do template com diferentes environments.",
+        explanation: "✅ StackSets failures: verificar trust policies, permissions por conta, e compatibilidade do template com diferentes environments.",
         topic: "cloudformation",
         domain: "deployment"
     },
@@ -453,12 +453,12 @@ const deploymentQuestionsReal = [
         question: "CloudFormation template tem 500+ resources e está atingindo limits. Como resolver?",
         options: [
             "Usar nested stacks",
-            "Dividir em múltiplos stacks",
+            "Todas as anteriores",
             "Cross-stack references",
-            "Todas as anteriores"
+            "Dividir em múltiplos stacks",
         ],
-        correct: [3],
-        explanation: "Resolver limits com: nested stacks para organização, múltiplos stacks independentes, e cross-stack references para sharing.",
+        correct: [1],
+        explanation: "✅ Resolver limits com: nested stacks para organização, múltiplos stacks independentes, e cross-stack references para sharing.",
         topic: "cloudformation",
         domain: "deployment"
     },
@@ -466,13 +466,13 @@ const deploymentQuestionsReal = [
         id: 'dep_033',
         question: "CloudFormation change set mostra 'No changes' mas template foi modificado. Por quê?",
         options: [
-            "Mudanças apenas em Metadata/Description",
+            "Todas as anteriores",
             "Parameter values não mudaram",
             "Conditions resultam no mesmo outcome",
-            "Todas as anteriores"
+            "Mudanças apenas em Metadata/Description",
         ],
-        correct: [3],
-        explanation: "'No changes' quando: apenas metadata mudou, parameters iguais, ou conditions resultam na mesma configuração final.",
+        correct: [0],
+        explanation: "✅ 'No changes' quando: apenas metadata mudou, parameters iguais, ou conditions resultam na mesma configuração final.",
         topic: "cloudformation",
         domain: "deployment"
     },
@@ -484,11 +484,11 @@ const deploymentQuestionsReal = [
         options: [
             "Verificar health checks do target group",
             "Analisar ECS service events",
+            "Todas as anteriores",
             "Check deployment configuration",
-            "Todas as anteriores"
         ],
-        correct: [3],
-        explanation: "Blue/Green failures: verificar ALB health checks, ECS service stability, e deployment configuration compatibility.",
+        correct: [2],
+        explanation: "✅ Blue/Green failures: verificar ALB health checks, ECS service stability, e deployment configuration compatibility.",
         topic: "codedeploy",
         domain: "deployment"
     },
@@ -502,7 +502,7 @@ const deploymentQuestionsReal = [
             "Todas as anteriores"
         ],
         correct: [3],
-        explanation: "Quando rollback falha: stop deployment, deploy versão estável conhecida, e implementar better versioning strategy.",
+        explanation: "✅ Quando rollback falha: stop deployment, deploy versão estável conhecida, e implementar better versioning strategy.",
         topic: "codedeploy",
         domain: "deployment"
     },
@@ -511,12 +511,12 @@ const deploymentQuestionsReal = [
         question: "CodeDeploy precisa fazer deployment apenas durante maintenance window. Como implementar?",
         options: [
             "Schedule deployment com EventBridge",
-            "Manual trigger durante window",
+            "Todas as anteriores",
             "Lambda function para controlar timing",
-            "Todas as anteriores"
+            "Manual trigger durante window",
         ],
-        correct: [3],
-        explanation: "Controlar timing com: EventBridge scheduling, manual triggers, ou Lambda functions para automated timing control.",
+        correct: [1],
+        explanation: "✅ Controlar timing com: EventBridge scheduling, manual triggers, ou Lambda functions para automated timing control.",
         topic: "codedeploy",
         domain: "deployment"
     },
@@ -524,13 +524,13 @@ const deploymentQuestionsReal = [
         id: 'dep_037',
         question: "CodeDeploy deployment group tem múltiplos Auto Scaling groups. Como garantir deployment coordenado?",
         options: [
-            "Deployment configuration com batch size",
+            "Todas as anteriores",
             "Sequential deployment por ASG",
             "Health check grace period",
-            "Todas as anteriores"
+            "Deployment configuration com batch size",
         ],
-        correct: [3],
-        explanation: "Coordenar deployments com: batch size configuration, sequential processing, e adequate grace periods.",
+        correct: [0],
+        explanation: "✅ Coordenar deployments com: batch size configuration, sequential processing, e adequate grace periods.",
         topic: "codedeploy",
         domain: "deployment"
     },
@@ -540,11 +540,11 @@ const deploymentQuestionsReal = [
         options: [
             "Verificar S3 bucket permissions",
             "Check revision location format",
+            "Todas as anteriores",
             "Validate CodeDeploy service role",
-            "Todas as anteriores"
         ],
-        correct: [3],
-        explanation: "Revision issues: verificar S3 permissions, formato da location (bucket/key), e service role permissions.",
+        correct: [2],
+        explanation: "✅ Revision issues: verificar S3 permissions, formato da location (bucket/key), e service role permissions.",
         topic: "codedeploy",
         domain: "deployment"
     },
@@ -560,7 +560,7 @@ const deploymentQuestionsReal = [
             "Opções B e C"
         ],
         correct: [3],
-        explanation: "!Ref requer: logical ID correto e resource no mesmo template. Para cross-stack, usar Outputs/Imports.",
+        explanation: "✅ !Ref requer: logical ID correto e resource no mesmo template. Para cross-stack, usar Outputs/Imports.",
         topic: "sam",
         domain: "deployment"
     },
@@ -569,12 +569,12 @@ const deploymentQuestionsReal = [
         question: "SAM build está falhando com 'Requirements file not found' para Python function. Como resolver?",
         options: [
             "Criar requirements.txt vazio",
-            "Especificar requirements file path",
+            "Opções A e B",
             "Usar --skip-pull-image flag",
-            "Opções A e B"
+            "Especificar requirements file path",
         ],
-        correct: [3],
-        explanation: "SAM build Python requer requirements.txt ou especificar path alternativo. Arquivo vazio é válido se sem dependencies.",
+        correct: [1],
+        explanation: "✅ SAM build Python requer requirements.txt ou especificar path alternativo. Arquivo vazio é válido se sem dependencies.",
         topic: "sam",
         domain: "deployment"
     },
@@ -588,7 +588,7 @@ const deploymentQuestionsReal = [
             "SAM local não suporta VPC"
         ],
         correct: [0],
-        explanation: "SAM local com --docker-network host permite acesso a recursos locais. Para RDS real, usar connection strings apropriados.",
+        explanation: "✅ SAM local com --docker-network host permite acesso a recursos locais. Para RDS real, usar connection strings apropriados.",
         topic: "sam",
         domain: "deployment"
     },
@@ -598,11 +598,11 @@ const deploymentQuestionsReal = [
         options: [
             "Usar --stack-name consistente",
             "Verificar samconfig.toml",
+            "Opções A e B",
             "Delete stack anterior",
-            "Opções A e B"
         ],
-        correct: [3],
-        explanation: "Evitar duplicação com: stack name consistente e samconfig.toml correto para environment.",
+        correct: [2],
+        explanation: "✅ Evitar duplicação com: stack name consistente e samconfig.toml correto para environment.",
         topic: "sam",
         domain: "deployment"
     },
@@ -616,7 +616,7 @@ const deploymentQuestionsReal = [
             "Todas as anteriores"
         ],
         correct: [3],
-        explanation: "Custom domain requer: Domain configuration no SAM template, Route53 DNS record, e ACM certificate.",
+        explanation: "✅ Custom domain requer: Domain configuration no SAM template, Route53 DNS record, e ACM certificate.",
         topic: "sam",
         domain: "deployment"
     },
@@ -627,12 +627,12 @@ const deploymentQuestionsReal = [
         question: "CodeBuild está falhando com 'Docker daemon not running' em custom image. Como resolver?",
         options: [
             "Usar privileged mode",
-            "Start Docker daemon no buildspec",
+            "Opções A e B",
             "Usar AWS managed image",
-            "Opções A e B"
+            "Start Docker daemon no buildspec",
         ],
-        correct: [3],
-        explanation: "Docker-in-Docker requer: privileged mode habilitado e start daemon no buildspec pre_build phase.",
+        correct: [1],
+        explanation: "✅ Docker-in-Docker requer: privileged mode habilitado e start daemon no buildspec pre_build phase.",
         topic: "codebuild",
         domain: "deployment"
     },
@@ -640,13 +640,13 @@ const deploymentQuestionsReal = [
         id: 'dep_045',
         question: "CodeBuild artifacts são muito grandes (>5GB) e upload falha. Como resolver?",
         options: [
-            "Comprimir artifacts",
+            "Todas as anteriores",
             "Múltiplos artifact locations",
             "Upload direto para S3 no buildspec",
-            "Todas as anteriores"
+            "Comprimir artifacts",
         ],
-        correct: [3],
-        explanation: "Artifacts grandes: compressão, múltiplos outputs, ou upload direto para S3 durante build.",
+        correct: [0],
+        explanation: "✅ Artifacts grandes: compressão, múltiplos outputs, ou upload direto para S3 durante build.",
         topic: "codebuild",
         domain: "deployment"
     },
@@ -656,11 +656,11 @@ const deploymentQuestionsReal = [
         options: [
             "Registry credentials em environment variables",
             "Docker login no buildspec",
+            "Todas as anteriores",
             "ECR authentication",
-            "Todas as anteriores"
         ],
-        correct: [3],
-        explanation: "Private registry access: credentials via env vars, docker login command, ou ECR authentication para AWS registries.",
+        correct: [2],
+        explanation: "✅ Private registry access: credentials via env vars, docker login command, ou ECR authentication para AWS registries.",
         topic: "codebuild",
         domain: "deployment"
     },
@@ -674,7 +674,7 @@ const deploymentQuestionsReal = [
             "Todas as anteriores"
         ],
         correct: [3],
-        explanation: "Variabilidade de build: analisar logs detalhados, verificar compute resources, e monitorar network/dependency downloads.",
+        explanation: "✅ Variabilidade de build: analisar logs detalhados, verificar compute resources, e monitorar network/dependency downloads.",
         topic: "codebuild",
         domain: "deployment"
     },
@@ -683,12 +683,12 @@ const deploymentQuestionsReal = [
         question: "CodeBuild precisa fazer deploy para múltiplas contas AWS. Como implementar com segurança?",
         options: [
             "Cross-account IAM roles",
-            "AssumeRole no buildspec",
+            "Opções A e B",
             "Separate build projects por conta",
-            "Opções A e B"
+            "AssumeRole no buildspec",
         ],
-        correct: [3],
-        explanation: "Cross-account deployment: configurar cross-account roles e usar AssumeRole no buildspec para cada target account.",
+        correct: [1],
+        explanation: "✅ Cross-account deployment: configurar cross-account roles e usar AssumeRole no buildspec para cada target account.",
         topic: "codebuild",
         domain: "deployment"
     }

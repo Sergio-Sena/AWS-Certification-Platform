@@ -5,13 +5,13 @@ const securityQuestions = [
         id: 66,
         question: "Qual é a forma mais segura de uma função Lambda acessar credenciais de banco de dados?",
         options: [
-            "Hardcode das credenciais no código",
-            "Environment variables na Lambda",
             "AWS Secrets Manager com IAM Role",
+            "Environment variables na Lambda",
+            "Hardcode das credenciais no código",
             "Parameter Store sem criptografia"
         ],
-        correct: [2],
-        explanation: "AWS Secrets Manager com IAM Role fornece rotação automática e criptografia das credenciais.",
+        correct: [0],
+        explanation: "✅ AWS Secrets Manager com IAM Role fornece rotação automática e criptografia das credenciais.",
         topic: "security",
         domain: "security"
     },
@@ -20,12 +20,12 @@ const securityQuestions = [
         question: "Em uma policy IAM, qual elemento tem precedência mais alta?",
         options: [
             "Allow statement",
-            "Deny statement", 
             "Resource element",
+            "Deny statement", 
             "Condition element"
         ],
-        correct: [1],
-        explanation: "Explicit Deny sempre prevalece sobre qualquer Allow statement.",
+        correct: [2],
+        explanation: "✅ Explicit Deny sempre prevalece sobre qualquer Allow statement.",
         topic: "security",
         domain: "security"
     },
@@ -34,12 +34,12 @@ const securityQuestions = [
         question: "Para auditoria de API calls, qual serviço AWS usar?",
         options: [
             "CloudWatch Logs",
-            "AWS CloudTrail",
+            "X-Ray",
             "AWS Config",
-            "X-Ray"
+            "AWS CloudTrail",
         ],
-        correct: [1],
-        explanation: "CloudTrail registra todas as API calls para auditoria e compliance.",
+        correct: [3],
+        explanation: "✅ CloudTrail registra todas as API calls para auditoria e compliance.",
         topic: "security",
         domain: "security"
     },
@@ -47,13 +47,13 @@ const securityQuestions = [
         id: 69,
         question: "Em uma policy IAM, qual condition key usar para restringir acesso por IP?",
         options: [
-            "aws:SourceIp",
             "aws:RequestedRegion",
+            "aws:SourceIp",
             "aws:userid",
             "aws:TokenIssueTime"
         ],
-        correct: [0],
-        explanation: "aws:SourceIp permite restringir acesso baseado no endereço IP de origem.",
+        correct: [1],
+        explanation: "✅ aws:SourceIp permite restringir acesso baseado no endereço IP de origem.",
         topic: "security",
         domain: "security"
     },
@@ -61,13 +61,13 @@ const securityQuestions = [
         id: 70,
         question: "Qual é a melhor prática para gerenciar secrets em aplicações serverless?",
         options: [
-            "Environment variables",
-            "Hardcode no código",
             "AWS Secrets Manager",
+            "Hardcode no código",
+            "Environment variables",
             "S3 bucket privado"
         ],
-        correct: [2],
-        explanation: "AWS Secrets Manager oferece rotação automática e criptografia de secrets.",
+        correct: [0],
+        explanation: "✅ AWS Secrets Manager oferece rotação automática e criptografia de secrets.",
         topic: "security",
         domain: "security"
     },
@@ -75,13 +75,13 @@ const securityQuestions = [
         id: 71,
         question: "Para implementar rate limiting por usuário em API Gateway, qual abordagem usar?",
         options: [
-            "Lambda authorizer com DynamoDB",
-            "Usage Plans com API Keys, com suporte a múltiplas regiões e redundância para alta disponibilidade e disaster recovery",
             "CloudFront rate limiting",
+            "Usage Plans com API Keys",
+            "Lambda authorizer com DynamoDB",
             "WAF rate limiting"
         ],
-        correct: [0],
-        explanation: "Lambda authorizer com DynamoDB permite rate limiting granular por usuário.",
+        correct: [2],
+        explanation: "✅ Lambda authorizer com DynamoDB permite rate limiting granular por usuário.",
         topic: "security",
         domain: "security"
     },
@@ -90,12 +90,12 @@ const securityQuestions = [
         question: "Qual é a melhor forma de lidar com secrets rotation em Lambda?",
         options: [
             "Manual update",
-            "Secrets Manager automatic rotation",
+            "Parameter Store manual update",
             "Environment variables update",
-            "Parameter Store manual update, seguindo o modelo de responsabilidade compartilhada e as políticas de segurança corporativas"
+            "Secrets Manager automatic rotation",
         ],
-        correct: [1],
-        explanation: "Secrets Manager oferece rotação automática de credenciais.",
+        correct: [3],
+        explanation: "✅ Secrets Manager oferece rotação automática de credenciais.",
         topic: "security",
         domain: "security"
     },
@@ -103,13 +103,13 @@ const securityQuestions = [
         id: 73,
         question: "Para criptografia de dados em trânsito no DynamoDB, qual protocolo é usado?",
         options: [
-            "HTTP, implementando controles preventivos e detectivos conforme o framework de segurança organizacional",
+            "HTTP",
             "HTTPS/TLS",
             "SSH",
             "VPN"
         ],
         correct: [1],
-        explanation: "DynamoDB usa HTTPS/TLS para criptografia de dados em trânsito.",
+        explanation: "✅ DynamoDB usa HTTPS/TLS para criptografia de dados em trânsito.",
         topic: "security",
         domain: "security"
     },
@@ -117,13 +117,13 @@ const securityQuestions = [
         id: 74,
         question: "Qual serviço AWS fornece chaves de criptografia gerenciadas?",
         options: [
-            "IAM",
             "AWS KMS",
+            "IAM",
             "Secrets Manager",
             "Parameter Store"
         ],
-        correct: [1],
-        explanation: "AWS KMS (Key Management Service) gerencia chaves de criptografia.",
+        correct: [0],
+        explanation: "✅ AWS KMS (Key Management Service) gerencia chaves de criptografia.",
         topic: "security",
         domain: "security"
     },
@@ -132,12 +132,12 @@ const securityQuestions = [
         question: "Para implementar MFA em uma aplicação web, qual serviço AWS usar?",
         options: [
             "IAM Users",
-            "AWS Cognito",
             "API Gateway",
+            "AWS Cognito",
             "Lambda Authorizer"
         ],
-        correct: [1],
-        explanation: "AWS Cognito oferece MFA integrado para aplicações web e mobile.",
+        correct: [2],
+        explanation: "✅ AWS Cognito oferece MFA integrado para aplicações web e mobile.",
         topic: "security",
         domain: "security"
     },
@@ -146,12 +146,12 @@ const securityQuestions = [
         question: "Qual é o princípio de segurança mais importante no IAM?",
         options: [
             "Allow by default",
-            "Least privilege",
+            "Open access",
             "Maximum permissions",
-            "Open access"
+            "Least privilege",
         ],
-        correct: [1],
-        explanation: "Least privilege garante que usuários tenham apenas as permissões mínimas necessárias.",
+        correct: [3],
+        explanation: "✅ Least privilege garante que usuários tenham apenas as permissões mínimas necessárias.",
         topic: "security",
         domain: "security"
     },
@@ -159,13 +159,13 @@ const securityQuestions = [
         id: 77,
         question: "Para proteger uma API contra ataques DDoS, qual serviço usar?",
         options: [
-            "CloudFront, com capacidade de processamento paralelo e distribuído para atender picos de demanda",
-            "AWS Shield",
+            "CloudFront",
+            "Todas as anteriores",
             "WAF",
-            "Todas as anteriores"
+            "AWS Shield",
         ],
-        correct: [3],
-        explanation: "CloudFront, Shield e WAF trabalham juntos para proteção contra DDoS.",
+        correct: [1],
+        explanation: "✅ CloudFront, Shield e WAF trabalham juntos para proteção contra DDoS.",
         topic: "security",
         domain: "security"
     },
@@ -173,13 +173,13 @@ const securityQuestions = [
         id: 78,
         question: "Em S3, qual é a diferença entre bucket policy e ACL?",
         options: [
-            "Não há diferença",
             "Bucket policy é mais granular",
+            "Não há diferença",
             "ACL é mais moderno",
-            "Bucket policy é legacy, integrando com os sistemas existentes através de APIs e conectores nativos da plataforma"
+            "Bucket policy é legacy"
         ],
-        correct: [1],
-        explanation: "Bucket policies oferecem controle mais granular que ACLs (que são legacy).",
+        correct: [0],
+        explanation: "✅ Bucket policies oferecem controle mais granular que ACLs (que são legacy).",
         topic: "security",
         domain: "security"
     },
@@ -188,12 +188,12 @@ const securityQuestions = [
         question: "Para auditoria de mudanças em recursos AWS, qual serviço usar?",
         options: [
             "CloudTrail",
-            "AWS Config",
             "CloudWatch",
+            "AWS Config",
             "X-Ray"
         ],
-        correct: [1],
-        explanation: "AWS Config monitora e audita mudanças na configuração de recursos.",
+        correct: [2],
+        explanation: "✅ AWS Config monitora e audita mudanças na configuração de recursos.",
         topic: "security",
         domain: "security"
     },
@@ -201,13 +201,13 @@ const securityQuestions = [
         id: 80,
         question: "Qual tipo de criptografia o S3 usa por padrão?",
         options: [
-            "SSE-S3",
+            "Nenhuma",
             "SSE-KMS",
             "SSE-C",
-            "Nenhuma"
+            "SSE-S3",
         ],
-        correct: [0],
-        explanation: "S3 usa SSE-S3 (Server-Side Encryption with S3-Managed Keys) por padrão.",
+        correct: [3],
+        explanation: "✅ S3 usa SSE-S3 (Server-Side Encryption with S3-Managed Keys) por padrão.",
         topic: "security",
         domain: "security"
     },
@@ -216,12 +216,12 @@ const securityQuestions = [
         question: "Para implementar cross-account access, qual recurso IAM usar?",
         options: [
             "IAM Users",
-            "IAM Groups",
             "IAM Roles",
+            "IAM Groups",
             "IAM Policies"
         ],
-        correct: [2],
-        explanation: "IAM Roles permitem acesso cross-account de forma segura.",
+        correct: [1],
+        explanation: "✅ IAM Roles permitem acesso cross-account de forma segura.",
         topic: "security",
         domain: "security"
     },
@@ -229,13 +229,13 @@ const securityQuestions = [
         id: 82,
         question: "Qual é a melhor prática para armazenar API keys em Lambda?",
         options: [
-            "Hardcode no código",
-            "Environment variables, otimizando custo operacional através de right-sizing e monitoramento de utilização de recursos",
             "Parameter Store (encrypted)",
+            "Environment variables",
+            "Hardcode no código",
             "S3 bucket"
         ],
-        correct: [2],
-        explanation: "Parameter Store com criptografia é a melhor prática para API keys.",
+        correct: [0],
+        explanation: "✅ Parameter Store com criptografia é a melhor prática para API keys.",
         topic: "security",
         domain: "security"
     },
@@ -244,12 +244,12 @@ const securityQuestions = [
         question: "Para monitorar tentativas de login suspeitas, qual serviço usar?",
         options: [
             "CloudTrail",
-            "GuardDuty",
             "Inspector",
+            "GuardDuty",
             "Macie"
         ],
-        correct: [1],
-        explanation: "GuardDuty detecta atividades maliciosas e tentativas de acesso suspeitas.",
+        correct: [2],
+        explanation: "✅ GuardDuty detecta atividades maliciosas e tentativas de acesso suspeitas.",
         topic: "security",
         domain: "security"
     },
@@ -257,13 +257,13 @@ const securityQuestions = [
         id: 84,
         question: "Em DynamoDB, como implementar fine-grained access control?",
         options: [
-            "Table-level permissions apenas, aplicando técnicas de observabilidade e rastreamento distribuído para troubleshooting eficiente",
-            "IAM policies com condition keys",
+            "Table-level permissions apenas",
+            "Security groups",
             "Bucket policies",
-            "Security groups"
+            "IAM policies com condition keys",
         ],
-        correct: [1],
-        explanation: "IAM policies com condition keys permitem controle granular por item/atributo.",
+        correct: [3],
+        explanation: "✅ IAM policies com condition keys permitem controle granular por item/atributo.",
         topic: "security",
         domain: "security"
     },
@@ -273,11 +273,11 @@ const securityQuestions = [
         options: [
             "Logar tudo para debug",
             "Mascarar ou omitir dados sensíveis",
-            "Usar apenas CloudWatch, com validação automática de qualidade e rollback em caso de degradação de performance",
+            "Usar apenas CloudWatch",
             "Desabilitar logs"
         ],
         correct: [1],
-        explanation: "Dados sensíveis devem ser mascarados ou omitidos dos logs.",
+        explanation: "✅ Dados sensíveis devem ser mascarados ou omitidos dos logs.",
         topic: "security",
         domain: "security"
     }

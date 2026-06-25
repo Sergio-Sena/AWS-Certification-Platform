@@ -65,12 +65,24 @@ function startTimer() {
 
 function showQuestion() {
     const q = examState.questions[examState.currentQuestion];
+    
+    // Shuffle de opções para eliminar bias de posição
+    if (!q._shuffleMap) {
+        const indices = q.options.map((_, i) => i);
+        for (let i = indices.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [indices[i], indices[j]] = [indices[j], indices[i]];
+        }
+        q._shuffleMap = indices;
+    }
+    const sm = q._shuffleMap;
+    
     document.getElementById('current-q').textContent = examState.currentQuestion + 1;
     document.getElementById('total-q').textContent = examState.questions.length;
     document.getElementById('question-text').innerHTML = `<strong>Questão ${examState.currentQuestion + 1}</strong><br><br>${q.question}`;
-    document.getElementById('options-container').innerHTML = q.options.map((opt, i) => {
-        const sel = examState.answers[q.id] === i ? 'selected' : '';
-        return `<div class="option ${sel}" onclick="selectOption(${i})">${String.fromCharCode(65+i)}. ${opt}</div>`;
+    document.getElementById('options-container').innerHTML = sm.map((origIdx, visIdx) => {
+        const sel = examState.answers[q.id] === origIdx ? 'selected' : '';
+        return `<div class="option ${sel}" onclick="selectOption(${origIdx})">${String.fromCharCode(65+visIdx)}. ${q.options[origIdx]}</div>`;
     }).join('');
     document.getElementById('prev-btn').disabled = examState.currentQuestion === 0;
     document.getElementById('next-btn').style.display = examState.currentQuestion === examState.questions.length - 1 ? 'none' : 'inline-block';
