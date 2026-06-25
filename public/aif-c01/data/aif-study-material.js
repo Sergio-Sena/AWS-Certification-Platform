@@ -211,6 +211,9 @@ const aifStudyMaterial = {
                     <tr><td>Fine-tuning (Full/LoRA/PEFT)</td><td>Pares prompt→completion</td><td>Alto</td><td>Comportamento específico</td></tr>
                     <tr><td>Treinar do zero</td><td>Trilhões de tokens</td><td>Milhões $$</td><td>Quase nunca</td></tr>
                 </table>
+            </div>
+        `
+    },
 
     // DOMÍNIO 3: Applications of Foundation Models (28%)
     'foundation-models': {
@@ -419,27 +422,28 @@ const aifStudyMaterial = {
 };
 
 // Mapa 80/20: Os 20% vitais que cobrem 80% do exame
+// Baseado no exam guide oficial + relatos: CONCEITOS > serviços específicos
 const aifParetoMap = {
     vital: [
-        { topic: 'Amazon Bedrock (Foundation Models, RAG, Agents, Guardrails, Prompt Management)', domains: [2, 3, 4, 5], weight: 'Aparece em 4 dos 5 domínios' },
-        { topic: 'Tipos de Aprendizado (supervisionado, não supervisionado, reforço)', domains: [1], weight: 'Base do Domínio 1 inteiro' },
-        { topic: 'Prompt Engineering (zero-shot, few-shot, chain-of-thought, temperatura, top-p)', domains: [2, 3], weight: '52% do exame (D2+D3)' },
-        { topic: 'RAG (Retrieval-Augmented Generation) + Kendra + OpenSearch', domains: [3], weight: 'Maior domínio: 28%' },
-        { topic: 'Responsible AI (bias, fairness, alucinações, guardrails, LIME/SHAP)', domains: [4, 5], weight: '28% do exame (D4+D5)' },
-        { topic: 'Embeddings, Bancos Vetoriais e Cosine Similarity', domains: [1, 3], weight: 'Base de RAG e busca semântica' },
-        { topic: 'MLOps: Ciclo de ML + Model Monitor + Feature Store + Data Wrangler', domains: [1], weight: 'Pipeline completo cai muito' }
+        { topic: 'Hierarquia IA → ML → DL → GenAI + Tipos de Aprendizado (supervisionado, não supervisionado, reforço)', domains: [1, 2], weight: '44% do exame (D1+D2) é conceito puro' },
+        { topic: 'RAG: conceito, pipeline (chunks → embeddings → busca → prompt → resposta), quando usar vs fine-tuning', domains: [2, 3], weight: 'Maior domínio (28%) gira em torno de RAG' },
+        { topic: 'Fine-tuning vs RAG vs Prompt Engineering: QUANDO usar cada (hierarquia de customização)', domains: [2, 3], weight: 'Decisão mais cobrada no exame' },
+        { topic: 'Prompt Engineering: zero/few-shot, chain-of-thought, temperatura, top-p, system prompt', domains: [2, 3], weight: 'Aparece em 52% do exame (D2+D3)' },
+        { topic: 'Bedrock conceitual: Knowledge Bases (=RAG), Agents (=ações), Guardrails (=segurança de conteúdo)', domains: [3, 4, 5], weight: 'Plataforma central — O QUE faz cada componente' },
+        { topic: 'IA Responsável: bias (tipos), fairness, alucinação, toxicidade, human-in-the-loop, explicabilidade', domains: [4, 5], weight: '28% do exame (D4+D5)' },
+        { topic: 'Treinamento vs Inferência: conceito, custo, quando cada um acontece, tipos de inferência', domains: [1, 3], weight: 'Distinção fundamental que cai sempre' }
     ],
     complementary: [
-        { topic: 'SageMaker (training, inference, Ground Truth, Clarify)', domains: [1, 4] },
-        { topic: 'Serviços de IA: Comprehend, Rekognition, Textract, Polly, Transcribe, Lex', domains: [1, 3] },
-        { topic: 'Serviços de IA: Personalize, Fraud Detector, Translate, HealthScribe', domains: [1, 3] },
-        { topic: 'GANs, Visão Computacional e NLP (sub-campos da IA)', domains: [1] },
-        { topic: 'Amazon Titan, Nova e OpenSearch (busca vetorial + RAG)', domains: [2, 3] },
-        { topic: 'Amazon Q Developer vs Q em QuickSight', domains: [2, 3] },
-        { topic: 'Fine-tuning vs Pre-training', domains: [3] },
-        { topic: 'LLMs vs SLMs (quando usar cada)', domains: [2] },
-        { topic: 'Tokenização e Janela de Contexto', domains: [2] },
-        { topic: 'Data Privacy, IAM e Distribuição de Credenciais', domains: [5] }
+        { topic: 'Serviços de IA por nome/função: Comprehend, Rekognition, Textract, Polly, Transcribe, Lex, Personalize', domains: [1, 3] },
+        { topic: 'SageMaker: Canvas (no-code), Clarify (bias), Monitor (drift), Ground Truth (rotulagem)', domains: [1, 4] },
+        { topic: 'Métricas detalhadas: BLEU, ROUGE, F1, AUC, MSE, RMSE, R²', domains: [1, 2] },
+        { topic: 'Amazon Q Developer vs Q Business + PartyRock', domains: [2, 3] },
+        { topic: 'Infraestrutura: Trainium (treinar) vs Inferentia (inferir) vs GPUs', domains: [1] },
+        { topic: 'Embeddings e bancos vetoriais (OpenSearch, pgvector) — detalhes técnicos', domains: [3] },
+        { topic: 'GANs, Diffusion Models, arquiteturas de redes neurais (CNN, RNN, Transformer)', domains: [1, 2] },
+        { topic: 'Data Privacy, IAM para Bedrock, encryption, VPC endpoints', domains: [5] },
+        { topic: 'MLOps: pipelines, Feature Store, Model Registry, A/B testing', domains: [1] },
+        { topic: 'Tokenização, janela de contexto, LLMs vs SLMs', domains: [2] }
     ]
 };
 

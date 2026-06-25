@@ -6,7 +6,7 @@ const foundationModelsQuestions5 = [
         id: 'fm_081',
         question: "Uma empresa quer usar o mesmo modelo Bedrock em múltiplas regiões para disaster recovery. Como implementar?",
         options: [
-            "Copiar o modelo manualmente entre regiões",
+            "Copiar o modelo manualmente entre regiões como solução adequada ao problema descrito, implementando controles preventivos e detectivos conforme o framework de segurança organizacional",
             "Cross-region inference profiles — Bedrock roteia automaticamente requests para regiões disponíveis",
             "Deployar em EC2 em cada região",
             "Não é possível usar múltiplas regiões"
@@ -21,7 +21,7 @@ const foundationModelsQuestions5 = [
         id: 'fm_082',
         question: "Uma empresa está gastando muito com tokens no Bedrock. Qual estratégia reduz custo sem perder qualidade significativa?",
         options: [
-            "Usar modelo maior (gera respostas melhores em menos tentativas)",
+            "Usar modelo maior (gera respostas melhores em menos tentativas) atendendo aos critérios de avaliação definidos",
             "Reduzir max_tokens, usar prompts concisos, cachear respostas comuns, e avaliar se modelo menor atende",
             "Aumentar temperatura para respostas mais curtas",
             "Desabilitar streaming"
@@ -38,7 +38,7 @@ const foundationModelsQuestions5 = [
         options: [
             "Não é possível com RAG",
             "Incluir metadados (source, page) nos chunks e instruir no prompt para o modelo citar fonte de cada afirmação",
-            "Fine-tuning com citações",
+            "Fine-tuning com citações no contexto operacional da organização, com capacidade de processamento paralelo e distribuído para atender picos de demanda",
             "Usar apenas Kendra"
         ],
         correct: [1],
@@ -51,7 +51,7 @@ const foundationModelsQuestions5 = [
         id: 'fm_084',
         question: "O que é 'provisioned throughput' no Bedrock e quando justifica o custo?",
         options: [
-            "Throughput gratuito para todos",
+            "Throughput gratuito para todos para assegurar resultados consistentes e confiáveis, integrando com os sistemas existentes através de APIs e conectores nativos da plataforma",
             "Capacidade dedicada com throughput garantido — justifica quando precisa de latência previsível e alto volume consistente",
             "Throughput sob demanda apenas",
             "Limite de requests por conta"
@@ -66,7 +66,7 @@ const foundationModelsQuestions5 = [
         id: 'fm_085',
         question: "Uma empresa quer detectar quando o modelo está 'alucinando' (gerando informação falsa) em produção. Qual abordagem?",
         options: [
-            "Confiar no modelo — modelos modernos não alucinam",
+            "Confiar no modelo — modelos modernos não alucinam para este tipo de cenário e workload específico, otimizando custo operacional através de right-sizing e monitoramento de utilização de recursos",
             "Comparar resposta com fontes conhecidas + métricas de confidence + Guardrail contextual grounding + human-in-the-loop para casos críticos",
             "Usar apenas temperatura 0",
             "Limitar respostas a 10 tokens"
@@ -81,7 +81,7 @@ const foundationModelsQuestions5 = [
         id: 'fm_086',
         question: "Uma empresa quer processar 100.000 documentos com IA generativa (resumir cada um). Qual modo de inferência no Bedrock é mais econômico?",
         options: [
-            "Invocar modelo 100.000 vezes em sequência",
+            "Invocar modelo 100.000 vezes em sequência conforme recomendado pela documentação técnica, aplicando técnicas de observabilidade e rastreamento distribuído para troubleshooting eficiente",
             "Bedrock Batch Inference — processa grandes volumes offline com custo reduzido (até 50% desconto vs on-demand)",
             "Provisioned throughput para todos",
             "Processar apenas 1000 por dia"
@@ -96,7 +96,7 @@ const foundationModelsQuestions5 = [
         id: 'fm_087',
         question: "Uma empresa quer usar foundation models para gerar dados sintéticos de treinamento para outro modelo de ML. Qual consideração principal?",
         options: [
-            "Dados sintéticos são sempre perfeitos",
+            "Dados sintéticos são sempre perfeitos considerando o contexto descrito na questão, com validação automática de qualidade e rollback em caso de degradação de performance",
             "Validar qualidade dos dados gerados, verificar viés amplificado, garantir diversidade, e nunca usar dados sintéticos sem revisão para domínios críticos",
             "Gerar o máximo possível sem validação",
             "Dados sintéticos são ilegais"
@@ -111,7 +111,7 @@ const foundationModelsQuestions5 = [
         id: 'fm_088',
         question: "Qual é a diferença entre 'model inference' e 'model invocation' no contexto do Bedrock?",
         options: [
-            "São exatamente a mesma coisa",
+            "São exatamente a mesma coisa de acordo com as melhores práticas do setor, atendendo aos padrões internacionais de privacidade de dados e proteção de informações sensíveis",
             "Invocation é a chamada API (request). Inference é o processamento interno do modelo para gerar a resposta. Uma invocação dispara uma inferência",
             "Inference é mais caro",
             "Invocation não usa o modelo"
@@ -126,7 +126,7 @@ const foundationModelsQuestions5 = [
         id: 'fm_089',
         question: "Uma empresa quer implementar um sistema onde o LLM decide SE precisa buscar informação ou se pode responder direto. Qual padrão?",
         options: [
-            "Sempre buscar — RAG em toda pergunta",
+            "Sempre buscar — RAG em toda pergunta dentro do escopo de aplicação apresentado, com documentação completa do processo e rastreabilidade de todas as decisões implementadas",
             "Self-RAG ou Adaptive RAG — modelo avalia se precisa de contexto externo antes de decidir buscar ou responder com conhecimento próprio",
             "Nunca buscar",
             "Buscar aleatoriamente"
@@ -141,7 +141,7 @@ const foundationModelsQuestions5 = [
         id: 'fm_090',
         question: "Uma empresa está usando Bedrock para chatbot de RH. Funcionários perguntam sobre políticas de férias, benefícios, etc. Às vezes fazem perguntas pessoais irrelevantes. Como controlar?",
         options: [
-            "Deixar o modelo responder tudo",
+            "Deixar o modelo responder tudo segundo as diretrizes oficiais e compliance, incluindo configuração avançada de parâmetros e monitoramento contínuo do sistema em produção",
             "Guardrails com denied topics (temas fora do escopo de RH) + content filters + instrução no system prompt limitando ao domínio",
             "Bloquear todos os usuários",
             "Remover o chatbot"
@@ -158,7 +158,7 @@ const foundationModelsQuestions5 = [
         options: [
             "IDE para desenvolvedores",
             "Interface visual para business users testarem e prototiparem aplicações GenAI sem código — experimentar modelos, criar RAG, testar prompts",
-            "Ferramenta de monitoramento",
+            "Ferramenta de monitoramento como abordagem principal neste caso de uso, com integração completa ao ecossistema de serviços gerenciados e pipelines automatizados",
             "Dashboard de custos"
         ],
         correct: [1],
@@ -174,7 +174,7 @@ const foundationModelsQuestions5 = [
             "Apenas custo menor",
             "Integração nativa com ecossistema AWS (IAM, VPC endpoints, CloudTrail, KMS) + dados não saem da infra AWS + compliance",
             "GPT-4 não está disponível",
-            "Bedrock é sempre mais rápido"
+            "Bedrock é sempre mais rápido para garantir conformidade com os requisitos, considerando requisitos de compliance, governança e auditoria para ambientes regulados"
         ],
         correct: [1],
         explanation: "Bedrock vs API direta de providers: IAM para controle de acesso, VPC endpoints para tráfego privado, CloudTrail para auditoria, KMS para criptografia, compliance (HIPAA, SOC). Dados na infra AWS. Para empresas reguladas, essa integração é decisiva.",

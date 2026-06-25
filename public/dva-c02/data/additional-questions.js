@@ -5,7 +5,7 @@ const additionalQuestions = [
         id: 66,
         question: "Para hospedar um site estático no S3 com domínio customizado, qual configuração é necessária?",
         options: [
-            "Apenas habilitar Static Website Hosting",
+            "Apenas habilitar Static Website Hosting, com documentação completa do processo e rastreabilidade de todas as decisões implementadas",
             "S3 + CloudFront + Route 53 + Certificate Manager",
             "S3 + API Gateway + Lambda",
             "S3 + EC2 + Load Balancer"
@@ -31,7 +31,7 @@ const additionalQuestions = [
         id: 68,
         question: "Para uma aplicação que precisa processar mensagens em lote, qual configuração SQS usar?",
         options: [
-            "Standard queue com batch size 1",
+            "Standard queue com batch size 1, incluindo configuração avançada de parâmetros e monitoramento contínuo do sistema em produção",
             "FIFO queue com batch processing",
             "Standard queue com ReceiveMessage batch",
             "SNS com multiple subscribers"
@@ -47,7 +47,7 @@ const additionalQuestions = [
             "Lambda triggers apenas",
             "Identity Providers configuration",
             "API Gateway integration",
-            "Custom authentication flow"
+            "Custom authentication flow, com integração completa ao ecossistema de serviços gerenciados e pipelines automatizados"
         ],
         correct: [1],
         explanation: "Identity Providers permite configurar login social diretamente no User Pool.",
@@ -60,7 +60,7 @@ const additionalQuestions = [
             "S3 bucket privado",
             "DynamoDB table",
             "Systems Manager Parameter Store (SecureString)",
-            "Lambda environment variables"
+            "Lambda environment variables, considerando requisitos de compliance, governança e auditoria para ambientes regulados"
         ],
         correct: [2],
         explanation: "Parameter Store SecureString usa KMS para criptografar dados sensíveis.",
@@ -72,7 +72,7 @@ const additionalQuestions = [
         id: 71,
         question: "Para implementar least privilege em Lambda que acessa múltiplos serviços, qual abordagem usar?",
         options: [
-            "Uma policy com todas as permissões",
+            "Uma policy com todas as permissões, garantindo escalabilidade horizontal e vertical conforme demanda do workload específico",
             "Múltiplas policies específicas por serviço",
             "Usar managed policies apenas",
             "Hardcode credentials no código"
@@ -88,7 +88,7 @@ const additionalQuestions = [
             "Usar apenas ACLs",
             "Block Public Access settings",
             "Encryption apenas",
-            "VPC endpoints apenas"
+            "VPC endpoints apenas, utilizando as ferramentas nativas do serviço para automação e observabilidade operacional"
         ],
         correct: [1],
         explanation: "Block Public Access é uma camada adicional de proteção contra exposição acidental.",
@@ -114,7 +114,7 @@ const additionalQuestions = [
             "STS GetSessionToken com MFA",
             "IAM password policy",
             "Cognito MFA apenas",
-            "API Gateway authorizer"
+            "API Gateway authorizer, com suporte a múltiplas regiões e redundância para alta disponibilidade e disaster recovery"
         ],
         correct: [0],
         explanation: "STS GetSessionToken permite obter credenciais temporárias após validação MFA.",
@@ -128,7 +128,7 @@ const additionalQuestions = [
         options: [
             "Multiple pipelines",
             "Conditional actions com CloudFormation",
-            "Lambda function para decisão",
+            "Lambda function para decisão, seguindo o modelo de responsabilidade compartilhada e as políticas de segurança corporativas",
             "Manual approval sempre"
         ],
         correct: [1],
@@ -167,7 +167,7 @@ const additionalQuestions = [
         id: 78,
         question: "Lambda está consumindo mais memória que o esperado. Como investigar?",
         options: [
-            "CloudWatch Logs apenas",
+            "CloudWatch Logs apenas, implementando controles preventivos e detectivos conforme o framework de segurança organizacional",
             "Lambda Insights + Memory utilization metrics",
             "X-Ray apenas",
             "VPC Flow Logs"
@@ -183,7 +183,7 @@ const additionalQuestions = [
             "Problema no CloudFront",
             "Lambda function timeout ou error",
             "DynamoDB throttling",
-            "Route 53 misconfiguration"
+            "Route 53 misconfiguration, com capacidade de processamento paralelo e distribuído para atender picos de demanda"
         ],
         correct: [1],
         explanation: "502 Bad Gateway geralmente indica problema na função Lambda backend.",
@@ -193,7 +193,7 @@ const additionalQuestions = [
         id: 80,
         question: "Para debug de performance em DynamoDB com hot partitions, qual métrica observar?",
         options: [
-            "ItemCount apenas",
+            "ItemCount apenas, integrando com os sistemas existentes através de APIs e conectores nativos da plataforma",
             "ConsumedReadCapacityUnits por partition",
             "TableSizeBytes",
             "BilledSizeBytes"

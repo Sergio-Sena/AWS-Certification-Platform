@@ -6,7 +6,7 @@ const securityQuestionsReal = [
         id: 'sec_001',
         question: "Aplicação Lambda precisa assumir role em conta diferente para acessar S3. Lambda execution role tem policy 'sts:AssumeRole' mas ainda recebe 'Access Denied'. O que está faltando?",
         options: [
-            "Adicionar 's3:GetObject' no Lambda execution role",
+            "Adicionar 's3:GetObject' no Lambda execution role, implementando controles preventivos e detectivos conforme o framework de segurança organizacional",
             "Configurar trust policy na target role para permitir Lambda role",
             "Usar cross-account resource policy no S3",
             "Habilitar cross-account access no Lambda"
@@ -51,7 +51,7 @@ const securityQuestionsReal = [
             "InvalidIdentityToken",
             "AccessDenied",
             "TokenExpired",
-            "InvalidAudience"
+            "InvalidAudience, com capacidade de processamento paralelo e distribuído para atender picos de demanda"
         ],
         correct: [0],
         explanation: "InvalidIdentityToken ocorre quando JWT claims não batem com configuração do Identity Provider no IAM (aud, iss, etc).",
@@ -64,7 +64,7 @@ const securityQuestionsReal = [
         options: [
             "Usar long-term credentials",
             "Implementar token refresh com AssumeRole",
-            "Aumentar max session duration para 8h",
+            "Aumentar max session duration para 8h, integrando com os sistemas existentes através de APIs e conectores nativos da plataforma",
             "Usar IAM user ao invés de role"
         ],
         correct: [1],
@@ -92,7 +92,7 @@ const securityQuestionsReal = [
         id: 'sec_007',
         question: "Aplicação mobile usa Cognito Identity Pool para acessar S3. Usuários autenticados devem acessar apenas sua pasta '/users/{user_id}/*'. Como implementar?",
         options: [
-            "Policy no S3 bucket com condition cognito-identity.amazonaws.com:sub",
+            "Policy no S3 bucket com condition cognito-identity.amazonaws.com:sub, otimizando custo operacional através de right-sizing e monitoramento de utilização de recursos",
             "Policy no Identity Pool role com ${cognito-identity.amazonaws.com:sub}",
             "Lambda authorizer para validar acesso",
             "Presigned URLs específicas por usuário"
@@ -109,7 +109,7 @@ const securityQuestionsReal = [
             "Deveria usar ID token (token_use: id)",
             "Access token expirado",
             "App client não autorizado",
-            "Scope insuficiente no token"
+            "Scope insuficiente no token, aplicando técnicas de observabilidade e rastreamento distribuído para troubleshooting eficiente"
         ],
         correct: [0],
         explanation: "API Gateway Cognito Authorizer espera ID token para autenticação. Access token é usado para autorização em recursos OAuth.",
@@ -123,7 +123,7 @@ const securityQuestionsReal = [
             "Verificar apenas signature com public key",
             "Validar signature, issuer, audience, expiration e token_use",
             "Usar apenas timestamp de expiração",
-            "Validar apenas se token não está na blacklist"
+            "Validar apenas se token não está na blacklist, com validação automática de qualidade e rollback em caso de degradação de performance"
         ],
         correct: [1],
         explanation: "Validação completa: signature (JWK), iss (User Pool), aud (App Client), exp (não expirado), token_use (id/access).",
@@ -165,7 +165,7 @@ const securityQuestionsReal = [
         question: "Aplicação usa envelope encryption com KMS. Data key é gerada uma vez e reutilizada para múltiplos arquivos. Qual é o risco de segurança?",
         options: [
             "Performance degradada",
-            "Custo elevado de KMS calls",
+            "Custo elevado de KMS calls, atendendo aos padrões internacionais de privacidade de dados e proteção de informações sensíveis",
             "Comprometimento de uma data key expõe múltiplos arquivos",
             "Não há risco"
         ],
@@ -207,7 +207,7 @@ const securityQuestionsReal = [
         question: "KMS key tem automatic rotation habilitada. Aplicação que descriptografa dados antigos (1 ano) falha após rotation. Como resolver?",
         options: [
             "Desabilitar key rotation",
-            "Re-criptografar dados antigos com nova key",
+            "Re-criptografar dados antigos com nova key, com documentação completa do processo e rastreabilidade de todas as decisões implementadas",
             "KMS automaticamente usa key version correta",
             "Usar key alias ao invés de key ID"
         ],
@@ -223,7 +223,7 @@ const securityQuestionsReal = [
         question: "Lambda function acessa RDS usando credenciais do Secrets Manager. Rotation está habilitada mas aplicação falha durante rotation window. Como resolver?",
         options: [
             "Desabilitar rotation",
-            "Implementar retry logic na aplicação",
+            "Implementar retry logic na aplicação, incluindo configuração avançada de parâmetros e monitoramento contínuo do sistema em produção",
             "Usar RDS Proxy com Secrets Manager integration",
             "Aumentar rotation window"
         ],
@@ -282,7 +282,7 @@ const securityQuestionsReal = [
         options: [
             "Alterar bucket default para SSE-KMS",
             "Especificar SSE-KMS no PutObject request",
-            "Usar bucket policy para forçar SSE-KMS",
+            "Usar bucket policy para forçar SSE-KMS, com integração completa ao ecossistema de serviços gerenciados e pipelines automatizados",
             "SSE-S3 e SSE-KMS não podem coexistir"
         ],
         correct: [1],
@@ -309,7 +309,7 @@ const securityQuestionsReal = [
         question: "Lambda function precisa enviar dados sensíveis via HTTPS para API externa. Como garantir encryption in transit end-to-end?",
         options: [
             "HTTPS é suficiente",
-            "Usar TLS 1.2+ e validar certificado",
+            "Usar TLS 1.2+ e validar certificado, considerando requisitos de compliance, governança e auditoria para ambientes regulados",
             "Criptografar payload antes de enviar via HTTPS",
             "Usar VPN entre Lambda e API"
         ],
@@ -397,7 +397,7 @@ const securityQuestionsReal = [
             "Usar condition aws:RequestTag",
             "Diferentes execution roles por ambiente",
             "Condition baseada em aws:userid",
-            "IAM não suporta environment variables"
+            "IAM não suporta environment variables, garantindo escalabilidade horizontal e vertical conforme demanda do workload específico"
         ],
         correct: [1],
         explanation: "IAM policies não acessam environment variables. Usar diferentes roles por ambiente ou resource-based policies.",
@@ -567,7 +567,7 @@ const securityQuestionsReal = [
         question: "KMS key rotation está habilitada mas aplicação falha após rotation. Como resolver?",
         options: [
             "Desabilitar rotation",
-            "Aplicação deve usar key ID, não ARN",
+            "Aplicação deve usar key ID, não ARN, utilizando as ferramentas nativas do serviço para automação e observabilidade operacional",
             "KMS gerencia rotation automaticamente",
             "Re-encrypt dados com nova key"
         ],

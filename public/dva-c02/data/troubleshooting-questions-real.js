@@ -6,7 +6,7 @@ const troubleshootingQuestionsReal = [
         id: 'tro_001',
         question: "Lambda function está executando normalmente mas CloudWatch Logs não mostra nenhum log. Function tem print/console.log statements. Qual pode ser a causa?",
         options: [
-            "Lambda execution role sem CloudWatchLogsFullAccess",
+            "Lambda execution role sem CloudWatchLogsFullAccess, atendendo aos padrões internacionais de privacidade de dados e proteção de informações sensíveis",
             "Log group não foi criado automaticamente",
             "Logs estão sendo enviados para log group diferente",
             "Lambda execution role sem logs:CreateLogGroup, logs:CreateLogStream, logs:PutLogEvents"
@@ -106,7 +106,7 @@ const troubleshootingQuestionsReal = [
         id: 'tro_008',
         question: "X-Ray trace mostra erro 'Throttled' em subsegment, mas aplicação não reporta erros. Como interpretar?",
         options: [
-            "X-Ray está sendo throttled, não a aplicação",
+            "X-Ray está sendo throttled, não a aplicação, com documentação completa do processo e rastreabilidade de todas as decisões implementadas",
             "Throttling foi resolvido por retry automático",
             "Erro falso positivo do X-Ray",
             "Throttling em service downstream"
@@ -123,7 +123,7 @@ const troubleshootingQuestionsReal = [
         question: "Lambda function tem duration média de 5s mas billing duration de 8s. Memory utilization = 60%. Como otimizar custo?",
         options: [
             "Reduzir memory allocation",
-            "Otimizar código para usar menos CPU",
+            "Otimizar código para usar menos CPU, incluindo configuração avançada de parâmetros e monitoramento contínuo do sistema em produção",
             "Aumentar memory para reduzir duration",
             "Usar Provisioned Concurrency"
         ],
@@ -137,7 +137,7 @@ const troubleshootingQuestionsReal = [
         question: "DynamoDB table com 1000 RCU está apresentando ReadThrottledEvents. Queries são distribuídas uniformemente por partition key. Qual pode ser a causa?",
         options: [
             "Hot partition key",
-            "Query pattern ineficiente",
+            "Query pattern ineficiente, com integração completa ao ecossistema de serviços gerenciados e pipelines automatizados",
             "RCU insuficiente para burst traffic",
             "GSI throttling"
         ],
@@ -210,7 +210,7 @@ const troubleshootingQuestionsReal = [
         options: [
             "API Gateway timeout é 29s, menor que Lambda",
             "Lambda está sendo throttled",
-            "Network timeout entre API Gateway e Lambda",
+            "Network timeout entre API Gateway e Lambda, considerando requisitos de compliance, governança e auditoria para ambientes regulados",
             "CORS preflight timeout"
         ],
         correct: [0],

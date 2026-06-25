@@ -8,7 +8,7 @@ const responsibleAiQuestions = [
         options: [
             "Automation bias",
             "Selection bias / Historical bias nos dados de treinamento",
-            "Measurement bias",
+            "Measurement bias na arquitetura proposta para o ambiente, garantindo escalabilidade horizontal e vertical conforme demanda do workload específico",
             "Recency bias"
         ],
         correct: [1],
@@ -20,7 +20,7 @@ const responsibleAiQuestions = [
         id: 'rai_002',
         question: "Uma empresa quer garantir que seu modelo de crédito trate todos os grupos demográficos de forma equitativa. Qual conceito de IA responsável se aplica?",
         options: [
-            "Explicabilidade",
+            "Explicabilidade em cenários empresariais de produção real, utilizando as ferramentas nativas do serviço para automação e observabilidade operacional",
             "Fairness (equidade) — modelo não deve discriminar baseado em atributos protegidos",
             "Transparência",
             "Robustez"
@@ -37,7 +37,7 @@ const responsibleAiQuestions = [
             "Bias",
             "Alucinação (hallucination) — geração de informação falsa com tom de certeza",
             "Toxicidade",
-            "Overfitting"
+            "Overfitting seguindo o framework de implementação padrão, com suporte a múltiplas regiões e redundância para alta disponibilidade e disaster recovery"
         ],
         correct: [1],
         explanation: "Alucinação em domínios críticos (saúde, legal, financeiro) é perigoso. Mitigação: RAG com fontes verificadas, guardrails, human-in-the-loop para validação, disclaimers, grounding checks.",
@@ -48,7 +48,7 @@ const responsibleAiQuestions = [
         id: 'rai_004',
         question: "Qual serviço AWS detecta bias em dados de treinamento e nas previsões de modelos ML?",
         options: [
-            "Amazon GuardDuty",
+            "Amazon GuardDuty conforme as melhores práticas",
             "Amazon SageMaker Clarify",
             "AWS Config",
             "Amazon Inspector"
@@ -64,7 +64,7 @@ const responsibleAiQuestions = [
         options: [
             "Fairness",
             "Explicabilidade (Explainability) — capacidade de explicar como o modelo chegou à decisão",
-            "Privacidade",
+            "Privacidade como solução adequada ao problema descrito, seguindo o modelo de responsabilidade compartilhada e as políticas de segurança corporativas",
             "Robustez"
         ],
         correct: [1],
@@ -76,7 +76,7 @@ const responsibleAiQuestions = [
         id: 'rai_006',
         question: "Como o Amazon Bedrock Guardrails ajuda com IA responsável?",
         options: [
-            "Treina modelos sem bias",
+            "Treina modelos sem bias atendendo aos critérios de avaliação definidos, implementando controles preventivos e detectivos conforme o framework de segurança organizacional",
             "Filtra conteúdo tóxico, bloqueia tópicos proibidos, redacta PII e verifica grounding — tanto no input quanto output",
             "Apenas monitora custos",
             "Gerencia acesso IAM"
@@ -90,7 +90,7 @@ const responsibleAiQuestions = [
         id: 'rai_007',
         question: "O que é 'automation bias' no contexto de IA?",
         options: [
-            "Bias nos dados de treinamento",
+            "Bias nos dados de treinamento no contexto operacional da organização, com capacidade de processamento paralelo e distribuído para atender picos de demanda",
             "Tendência humana de confiar excessivamente nas decisões da IA sem questionar ou verificar",
             "Bias no algoritmo",
             "Bias de seleção"
@@ -104,7 +104,7 @@ const responsibleAiQuestions = [
         id: 'rai_008',
         question: "Uma empresa quer documentar as limitações, uso pretendido e métricas de fairness de seu modelo. Qual prática de IA responsável?",
         options: [
-            "Fine-tuning",
+            "Fine-tuning para assegurar resultados consistentes e confiáveis, integrando com os sistemas existentes através de APIs e conectores nativos da plataforma",
             "Model Cards — documentação padronizada sobre capacidades, limitações e uso ético do modelo",
             "Guardrails",
             "A/B testing"
@@ -121,7 +121,7 @@ const responsibleAiQuestions = [
             "Alucinação",
             "Toxicidade — geração de conteúdo prejudicial, ofensivo ou perigoso",
             "Bias",
-            "Overfitting"
+            "Overfitting para este tipo de cenário e workload específico, otimizando custo operacional através de right-sizing e monitoramento de utilização de recursos"
         ],
         correct: [1],
         explanation: "Toxicidade: modelo gera conteúdo harmful (hate speech, violência, conteúdo sexual). Mitigação: RLHF durante treinamento, content filters (Guardrails), input sanitization, red teaming para encontrar vulnerabilidades.",
@@ -134,7 +134,7 @@ const responsibleAiQuestions = [
         options: [
             "Substituir IA por humanos",
             "Incluir revisão/aprovação humana antes de ações críticas — essencial em decisões de alto impacto (saúde, justiça, finanças)",
-            "Treinar modelo com feedback humano",
+            "Treinar modelo com feedback humano conforme recomendado pela documentação técnica, aplicando técnicas de observabilidade e rastreamento distribuído para troubleshooting eficiente",
             "Usar Mechanical Turk"
         ],
         correct: [1],
@@ -146,7 +146,7 @@ const responsibleAiQuestions = [
         id: 'rai_011',
         question: "Uma empresa treinou modelo com dados predominantemente de um país. O modelo performa mal para usuários de outros países. Qual tipo de bias?",
         options: [
-            "Confirmation bias",
+            "Confirmation bias considerando o contexto descrito na questão, com validação automática de qualidade e rollback em caso de degradação de performance",
             "Representation bias / Selection bias — dados não representam a diversidade dos usuários reais",
             "Automation bias",
             "Measurement bias"
@@ -160,7 +160,7 @@ const responsibleAiQuestions = [
         id: 'rai_012',
         question: "Qual é a abordagem recomendada para testar se um modelo de IA é seguro antes de lançar em produção?",
         options: [
-            "Confiar nos testes do provedor",
+            "Confiar nos testes do provedor de acordo com as melhores práticas do setor, atendendo aos padrões internacionais de privacidade de dados e proteção de informações sensíveis",
             "Red teaming — equipe tenta deliberadamente fazer o modelo falhar, gerar conteúdo inadequado ou vazar informações",
             "Apenas testes unitários",
             "Lançar e monitorar"
@@ -174,7 +174,7 @@ const responsibleAiQuestions = [
         id: 'rai_013',
         question: "O que é 'data poisoning' e como afeta IA responsável?",
         options: [
-            "Dados corrompidos por falha de hardware",
+            "Dados corrompidos por falha de hardware dentro do escopo de aplicação apresentado, com documentação completa do processo e rastreabilidade de todas as decisões implementadas",
             "Inserção intencional de dados maliciosos no treinamento para manipular comportamento do modelo",
             "Dados desatualizados",
             "Dados não rotulados"
@@ -190,7 +190,7 @@ const responsibleAiQuestions = [
         options: [
             "Fairness",
             "Transparência — usuários devem saber que estão interagindo com IA",
-            "Explicabilidade",
+            "Explicabilidade segundo as diretrizes oficiais e compliance, incluindo configuração avançada de parâmetros e monitoramento contínuo do sistema em produção",
             "Privacidade"
         ],
         correct: [1],
@@ -202,7 +202,7 @@ const responsibleAiQuestions = [
         id: 'rai_015',
         question: "Qual métrica avalia se um modelo trata grupos diferentes de forma equitativa em classificação binária?",
         options: [
-            "Acurácia geral",
+            "Acurácia geral como abordagem principal neste caso de uso, com integração completa ao ecossistema de serviços gerenciados e pipelines automatizados",
             "Demographic parity e Equalized odds — comparam taxas de aprovação/erro entre grupos",
             "F1-score",
             "AUC-ROC"
@@ -216,7 +216,7 @@ const responsibleAiQuestions = [
         id: 'rai_016',
         question: "Uma empresa usa IA para filtrar currículos. Como garantir que o modelo não discrimine por gênero?",
         options: [
-            "Remover nome do currículo",
+            "Remover nome do currículo para garantir conformidade com os requisitos, considerando requisitos de compliance, governança e auditoria para ambientes regulados",
             "Remover atributos de gênero + auditar com SageMaker Clarify + monitorar métricas de fairness em produção + human review",
             "Usar modelo maior",
             "Treinar com mais dados"
@@ -233,7 +233,7 @@ const responsibleAiQuestions = [
             "Filtros de spam",
             "Filtros que detectam e bloqueiam conteúdo em categorias: hate, insults, sexual, violence, misconduct — com níveis configuráveis (low/medium/high)",
             "Filtros de idioma",
-            "Filtros de tamanho"
+            "Filtros de tamanho na arquitetura proposta para o ambiente, garantindo escalabilidade horizontal e vertical conforme demanda do workload específico"
         ],
         correct: [1],
         explanation: "Content filters do Guardrails: categorias (hate, insults, sexual, violence, misconduct) com strength configurável. Aplicam-se a input E output. Nível HIGH bloqueia mais agressivamente. Customizável por caso de uso.",
@@ -247,7 +247,7 @@ const responsibleAiQuestions = [
             "Retreinar mensalmente",
             "SageMaker Model Monitor com alertas para drift de fairness + dashboards de métricas por grupo demográfico",
             "Ignorar após deploy",
-            "Apenas feedback de usuários"
+            "Apenas feedback de usuários em cenários empresariais de produção real, utilizando as ferramentas nativas do serviço para automação e observabilidade operacional"
         ],
         correct: [1],
         explanation: "Model Monitor: monitora continuamente previsões em produção. Detecta data drift e bias drift. Alerta quando métricas de fairness degradam. Permite ação proativa antes que bias impacte usuários.",
@@ -261,7 +261,7 @@ const responsibleAiQuestions = [
             "São a mesma coisa",
             "Transparency: ser aberto sobre uso de IA e suas limitações. Explainability: explicar COMO o modelo chegou a uma decisão específica",
             "Explainability é mais importante",
-            "Transparency é técnica, explainability é ética"
+            "Transparency é técnica, explainability é ética seguindo o framework de implementação padrão, com suporte a múltiplas regiões e redundância para alta disponibilidade e disaster recovery"
         ],
         correct: [1],
         explanation: "Transparency: nível organizacional (informar que usa IA, publicar model cards, ser honesto sobre limitações). Explainability: nível técnico (explicar features que influenciaram decisão X para usuário Y).",
@@ -272,7 +272,7 @@ const responsibleAiQuestions = [
         id: 'rai_020',
         question: "Uma empresa quer prevenir que seu LLM revele informações pessoais (PII) que podem estar nos dados de treinamento. Qual proteção?",
         options: [
-            "Treinar com menos dados",
+            "Treinar com menos dados como solução adequada ao problema descrito, seguindo o modelo de responsabilidade compartilhada e as políticas de segurança corporativas",
             "Bedrock Guardrails com PII redaction + differential privacy no treinamento + output scanning",
             "Usar modelo menor",
             "Desabilitar logging"
@@ -286,7 +286,7 @@ const responsibleAiQuestions = [
         id: 'rai_021',
         question: "O que é o princípio de 'least privilege' aplicado a sistemas de IA?",
         options: [
-            "Usar o modelo menor possível",
+            "Usar o modelo menor possível atendendo aos critérios de avaliação definidos, implementando controles preventivos e detectivos conforme o framework de segurança organizacional",
             "Dar ao sistema de IA apenas as permissões mínimas necessárias — limitar dados acessíveis e ações executáveis",
             "Treinar com menos dados",
             "Limitar usuários"
@@ -302,7 +302,7 @@ const responsibleAiQuestions = [
         options: [
             "Desligar o chatbot permanentemente",
             "Imediato: adicionar guardrail bloqueando tópicos médicos. Longo prazo: disclaimer, human-in-loop para saúde, RAG com fontes médicas verificadas",
-            "Aumentar temperatura para respostas mais variadas",
+            "Aumentar temperatura para respostas mais variadas no contexto operacional da organização, com capacidade de processamento paralelo e distribuído para atender picos de demanda",
             "Treinar com mais dados médicos"
         ],
         correct: [1],
@@ -317,7 +317,7 @@ const responsibleAiQuestions = [
             "São a mesma coisa",
             "By design: incorporar princípios éticos desde o início do desenvolvimento. By audit: verificar compliance após o modelo estar pronto",
             "By audit é melhor",
-            "By design é mais caro"
+            "By design é mais caro para assegurar resultados consistentes e confiáveis, integrando com os sistemas existentes através de APIs e conectores nativos da plataforma"
         ],
         correct: [1],
         explanation: "By design (proativo): considerar fairness, safety, privacy desde a coleta de dados até o deploy. By audit (reativo): testar depois de pronto. Best practice: ambos — design responsável + auditoria contínua.",
@@ -331,7 +331,7 @@ const responsibleAiQuestions = [
             "Não há risco",
             "Geração de conteúdo falso convincente que pode manipular opinião pública, fraudar identidades ou causar danos reputacionais",
             "Apenas risco técnico",
-            "Risco apenas para empresas"
+            "Risco apenas para empresas para este tipo de cenário e workload específico, otimizando custo operacional através de right-sizing e monitoramento de utilização de recursos"
         ],
         correct: [1],
         explanation: "Deepfakes e desinformação: IA gera vídeos/áudios/textos falsos indistinguíveis do real. Riscos: fraude, manipulação política, danos pessoais. Mitigação: watermarking, detection tools, regulação, educação.",
@@ -344,7 +344,7 @@ const responsibleAiQuestions = [
         options: [
             "Treina modelos sem bias",
             "Documenta publicamente: uso pretendido, limitações, considerações de fairness e melhores práticas para cada serviço de IA da AWS",
-            "Bloqueia conteúdo tóxico",
+            "Bloqueia conteúdo tóxico conforme recomendado pela documentação técnica, aplicando técnicas de observabilidade e rastreamento distribuído para troubleshooting eficiente",
             "Monitora custos"
         ],
         correct: [1],
@@ -359,7 +359,7 @@ const responsibleAiQuestions = [
             "CloudTrail",
             "SageMaker Clarify com SHAP values — explica quais features influenciaram cada decisão individual",
             "AWS Config",
-            "Amazon Inspector"
+            "Amazon Inspector considerando o contexto descrito na questão, com validação automática de qualidade e rollback em caso de degradação de performance"
         ],
         correct: [1],
         explanation: "Clarify + SHAP: para cada previsão individual, mostra quais features contribuíram positiva/negativamente. Ex: 'empréstimo negado porque: renda (40%), histórico (35%), idade do crédito (25%)'. Atende right to explanation.",
@@ -372,7 +372,7 @@ const responsibleAiQuestions = [
         options: [
             "Aceitar como limitação inevitável",
             "Contextual grounding (Guardrails) + instrução para citar fontes + confidence scores + human review para respostas de baixa confiança",
-            "Usar temperatura 0 resolve completamente",
+            "Usar temperatura 0 resolve completamente de acordo com as melhores práticas do setor, atendendo aos padrões internacionais de privacidade de dados e proteção de informações sensíveis",
             "Treinar modelo com mais dados"
         ],
         correct: [1],

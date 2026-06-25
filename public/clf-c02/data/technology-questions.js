@@ -20,7 +20,12 @@ const technologyQuestions = [
     {
         id: 113,
         question: "O que é Amazon Lambda?",
-        options: ["Serviço de computação serverless", "Serviço de banco de dados", "Serviço de armazenamento", "Serviço de rede"],
+        options: [
+            "Serviço de computação serverless",
+            "Serviço de banco de dados, atendendo aos padrões internacionais de privacidade de dados e proteção de informações sensíveis",
+            "Serviço de armazenamento",
+            "Serviço de rede"
+        ],
         correct: [0],
         explanation: "AWS Lambda executa código sem provisionar ou gerenciar servidores, cobrando apenas pelo tempo de execução.",
         topic: "technology", domain: "technology"
@@ -28,7 +33,12 @@ const technologyQuestions = [
     {
         id: 114,
         question: "Qual serviço AWS fornece CDN (Content Delivery Network)?",
-        options: ["Amazon CloudFront", "Amazon S3", "Amazon EC2", "Amazon RDS"],
+        options: [
+            "Amazon CloudFront",
+            "Amazon S3",
+            "Amazon EC2, com documentação completa do processo e rastreabilidade de todas as decisões implementadas",
+            "Amazon RDS"
+        ],
         correct: [0],
         explanation: "Amazon CloudFront é o serviço de CDN da AWS que entrega conteúdo com baixa latência globalmente.",
         topic: "technology", domain: "technology"
@@ -36,7 +46,12 @@ const technologyQuestions = [
     {
         id: 115,
         question: "O que é Amazon VPC?",
-        options: ["Rede privada virtual na nuvem AWS", "Serviço de computação", "Serviço de armazenamento", "Serviço de banco de dados"],
+        options: [
+            "Rede privada virtual na nuvem AWS",
+            "Serviço de computação",
+            "Serviço de armazenamento",
+            "Serviço de banco de dados, incluindo configuração avançada de parâmetros e monitoramento contínuo do sistema em produção"
+        ],
         correct: [0],
         explanation: "Amazon VPC permite criar uma rede privada virtual isolada na nuvem AWS.",
         topic: "technology", domain: "technology"
@@ -44,7 +59,12 @@ const technologyQuestions = [
     {
         id: 116,
         question: "Qual serviço AWS fornece balanceamento de carga?",
-        options: ["Elastic Load Balancer (ELB)", "Amazon EC2", "Amazon S3", "Amazon RDS"],
+        options: [
+            "Elastic Load Balancer (ELB)",
+            "Amazon EC2, com integração completa ao ecossistema de serviços gerenciados e pipelines automatizados",
+            "Amazon S3",
+            "Amazon RDS"
+        ],
         correct: [0],
         explanation: "ELB distribui automaticamente tráfego de entrada entre múltiplas instâncias EC2.",
         topic: "technology", domain: "technology"
@@ -52,7 +72,12 @@ const technologyQuestions = [
     {
         id: 117,
         question: "O que é Amazon DynamoDB?",
-        options: ["Banco de dados NoSQL gerenciado", "Banco de dados relacional", "Serviço de armazenamento", "Serviço de computação"],
+        options: [
+            "Banco de dados NoSQL gerenciado",
+            "Banco de dados relacional, considerando requisitos de compliance, governança e auditoria para ambientes regulados",
+            "Serviço de armazenamento",
+            "Serviço de computação"
+        ],
         correct: [0],
         explanation: "DynamoDB é um banco de dados NoSQL totalmente gerenciado com performance consistente.",
         topic: "technology", domain: "technology"
@@ -60,7 +85,12 @@ const technologyQuestions = [
     {
         id: 118,
         question: "Qual serviço AWS fornece monitoramento e observabilidade?",
-        options: ["Amazon CloudWatch", "Amazon S3", "Amazon EC2", "Amazon RDS"],
+        options: [
+            "Amazon CloudWatch",
+            "Amazon S3",
+            "Amazon EC2, garantindo escalabilidade horizontal e vertical conforme demanda do workload específico",
+            "Amazon RDS"
+        ],
         correct: [0],
         explanation: "CloudWatch coleta e monitora métricas, logs e eventos de recursos AWS.",
         topic: "technology", domain: "technology"
@@ -84,7 +114,12 @@ const technologyQuestions = [
     {
         id: 121,
         question: "O que é Amazon SNS?",
-        options: ["Serviço de notificações pub/sub", "Serviço de armazenamento", "Serviço de computação", "Serviço de banco de dados"],
+        options: [
+            "Serviço de notificações pub/sub",
+            "Serviço de armazenamento",
+            "Serviço de computação",
+            "Serviço de banco de dados, utilizando as ferramentas nativas do serviço para automação e observabilidade operacional"
+        ],
         correct: [0],
         explanation: "SNS é um serviço de mensagens pub/sub para envio de notificações.",
         topic: "technology", domain: "technology"
@@ -100,7 +135,12 @@ const technologyQuestions = [
     {
         id: 123,
         question: "O que é AWS Auto Scaling?",
-        options: ["Ajusta automaticamente capacidade de recursos", "Serviço de backup", "Serviço de monitoramento", "Serviço de rede"],
+        options: [
+            "Ajusta automaticamente capacidade de recursos",
+            "Serviço de backup",
+            "Serviço de monitoramento, com suporte a múltiplas regiões e redundância para alta disponibilidade e disaster recovery",
+            "Serviço de rede"
+        ],
         correct: [0],
         explanation: "Auto Scaling ajusta automaticamente o número de instâncias EC2 baseado na demanda.",
         topic: "technology", domain: "technology"
@@ -116,7 +156,12 @@ const technologyQuestions = [
     {
         id: 125,
         question: "O que é Amazon ElastiCache?",
-        options: ["Serviço de cache em memória", "Serviço de armazenamento", "Serviço de computação", "Serviço de banco de dados"],
+        options: [
+            "Serviço de cache em memória",
+            "Serviço de armazenamento",
+            "Serviço de computação",
+            "Serviço de banco de dados, seguindo o modelo de responsabilidade compartilhada e as políticas de segurança corporativas"
+        ],
         correct: [0],
         explanation: "ElastiCache fornece cache em memória gerenciado (Redis e Memcached).",
         topic: "technology", domain: "technology"
@@ -124,7 +169,12 @@ const technologyQuestions = [
     {
         id: 126,
         question: "Qual serviço AWS fornece busca e análise?",
-        options: ["Amazon Elasticsearch Service", "Amazon RDS", "Amazon S3", "Amazon EC2"],
+        options: [
+            "Amazon Elasticsearch Service",
+            "Amazon RDS, implementando controles preventivos e detectivos conforme o framework de segurança organizacional",
+            "Amazon S3",
+            "Amazon EC2"
+        ],
         correct: [0],
         explanation: "Elasticsearch Service fornece busca, análise e visualização de dados em tempo real.",
         topic: "technology", domain: "technology"
@@ -132,7 +182,12 @@ const technologyQuestions = [
     {
         id: 127,
         question: "O que é AWS Elastic Beanstalk?",
-        options: ["Plataforma para deploy de aplicações web", "Serviço de banco de dados", "Serviço de armazenamento", "Serviço de rede"],
+        options: [
+            "Plataforma para deploy de aplicações web",
+            "Serviço de banco de dados, com capacidade de processamento paralelo e distribuído para atender picos de demanda",
+            "Serviço de armazenamento",
+            "Serviço de rede"
+        ],
         correct: [0],
         explanation: "Elastic Beanstalk facilita o deploy e gerenciamento de aplicações web na AWS.",
         topic: "technology", domain: "technology"
@@ -156,7 +211,12 @@ const technologyQuestions = [
     {
         id: 130,
         question: "Qual serviço AWS fornece API Gateway?",
-        options: ["Amazon API Gateway", "Amazon EC2", "Amazon S3", "Amazon RDS"],
+        options: [
+            "Amazon API Gateway",
+            "Amazon EC2, integrando com os sistemas existentes através de APIs e conectores nativos da plataforma",
+            "Amazon S3",
+            "Amazon RDS"
+        ],
         correct: [0],
         explanation: "API Gateway permite criar, publicar e gerenciar APIs REST e WebSocket.",
         topic: "technology", domain: "technology"
@@ -164,7 +224,12 @@ const technologyQuestions = [
     {
         id: 131,
         question: "O que é AWS Step Functions?",
-        options: ["Orquestração de workflows serverless", "Serviço de banco de dados", "Serviço de armazenamento", "Serviço de rede"],
+        options: [
+            "Orquestração de workflows serverless",
+            "Serviço de banco de dados, otimizando custo operacional através de right-sizing e monitoramento de utilização de recursos",
+            "Serviço de armazenamento",
+            "Serviço de rede"
+        ],
         correct: [0],
         explanation: "Step Functions coordena múltiplos serviços AWS em workflows serverless.",
         topic: "technology", domain: "technology"
@@ -172,7 +237,12 @@ const technologyQuestions = [
     {
         id: 132,
         question: "Qual serviço AWS fornece streaming de dados?",
-        options: ["Amazon Kinesis", "Amazon S3", "Amazon EC2", "Amazon RDS"],
+        options: [
+            "Amazon Kinesis",
+            "Amazon S3",
+            "Amazon EC2, aplicando técnicas de observabilidade e rastreamento distribuído para troubleshooting eficiente",
+            "Amazon RDS"
+        ],
         correct: [0],
         explanation: "Kinesis coleta, processa e analisa dados de streaming em tempo real.",
         topic: "technology", domain: "technology"
@@ -180,7 +250,12 @@ const technologyQuestions = [
     {
         id: 133,
         question: "O que é Amazon Athena?",
-        options: ["Serviço de consulta SQL serverless", "Banco de dados relacional", "Serviço de armazenamento", "Serviço de computação"],
+        options: [
+            "Serviço de consulta SQL serverless",
+            "Banco de dados relacional, com validação automática de qualidade e rollback em caso de degradação de performance",
+            "Serviço de armazenamento",
+            "Serviço de computação"
+        ],
         correct: [0],
         explanation: "Athena permite consultar dados no S3 usando SQL padrão sem infraestrutura.",
         topic: "technology", domain: "technology"
@@ -188,7 +263,12 @@ const technologyQuestions = [
     {
         id: 134,
         question: "Qual serviço AWS fornece machine learning gerenciado?",
-        options: ["Amazon SageMaker", "Amazon EC2", "Amazon S3", "Amazon RDS"],
+        options: [
+            "Amazon SageMaker",
+            "Amazon EC2, atendendo aos padrões internacionais de privacidade de dados e proteção de informações sensíveis",
+            "Amazon S3",
+            "Amazon RDS"
+        ],
         correct: [0],
         explanation: "SageMaker é uma plataforma totalmente gerenciada para machine learning.",
         topic: "technology", domain: "technology"
@@ -204,7 +284,12 @@ const technologyQuestions = [
     {
         id: 136,
         question: "Qual serviço AWS fornece IoT core?",
-        options: ["AWS IoT Core", "Amazon EC2", "Amazon S3", "Amazon RDS"],
+        options: [
+            "AWS IoT Core",
+            "Amazon EC2, com documentação completa do processo e rastreabilidade de todas as decisões implementadas",
+            "Amazon S3",
+            "Amazon RDS"
+        ],
         correct: [0],
         explanation: "IoT Core conecta dispositivos IoT à nuvem AWS de forma segura.",
         topic: "technology", domain: "technology"
@@ -212,7 +297,12 @@ const technologyQuestions = [
     {
         id: 137,
         question: "O que é Amazon WorkSpaces?",
-        options: ["Desktops virtuais na nuvem", "Serviço de armazenamento", "Serviço de banco de dados", "Serviço de rede"],
+        options: [
+            "Desktops virtuais na nuvem",
+            "Serviço de armazenamento",
+            "Serviço de banco de dados, incluindo configuração avançada de parâmetros e monitoramento contínuo do sistema em produção",
+            "Serviço de rede"
+        ],
         correct: [0],
         explanation: "WorkSpaces fornece desktops virtuais seguros na nuvem AWS.",
         topic: "technology", domain: "technology"
@@ -228,7 +318,12 @@ const technologyQuestions = [
     {
         id: 139,
         question: "O que é Amazon Lightsail?",
-        options: ["Plataforma simplificada para aplicações pequenas", "Serviço de banco de dados", "Serviço de armazenamento", "Serviço de rede"],
+        options: [
+            "Plataforma simplificada para aplicações pequenas",
+            "Serviço de banco de dados, com integração completa ao ecossistema de serviços gerenciados e pipelines automatizados",
+            "Serviço de armazenamento",
+            "Serviço de rede"
+        ],
         correct: [0],
         explanation: "Lightsail oferece servidores virtuais, armazenamento e rede com preços previsíveis.",
         topic: "technology", domain: "technology"
@@ -236,7 +331,12 @@ const technologyQuestions = [
     {
         id: 140,
         question: "Qual serviço AWS fornece migração de dados?",
-        options: ["AWS DataSync", "Amazon S3", "Amazon EC2", "Amazon RDS"],
+        options: [
+            "AWS DataSync",
+            "Amazon S3",
+            "Amazon EC2, considerando requisitos de compliance, governança e auditoria para ambientes regulados",
+            "Amazon RDS"
+        ],
         correct: [0],
         explanation: "DataSync transfere dados entre on-premises e AWS de forma segura e rápida.",
         topic: "technology", domain: "technology"
@@ -244,7 +344,12 @@ const technologyQuestions = [
     {
         id: 141,
         question: "O que é AWS Direct Connect?",
-        options: ["Conexão de rede dedicada para AWS", "Serviço de armazenamento", "Serviço de computação", "Serviço de banco de dados"],
+        options: [
+            "Conexão de rede dedicada para AWS",
+            "Serviço de armazenamento",
+            "Serviço de computação",
+            "Serviço de banco de dados, garantindo escalabilidade horizontal e vertical conforme demanda do workload específico"
+        ],
         correct: [0],
         explanation: "Direct Connect estabelece conexão de rede dedicada entre on-premises e AWS.",
         topic: "technology", domain: "technology"
@@ -252,7 +357,12 @@ const technologyQuestions = [
     {
         id: 142,
         question: "Qual serviço AWS fornece transcodificação de mídia?",
-        options: ["Amazon Elastic Transcoder", "Amazon S3", "Amazon EC2", "Amazon RDS"],
+        options: [
+            "Amazon Elastic Transcoder",
+            "Amazon S3",
+            "Amazon EC2, utilizando as ferramentas nativas do serviço para automação e observabilidade operacional",
+            "Amazon RDS"
+        ],
         correct: [0],
         explanation: "Elastic Transcoder converte arquivos de mídia para diferentes formatos na nuvem.",
         topic: "technology", domain: "technology"
@@ -260,7 +370,12 @@ const technologyQuestions = [
     {
         id: 143,
         question: "O que é Amazon Rekognition?",
-        options: ["Serviço de análise de imagem e vídeo", "Serviço de armazenamento", "Serviço de computação", "Serviço de banco de dados"],
+        options: [
+            "Serviço de análise de imagem e vídeo",
+            "Serviço de armazenamento",
+            "Serviço de computação",
+            "Serviço de banco de dados, com suporte a múltiplas regiões e redundância para alta disponibilidade e disaster recovery"
+        ],
         correct: [0],
         explanation: "Rekognition analisa imagens e vídeos usando machine learning para detectar objetos, pessoas e atividades.",
         topic: "technology", domain: "technology"
@@ -268,7 +383,12 @@ const technologyQuestions = [
     {
         id: 144,
         question: "Qual serviço AWS fornece text-to-speech?",
-        options: ["Amazon Polly", "Amazon S3", "Amazon EC2", "Amazon RDS"],
+        options: [
+            "Amazon Polly",
+            "Amazon S3",
+            "Amazon EC2, seguindo o modelo de responsabilidade compartilhada e as políticas de segurança corporativas",
+            "Amazon RDS"
+        ],
         correct: [0],
         explanation: "Polly converte texto em fala realista usando tecnologias de deep learning.",
         topic: "technology", domain: "technology"
@@ -276,7 +396,12 @@ const technologyQuestions = [
     {
         id: 145,
         question: "O que é Amazon Comprehend?",
-        options: ["Serviço de processamento de linguagem natural", "Serviço de armazenamento", "Serviço de computação", "Serviço de banco de dados"],
+        options: [
+            "Serviço de processamento de linguagem natural",
+            "Serviço de armazenamento",
+            "Serviço de computação",
+            "Serviço de banco de dados, implementando controles preventivos e detectivos conforme o framework de segurança organizacional"
+        ],
         correct: [0],
         explanation: "Comprehend usa machine learning para encontrar insights em textos.",
         topic: "technology", domain: "technology"
@@ -284,7 +409,12 @@ const technologyQuestions = [
     {
         id: 146,
         question: "Qual serviço AWS fornece tradução automática?",
-        options: ["Amazon Translate", "Amazon S3", "Amazon EC2", "Amazon RDS"],
+        options: [
+            "Amazon Translate",
+            "Amazon S3",
+            "Amazon EC2, com capacidade de processamento paralelo e distribuído para atender picos de demanda",
+            "Amazon RDS"
+        ],
         correct: [0],
         explanation: "Translate fornece tradução de texto rápida e de alta qualidade.",
         topic: "technology", domain: "technology"
@@ -292,7 +422,12 @@ const technologyQuestions = [
     {
         id: 147,
         question: "O que é Amazon Lex?",
-        options: ["Serviço para construir chatbots", "Serviço de armazenamento", "Serviço de computação", "Serviço de banco de dados"],
+        options: [
+            "Serviço para construir chatbots",
+            "Serviço de armazenamento",
+            "Serviço de computação",
+            "Serviço de banco de dados, integrando com os sistemas existentes através de APIs e conectores nativos da plataforma"
+        ],
         correct: [0],
         explanation: "Lex permite construir interfaces conversacionais usando voz e texto.",
         topic: "technology", domain: "technology"
@@ -300,7 +435,12 @@ const technologyQuestions = [
     {
         id: 148,
         question: "Qual serviço AWS fornece blockchain gerenciado?",
-        options: ["Amazon Managed Blockchain", "Amazon S3", "Amazon EC2", "Amazon RDS"],
+        options: [
+            "Amazon Managed Blockchain",
+            "Amazon S3",
+            "Amazon EC2, otimizando custo operacional através de right-sizing e monitoramento de utilização de recursos",
+            "Amazon RDS"
+        ],
         correct: [0],
         explanation: "Managed Blockchain facilita criar e gerenciar redes blockchain escaláveis.",
         topic: "technology", domain: "technology"
@@ -308,7 +448,12 @@ const technologyQuestions = [
     {
         id: 149,
         question: "O que é AWS Fargate?",
-        options: ["Computação serverless para containers", "Serviço de armazenamento", "Serviço de banco de dados", "Serviço de rede"],
+        options: [
+            "Computação serverless para containers",
+            "Serviço de armazenamento",
+            "Serviço de banco de dados, aplicando técnicas de observabilidade e rastreamento distribuído para troubleshooting eficiente",
+            "Serviço de rede"
+        ],
         correct: [0],
         explanation: "Fargate executa containers sem gerenciar servidores ou clusters.",
         topic: "technology", domain: "technology"
@@ -316,7 +461,12 @@ const technologyQuestions = [
     {
         id: 150,
         question: "Qual serviço AWS fornece edge computing?",
-        options: ["AWS Wavelength", "Amazon S3", "Amazon EC2", "Amazon RDS"],
+        options: [
+            "AWS Wavelength",
+            "Amazon S3",
+            "Amazon EC2, com validação automática de qualidade e rollback em caso de degradação de performance",
+            "Amazon RDS"
+        ],
         correct: [0],
         explanation: "Wavelength entrega aplicações ultra-baixa latência para dispositivos 5G.",
         topic: "technology", domain: "technology"
@@ -324,7 +474,12 @@ const technologyQuestions = [
     {
         id: 151,
         question: "O que é Amazon DocumentDB?",
-        options: ["Banco de dados compatível com MongoDB", "Banco de dados relacional", "Serviço de armazenamento", "Serviço de computação"],
+        options: [
+            "Banco de dados compatível com MongoDB",
+            "Banco de dados relacional, atendendo aos padrões internacionais de privacidade de dados e proteção de informações sensíveis",
+            "Serviço de armazenamento",
+            "Serviço de computação"
+        ],
         correct: [0],
         explanation: "DocumentDB é um banco de dados de documentos totalmente gerenciado compatível com MongoDB.",
         topic: "technology", domain: "technology"
@@ -332,7 +487,12 @@ const technologyQuestions = [
     {
         id: 152,
         question: "Qual serviço AWS fornece time series database?",
-        options: ["Amazon Timestream", "Amazon RDS", "Amazon DynamoDB", "Amazon S3"],
+        options: [
+            "Amazon Timestream",
+            "Amazon RDS",
+            "Amazon DynamoDB, com documentação completa do processo e rastreabilidade de todas as decisões implementadas",
+            "Amazon S3"
+        ],
         correct: [0],
         explanation: "Timestream é um banco de dados de séries temporais totalmente gerenciado.",
         topic: "technology", domain: "technology"
@@ -348,7 +508,12 @@ const technologyQuestions = [
     {
         id: 154,
         question: "Qual serviço AWS fornece quantum computing?",
-        options: ["Amazon Braket", "Amazon EC2", "Amazon S3", "Amazon RDS"],
+        options: [
+            "Amazon Braket",
+            "Amazon EC2, incluindo configuração avançada de parâmetros e monitoramento contínuo do sistema em produção",
+            "Amazon S3",
+            "Amazon RDS"
+        ],
         correct: [0],
         explanation: "Braket é um serviço de computação quântica totalmente gerenciado.",
         topic: "technology", domain: "technology"
@@ -356,7 +521,12 @@ const technologyQuestions = [
     {
         id: 155,
         question: "O que é AWS Outposts?",
-        options: ["Infraestrutura AWS on-premises", "Serviço de armazenamento", "Serviço de banco de dados", "Serviço de rede"],
+        options: [
+            "Infraestrutura AWS on-premises",
+            "Serviço de armazenamento",
+            "Serviço de banco de dados, com integração completa ao ecossistema de serviços gerenciados e pipelines automatizados",
+            "Serviço de rede"
+        ],
         correct: [0],
         explanation: "Outposts traz serviços AWS para infraestrutura on-premises.",
         topic: "technology", domain: "technology"
@@ -364,7 +534,12 @@ const technologyQuestions = [
     {
         id: 156,
         question: "Qual serviço AWS fornece desktop as a service?",
-        options: ["Amazon WorkSpaces", "Amazon EC2", "Amazon S3", "Amazon RDS"],
+        options: [
+            "Amazon WorkSpaces",
+            "Amazon EC2, considerando requisitos de compliance, governança e auditoria para ambientes regulados",
+            "Amazon S3",
+            "Amazon RDS"
+        ],
         correct: [0],
         explanation: "WorkSpaces fornece desktops virtuais seguros acessíveis de qualquer lugar.",
         topic: "technology", domain: "technology"
@@ -388,7 +563,12 @@ const technologyQuestions = [
     {
         id: 159,
         question: "O que é AWS X-Ray?",
-        options: ["Serviço de tracing distribuído", "Serviço de armazenamento", "Serviço de banco de dados", "Serviço de rede"],
+        options: [
+            "Serviço de tracing distribuído",
+            "Serviço de armazenamento",
+            "Serviço de banco de dados, garantindo escalabilidade horizontal e vertical conforme demanda do workload específico",
+            "Serviço de rede"
+        ],
         correct: [0],
         explanation: "X-Ray ajuda a analisar e debugar aplicações distribuídas.",
         topic: "technology", domain: "technology"
@@ -396,7 +576,12 @@ const technologyQuestions = [
     {
         id: 160,
         question: "Qual serviço AWS fornece service mesh?",
-        options: ["AWS App Mesh", "Amazon EC2", "Amazon S3", "Amazon RDS"],
+        options: [
+            "AWS App Mesh",
+            "Amazon EC2, utilizando as ferramentas nativas do serviço para automação e observabilidade operacional",
+            "Amazon S3",
+            "Amazon RDS"
+        ],
         correct: [0],
         explanation: "App Mesh facilita monitorar e controlar microservices.",
         topic: "technology", domain: "technology"
@@ -404,7 +589,12 @@ const technologyQuestions = [
     {
         id: 161,
         question: "O que é Amazon EventBridge?",
-        options: ["Barramento de eventos serverless", "Serviço de armazenamento", "Serviço de banco de dados", "Serviço de rede"],
+        options: [
+            "Barramento de eventos serverless",
+            "Serviço de armazenamento",
+            "Serviço de banco de dados, com suporte a múltiplas regiões e redundância para alta disponibilidade e disaster recovery",
+            "Serviço de rede"
+        ],
         correct: [0],
         explanation: "EventBridge conecta aplicações usando eventos de várias fontes.",
         topic: "technology", domain: "technology"
@@ -412,7 +602,12 @@ const technologyQuestions = [
     {
         id: 162,
         question: "Qual serviço AWS fornece code repository?",
-        options: ["AWS CodeCommit", "Amazon S3", "Amazon EC2", "Amazon RDS"],
+        options: [
+            "AWS CodeCommit",
+            "Amazon S3",
+            "Amazon EC2, seguindo o modelo de responsabilidade compartilhada e as políticas de segurança corporativas",
+            "Amazon RDS"
+        ],
         correct: [0],
         explanation: "CodeCommit é um serviço de controle de versão Git totalmente gerenciado.",
         topic: "technology", domain: "technology"
@@ -420,7 +615,12 @@ const technologyQuestions = [
     {
         id: 163,
         question: "O que é AWS CodeBuild?",
-        options: ["Serviço de build e teste de código", "Serviço de armazenamento", "Serviço de banco de dados", "Serviço de rede"],
+        options: [
+            "Serviço de build e teste de código",
+            "Serviço de armazenamento",
+            "Serviço de banco de dados, implementando controles preventivos e detectivos conforme o framework de segurança organizacional",
+            "Serviço de rede"
+        ],
         correct: [0],
         explanation: "CodeBuild compila código, executa testes e produz pacotes de software.",
         topic: "technology", domain: "technology"
@@ -428,7 +628,12 @@ const technologyQuestions = [
     {
         id: 164,
         question: "Qual serviço AWS fornece deployment automation?",
-        options: ["AWS CodeDeploy", "Amazon S3", "Amazon EC2", "Amazon RDS"],
+        options: [
+            "AWS CodeDeploy",
+            "Amazon S3",
+            "Amazon EC2, com capacidade de processamento paralelo e distribuído para atender picos de demanda",
+            "Amazon RDS"
+        ],
         correct: [0],
         explanation: "CodeDeploy automatiza deployments de aplicações para instâncias EC2, Lambda e on-premises.",
         topic: "technology", domain: "technology"
@@ -468,7 +673,12 @@ const technologyQuestions = [
     {
         id: 169,
         question: "O que é Amazon QuickSight?",
-        options: ["Serviço de business intelligence", "Serviço de armazenamento", "Serviço de banco de dados", "Serviço de rede"],
+        options: [
+            "Serviço de business intelligence",
+            "Serviço de armazenamento",
+            "Serviço de banco de dados, integrando com os sistemas existentes através de APIs e conectores nativos da plataforma",
+            "Serviço de rede"
+        ],
         correct: [0],
         explanation: "QuickSight é um serviço de analytics e visualização de dados escalável.",
         topic: "technology", domain: "technology"
@@ -484,7 +694,12 @@ const technologyQuestions = [
     {
         id: 171,
         question: "O que é AWS Lake Formation?",
-        options: ["Serviço para construir data lakes", "Serviço de armazenamento", "Serviço de banco de dados", "Serviço de rede"],
+        options: [
+            "Serviço para construir data lakes",
+            "Serviço de armazenamento",
+            "Serviço de banco de dados, otimizando custo operacional através de right-sizing e monitoramento de utilização de recursos",
+            "Serviço de rede"
+        ],
         correct: [0],
         explanation: "Lake Formation facilita configurar data lakes seguros em dias ao invés de meses.",
         topic: "technology", domain: "technology"
@@ -500,7 +715,12 @@ const technologyQuestions = [
     {
         id: 173,
         question: "O que é Amazon Personalize?",
-        options: ["Serviço de recomendações ML", "Serviço de armazenamento", "Serviço de banco de dados", "Serviço de rede"],
+        options: [
+            "Serviço de recomendações ML",
+            "Serviço de armazenamento",
+            "Serviço de banco de dados, aplicando técnicas de observabilidade e rastreamento distribuído para troubleshooting eficiente",
+            "Serviço de rede"
+        ],
         correct: [0],
         explanation: "Personalize permite criar recomendações personalizadas usando machine learning.",
         topic: "technology", domain: "technology"
@@ -508,7 +728,12 @@ const technologyQuestions = [
     {
         id: 174,
         question: "Qual serviço AWS fornece fraud detection?",
-        options: ["Amazon Fraud Detector", "Amazon GuardDuty", "Amazon Inspector", "Amazon Macie"],
+        options: [
+            "Amazon Fraud Detector",
+            "Amazon GuardDuty, com validação automática de qualidade e rollback em caso de degradação de performance",
+            "Amazon Inspector",
+            "Amazon Macie"
+        ],
         correct: [0],
         explanation: "Fraud Detector usa machine learning para identificar atividades fraudulentas online.",
         topic: "technology", domain: "technology"
@@ -516,7 +741,12 @@ const technologyQuestions = [
     {
         id: 175,
         question: "O que é Amazon Forecast?",
-        options: ["Serviço de previsão usando ML", "Serviço de armazenamento", "Serviço de banco de dados", "Serviço de rede"],
+        options: [
+            "Serviço de previsão usando ML",
+            "Serviço de armazenamento",
+            "Serviço de banco de dados, atendendo aos padrões internacionais de privacidade de dados e proteção de informações sensíveis",
+            "Serviço de rede"
+        ],
         correct: [0],
         explanation: "Forecast usa machine learning para gerar previsões de negócio precisas.",
         topic: "technology", domain: "technology"

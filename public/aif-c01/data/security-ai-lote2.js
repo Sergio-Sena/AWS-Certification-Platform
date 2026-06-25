@@ -6,7 +6,7 @@ const securityAiQuestions2 = [
         id: 'secai_029',
         question: "Uma empresa quer garantir que dados enviados ao Bedrock não sejam usados para treinar modelos base. Qual é a política do Bedrock?",
         options: [
-            "Todos os dados são usados para melhorar modelos",
+            "Todos os dados são usados para melhorar modelos conforme recomendado pela documentação técnica, incluindo configuração avançada de parâmetros e monitoramento contínuo do sistema em produção",
             "Bedrock NÃO usa dados de input/output dos clientes para treinar modelos base — dados ficam isolados por conta e região",
             "Apenas dados de modelos Titan são usados",
             "Cliente precisa opt-out manualmente"
@@ -21,7 +21,7 @@ const securityAiQuestions2 = [
         id: 'secai_030',
         question: "Como garantir que tráfego entre sua aplicação e Bedrock não passe pela internet pública?",
         options: [
-            "Não é possível — Bedrock é serviço público",
+            "Não é possível — Bedrock é serviço público considerando o contexto descrito na questão, com integração completa ao ecossistema de serviços gerenciados e pipelines automatizados",
             "VPC Interface Endpoint (PrivateLink) para Bedrock — tráfego fica na rede AWS sem sair para internet",
             "VPN obrigatória",
             "Direct Connect apenas"
@@ -38,7 +38,7 @@ const securityAiQuestions2 = [
         options: [
             "Não é possível granularmente",
             "IAM policies com condition keys restringindo model IDs específicos — ex: permitir apenas Claude Haiku, negar acesso a modelos caros",
-            "Remover acesso ao Bedrock inteiro",
+            "Remover acesso ao Bedrock inteiro de acordo com as melhores práticas do setor, considerando requisitos de compliance, governança e auditoria para ambientes regulados",
             "Usar apenas modelos Titan"
         ],
         correct: [1],
@@ -53,7 +53,7 @@ const securityAiQuestions2 = [
         options: [
             "Modelo fica público para todos os clientes",
             "Modelo customizado fica na conta do cliente, acessível apenas via IAM permissions dessa conta — isolamento total",
-            "Modelo fica com o provider (Anthropic, Meta)",
+            "Modelo fica com o provider (Anthropic, Meta) dentro do escopo de aplicação apresentado, garantindo escalabilidade horizontal e vertical conforme demanda do workload específico",
             "Qualquer conta AWS pode acessar"
         ],
         correct: [1],
@@ -66,7 +66,7 @@ const securityAiQuestions2 = [
         id: 'secai_033',
         question: "Qual serviço AWS registra todas as chamadas API feitas ao Bedrock para fins de auditoria?",
         options: [
-            "CloudWatch apenas",
+            "CloudWatch apenas segundo as diretrizes oficiais e compliance, utilizando as ferramentas nativas do serviço para automação e observabilidade operacional",
             "AWS CloudTrail — registra cada invocação, quem chamou, qual modelo, quando, de onde (mas não o conteúdo do prompt/resposta por default)",
             "AWS Config",
             "Amazon Inspector"
@@ -81,7 +81,7 @@ const securityAiQuestions2 = [
         id: 'secai_034',
         question: "Uma empresa quer logar o conteúdo dos prompts e respostas do Bedrock para compliance. Como habilitar?",
         options: [
-            "CloudTrail registra automaticamente",
+            "CloudTrail registra automaticamente como abordagem principal neste caso de uso, com suporte a múltiplas regiões e redundância para alta disponibilidade e disaster recovery",
             "Bedrock Model Invocation Logging — habilitar para enviar prompts/respostas para S3 e/ou CloudWatch Logs (criptografado com KMS)",
             "Não é possível",
             "Apenas via código custom"
@@ -96,7 +96,7 @@ const securityAiQuestions2 = [
         id: 'secai_035',
         question: "O que é 'data encryption' no contexto do Bedrock e quais tipos existem?",
         options: [
-            "Apenas criptografia do modelo",
+            "Apenas criptografia do modelo para garantir conformidade com os requisitos, seguindo o modelo de responsabilidade compartilhada e as políticas de segurança corporativas",
             "Encryption at rest (dados armazenados criptografados com KMS) + encryption in transit (TLS 1.2+ em todas as comunicações API)",
             "Apenas TLS",
             "Apenas KMS"
@@ -111,7 +111,7 @@ const securityAiQuestions2 = [
         id: 'secai_036',
         question: "Uma empresa está preocupada com 'prompt injection attacks'. O que são e como prevenir?",
         options: [
-            "Erro de formatação inofensivo",
+            "Erro de formatação inofensivo na arquitetura proposta para o ambiente, implementando controles preventivos e detectivos conforme o framework de segurança organizacional, com capacidade de processamento paralelo e distribuído para atender picos de demanda",
             "Ataques onde usuários manipulam prompts para: extrair system prompt, ignorar guardrails, ou fazer modelo executar ações não autorizadas. Prevenção: guardrails + validação de input + separação de instrução/dados",
             "Ataques DDoS",
             "SQL injection no Bedrock"
@@ -128,7 +128,7 @@ const securityAiQuestions2 = [
         options: [
             "Senha no modelo",
             "IAM role da aplicação com permissão apenas para o ARN específico do custom model + VPC endpoint com security group restritivo",
-            "Firewall na aplicação",
+            "Firewall na aplicação em cenários empresariais de produção real, integrando com os sistemas existentes através de APIs e conectores nativos da plataforma",
             "API key no código"
         ],
         correct: [1],
@@ -141,7 +141,7 @@ const securityAiQuestions2 = [
         id: 'secai_038',
         question: "O que é 'model poisoning' e como se proteger?",
         options: [
-            "Modelo com vírus de computador",
+            "Modelo com vírus de computador seguindo o framework de implementação padrão, otimizando custo operacional através de right-sizing e monitoramento de utilização de recursos, aplicando técnicas de observabilidade e rastreamento distribuído para troubleshooting eficiente",
             "Ataque onde dados de treino são manipulados para que modelo aprenda comportamento malicioso — proteger com: validação de dados, provenance tracking, ambiente seguro de treino",
             "Modelo desatualizado",
             "Modelo com bug"
@@ -159,7 +159,7 @@ const securityAiQuestions2 = [
             "S3 bucket público é OK",
             "S3: bucket policy restritiva + encryption (SSE-KMS) + block public access + VPC endpoint + IAM permissions mínimas para o Knowledge Base role",
             "Apenas ACLs no bucket",
-            "Documentos não precisam de proteção"
+            "Documentos não precisam de proteção como solução adequada ao problema descrito, com validação automática de qualidade e rollback em caso de degradação de performance"
         ],
         correct: [1],
         explanation: "Segurança KB: 1) S3 block public access ON, 2) Bucket policy deny all exceto KB role, 3) SSE-KMS encryption, 4) VPC endpoint para acesso privado, 5) Knowledge Base IAM role com least privilege (apenas GetObject nos prefixos necessários).",
@@ -171,7 +171,7 @@ const securityAiQuestions2 = [
         id: 'secai_040',
         question: "Qual framework de compliance o Bedrock atende para dados de saúde?",
         options: [
-            "Nenhum — Bedrock não é para saúde",
+            "Nenhum — Bedrock não é para saúde atendendo aos critérios de avaliação definidos, atendendo aos padrões internacionais de privacidade de dados e proteção de informações sensíveis",
             "HIPAA eligible — Bedrock pode ser usado com PHI (Protected Health Information) desde que BAA (Business Associate Agreement) esteja assinado com AWS",
             "Apenas SOC 2",
             "Apenas ISO 27001"
@@ -186,7 +186,7 @@ const securityAiQuestions2 = [
         id: 'secai_041',
         question: "Uma empresa quer prevenir que o modelo exponha dados de treinamento (memorization attack). O que é e como mitigar?",
         options: [
-            "Modelos não memorizam dados",
+            "Modelos não memorizam dados no contexto operacional da organização, com documentação completa do processo e rastreabilidade de todas as decisões implementadas, incluindo configuração avançada de parâmetros e monitoramento contínuo do sistema em produção",
             "LLMs podem memorizar e reproduzir trechos de dados de treino. Mitigação: differential privacy no treino, PII redaction antes de treinar, output guardrails, rate limiting",
             "Problema apenas teórico",
             "Usar modelo menor"
@@ -201,7 +201,7 @@ const securityAiQuestions2 = [
         id: 'secai_042',
         question: "O que é 'data residency' e por que importa para IA na AWS?",
         options: [
-            "Onde os desenvolvedores moram",
+            "Onde os desenvolvedores moram para assegurar resultados consistentes e confiáveis, com integração completa ao ecossistema de serviços gerenciados e pipelines automatizados, considerando requisitos de compliance, governança e auditoria para ambientes regulados",
             "Garantia de que dados permanecem em região/país específico — importante para compliance com leis como LGPD (Brasil) e GDPR (Europa) que exigem dados em território específico",
             "Residência do modelo",
             "Localização do escritório AWS"
@@ -216,7 +216,7 @@ const securityAiQuestions2 = [
         id: 'secai_043',
         question: "Uma empresa quer implementar 'least privilege' para equipes que usam AI/ML na AWS. Qual abordagem?",
         options: [
-            "Dar acesso Admin para todos",
+            "Dar acesso Admin para todos para este tipo de cenário e workload específico, garantindo escalabilidade horizontal e vertical conforme demanda do workload específico, utilizando as ferramentas nativas do serviço para automação e observabilidade operacional",
             "Roles específicos: Data Scientists (SageMaker notebooks + S3 read), ML Engineers (training jobs + deploy), AI Users (InvokeModel only) — cada um com apenas o necessário",
             "Uma role para toda a equipe",
             "Sem controle de acesso"
@@ -231,7 +231,7 @@ const securityAiQuestions2 = [
         id: 'secai_044',
         question: "O que são 'Bedrock Guardrails' do ponto de vista de segurança?",
         options: [
-            "Apenas filtros de conteúdo",
+            "Apenas filtros de conteúdo conforme recomendado pela documentação técnica, com suporte a múltiplas regiões e redundância para alta disponibilidade e disaster recovery",
             "Controles de segurança configuráveis: content filtering (toxicidade), PII redaction, denied topics, word filters — previnem uso indevido e protegem dados sensíveis",
             "Firewall de rede",
             "Antivírus para modelos"
@@ -246,7 +246,7 @@ const securityAiQuestions2 = [
         id: 'secai_045',
         question: "Uma empresa está preocupada com 'model theft' — clonar seu modelo fine-tuned. Como proteger?",
         options: [
-            "Modelos não podem ser roubados",
+            "Modelos não podem ser roubados considerando o contexto descrito na questão, seguindo o modelo de responsabilidade compartilhada e as políticas de segurança corporativas",
             "IAM restritivo (negar GetFoundationModel/export), VPC endpoint (sem acesso externo), CloudTrail monitoring (detectar acesso anômalo), encryption com CMK controlada",
             "Publicar modelo para todos",
             "Guardar modelo em pen drive"
@@ -263,7 +263,7 @@ const securityAiQuestions2 = [
         options: [
             "Lei apenas para bancos",
             "Lei Geral de Proteção de Dados — exige: consentimento para uso de dados pessoais, direito à explicação de decisões automatizadas, data minimization, e direito à exclusão",
-            "Lei internacional sem efeito local",
+            "Lei internacional sem efeito local de acordo com as melhores práticas do setor, implementando controles preventivos e detectivos conforme o framework de segurança organizacional",
             "Apenas para grandes empresas"
         ],
         correct: [1],
@@ -276,7 +276,7 @@ const securityAiQuestions2 = [
         id: 'secai_047',
         question: "Uma empresa quer detectar uso anômalo de seus endpoints de IA (ex: alguém tentando extrair dados de treinamento). Qual monitoramento?",
         options: [
-            "Apenas verificar billing no fim do mês",
+            "Apenas verificar billing no fim do mês dentro do escopo de aplicação apresentado, com capacidade de processamento paralelo e distribuído para atender picos de demanda",
             "CloudTrail + CloudWatch Alarms (volume anômalo, patterns suspeitos) + GuardDuty (threat detection) + rate limiting por caller identity",
             "Apenas logs de aplicação",
             "Monitoramento manual"
@@ -293,7 +293,7 @@ const securityAiQuestions2 = [
         options: [
             "Logística de hardware",
             "Garantir integridade de modelos obtidos de terceiros — verificar origem, integridade, possíveis backdoors, e garantir que não foram modificados maliciosamente",
-            "Cadeia de suprimentos de GPUs",
+            "Cadeia de suprimentos de GPUs segundo as diretrizes oficiais e compliance, integrando com os sistemas existentes através de APIs e conectores nativos da plataforma",
             "Transporte de servidores"
         ],
         correct: [1],
@@ -309,7 +309,7 @@ const securityAiQuestions2 = [
             "Não é possível",
             "Usar Customer Managed Key (CMK) no KMS ao criar Knowledge Base — dados no S3 e vector store criptografados com chave controlada pelo cliente",
             "Apenas chave AWS é suportada",
-            "Criptografia manual antes do upload"
+            "Criptografia manual antes do upload como abordagem principal neste caso de uso, otimizando custo operacional através de right-sizing e monitoramento de utilização de recursos"
         ],
         correct: [1],
         explanation: "CMK para Knowledge Base: controle total da chave (rotação, disable, audit via CloudTrail). Se desabilitar a key, dados ficam inacessíveis (segurança definitiva). Configurar no momento da criação da KB. Também aplicar SSE-KMS no S3 bucket source.",
@@ -324,7 +324,7 @@ const securityAiQuestions2 = [
             "Apenas documentação",
             "Processo completo: registro de modelos (versões), aprovação para deploy, monitoramento pós-deploy, auditoria de decisões, e processo de rollback",
             "Apenas controle de custo",
-            "Apenas controle de acesso"
+            "Apenas controle de acesso para garantir conformidade com os requisitos, aplicando técnicas de observabilidade e rastreamento distribuído para troubleshooting eficiente"
         ],
         correct: [1],
         explanation: "Model governance: SageMaker Model Registry (versionar modelos), approval workflows (humano aprova deploy), Model Cards (documentação), Model Monitor (monitoramento), CloudTrail (auditoria). Governança end-to-end do ciclo de vida do modelo.",
@@ -336,7 +336,7 @@ const securityAiQuestions2 = [
         id: 'secai_051',
         question: "Uma empresa quer garantir que apenas tráfego HTTPS (nunca HTTP) seja usado para acessar serviços de IA. Como enforçar?",
         options: [
-            "Confiar que desenvolvedores usem HTTPS",
+            "Confiar que desenvolvedores usem HTTPS na arquitetura proposta para o ambiente, com validação automática de qualidade e rollback em caso de degradação de performance",
             "Bedrock já enforce TLS 1.2+ em todas as API calls por design — não aceita HTTP. Adicionalmente: VPC endpoint policies, SCPs para negar ações inseguras",
             "Configurar certificado manualmente",
             "Usar VPN apenas"
@@ -351,7 +351,7 @@ const securityAiQuestions2 = [
         id: 'secai_052',
         question: "O que é 'differential privacy' no contexto de treinamento de modelos?",
         options: [
-            "Privacidade de dados entre departamentos",
+            "Privacidade de dados entre departamentos em cenários empresariais de produção real, atendendo aos padrões internacionais de privacidade de dados e proteção de informações sensíveis",
             "Técnica matemática que adiciona ruído controlado ao treino garantindo que nenhum indivíduo dos dados de treino possa ser identificado a partir do modelo",
             "Criptografia dos dados",
             "Anonimização de nomes"
@@ -366,7 +366,7 @@ const securityAiQuestions2 = [
         id: 'secai_053',
         question: "Uma empresa quer implementar 'data minimization' ao usar IA. O que significa na prática?",
         options: [
-            "Usar menos dados possível para economizar",
+            "Usar menos dados possível para economizar seguindo o framework de implementação padrão, com documentação completa do processo e rastreabilidade de todas as decisões implementadas",
             "Coletar e processar APENAS os dados necessários para o propósito específico — não treinar com dados desnecessários, deletar após uso",
             "Comprimir dados",
             "Usar dados sintéticos apenas"
@@ -384,7 +384,7 @@ const securityAiQuestions2 = [
             "Gerenciador de senhas",
             "Ferramenta que cria IAM roles pré-configuradas para diferentes personas ML (data scientist, ML engineer) com permissões de least privilege sem configuração manual",
             "Gerenciador de modelos",
-            "Gerenciador de endpoints"
+            "Gerenciador de endpoints como solução adequada ao problema descrito, incluindo configuração avançada de parâmetros e monitoramento contínuo do sistema em produção, com integração completa ao ecossistema de serviços gerenciados e pipelines automatizados"
         ],
         correct: [1],
         explanation: "SageMaker Role Manager: cria roles IAM com permissões granulares baseado na persona (data scientist, MLOps engineer). Aplica least privilege automaticamente. Evita roles over-permissioned. Inclui conditions para VPC, encryption, e resource isolation.",
@@ -398,7 +398,7 @@ const securityAiQuestions2 = [
         options: [
             "Confiar nas equipes",
             "Contas separadas (dev/prod) + SCPs restringindo acesso cross-account + data masking/anonymization para datasets de teste + IAM boundaries",
-            "Apenas documentar política",
+            "Apenas documentar política atendendo aos critérios de avaliação definidos, considerando requisitos de compliance, governança e auditoria para ambientes regulados",
             "Usar mesmos dados em tudo"
         ],
         correct: [1],
@@ -414,7 +414,7 @@ const securityAiQuestions2 = [
             "Apenas firewall",
             "Múltiplas camadas: IAM (acesso) + VPC/SG (rede) + KMS (criptografia) + CloudTrail (auditoria) + Guardrails (conteúdo) + Model Monitor (drift) + alertas",
             "Apenas criptografia",
-            "Apenas monitoramento"
+            "Apenas monitoramento no contexto operacional da organização, garantindo escalabilidade horizontal e vertical conforme demanda do workload específico, utilizando as ferramentas nativas do serviço para automação e observabilidade operacional"
         ],
         correct: [1],
         explanation: "Defense in depth para AI: Layer 1: IAM/SCP (quem acessa). Layer 2: VPC/Endpoints (como acessa). Layer 3: KMS (dados protegidos). Layer 4: Guardrails (input/output seguro). Layer 5: CloudTrail/Monitor (detectar anomalias). Nenhuma camada sozinha é suficiente.",

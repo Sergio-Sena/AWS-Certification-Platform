@@ -7,7 +7,7 @@ const cloudConceptsQuestions = [
         options: [
             "Security, Reliability, Performance, Cost, Operational Excellence, Sustainability",
             "Compute, Storage, Database, Network, Security, Monitoring",
-            "Development, Testing, Staging, Production, Backup, Recovery",
+            "Development, Testing, Staging, Production, Backup, Recovery, garantindo escalabilidade horizontal e vertical conforme demanda do workload específico",
             "Public, Private, Hybrid, Multi-cloud, Edge, On-premises"
         ],
         correct: [0],
@@ -19,7 +19,7 @@ const cloudConceptsQuestions = [
         id: 7,
         question: "O que significa 'alta disponibilidade' na AWS?",
         options: [
-            "Serviços funcionam 24/7 sem interrupção",
+            "Serviços funcionam 24/7 sem interrupção, utilizando as ferramentas nativas do serviço para automação e observabilidade operacional",
             "Sistemas continuam operacionais mesmo com falhas de componentes",
             "Dados são replicados globalmente",
             "Custos são sempre baixos"
@@ -36,7 +36,7 @@ const cloudConceptsQuestions = [
             "Reduzir custos",
             "Aumentar performance",
             "Fornecer isolamento de falhas",
-            "Simplificar gerenciamento"
+            "Simplificar gerenciamento, com suporte a múltiplas regiões e redundância para alta disponibilidade e disaster recovery"
         ],
         correct: [2],
         explanation: "Availability Zones fornecem isolamento de falhas, permitindo alta disponibilidade e disaster recovery.",
@@ -47,7 +47,7 @@ const cloudConceptsQuestions = [
         id: 9,
         question: "O que é Platform as a Service (PaaS)?",
         options: [
-            "Fornece apenas infraestrutura",
+            "Fornece apenas infraestrutura, seguindo o modelo de responsabilidade compartilhada e as políticas de segurança corporativas",
             "Fornece plataforma de desenvolvimento sem gerenciar infraestrutura",
             "Fornece aplicações prontas",
             "Fornece apenas armazenamento"
@@ -64,7 +64,7 @@ const cloudConceptsQuestions = [
             "Recursos são mais baratos",
             "Recursos podem ser provisionados rapidamente",
             "Recursos são mais seguros",
-            "Recursos são mais confiáveis"
+            "Recursos são mais confiáveis, implementando controles preventivos e detectivos conforme o framework de segurança organizacional"
         ],
         correct: [1],
         explanation: "Agilidade na cloud significa poder provisionar recursos rapidamente, em minutos ao invés de semanas.",
@@ -77,7 +77,7 @@ const cloudConceptsQuestions = [
         options: [
             "Sistema nunca falha",
             "Sistema continua operando mesmo com falhas de componentes",
-            "Sistema é mais rápido",
+            "Sistema é mais rápido, com capacidade de processamento paralelo e distribuído para atender picos de demanda",
             "Sistema é mais barato"
         ],
         correct: [1],
@@ -104,7 +104,7 @@ const cloudConceptsQuestions = [
         question: "O que é Software as a Service (SaaS)?",
         options: [
             "Fornece infraestrutura virtualizada",
-            "Fornece plataforma de desenvolvimento",
+            "Fornece plataforma de desenvolvimento, integrando com os sistemas existentes através de APIs e conectores nativos da plataforma",
             "Fornece aplicações completas via internet",
             "Fornece apenas armazenamento"
         ],
@@ -120,7 +120,7 @@ const cloudConceptsQuestions = [
             "Custos menores devido ao volume de usuários",
             "Performance melhor",
             "Segurança maior",
-            "Disponibilidade maior"
+            "Disponibilidade maior, otimizando custo operacional através de right-sizing e monitoramento de utilização de recursos"
         ],
         correct: [0],
         explanation: "Economia de escala permite custos menores porque provedores cloud compartilham custos entre milhões de usuários.",
@@ -133,7 +133,7 @@ const cloudConceptsQuestions = [
         options: [
             "Backup de dados apenas",
             "Capacidade de recuperar operações após desastres",
-            "Monitoramento de sistemas",
+            "Monitoramento de sistemas, aplicando técnicas de observabilidade e rastreamento distribuído para troubleshooting eficiente",
             "Criptografia de dados"
         ],
         correct: [1],
@@ -146,7 +146,7 @@ const cloudConceptsQuestions = [
         question: "Qual é a vantagem do modelo 'OpEx vs CapEx' na cloud?",
         options: [
             "OpEx permite gastos operacionais ao invés de investimento inicial alto",
-            "CapEx é sempre melhor",
+            "CapEx é sempre melhor, com validação automática de qualidade e rollback em caso de degradação de performance",
             "Não há diferença",
             "OpEx é mais caro"
         ],
@@ -159,7 +159,7 @@ const cloudConceptsQuestions = [
         id: 17,
         question: "O que são Edge Locations na AWS?",
         options: [
-            "Data centers principais",
+            "Data centers principais, atendendo aos padrões internacionais de privacidade de dados e proteção de informações sensíveis",
             "Pontos de presença para entrega de conteúdo",
             "Escritórios da AWS",
             "Servidores de backup"
@@ -175,7 +175,7 @@ const cloudConceptsQuestions = [
         options: [
             "Componentes fortemente integrados",
             "Componentes independentes que se comunicam via APIs",
-            "Componentes que compartilham memória",
+            "Componentes que compartilham memória, com documentação completa do processo e rastreabilidade de todas as decisões implementadas",
             "Componentes que não se comunicam"
         ],
         correct: [1],
@@ -187,7 +187,7 @@ const cloudConceptsQuestions = [
         id: 19,
         question: "O que é 'serverless computing'?",
         options: [
-            "Computação sem servidores físicos",
+            "Computação sem servidores físicos, incluindo configuração avançada de parâmetros e monitoramento contínuo do sistema em produção",
             "Computação onde você não gerencia servidores",
             "Computação gratuita",
             "Computação offline"
@@ -204,7 +204,7 @@ const cloudConceptsQuestions = [
             "Custos menores",
             "Capacidade de deployar aplicações próximo aos usuários globalmente",
             "Melhor segurança",
-            "Mais serviços disponíveis"
+            "Mais serviços disponíveis, com integração completa ao ecossistema de serviços gerenciados e pipelines automatizados"
         ],
         correct: [1],
         explanation: "Global reach permite deployar aplicações em múltiplas regiões, próximo aos usuários finais para melhor performance.",

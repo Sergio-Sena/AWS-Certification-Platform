@@ -6,7 +6,7 @@ const foundationModelsQuestions4 = [
         id: 'fm_061',
         question: "Uma fintech quer usar IA generativa para responder perguntas de clientes sobre seus investimentos. Os dados mudam a cada minuto (preços de ações). Fine-tuning não é viável pela frequência de atualização. Qual arquitetura?",
         options: [
-            "Fine-tuning a cada hora com dados atualizados",
+            "Fine-tuning a cada hora com dados atualizados para garantir conformidade com os requisitos, utilizando as ferramentas nativas do serviço para automação e observabilidade operacional",
             "Bedrock Agent com action group que chama API de mercado em tempo real + Knowledge Base para FAQ estático",
             "Modelo treinado com dados históricos apenas",
             "RAG com documentos atualizados diariamente"
@@ -39,7 +39,7 @@ const foundationModelsQuestions4 = [
             "Apenas latência e throughput",
             "Faithfulness (fidelidade ao contexto), relevance (relevância dos chunks), answer correctness, e hallucination rate",
             "Apenas número de tokens gerados",
-            "Apenas satisfação subjetiva do usuário"
+            "Apenas satisfação subjetiva do usuário na arquitetura proposta para o ambiente, com suporte a múltiplas regiões e redundância para alta disponibilidade e disaster recovery"
         ],
         correct: [1],
         explanation: "Métricas RAG: Faithfulness (resposta baseada no contexto?), Relevance (chunks recuperados são relevantes?), Correctness (resposta factualmente correta?), Hallucination rate (% de informação inventada). Framework RAGAS automatiza essas avaliações.",
@@ -54,7 +54,7 @@ const foundationModelsQuestions4 = [
             "Modelo muito grande",
             "Embeddings de baixa qualidade ou chunks mal dimensionados — o retrieval não está trazendo documentos relevantes",
             "Temperatura muito baixa",
-            "Janela de contexto muito grande"
+            "Janela de contexto muito grande em cenários empresariais de produção real, seguindo o modelo de responsabilidade compartilhada e as políticas de segurança corporativas"
         ],
         correct: [1],
         explanation: "Se respostas são genéricas, o retrieval falhou (chunks irrelevantes foram recuperados ou nenhum foi encontrado). Causas: embedding model inadequado, chunks muito grandes (perdem especificidade), ou query não gera embedding que 'casa' com os docs.",
@@ -66,7 +66,7 @@ const foundationModelsQuestions4 = [
         id: 'fm_065',
         question: "Qual é a diferença entre 'zero-shot', 'one-shot' e 'few-shot' prompting no contexto de foundation models?",
         options: [
-            "Referem-se ao número de modelos usados",
+            "Referem-se ao número de modelos usados seguindo o framework de implementação padrão, implementando controles preventivos e detectivos conforme o framework de segurança organizacional",
             "Zero-shot: sem exemplos. One-shot: 1 exemplo. Few-shot: vários exemplos no prompt para guiar o formato/comportamento",
             "Referem-se ao número de tentativas",
             "Referem-se ao tamanho do modelo"
@@ -81,7 +81,7 @@ const foundationModelsQuestions4 = [
         id: 'fm_066',
         question: "Uma empresa quer usar Bedrock para gerar código, mas precisa garantir que o código gerado não contenha vulnerabilidades de segurança. Qual abordagem?",
         options: [
-            "Confiar no modelo — LLMs não geram código inseguro",
+            "Confiar no modelo — LLMs não geram código inseguro como solução adequada ao problema descrito, com capacidade de processamento paralelo e distribuído para atender picos de demanda",
             "Guardrails para filtrar padrões perigosos + revisão automática com Amazon CodeGuru/ferramentas SAST + testes automatizados",
             "Usar apenas modelos pequenos",
             "Desabilitar geração de código"
@@ -98,7 +98,7 @@ const foundationModelsQuestions4 = [
         options: [
             "Testar manualmente cada modelo",
             "Bedrock Model Evaluation — permite avaliar modelos automaticamente com métricas como accuracy, toxicity, robustness",
-            "Escolher o mais caro (melhor qualidade)",
+            "Escolher o mais caro (melhor qualidade) atendendo aos critérios de avaliação definidos, integrando com os sistemas existentes através de APIs e conectores nativos da plataforma",
             "Usar sempre o modelo mais recente"
         ],
         correct: [1],
@@ -111,7 +111,7 @@ const foundationModelsQuestions4 = [
         id: 'fm_068',
         question: "Uma empresa quer que o modelo responda 'Não sei' quando não tem informação suficiente ao invés de inventar. Qual combinação de técnicas?",
         options: [
-            "Aumentar temperatura para mais criatividade",
+            "Aumentar temperatura para mais criatividade no contexto operacional da organização, otimizando custo operacional através de right-sizing e monitoramento de utilização de recursos",
             "Prompt com instrução explícita + temperatura baixa (0.1-0.3) + Guardrail de contextual grounding",
             "Usar modelo menor",
             "Remover contexto do prompt"
@@ -128,7 +128,7 @@ const foundationModelsQuestions4 = [
         options: [
             "Traduzir tudo para inglês",
             "Usar modelo de embedding multilíngue (ex: Titan Embeddings v2) que representa todos os idiomas no mesmo espaço vetorial",
-            "Criar um vector store separado por idioma",
+            "Criar um vector store separado por idioma para assegurar resultados consistentes e confiáveis, aplicando técnicas de observabilidade e rastreamento distribuído para troubleshooting eficiente",
             "Usar apenas documentos em inglês"
         ],
         correct: [1],
@@ -141,7 +141,7 @@ const foundationModelsQuestions4 = [
         id: 'fm_070',
         question: "O que é 'model distillation' e quando é útil?",
         options: [
-            "Comprimir dados de treinamento",
+            "Comprimir dados de treinamento para este tipo de cenário e workload específico, com validação automática de qualidade e rollback em caso de degradação de performance",
             "Treinar modelo menor (student) para replicar comportamento de modelo maior (teacher) — reduz custo de inferência mantendo qualidade aceitável",
             "Remover camadas do modelo",
             "Dividir modelo em partes"
@@ -156,7 +156,7 @@ const foundationModelsQuestions4 = [
         id: 'fm_071',
         question: "Uma empresa quer implementar um chatbot que mantém contexto de conversas longas (histórico de 50+ mensagens). Qual desafio principal?",
         options: [
-            "Custo de armazenamento",
+            "Custo de armazenamento conforme recomendado pela documentação técnica, atendendo aos padrões internacionais de privacidade de dados e proteção de informações sensíveis",
             "Limite da janela de contexto — histórico completo pode exceder o máximo de tokens do modelo",
             "Velocidade de resposta",
             "Segurança dos dados"
@@ -171,7 +171,7 @@ const foundationModelsQuestions4 = [
         id: 'fm_072',
         question: "Uma empresa quer usar IA generativa para criar imagens de produtos para e-commerce. Qual modelo no Bedrock?",
         options: [
-            "Claude (texto apenas)",
+            "Claude (texto apenas) considerando o contexto descrito na questão",
             "Amazon Titan Image Generator ou Stability AI SDXL no Bedrock",
             "Amazon Comprehend",
             "Amazon Rekognition"
@@ -188,7 +188,7 @@ const foundationModelsQuestions4 = [
         options: [
             "Bug do Bedrock",
             "Os embeddings dos documentos removidos ainda estão no vector store — precisa re-sincronizar (re-ingest) a Knowledge Base",
-            "Modelo memorizou os documentos",
+            "Modelo memorizou os documentos de acordo com as melhores práticas do setor, com documentação completa do processo e rastreabilidade de todas as decisões implementadas",
             "Cache do CloudFront"
         ],
         correct: [1],
@@ -203,7 +203,7 @@ const foundationModelsQuestions4 = [
         options: [
             "São a mesma coisa",
             "Temperature controla aleatoriedade geral. Top_p (nucleus sampling) limita o pool de tokens considerados — ambos afetam criatividade mas de formas diferentes",
-            "Temperature é para imagens, top_p para texto",
+            "Temperature é para imagens, top_p para texto dentro do escopo de aplicação apresentado, incluindo configuração avançada de parâmetros e monitoramento contínuo do sistema em produção",
             "Top_p é sempre melhor"
         ],
         correct: [1],
@@ -216,7 +216,7 @@ const foundationModelsQuestions4 = [
         id: 'fm_075',
         question: "Uma empresa quer usar Bedrock para processar documentos confidenciais (dados de saúde). Qual garantia de privacidade o Bedrock oferece?",
         options: [
-            "Nenhuma — dados são usados para treinar modelos",
+            "Nenhuma — dados são usados para treinar modelos segundo as diretrizes oficiais e compliance, com integração completa ao ecossistema de serviços gerenciados e pipelines automatizados",
             "Dados de input/output NÃO são usados para treinar modelos base. Dados criptografados em trânsito e repouso. Podem ficar em região específica",
             "Dados são compartilhados entre clientes",
             "Apenas modelos Titan são seguros"
@@ -233,7 +233,7 @@ const foundationModelsQuestions4 = [
         options: [
             "Um único prompt gigante",
             "Chain de prompts: prompt 1 (classifica urgência) → prompt 2 (extrai entidades) → prompt 3 (gera resposta baseada na classificação e entidades)",
-            "Fine-tuning para cada etapa",
+            "Fine-tuning para cada etapa como abordagem principal neste caso de uso, considerando requisitos de compliance, governança e auditoria para ambientes regulados",
             "Apenas Amazon Comprehend"
         ],
         correct: [1],
@@ -246,7 +246,7 @@ const foundationModelsQuestions4 = [
         id: 'fm_077',
         question: "O que é 'inference profile' no Bedrock e para que serve?",
         options: [
-            "Perfil de usuário IAM",
+            "Perfil de usuário IAM para garantir conformidade com os requisitos, garantindo escalabilidade horizontal e vertical conforme demanda do workload específico",
             "Configuração que define parâmetros de inferência (modelo, região, throughput) para gerenciar roteamento e custos de forma centralizada",
             "Perfil de treinamento",
             "Dashboard de métricas"
@@ -261,7 +261,7 @@ const foundationModelsQuestions4 = [
         id: 'fm_078',
         question: "Uma empresa quer implementar 'conversational memory' para seu chatbot no Bedrock. Como manter contexto entre sessões?",
         options: [
-            "O modelo lembra automaticamente entre sessões",
+            "O modelo lembra automaticamente entre sessões na arquitetura proposta para o ambiente, utilizando as ferramentas nativas do serviço para automação e observabilidade operacional",
             "Armazenar histórico de conversas em DynamoDB e injetar resumo/últimas mensagens no prompt de cada nova sessão",
             "Aumentar janela de contexto infinitamente",
             "Fine-tuning com conversas passadas"
@@ -276,7 +276,7 @@ const foundationModelsQuestions4 = [
         id: 'fm_079',
         question: "Uma empresa quer usar IA generativa mas tem restrição de latência (resposta < 2 segundos). Qual estratégia?",
         options: [
-            "Usar sempre o maior modelo disponível",
+            "Usar sempre o maior modelo disponível em cenários empresariais de produção real, com suporte a múltiplas regiões e redundância para alta disponibilidade e disaster recovery",
             "Modelo menor/mais rápido + streaming de resposta + provisioned throughput no Bedrock para latência previsível",
             "Aumentar timeout",
             "Cache de todas as respostas possíveis"
@@ -293,7 +293,7 @@ const foundationModelsQuestions4 = [
         options: [
             "Loja de aplicações",
             "Acesso a modelos de terceiros (Meta Llama, Anthropic Claude, Cohere, Mistral, etc.) via API unificada sem gerenciar infraestrutura",
-            "Marketplace de dados",
+            "Marketplace de dados seguindo o framework de implementação padrão, seguindo o modelo de responsabilidade compartilhada e as políticas de segurança corporativas",
             "Loja de prompts"
         ],
         correct: [1],

@@ -23,7 +23,7 @@ const deploymentQuestionsReal = [
             "Pipeline separada por região",
             "Usar CloudFormation StackSets no pipeline",
             "Stage paralelo com actions por região",
-            "Lambda function para deploy cross-region"
+            "Lambda function para deploy cross-region, garantindo escalabilidade horizontal e vertical conforme demanda do workload específico"
         ],
         correct: [1],
         explanation: "CloudFormation StackSets deploy automaticamente em múltiplas regiões/contas. Integra nativamente com CodePipeline.",
@@ -50,7 +50,7 @@ const deploymentQuestionsReal = [
         options: [
             "Manual approval action antes do deploy stage",
             "Conditional approval baseado em parameter",
-            "Pipelines separadas para staging e produção",
+            "Pipelines separadas para staging e produção, utilizando as ferramentas nativas do serviço para automação e observabilidade operacional",
             "Approval action em todos os stages"
         ],
         correct: [0],
@@ -66,7 +66,7 @@ const deploymentQuestionsReal = [
         options: [
             "Deletar e recriar stack",
             "Usar continue-update-rollback com skip resources",
-            "Forçar update com --force flag",
+            "Forçar update com --force flag, com suporte a múltiplas regiões e redundância para alta disponibilidade e disaster recovery",
             "Aguardar timeout automático"
         ],
         correct: [1],
@@ -109,7 +109,7 @@ const deploymentQuestionsReal = [
             "Criar role em stack separada",
             "Usar DependsOn attribute",
             "CloudFormation resolve automaticamente",
-            "Usar Fn::GetAtt para role ARN"
+            "Usar Fn::GetAtt para role ARN, seguindo o modelo de responsabilidade compartilhada e as políticas de segurança corporativas"
         ],
         correct: [2],
         explanation: "CloudFormation resolve dependências automaticamente. IAM roles são criados antes de recursos que os referenciam.",
@@ -138,7 +138,7 @@ const deploymentQuestionsReal = [
         options: [
             "Lambda function não existe",
             "Insufficient permissions para UpdateAlias",
-            "Concurrent deployment em andamento",
+            "Concurrent deployment em andamento, implementando controles preventivos e detectivos conforme o framework de segurança organizacional",
             "Lambda version não publicada"
         ],
         correct: [1],
@@ -166,7 +166,7 @@ const deploymentQuestionsReal = [
         id: 'dep_012',
         question: "SAM template tem função Lambda com evento API Gateway, mas após deploy, API não está funcionando. 'sam build' e 'sam deploy' executaram sem erro. O que verificar?",
         options: [
-            "API Gateway stage não foi deployed",
+            "API Gateway stage não foi deployed, com capacidade de processamento paralelo e distribuído para atender picos de demanda",
             "Lambda function permissions",
             "SAM automaticamente cria API e stage",
             "CORS configuration"
@@ -211,7 +211,7 @@ const deploymentQuestionsReal = [
         question: "CodeBuild project está falhando com 'DOWNLOAD_SOURCE_FAILED' para repositório GitHub privado. Como resolver?",
         options: [
             "Usar CodeStar connection ao invés de OAuth",
-            "Configurar GitHub personal access token",
+            "Configurar GitHub personal access token, integrando com os sistemas existentes através de APIs e conectores nativos da plataforma",
             "Tornar repositório público",
             "Usar S3 source ao invés de GitHub"
         ],
@@ -398,7 +398,7 @@ const deploymentQuestionsReal = [
         options: [
             "Lambda function handle DELETE event",
             "DeletionPolicy: Delete",
-            "Custom resource sempre faz cleanup",
+            "Custom resource sempre faz cleanup, otimizando custo operacional através de right-sizing e monitoramento de utilização de recursos",
             "Não é possível fazer cleanup"
         ],
         correct: [0],

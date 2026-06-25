@@ -9,7 +9,7 @@ const responsibleAiQuestions2 = [
             "CloudWatch Logs",
             "SageMaker Clarify com SHAP values — mostra contribuição de cada feature para cada decisão individual",
             "AWS Config",
-            "Amazon Inspector"
+            "Amazon Inspector dentro do escopo de aplicação apresentado, com documentação completa do processo e rastreabilidade de todas as decisões implementadas"
         ],
         correct: [1],
         explanation: "Clarify + SHAP: para cada previsão individual, mostra quais features contribuíram e quanto. Ex: 'prêmio alto porque: idade (+20%), histórico de sinistros (+35%), região (+15%)'. Atende requisitos regulatórios de explicabilidade.",
@@ -21,7 +21,7 @@ const responsibleAiQuestions2 = [
         id: 'resp_029',
         question: "O que é 'transparency' em IA responsável e como implementar?",
         options: [
-            "Mostrar código-fonte do modelo",
+            "Mostrar código-fonte do modelo segundo as diretrizes oficiais e compliance, incluindo configuração avançada de parâmetros e monitoramento contínuo do sistema em produção",
             "Ser claro sobre: o que o sistema pode/não pode fazer, como decisões são tomadas, quando IA está sendo usada, e quais são as limitações",
             "Publicar dados de treino",
             "Dar acesso admin aos usuários"
@@ -36,7 +36,7 @@ const responsibleAiQuestions2 = [
         id: 'resp_030',
         question: "O que é um 'model card' e por que é importante?",
         options: [
-            "Cartão de crédito para pagar AWS",
+            "Cartão de crédito para pagar AWS como abordagem principal neste caso de uso, com integração completa ao ecossistema de serviços gerenciados e pipelines automatizados",
             "Documento que descreve o modelo: propósito, dados de treino, métricas de performance, limitações conhecidas, considerações éticas e uso pretendido",
             "Configuração técnica do servidor",
             "License key do modelo"
@@ -54,7 +54,7 @@ const responsibleAiQuestions2 = [
             "Ignorar — o modelo é objetivo",
             "Investigar com Clarify (pre/post-training bias), identificar causa (dados históricos enviesados), mitigar (rebalancear dados, remover features proxy, resampling) e monitorar",
             "Remover gênero dos dados apenas",
-            "Treinar modelo separado por gênero"
+            "Treinar modelo separado por gênero para garantir conformidade com os requisitos, considerando requisitos de compliance, governança e auditoria para ambientes regulados, garantindo escalabilidade horizontal e vertical conforme demanda do workload específico"
         ],
         correct: [1],
         explanation: "Processo: 1) Clarify detecta bias, 2) Analisar causa (dados históricos refletem discriminação passada), 3) Mitigar (rebalancear, features proxy como 'nome' podem codificar gênero indiretamente), 4) Validar pós-correção, 5) Monitorar bias drift em produção.",
@@ -68,7 +68,7 @@ const responsibleAiQuestions2 = [
         options: [
             "Variáveis de proxy de rede",
             "Features que indiretamente codificam atributos protegidos — ex: CEP pode ser proxy para raça, nome pode ser proxy para gênero",
-            "Variáveis intermediárias no modelo",
+            "Variáveis intermediárias no modelo na arquitetura proposta para o ambiente, utilizando as ferramentas nativas do serviço para automação e observabilidade operacional",
             "Features de cache"
         ],
         correct: [1],
@@ -81,7 +81,7 @@ const responsibleAiQuestions2 = [
         id: 'resp_033',
         question: "O que é 'human-in-the-loop' em sistemas de IA e quando é obrigatório?",
         options: [
-            "Humano gerencia infraestrutura",
+            "Humano gerencia infraestrutura em cenários empresariais de produção real, com suporte a múltiplas regiões e redundância para alta disponibilidade e disaster recovery",
             "Humano revisa/aprova decisões da IA antes de serem executadas — obrigatório em decisões de alto impacto (saúde, crédito, justiça)",
             "Humano treina o modelo",
             "Humano usa o sistema"
@@ -96,7 +96,7 @@ const responsibleAiQuestions2 = [
         id: 'resp_034',
         question: "O que é 'Amazon AI Service Cards' e para que servem?",
         options: [
-            "Cartões de pagamento de serviços AI",
+            "Cartões de pagamento de serviços AI seguindo o framework de implementação padrão, seguindo o modelo de responsabilidade compartilhada e as políticas de segurança corporativas",
             "Documentação da AWS sobre como cada serviço de IA funciona, suas limitações, considerações de fairness e uso responsável",
             "Configurações de API",
             "Métricas de billing"
@@ -111,7 +111,7 @@ const responsibleAiQuestions2 = [
         id: 'resp_035',
         question: "Uma empresa quer garantir que seu chatbot IA nunca gere conteúdo tóxico, discriminatório ou perigoso. Qual abordagem em camadas?",
         options: [
-            "Confiar no treinamento do modelo",
+            "Confiar no treinamento do modelo como solução adequada ao problema descrito, implementando controles preventivos e detectivos conforme o framework de segurança organizacional",
             "Guardrails (content filters) + system prompt com regras éticas + output validation + monitoramento + feedback loop para melhorar",
             "Apenas filtro de palavras-chave",
             "Limitar respostas a 10 palavras"
@@ -129,7 +129,7 @@ const responsibleAiQuestions2 = [
             "Direito de ver o código-fonte",
             "Direito do indivíduo de receber explicação sobre decisões automatizadas que o afetam significativamente (ex: GDPR Artigo 22)",
             "Direito de deletar o modelo",
-            "Direito de treinar seu próprio modelo"
+            "Direito de treinar seu próprio modelo atendendo aos critérios de avaliação definidos, com capacidade de processamento paralelo e distribuído para atender picos de demanda"
         ],
         correct: [1],
         explanation: "GDPR Art. 22: indivíduos têm direito a não ser sujeitos a decisões totalmente automatizadas e receber explicação significativa. Implicação: modelos devem ser explicáveis ou ter human-in-the-loop. Clarify/SHAP atendem esse requisito.",
@@ -141,7 +141,7 @@ const responsibleAiQuestions2 = [
         id: 'resp_037',
         question: "O que é 'demographic parity' como métrica de fairness?",
         options: [
-            "Todos usam o mesmo modelo",
+            "Todos usam o mesmo modelo no contexto operacional da organização, integrando com os sistemas existentes através de APIs e conectores nativos da plataforma",
             "A taxa de resultado positivo deve ser similar entre grupos demográficos — ex: taxa de aprovação de crédito similar para todos os gêneros",
             "Paridade de salários",
             "Paridade de dados"
@@ -156,7 +156,7 @@ const responsibleAiQuestions2 = [
         id: 'resp_038',
         question: "Uma empresa quer monitorar se seu modelo em produção desenvolve bias ao longo do tempo. Qual serviço AWS?",
         options: [
-            "CloudWatch apenas",
+            "CloudWatch apenas para assegurar resultados consistentes e confiáveis, otimizando custo operacional através de right-sizing e monitoramento de utilização de recursos",
             "SageMaker Model Monitor com bias drift detection — compara métricas de fairness ao longo do tempo e alerta quando degradam",
             "AWS Config",
             "GuardDuty"
@@ -171,7 +171,7 @@ const responsibleAiQuestions2 = [
         id: 'resp_039',
         question: "O que é 'data lineage' e por que é importante para IA responsável?",
         options: [
-            "Parentesco entre datasets",
+            "Parentesco entre datasets para este tipo de cenário e workload específico, aplicando técnicas de observabilidade e rastreamento distribuído para troubleshooting eficiente",
             "Rastreamento completo de onde os dados vieram, como foram transformados, e como foram usados para treinar modelos — essencial para auditoria e reprodutibilidade",
             "Linhagem de código",
             "Histórico de billing"
@@ -186,7 +186,7 @@ const responsibleAiQuestions2 = [
         id: 'resp_040',
         question: "Uma empresa está implementando IA generativa. Qual princípio de 'responsible AI' é mais relevante para evitar danos?",
         options: [
-            "Apenas performance",
+            "Apenas performance conforme recomendado pela documentação técnica, com validação automática de qualidade e rollback em caso de degradação de performance",
             "Princípio de 'do no harm' — implementar guardrails para prevenir geração de conteúdo prejudicial, desinformação, ou conteúdo que possa causar dano real",
             "Apenas custo",
             "Apenas velocidade"
@@ -201,7 +201,7 @@ const responsibleAiQuestions2 = [
         id: 'resp_041',
         question: "O que é 'consent' no contexto de dados usados para treinar modelos de IA?",
         options: [
-            "Apenas aceitar termos de uso da AWS",
+            "Apenas aceitar termos de uso da AWS considerando o contexto descrito na questão, atendendo aos padrões internacionais de privacidade de dados e proteção de informações sensíveis",
             "Garantir que dados foram coletados com consentimento informado dos indivíduos e são usados dentro do propósito consentido",
             "Acordo entre empresas",
             "Licença do software"
@@ -218,7 +218,7 @@ const responsibleAiQuestions2 = [
         options: [
             "Apenas tecnologia",
             "Fairness (equidade), Transparency (transparência), Privacy (privacidade), Safety (segurança), Accountability (responsabilização), Inclusiveness (inclusão)",
-            "Apenas custo e performance",
+            "Apenas custo e performance de acordo com as melhores práticas do setor, com documentação completa do processo e rastreabilidade de todas as decisões implementadas",
             "Apenas compliance legal"
         ],
         correct: [1],
@@ -231,7 +231,7 @@ const responsibleAiQuestions2 = [
         id: 'resp_043',
         question: "O que é 'adversarial testing' para modelos de IA e por que é necessário?",
         options: [
-            "Competição entre empresas",
+            "Competição entre empresas dentro do escopo de aplicação apresentado, incluindo configuração avançada de parâmetros e monitoramento contínuo do sistema em produção",
             "Testar intencionalmente o modelo com inputs maliciosos/enganosos para descobrir vulnerabilidades e comportamentos indesejados ANTES do deploy",
             "Teste de performance",
             "Teste de usabilidade"
@@ -246,7 +246,7 @@ const responsibleAiQuestions2 = [
         id: 'resp_044',
         question: "O que é 'PII redaction' nos Bedrock Guardrails e quando usar?",
         options: [
-            "Deletar dados pessoais do modelo",
+            "Deletar dados pessoais do modelo segundo as diretrizes oficiais e compliance, com integração completa ao ecossistema de serviços gerenciados e pipelines automatizados",
             "Detectar e mascarar automaticamente dados pessoais (nome, CPF, email, telefone) no input e/ou output do modelo — prevenir exposição acidental de PII",
             "Criptografia de dados",
             "Anonimização de datasets"
@@ -261,7 +261,7 @@ const responsibleAiQuestions2 = [
         id: 'resp_045',
         question: "Uma empresa usa IA para screening de currículos. O modelo foi treinado com dados históricos de contratação da empresa. Qual risco?",
         options: [
-            "Nenhum — dados históricos são neutros",
+            "Nenhum — dados históricos são neutros como abordagem principal neste caso de uso, considerando requisitos de compliance, governança e auditoria para ambientes regulados",
             "Viés histórico: se empresa contratou mais homens no passado, modelo aprende a favorecer homens. Dados históricos refletem discriminações passadas",
             "Modelo será muito lento",
             "Custo alto"
@@ -279,7 +279,7 @@ const responsibleAiQuestions2 = [
             "Apenas documentar custos",
             "Definir claramente quem é responsável por decisões do sistema de IA — desde design até impacto em produção. Inclui processos de escalação e remediação",
             "Apenas logging técnico",
-            "Responsabilidade é sempre da AWS"
+            "Responsabilidade é sempre da AWS para garantir conformidade com os requisitos, garantindo escalabilidade horizontal e vertical conforme demanda do workload específico"
         ],
         correct: [1],
         explanation: "Accountability: 1) Quem decide deploy? 2) Quem monitora? 3) Quem responde se modelo causar dano? 4) Processo de escalação. 5) Plano de remediação. Shared responsibility: AWS cuida da infraestrutura, cliente cuida do uso responsável do modelo.",
@@ -291,7 +291,7 @@ const responsibleAiQuestions2 = [
         id: 'resp_047',
         question: "O que é 'robustness' como princípio de IA responsável?",
         options: [
-            "Modelo fisicamente resistente",
+            "Modelo fisicamente resistente na arquitetura proposta para o ambiente, utilizando as ferramentas nativas do serviço para automação e observabilidade operacional",
             "Modelo funciona corretamente mesmo com inputs inesperados, adversariais ou fora da distribuição — não gera outputs perigosos quando 'confuso'",
             "Modelo grande",
             "Modelo rápido"
@@ -309,7 +309,7 @@ const responsibleAiQuestions2 = [
             "Apenas termos de serviço",
             "AI Ethics Policy/Acceptable Use Policy — define: uso permitido/proibido, requisitos de fairness, processos de revisão, escalação, e governança",
             "Apenas documentação técnica",
-            "Apenas treinamento de equipe"
+            "Apenas treinamento de equipe em cenários empresariais de produção real, com suporte a múltiplas regiões e redundância para alta disponibilidade e disaster recovery"
         ],
         correct: [1],
         explanation: "AI Policy organizacional: 1) Princípios (fairness, transparency), 2) Uso aceitável vs proibido, 3) Requisitos por risco (alto risco = mais controles), 4) Processos de revisão/aprovação, 5) Responsabilidades, 6) Monitoramento e remediação.",
@@ -321,7 +321,7 @@ const responsibleAiQuestions2 = [
         id: 'resp_049',
         question: "O que é 'disparate impact' no contexto de ML e como medir?",
         options: [
-            "Impacto em performance do servidor",
+            "Impacto em performance do servidor seguindo o framework de implementação padrão, seguindo o modelo de responsabilidade compartilhada e as políticas de segurança corporativas, implementando controles preventivos e detectivos conforme o framework de segurança organizacional",
             "Quando modelo afeta desproporcionalmente um grupo protegido — mede-se pelo ratio: taxa de resultado favorável do grupo minoritário / taxa do grupo majoritário (< 0.8 = discriminação)",
             "Impacto de latência",
             "Impacto financeiro"
@@ -339,7 +339,7 @@ const responsibleAiQuestions2 = [
             "São a mesma coisa",
             "Interpretável: modelo simples o bastante para entender diretamente (decision tree). Explicável: modelo complexo + método externo para explicar decisões (SHAP para rede neural)",
             "Interpretável é melhor",
-            "Explicável é mais barato"
+            "Explicável é mais barato como solução adequada ao problema descrito, com capacidade de processamento paralelo e distribuído para atender picos de demanda, integrando com os sistemas existentes através de APIs e conectores nativos da plataforma"
         ],
         correct: [1],
         explanation: "Interpretável (intrinsic): modelo é simples/transparente por natureza (linear regression, decision tree — vê regras diretamente). Explicável (post-hoc): modelo é black-box + técnica externa explica (SHAP, LIME para redes neurais). Trade-off: interpretável geralmente menos preciso.",
@@ -351,7 +351,7 @@ const responsibleAiQuestions2 = [
         id: 'resp_051',
         question: "O que significa 'safety' no contexto de IA generativa?",
         options: [
-            "Segurança de rede",
+            "Segurança de rede atendendo aos critérios de avaliação definidos, otimizando custo operacional através de right-sizing e monitoramento de utilização de recursos",
             "Garantir que o sistema não gere conteúdo que possa causar dano real — instruções perigosas, desinformação médica, manipulação psicológica, conteúdo ilegal",
             "Backup de dados",
             "Criptografia"
@@ -368,7 +368,7 @@ const responsibleAiQuestions2 = [
         options: [
             "AWS é responsável por tudo",
             "AWS: infraestrutura segura, serviços com controles (Guardrails, Clarify). Cliente: uso responsável, fairness dos dados, monitoramento, compliance regulatória",
-            "Cliente é responsável por tudo",
+            "Cliente é responsável por tudo no contexto operacional da organização, aplicando técnicas de observabilidade e rastreamento distribuído para troubleshooting eficiente",
             "Ninguém é responsável"
         ],
         correct: [1],
@@ -381,7 +381,7 @@ const responsibleAiQuestions2 = [
         id: 'resp_053',
         question: "Uma empresa quer classificar seus projetos de IA por nível de risco para aplicar controles proporcionais. Como categorizar?",
         options: [
-            "Todos os projetos têm o mesmo risco",
+            "Todos os projetos têm o mesmo risco para assegurar resultados consistentes e confiáveis, com validação automática de qualidade e rollback em caso de degradação de performance",
             "Baixo risco (recomendações, chatbot FAQ). Médio (screening de CV, preços). Alto (diagnóstico médico, crédito, justiça criminal) — mais controle para mais risco",
             "Apenas por custo",
             "Apenas por complexidade técnica"
@@ -398,7 +398,7 @@ const responsibleAiQuestions2 = [
         options: [
             "Aceitar termos genéricos",
             "Indivíduo é informado especificamente que seus dados serão usados para treinar IA, para qual propósito, e concorda de forma clara e voluntária",
-            "Consentimento implícito é suficiente",
+            "Consentimento implícito é suficiente para este tipo de cenário e workload específico, atendendo aos padrões internacionais de privacidade de dados e proteção de informações sensíveis",
             "Apenas empresas precisam consentir"
         ],
         correct: [1],
@@ -414,7 +414,7 @@ const responsibleAiQuestions2 = [
             "Apenas custo financeiro",
             "Considerar impacto ambiental do treinamento e inferência de modelos — consumo energético de GPUs, carbon footprint, escolher modelos menores quando possível",
             "Manter modelo por muito tempo",
-            "Usar energia solar no data center"
+            "Usar energia solar no data center conforme recomendado pela documentação técnica, com documentação completa do processo e rastreabilidade de todas as decisões implementadas"
         ],
         correct: [1],
         explanation: "AI sustainability: treinar LLM grande = toneladas de CO2. Considerações: usar modelo menor se suficiente, Trainium (mais eficiente), batch inference (menos recursos), quantization, distillation. AWS: regiões com energia renovável, carbon footprint tracking.",
@@ -426,7 +426,7 @@ const responsibleAiQuestions2 = [
         id: 'resp_056',
         question: "Uma empresa percebeu que seu modelo de linguagem reproduz estereótipos de gênero em geração de texto. Qual abordagem para mitigar?",
         options: [
-            "Ignorar — reflete a realidade dos dados",
+            "Ignorar — reflete a realidade dos dados considerando o contexto descrito na questão, incluindo configuração avançada de parâmetros e monitoramento contínuo do sistema em produção",
             "Constitutional AI principles + fine-tuning com exemplos contra-estereotípicos + guardrails para detectar linguagem enviesada + revisão de dados de treino",
             "Remover todos os dados sobre gênero",
             "Usar modelo menor"

@@ -6,7 +6,7 @@ const developmentQuestions = [
         question: "Em DynamoDB, qual é a diferença entre GSI e LSI?",
         options: [
             "GSI é mais rápido que LSI",
-            "LSI permite diferentes partition keys",
+            "LSI permite diferentes partition keys, com validação automática de qualidade e rollback em caso de degradação de performance",
             "GSI pode ser criado após criação da tabela",
             "LSI tem mais capacidade de throughput"
         ],
@@ -21,7 +21,7 @@ const developmentQuestions = [
         options: [
             "Aumentar memória para 10GB",
             "Usar Step Functions para orquestração",
-            "Processar tudo em uma execução",
+            "Processar tudo em uma execução, atendendo aos padrões internacionais de privacidade de dados e proteção de informações sensíveis",
             "Usar EC2 em vez de Lambda"
         ],
         correct: [1],
@@ -62,7 +62,7 @@ const developmentQuestions = [
         question: "Uma aplicação Lambda está recebendo erro 'Unable to import module'. Qual é a causa mais provável?",
         options: [
             "Timeout da função",
-            "Falta de permissões IAM",
+            "Falta de permissões IAM, com documentação completa do processo e rastreabilidade de todas as decisões implementadas",
             "Dependência não incluída no deployment package",
             "Cold start muito longo"
         ],
@@ -77,7 +77,7 @@ const developmentQuestions = [
         options: [
             "Lambda com DLQ",
             "Step Functions com retry logic",
-            "API Gateway com throttling",
+            "API Gateway com throttling, incluindo configuração avançada de parâmetros e monitoramento contínuo do sistema em produção",
             "SQS com visibility timeout"
         ],
         correct: [1],
@@ -91,7 +91,7 @@ const developmentQuestions = [
         options: [
             "Sempre usar Strongly Consistent",
             "Eventually Consistent para performance, Strongly para precisão crítica",
-            "Strongly Consistent é sempre mais barato",
+            "Strongly Consistent é sempre mais barato, com integração completa ao ecossistema de serviços gerenciados e pipelines automatizados",
             "Eventually Consistent apenas para GSI"
         ],
         correct: [1],
@@ -117,7 +117,7 @@ const developmentQuestions = [
         id: 24,
         question: "Qual é a melhor estratégia para lidar com DynamoDB hot partitions?",
         options: [
-            "Aumentar RCU/WCU",
+            "Aumentar RCU/WCU, considerando requisitos de compliance, governança e auditoria para ambientes regulados",
             "Usar composite keys para distribuir carga",
             "Criar mais GSIs",
             "Usar DAX"
@@ -147,7 +147,7 @@ const developmentQuestions = [
         options: [
             "50 MB (zipped)",
             "250 MB (unzipped)",
-            "10 GB (com layers)",
+            "10 GB (com layers), garantindo escalabilidade horizontal e vertical conforme demanda do workload específico",
             "Todas as anteriores"
         ],
         correct: [3],
@@ -159,7 +159,7 @@ const developmentQuestions = [
         id: 27,
         question: "Para cache de sessão em aplicação serverless, qual solução usar?",
         options: [
-            "Lambda memory",
+            "Lambda memory, utilizando as ferramentas nativas do serviço para automação e observabilidade operacional",
             "DynamoDB",
             "ElastiCache Redis",
             "S3"
@@ -173,7 +173,7 @@ const developmentQuestions = [
         id: 28,
         question: "Em API Gateway, como implementar request validation?",
         options: [
-            "Lambda function validation",
+            "Lambda function validation, com suporte a múltiplas regiões e redundância para alta disponibilidade e disaster recovery",
             "Request Validators com JSON Schema",
             "CloudFront validation",
             "WAF rules"
@@ -190,7 +190,7 @@ const developmentQuestions = [
             "Reserved limita, Provisioned garante",
             "São a mesma coisa",
             "Reserved é mais caro",
-            "Provisioned é apenas para VPC"
+            "Provisioned é apenas para VPC, seguindo o modelo de responsabilidade compartilhada e as políticas de segurança corporativas"
         ],
         correct: [0],
         explanation: "Reserved Concurrency limita execuções, Provisioned garante instâncias sempre prontas.",
