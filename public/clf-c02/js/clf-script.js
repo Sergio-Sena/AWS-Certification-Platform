@@ -218,20 +218,50 @@ function selectOption(optionIndex, isMultipleChoice) {
         if (!examState.answers[questionId]) {
             examState.answers[questionId] = [];
         }
-        
         const answerArray = examState.answers[questionId];
         const index = answerArray.indexOf(optionIndex);
-        
-        if (index > -1) {
-            answerArray.splice(index, 1);
-        } else {
-            answerArray.push(optionIndex);
-        }
+        if (index > -1) { answerArray.splice(index, 1); } else { answerArray.push(optionIndex); }
     } else {
         examState.answers[questionId] = optionIndex;
     }
     
     updateOptionVisuals();
+    showJustificationField();
+}
+
+function showJustificationField() {
+    const q = examState.questions[examState.currentQuestion];
+    if (document.getElementById('justification-area')) return;
+    if (examState.answers[q.id] === undefined) return;
+
+    const container = document.getElementById('options-container').parentElement;
+    const justDiv = document.createElement('div');
+    justDiv.id = 'justification-area';
+    justDiv.style.cssText = 'margin-top:1.5rem;padding:1rem;background:#f8f9fa;border-radius:8px;border:1px solid #e0e0e0;';
+    justDiv.innerHTML = `
+        <label style="font-weight:600;font-size:0.9rem;color:#333;display:block;margin-bottom:0.5rem;">💭 Por que você escolheu essa resposta? <span style="color:#999;font-weight:400;">(opcional)</span></label>
+        <textarea id="justification-input" rows="2" placeholder="Ex: Escolhi porque atende o requisito de..." 
+            style="width:100%;border:1px solid #ddd;border-radius:6px;padding:0.75rem;font-size:0.9rem;font-family:inherit;resize:vertical;"
+            oninput="saveJustification()"></textarea>
+    `;
+    container.appendChild(justDiv);
+
+    if (!examState.justifications) examState.justifications = {};
+    const saved = examState.justifications[q.id];
+    if (saved) document.getElementById('justification-input').value = saved;
+}
+
+function saveJustification() {
+    const q = examState.questions[examState.currentQuestion];
+    const input = document.getElementById('justification-input');
+    if (!input) return;
+    if (!examState.justifications) examState.justifications = {};
+    examState.justifications[q.id] = input.value;
+}
+
+function removeJustificationField() {
+    const el = document.getElementById('justification-area');
+    if (el) el.remove();
 }
 
 function updateOptionVisuals() {
@@ -254,6 +284,7 @@ function updateOptionVisuals() {
 function previousQuestion() {
     if (examState.currentQuestion > 0) {
         examState.currentQuestion--;
+        removeJustificationField();
         showQuestion();
     }
 }
@@ -261,6 +292,7 @@ function previousQuestion() {
 function nextQuestion() {
     if (examState.currentQuestion < examState.questions.length - 1) {
         examState.currentQuestion++;
+        removeJustificationField();
         showQuestion();
     }
 }
@@ -423,6 +455,7 @@ function renderReviewItem(item) {
             <div style="background:#f7fafc;border-radius:6px;padding:1rem;font-size:0.9rem;">
                 <strong>💡 Explicação:</strong><br>${(q.explanation||'').replace(/\n/g,'<br>')}
             </div>
+            ${examState.justifications && examState.justifications[q.id] ? `<div style="background:#fff8e1;border-left:3px solid #f59e0b;padding:0.75rem 1rem;margin-top:0.5rem;border-radius:4px;font-size:0.85rem;"><strong>💭 Sua justificativa:</strong> ${examState.justifications[q.id]}</div>` : ''}
         </div>
     `;
 }
