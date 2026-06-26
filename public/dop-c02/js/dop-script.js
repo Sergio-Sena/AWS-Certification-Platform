@@ -89,9 +89,36 @@ function showQuestion() {
     document.getElementById('finish-btn').style.display = examState.currentQuestion === examState.questions.length - 1 ? 'inline-block' : 'none';
 }
 
-function selectOption(i) { examState.answers[examState.questions[examState.currentQuestion].id] = i; showQuestion(); }
-function previousQuestion() { if (examState.currentQuestion > 0) { examState.currentQuestion--; showQuestion(); } }
-function nextQuestion() { if (examState.currentQuestion < examState.questions.length - 1) { examState.currentQuestion++; showQuestion(); } }
+function selectOption(i) {
+    examState.answers[examState.questions[examState.currentQuestion].id] = i;
+    showQuestion();
+    showJustificationField();
+}
+
+function showJustificationField() {
+    const q = examState.questions[examState.currentQuestion];
+    if (document.getElementById('justification-area')) return;
+    if (examState.answers[q.id] === undefined) return;
+    const container = document.getElementById('options-container').parentElement;
+    const div = document.createElement('div');
+    div.id = 'justification-area';
+    div.style.cssText = 'margin-top:1.5rem;padding:1rem;background:#f8f9fa;border-radius:8px;border:1px solid #e0e0e0;';
+    div.innerHTML = `<label style="font-weight:600;font-size:0.9rem;display:block;margin-bottom:0.5rem;">💭 Por que você escolheu essa resposta? <span style="color:#999;font-weight:400;">(opcional)</span></label><textarea id="justification-input" rows="2" placeholder="Ex: Escolhi porque..." style="width:100%;border:1px solid #ddd;border-radius:6px;padding:0.75rem;font-size:0.9rem;font-family:inherit;resize:vertical;" oninput="saveJustification()"></textarea>`;
+    container.appendChild(div);
+    if (!examState.justifications) examState.justifications = {};
+    const saved = examState.justifications[q.id];
+    if (saved) document.getElementById('justification-input').value = saved;
+}
+function saveJustification() {
+    const q = examState.questions[examState.currentQuestion];
+    const input = document.getElementById('justification-input');
+    if (!input) return;
+    if (!examState.justifications) examState.justifications = {};
+    examState.justifications[q.id] = input.value;
+}
+function removeJustificationField() { const el = document.getElementById('justification-area'); if (el) el.remove(); }
+function previousQuestion() { if (examState.currentQuestion > 0) { examState.currentQuestion--; removeJustificationField(); showQuestion(); } }
+function nextQuestion() { if (examState.currentQuestion < examState.questions.length - 1) { examState.currentQuestion++; removeJustificationField(); showQuestion(); } }
 
 function finishExam() {
     if (examState.timer) clearInterval(examState.timer);
@@ -189,6 +216,7 @@ function renderReviewItem(item) {
             <div style="background:#f7fafc;border-radius:6px;padding:1rem;font-size:0.9rem;">
                 <strong>💡 Explicação:</strong><br>${(q.explanation||'').replace(/\\n/g,'<br>').replace(/\n/g,'<br>')}
             </div>
+            ${examState.justifications && examState.justifications[q.id] ? `<div style="background:#fff8e1;border-left:3px solid #f59e0b;padding:0.75rem 1rem;margin-top:0.5rem;border-radius:4px;font-size:0.85rem;"><strong>💭 Sua justificativa:</strong> ${examState.justifications[q.id]}</div>` : ''}
         </div>
     `;
 }
